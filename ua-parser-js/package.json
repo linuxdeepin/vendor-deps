@@ -1,27 +1,52 @@
 {
-  "_from": "ua-parser-js@^0.7.9",
+  "_args": [
+    [
+      {
+        "raw": "ua-parser-js@^0.7.9",
+        "scope": null,
+        "escapedName": "ua-parser-js",
+        "name": "ua-parser-js",
+        "rawSpec": "^0.7.9",
+        "spec": ">=0.7.9 <0.8.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/fbjs"
+    ]
+  ],
+  "_cnpm_publish_time": 1507796281762,
+  "_from": "ua-parser-js@>=0.7.9 <0.8.0",
+  "_hasShrinkwrap": false,
   "_id": "ua-parser-js@0.7.17",
-  "_inBundle": false,
-  "_integrity": "sha1-6exflJi57JEOeuOsYmqAXE0J7Kw=",
+  "_inCache": true,
   "_location": "/ua-parser-js",
+  "_nodeVersion": "8.4.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/ua-parser-js-0.7.17.tgz_1507796281678_0.5127764702774584"
+  },
+  "_npmUser": {
+    "name": "faisalman",
+    "email": "fyzlman@gmail.com"
+  },
+  "_npmVersion": "5.3.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "ua-parser-js@^0.7.9",
-    "name": "ua-parser-js",
+    "scope": null,
     "escapedName": "ua-parser-js",
+    "name": "ua-parser-js",
     "rawSpec": "^0.7.9",
-    "saveSpec": null,
-    "fetchSpec": "^0.7.9"
+    "spec": ">=0.7.9 <0.8.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/fbjs"
   ],
   "_resolved": "http://r.cnpmjs.org/ua-parser-js/download/ua-parser-js-0.7.17.tgz",
   "_shasum": "e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac",
+  "_shrinkwrap": null,
   "_spec": "ua-parser-js@^0.7.9",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/fbjs",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/fbjs",
   "author": {
     "name": "Faisal Salman",
     "email": "f@faisalman.com",
@@ -30,7 +55,6 @@
   "bugs": {
     "url": "https://github.com/faisalman/ua-parser-js/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Aamir Poonawalla",
@@ -270,7 +294,7 @@
     }
   ],
   "demo": "https://faisalman.github.io/ua-parser-js",
-  "deprecated": false,
+  "dependencies": {},
   "description": "Lightweight JavaScript-based user-agent string parser",
   "devDependencies": {
     "jshint": "~1.1.0",
@@ -284,10 +308,17 @@
     "src": "src",
     "test": "test"
   },
+  "dist": {
+    "shasum": "e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac",
+    "size": 39780,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/ua-parser-js/download/ua-parser-js-0.7.17.tgz"
+  },
   "download": "https://raw.github.com/faisalman/ua-parser-js/master/dist/ua-parser.min.js",
   "engines": {
     "node": "*"
   },
+  "gitHead": "60952586733b60b1d1e3fb38b8dd9b29f8511264",
   "homepage": "http://github.com/faisalman/ua-parser-js",
   "keywords": [
     "user-agent",
@@ -302,7 +333,16 @@
   ],
   "license": "(GPL-2.0 OR MIT)",
   "main": "src/ua-parser.js",
+  "maintainers": [
+    {
+      "name": "faisalman",
+      "email": "fyzlman@gmail.com"
+    }
+  ],
   "name": "ua-parser-js",
+  "optionalDependencies": {},
+  "publish_time": 1507796281762,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/faisalman/ua-parser-js.git"

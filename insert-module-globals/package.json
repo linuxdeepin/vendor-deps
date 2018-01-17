@@ -1,31 +1,52 @@
 {
-  "_from": "insert-module-globals@^7.0.0",
+  "_args": [
+    [
+      {
+        "raw": "insert-module-globals@^7.0.0",
+        "scope": null,
+        "escapedName": "insert-module-globals",
+        "name": "insert-module-globals",
+        "rawSpec": "^7.0.0",
+        "spec": ">=7.0.0 <8.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify"
+    ]
+  ],
+  "_cnpm_publish_time": 1446268890371,
+  "_from": "insert-module-globals@>=7.0.0 <8.0.0",
+  "_hasShrinkwrap": false,
   "_id": "insert-module-globals@7.0.1",
-  "_inBundle": false,
-  "_integrity": "sha1-wDv04BywhtW15azorQr+eInWOMM=",
+  "_inCache": true,
   "_location": "/insert-module-globals",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "parshap",
+    "email": "parshap+npm@gmail.com"
+  },
+  "_npmVersion": "2.14.6",
   "_phantomChildren": {
     "inline-source-map": "0.6.2",
     "lodash.memoize": "3.0.4",
     "source-map": "0.5.7"
   },
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "insert-module-globals@^7.0.0",
-    "name": "insert-module-globals",
+    "scope": null,
     "escapedName": "insert-module-globals",
+    "name": "insert-module-globals",
     "rawSpec": "^7.0.0",
-    "saveSpec": null,
-    "fetchSpec": "^7.0.0"
+    "spec": ">=7.0.0 <8.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/browserify"
   ],
   "_resolved": "http://r.cnpmjs.org/insert-module-globals/download/insert-module-globals-7.0.1.tgz",
   "_shasum": "c03bf4e01cb086d5b5e5ace8ad0afe7889d638c3",
+  "_shrinkwrap": null,
   "_spec": "insert-module-globals@^7.0.0",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/browserify",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify",
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",
@@ -37,7 +58,6 @@
   "bugs": {
     "url": "https://github.com/substack/insert-module-globals/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "JSONStream": "^1.0.3",
     "combine-source-map": "~0.7.1",
@@ -48,7 +68,6 @@
     "through2": "^2.0.0",
     "xtend": "^4.0.0"
   },
-  "deprecated": false,
   "description": "insert implicit module globals into a module-deps stream",
   "devDependencies": {
     "browser-pack": "^6.0.0",
@@ -57,6 +76,14 @@
     "module-deps": "^4.0.2",
     "tape": "^4.2.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "c03bf4e01cb086d5b5e5ace8ad0afe7889d638c3",
+    "size": 7893,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/insert-module-globals/download/insert-module-globals-7.0.1.tgz"
+  },
+  "gitHead": "769f4bd08e01b77a620f2e2de1d2249c8311b0a2",
   "homepage": "https://github.com/substack/insert-module-globals",
   "keywords": [
     "__filename",
@@ -69,7 +96,168 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "ahdinosaur",
+      "email": "dinosaur@riseup.net"
+    },
+    {
+      "name": "anandthakker",
+      "email": "vestibule@anandthakker.net"
+    },
+    {
+      "name": "ashaffer88",
+      "email": "darawk@gmail.com"
+    },
+    {
+      "name": "balupton",
+      "email": "b@lupton.cc"
+    },
+    {
+      "name": "bpostlethwaite",
+      "email": "post.ben.here@gmail.com"
+    },
+    {
+      "name": "bret",
+      "email": "bcomnes@gmail.com"
+    },
+    {
+      "name": "cwmma",
+      "email": "calvin.metcalf@gmail.com"
+    },
+    {
+      "name": "dcousens",
+      "email": "email@dcousens.com"
+    },
+    {
+      "name": "dominictarr",
+      "email": "dominic.tarr@gmail.com"
+    },
+    {
+      "name": "elnounch",
+      "email": "contact@elnounch.net"
+    },
+    {
+      "name": "emilbayes",
+      "email": "github@tixz.dk"
+    },
+    {
+      "name": "feross",
+      "email": "feross@feross.org"
+    },
+    {
+      "name": "forbeslindesay",
+      "email": "forbes@lindesay.co.uk"
+    },
+    {
+      "name": "fpereira1",
+      "email": "pereira.filype@gmail.com"
+    },
+    {
+      "name": "garann",
+      "email": "garann@gmail.com"
+    },
+    {
+      "name": "gkatsev",
+      "email": "me@gkatsev.com"
+    },
+    {
+      "name": "goto-bus-stop",
+      "email": "rene@kooi.me"
+    },
+    {
+      "name": "hughsk",
+      "email": "hughskennedy@gmail.com"
+    },
+    {
+      "name": "indutny",
+      "email": "fedor@indutny.com"
+    },
+    {
+      "name": "jmm",
+      "email": "npm-public@jessemccarthy.net"
+    },
+    {
+      "name": "jprichardson",
+      "email": "jprichardson@gmail.com"
+    },
+    {
+      "name": "jryans",
+      "email": "jryans@gmail.com"
+    },
+    {
+      "name": "leichtgewicht",
+      "email": "mh@leichtgewicht.at"
+    },
+    {
+      "name": "mafintosh",
+      "email": "mathiasbuus@gmail.com"
+    },
+    {
+      "name": "mattdesl",
+      "email": "dave.des@gmail.com"
+    },
+    {
+      "name": "maxogden",
+      "email": "max@maxogden.com"
+    },
+    {
+      "name": "mellowmelon",
+      "email": "palmermebane@gmail.com"
+    },
+    {
+      "name": "parshap",
+      "email": "parshap+npm@gmail.com"
+    },
+    {
+      "name": "pkrumins",
+      "email": "peteris.krumins@gmail.com"
+    },
+    {
+      "name": "sethvincent",
+      "email": "sethvincent@gmail.com"
+    },
+    {
+      "name": "stevemao",
+      "email": "maochenyan@gmail.com"
+    },
+    {
+      "name": "substack",
+      "email": "substack@gmail.com"
+    },
+    {
+      "name": "tehshrike",
+      "email": "me@JoshDuff.com"
+    },
+    {
+      "name": "terinjokes",
+      "email": "terinjokes@gmail.com"
+    },
+    {
+      "name": "thlorenz",
+      "email": "thlorenz@gmx.de"
+    },
+    {
+      "name": "ungoldman",
+      "email": "ungoldman@gmail.com"
+    },
+    {
+      "name": "yerkopalma",
+      "email": "yerko.palma@usach.cl"
+    },
+    {
+      "name": "yoshuawuyts",
+      "email": "i@yoshuawuyts.com"
+    },
+    {
+      "name": "zertosh",
+      "email": "zertosh@gmail.com"
+    }
+  ],
   "name": "insert-module-globals",
+  "optionalDependencies": {},
+  "publish_time": 1446268890371,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/substack/insert-module-globals.git"

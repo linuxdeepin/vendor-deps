@@ -1,27 +1,52 @@
 {
-  "_from": "nanomatch@^1.2.5",
+  "_args": [
+    [
+      {
+        "raw": "nanomatch@^1.2.5",
+        "scope": null,
+        "escapedName": "nanomatch",
+        "name": "nanomatch",
+        "rawSpec": "^1.2.5",
+        "spec": ">=1.2.5 <2.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/micromatch"
+    ]
+  ],
+  "_cnpm_publish_time": 1515387513465,
+  "_from": "nanomatch@>=1.2.5 <2.0.0",
+  "_hasShrinkwrap": false,
   "_id": "nanomatch@1.2.7",
-  "_inBundle": false,
-  "_integrity": "sha1-U81KoQn/aLf4aVkf3J0Q2u7qPnk=",
+  "_inCache": true,
   "_location": "/nanomatch",
+  "_nodeVersion": "9.1.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/nanomatch-1.2.7.tgz_1515387512324_0.859608280705288"
+  },
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "nanomatch@^1.2.5",
-    "name": "nanomatch",
+    "scope": null,
     "escapedName": "nanomatch",
+    "name": "nanomatch",
     "rawSpec": "^1.2.5",
-    "saveSpec": null,
-    "fetchSpec": "^1.2.5"
+    "spec": ">=1.2.5 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/micromatch"
   ],
   "_resolved": "http://r.cnpmjs.org/nanomatch/download/nanomatch-1.2.7.tgz",
   "_shasum": "53cd4aa109ff68b7f869591fdc9d10daeeea3e79",
+  "_shrinkwrap": null,
   "_spec": "nanomatch@^1.2.5",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/micromatch",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/micromatch",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
@@ -29,7 +54,6 @@
   "bugs": {
     "url": "https://github.com/micromatch/nanomatch/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Devon Govett",
@@ -53,7 +77,6 @@
     "snapdragon": "^0.8.1",
     "to-regex": "^3.0.1"
   },
-  "deprecated": false,
   "description": "Fast, minimal glob matcher for node.js. Similar to micromatch, minimatch and multimatch, but complete Bash 4.3 wildcard support only (no support for exglobs, posix brackets or braces)",
   "devDependencies": {
     "bash-match": "^1.0.2",
@@ -70,6 +93,13 @@
     "mocha": "^3.5.0",
     "multimatch": "^2.1.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "53cd4aa109ff68b7f869591fdc9d10daeeea3e79",
+    "size": 20155,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/nanomatch/download/nanomatch-1.2.7.tgz"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
@@ -77,6 +107,7 @@
     "index.js",
     "lib"
   ],
+  "gitHead": "00b8596325eb5cd50b41fb1f65712aac9a5e1ccf",
   "homepage": "https://github.com/micromatch/nanomatch",
   "keywords": [
     "bash",
@@ -128,7 +159,16 @@
     }
   },
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
   "name": "nanomatch",
+  "optionalDependencies": {},
+  "publish_time": 1515387513465,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/micromatch/nanomatch.git"

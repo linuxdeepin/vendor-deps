@@ -1,19 +1,38 @@
 {
+  "_args": [
+    [
+      {
+        "raw": "isarray@0.0.1",
+        "scope": null,
+        "escapedName": "isarray",
+        "name": "isarray",
+        "rawSpec": "0.0.1",
+        "spec": "0.0.1",
+        "type": "version"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/readable-stream"
+    ]
+  ],
+  "_cnpm_publish_time": 1369676435695,
   "_from": "isarray@0.0.1",
+  "_hasShrinkwrap": false,
   "_id": "isarray@0.0.1",
-  "_inBundle": false,
-  "_integrity": "sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=",
+  "_inCache": true,
   "_location": "/isarray",
+  "_npmUser": {
+    "name": "juliangruber",
+    "email": "julian@juliangruber.com"
+  },
+  "_npmVersion": "1.2.18",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
-    "registry": true,
     "raw": "isarray@0.0.1",
-    "name": "isarray",
+    "scope": null,
     "escapedName": "isarray",
+    "name": "isarray",
     "rawSpec": "0.0.1",
-    "saveSpec": null,
-    "fetchSpec": "0.0.1"
+    "spec": "0.0.1",
+    "type": "version"
   },
   "_requiredBy": [
     "/glob-stream/readable-stream",
@@ -24,8 +43,9 @@
   ],
   "_resolved": "http://r.cnpmjs.org/isarray/download/isarray-0.0.1.tgz",
   "_shasum": "8a18acfca9a8f4177e09abfc6038939b05d1eedf",
+  "_shrinkwrap": null,
   "_spec": "isarray@0.0.1",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/readable-stream",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/readable-stream",
   "author": {
     "name": "Julian Gruber",
     "email": "mail@juliangruber.com",
@@ -34,12 +54,17 @@
   "bugs": {
     "url": "https://github.com/juliangruber/isarray/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {},
-  "deprecated": false,
   "description": "Array#isArray for older browsers",
   "devDependencies": {
     "tap": "*"
+  },
+  "directories": {},
+  "dist": {
+    "tarball": "http://r.cnpmjs.org/isarray/download/isarray-0.0.1.tgz",
+    "shasum": "8a18acfca9a8f4177e09abfc6038939b05d1eedf",
+    "size": 2742,
+    "noattachment": false
   },
   "homepage": "https://github.com/juliangruber/isarray",
   "keywords": [
@@ -49,7 +74,17 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "juliangruber",
+      "email": "julian@juliangruber.com"
+    }
+  ],
   "name": "isarray",
+  "optionalDependencies": {},
+  "publish_time": 1369676435695,
+  "readme": "ERROR: No README data found!",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/isarray.git"

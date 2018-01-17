@@ -1,27 +1,48 @@
 {
-  "_from": "glob2base@^0.0.12",
+  "_args": [
+    [
+      {
+        "raw": "glob2base@^0.0.12",
+        "scope": null,
+        "escapedName": "glob2base",
+        "name": "glob2base",
+        "rawSpec": "^0.0.12",
+        "spec": ">=0.0.12 <0.0.13",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/glob-stream"
+    ]
+  ],
+  "_cnpm_publish_time": 1415921512604,
+  "_from": "glob2base@>=0.0.12 <0.0.13",
+  "_hasShrinkwrap": false,
   "_id": "glob2base@0.0.12",
-  "_inBundle": false,
-  "_integrity": "sha1-nUGbPijxLoOjYhZKJ3BVkiycDVY=",
+  "_inCache": true,
   "_location": "/glob2base",
+  "_nodeVersion": "0.10.33",
+  "_npmUser": {
+    "name": "fractal",
+    "email": "contact@wearefractal.com"
+  },
+  "_npmVersion": "2.1.6",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "glob2base@^0.0.12",
-    "name": "glob2base",
+    "scope": null,
     "escapedName": "glob2base",
+    "name": "glob2base",
     "rawSpec": "^0.0.12",
-    "saveSpec": null,
-    "fetchSpec": "^0.0.12"
+    "spec": ">=0.0.12 <0.0.13",
+    "type": "range"
   },
   "_requiredBy": [
     "/glob-stream"
   ],
   "_resolved": "http://r.cnpmjs.org/glob2base/download/glob2base-0.0.12.tgz",
   "_shasum": "9d419b3e28f12e83a362164a277055922c9c0d56",
+  "_shrinkwrap": null,
   "_spec": "glob2base@^0.0.12",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/glob-stream",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/glob-stream",
   "author": {
     "name": "Fractal",
     "email": "contact@wearefractal.com",
@@ -30,11 +51,9 @@
   "bugs": {
     "url": "https://github.com/wearefractal/glob2base/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "find-index": "^0.1.1"
   },
-  "deprecated": false,
   "description": "Extracts a base path from a node-glob instance",
   "devDependencies": {
     "coveralls": "^2.6.1",
@@ -46,6 +65,13 @@
     "mocha-lcov-reporter": "^0.0.1",
     "should": "^4.0.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "9d419b3e28f12e83a362164a277055922c9c0d56",
+    "size": 2366,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/glob2base/download/glob2base-0.0.12.tgz"
+  },
   "engines": {
     "node": ">= 0.10"
   },
@@ -53,6 +79,7 @@
     "index.js",
     "lib"
   ],
+  "gitHead": "d3fadacea415f4676fd431c90cd2205a2f1e6b26",
   "homepage": "http://github.com/wearefractal/glob2base",
   "licenses": [
     {
@@ -61,7 +88,20 @@
     }
   ],
   "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "contra",
+      "email": "contra@wearefractal.com"
+    },
+    {
+      "name": "fractal",
+      "email": "contact@wearefractal.com"
+    }
+  ],
   "name": "glob2base",
+  "optionalDependencies": {},
+  "publish_time": 1415921512604,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/wearefractal/glob2base.git"

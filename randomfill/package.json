@@ -1,38 +1,61 @@
 {
-  "_from": "randomfill@^1.0.3",
+  "_args": [
+    [
+      {
+        "raw": "randomfill@^1.0.3",
+        "scope": null,
+        "escapedName": "randomfill",
+        "name": "randomfill",
+        "rawSpec": "^1.0.3",
+        "spec": ">=1.0.3 <2.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/crypto-browserify"
+    ]
+  ],
+  "_cnpm_publish_time": 1508342199444,
+  "_from": "randomfill@>=1.0.3 <2.0.0",
+  "_hasShrinkwrap": false,
   "_id": "randomfill@1.0.3",
-  "_inBundle": false,
-  "_integrity": "sha1-uWt99YfwHdkXJsQY8wVTsUGOPWI=",
+  "_inCache": true,
   "_location": "/randomfill",
+  "_nodeVersion": "8.6.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/randomfill-1.0.3.tgz_1508342198510_0.7042635742109269"
+  },
+  "_npmUser": {
+    "name": "cwmma",
+    "email": "calvin.metcalf@gmail.com"
+  },
+  "_npmVersion": "5.5.1",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "randomfill@^1.0.3",
-    "name": "randomfill",
+    "scope": null,
     "escapedName": "randomfill",
+    "name": "randomfill",
     "rawSpec": "^1.0.3",
-    "saveSpec": null,
-    "fetchSpec": "^1.0.3"
+    "spec": ">=1.0.3 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/crypto-browserify"
   ],
   "_resolved": "http://r.cnpmjs.org/randomfill/download/randomfill-1.0.3.tgz",
   "_shasum": "b96b7df587f01dd91726c418f30553b1418e3d62",
+  "_shrinkwrap": null,
   "_spec": "randomfill@^1.0.3",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/crypto-browserify",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/crypto-browserify",
   "author": "",
   "browser": "browser.js",
   "bugs": {
     "url": "https://github.com/crypto-browserify/randombytes/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "randombytes": "^2.0.5",
     "safe-buffer": "^5.1.0"
   },
-  "deprecated": false,
   "description": "random fill from browserify stand alone",
   "devDependencies": {
     "phantomjs": "^1.9.9",
@@ -41,6 +64,14 @@
     "tape": "^4.6.3",
     "zuul": "^3.7.2"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "b96b7df587f01dd91726c418f30553b1418e3d62",
+    "size": 2859,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/randomfill/download/randomfill-1.0.3.tgz"
+  },
+  "gitHead": "3e471b7aea4d6e2380c633e7452685d56786570c",
   "homepage": "https://github.com/crypto-browserify/randombytes",
   "keywords": [
     "crypto",
@@ -48,7 +79,16 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "cwmma",
+      "email": "calvin.metcalf@gmail.com"
+    }
+  ],
   "name": "randomfill",
+  "optionalDependencies": {},
+  "publish_time": 1508342199444,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/crypto-browserify/randombytes.git"

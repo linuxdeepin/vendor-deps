@@ -1,32 +1,56 @@
 {
-  "_from": "electron-releases@^2.1.0",
+  "_args": [
+    [
+      {
+        "raw": "electron-releases@^2.1.0",
+        "scope": null,
+        "escapedName": "electron-releases",
+        "name": "electron-releases",
+        "rawSpec": "^2.1.0",
+        "spec": ">=2.1.0 <3.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/electron-to-chromium"
+    ]
+  ],
+  "_cnpm_publish_time": 1513798575619,
+  "_from": "electron-releases@>=2.1.0 <3.0.0",
+  "_hasShrinkwrap": false,
   "_id": "electron-releases@2.1.0",
-  "_inBundle": false,
-  "_integrity": "sha1-xWFL+BHxds48g242igYleCNB/U4=",
+  "_inCache": true,
   "_location": "/electron-releases",
+  "_nodeVersion": "8.9.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/electron-releases-2.1.0.tgz_1513798574290_0.7275502518750727"
+  },
+  "_npmUser": {
+    "name": "electron",
+    "email": "electron@github.com"
+  },
+  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "electron-releases@^2.1.0",
-    "name": "electron-releases",
+    "scope": null,
     "escapedName": "electron-releases",
+    "name": "electron-releases",
     "rawSpec": "^2.1.0",
-    "saveSpec": null,
-    "fetchSpec": "^2.1.0"
+    "spec": ">=2.1.0 <3.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/electron-to-chromium"
   ],
   "_resolved": "http://r.cnpmjs.org/electron-releases/download/electron-releases-2.1.0.tgz",
   "_shasum": "c5614bf811f176ce3c836e368a0625782341fd4e",
+  "_shrinkwrap": null,
   "_spec": "electron-releases@^2.1.0",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/electron-to-chromium",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/electron-to-chromium",
   "bugs": {
     "url": "https://github.com/electron/electron-releases/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
+  "dependencies": {},
   "description": "Complete and up-to-date info about every release of Electron",
   "devDependencies": {
     "chai": "^4.1.2",
@@ -46,10 +70,27 @@
     "standard": "^10.0.3",
     "standard-markdown": "^4.0.2"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "c5614bf811f176ce3c836e368a0625782341fd4e",
+    "size": 407985,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/electron-releases/download/electron-releases-2.1.0.tgz"
+  },
+  "gitHead": "fd41ff4b03000d8be89836d1efc5cefb271931a2",
   "homepage": "https://github.com/electron/electron-releases#readme",
   "license": "MIT",
   "main": "index.json",
+  "maintainers": [
+    {
+      "name": "electron",
+      "email": "electron@github.com"
+    }
+  ],
   "name": "electron-releases",
+  "optionalDependencies": {},
+  "publish_time": 1513798575619,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electron/electron-releases.git"

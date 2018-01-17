@@ -1,27 +1,52 @@
 {
-  "_from": "react-router-dom@^4.2.2",
+  "_args": [
+    [
+      {
+        "raw": "react-router-dom@^4.2.2",
+        "scope": null,
+        "escapedName": "react-router-dom",
+        "name": "react-router-dom",
+        "rawSpec": "^4.2.2",
+        "spec": ">=4.2.2 <5.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web"
+    ]
+  ],
+  "_cnpm_publish_time": 1503619768151,
+  "_from": "react-router-dom@>=4.2.2 <5.0.0",
+  "_hasShrinkwrap": false,
   "_id": "react-router-dom@4.2.2",
-  "_inBundle": false,
-  "_integrity": "sha1-yKgd863Fi7qKdngulGy9Tq5km40=",
+  "_inCache": true,
   "_location": "/react-router-dom",
+  "_nodeVersion": "8.4.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/react-router-dom-4.2.2.tgz_1503619767034_0.22409512591548264"
+  },
+  "_npmUser": {
+    "name": "timdorr",
+    "email": "timdorr@timdorr.com"
+  },
+  "_npmVersion": "5.3.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "react-router-dom@^4.2.2",
-    "name": "react-router-dom",
+    "scope": null,
     "escapedName": "react-router-dom",
+    "name": "react-router-dom",
     "rawSpec": "^4.2.2",
-    "saveSpec": null,
-    "fetchSpec": "^4.2.2"
+    "spec": ">=4.2.2 <5.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/react-router-dom/download/react-router-dom-4.2.2.tgz",
   "_shasum": "c8a81df3adc58bba8a76782e946cbd4eae649b8d",
+  "_shrinkwrap": null,
   "_spec": "react-router-dom@^4.2.2",
-  "_where": "/home/liulang/dev/deepin/vendor-deps",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "authors": [
     "Michael Jackson",
     "Ryan Florence"
@@ -34,7 +59,6 @@
   "bugs": {
     "url": "https://github.com/ReactTraining/react-router/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "history": "^4.7.2",
     "invariant": "^2.2.2",
@@ -43,7 +67,6 @@
     "react-router": "^4.2.0",
     "warning": "^3.0.0"
   },
-  "deprecated": false,
   "description": "DOM bindings for React Router",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -70,6 +93,13 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "c8a81df3adc58bba8a76782e946cbd4eae649b8d",
+    "size": 52586,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/react-router-dom/download/react-router-dom-4.2.2.tgz"
   },
   "files": [
     "BrowserRouter.js",
@@ -100,11 +130,28 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "mjackson",
+      "email": "mjijackson@gmail.com"
+    },
+    {
+      "name": "ryanflorence",
+      "email": "rpflorence@gmail.com"
+    },
+    {
+      "name": "timdorr",
+      "email": "timdorr@timdorr.com"
+    }
+  ],
   "module": "es/index.js",
   "name": "react-router-dom",
+  "optionalDependencies": {},
   "peerDependencies": {
     "react": ">=15"
   },
+  "publish_time": 1503619768151,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ReactTraining/react-router.git"

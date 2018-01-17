@@ -1,19 +1,43 @@
 {
-  "_from": "history@^4.7.2",
+  "_args": [
+    [
+      {
+        "raw": "history@^4.7.2",
+        "scope": null,
+        "escapedName": "history",
+        "name": "history",
+        "rawSpec": "^4.7.2",
+        "spec": ">=4.7.2 <5.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/react-router-dom"
+    ]
+  ],
+  "_cnpm_publish_time": 1503477305940,
+  "_from": "history@>=4.7.2 <5.0.0",
+  "_hasShrinkwrap": false,
   "_id": "history@4.7.2",
-  "_inBundle": false,
-  "_integrity": "sha1-IrXH8xYzxbgCHH9KipVKwTnujVs=",
+  "_inCache": true,
   "_location": "/history",
+  "_nodeVersion": "6.10.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/history-4.7.2.tgz_1503477305845_0.3597948495298624"
+  },
+  "_npmUser": {
+    "name": "mjackson",
+    "email": "mjijackson@gmail.com"
+  },
+  "_npmVersion": "5.3.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "history@^4.7.2",
-    "name": "history",
+    "scope": null,
     "escapedName": "history",
+    "name": "history",
     "rawSpec": "^4.7.2",
-    "saveSpec": null,
-    "fetchSpec": "^4.7.2"
+    "spec": ">=4.7.2 <5.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/react-router",
@@ -21,8 +45,9 @@
   ],
   "_resolved": "http://r.cnpmjs.org/history/download/history-4.7.2.tgz",
   "_shasum": "22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b",
+  "_shrinkwrap": null,
   "_spec": "history@^4.7.2",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/react-router-dom",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/react-router-dom",
   "author": {
     "name": "Michael Jackson"
   },
@@ -34,7 +59,6 @@
   "bugs": {
     "url": "https://github.com/ReactTraining/history/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "invariant": "^2.2.1",
     "loose-envify": "^1.2.0",
@@ -42,7 +66,6 @@
     "value-equal": "^0.4.0",
     "warning": "^3.0.0"
   },
-  "deprecated": false,
   "description": "Manage session history with JavaScript",
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -72,6 +95,13 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b",
+    "size": 33062,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/history/download/history-4.7.2.tgz"
+  },
   "files": [
     "DOMUtils.js",
     "ExecutionEnvironment.js",
@@ -85,6 +115,7 @@
     "index.js",
     "umd"
   ],
+  "gitHead": "b29239cd6af5d40008891a6ec731642171b13f69",
   "homepage": "https://github.com/ReactTraining/history#readme",
   "keywords": [
     "history",
@@ -92,8 +123,17 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "mjackson",
+      "email": "mjijackson@gmail.com"
+    }
+  ],
   "module": "es/index.js",
   "name": "history",
+  "optionalDependencies": {},
+  "publish_time": 1503477305940,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ReactTraining/history.git"

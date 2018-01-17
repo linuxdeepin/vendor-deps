@@ -1,31 +1,56 @@
 {
-  "_from": "vinyl-source-stream@^2.0.0",
+  "_args": [
+    [
+      {
+        "raw": "vinyl-source-stream@^2.0.0",
+        "scope": null,
+        "escapedName": "vinyl-source-stream",
+        "name": "vinyl-source-stream",
+        "rawSpec": "^2.0.0",
+        "spec": ">=2.0.0 <3.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web"
+    ]
+  ],
+  "_cnpm_publish_time": 1514007207446,
+  "_from": "vinyl-source-stream@>=2.0.0 <3.0.0",
+  "_hasShrinkwrap": false,
   "_id": "vinyl-source-stream@2.0.0",
-  "_inBundle": false,
-  "_integrity": "sha1-84pa+53R6Ttl1VBGmsYYKsT1S44=",
+  "_inCache": true,
   "_location": "/vinyl-source-stream",
+  "_nodeVersion": "0.10.48",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/vinyl-source-stream-2.0.0.tgz_1514007207368_0.262908587930724"
+  },
+  "_npmUser": {
+    "name": "phated",
+    "email": "blaine.bublitz@gmail.com"
+  },
+  "_npmVersion": "2.15.1",
   "_phantomChildren": {
     "clone-buffer": "1.0.0",
     "cloneable-readable": "1.0.0",
     "remove-trailing-separator": "1.1.0"
   },
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "vinyl-source-stream@^2.0.0",
-    "name": "vinyl-source-stream",
+    "scope": null,
     "escapedName": "vinyl-source-stream",
+    "name": "vinyl-source-stream",
     "rawSpec": "^2.0.0",
-    "saveSpec": null,
-    "fetchSpec": "^2.0.0"
+    "spec": ">=2.0.0 <3.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/vinyl-source-stream/download/vinyl-source-stream-2.0.0.tgz",
   "_shasum": "f38a5afb9dd1e93b65d550469ac6182ac4f54b8e",
+  "_shrinkwrap": null,
   "_spec": "vinyl-source-stream@^2.0.0",
-  "_where": "/home/liulang/dev/deepin/vendor-deps",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "Hugh Kennedy",
     "email": "hughskennedy@gmail.com",
@@ -35,18 +60,24 @@
   "bugs": {
     "url": "https://github.com/hughsk/vinyl-source-stream/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "through2": "^2.0.3",
     "vinyl": "^2.1.0"
   },
-  "deprecated": false,
   "description": "Use conventional text streams at the start of your gulp or vinyl pipelines",
   "devDependencies": {
     "gulp-rename": "~0.2.1",
     "tape": "~2.3.2",
     "vinyl-fs": "^3.0.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "f38a5afb9dd1e93b65d550469ac6182ac4f54b8e",
+    "size": 3375,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/vinyl-source-stream/download/vinyl-source-stream-2.0.0.tgz"
+  },
+  "gitHead": "502f2e5e798a7daab9ae11eeb6bd16a7e6105903",
   "homepage": "https://github.com/hughsk/vinyl-source-stream",
   "keywords": [
     "vinyl",
@@ -60,7 +91,20 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "hughsk",
+      "email": "hughskennedy@gmail.com"
+    },
+    {
+      "name": "phated",
+      "email": "blaine.bublitz@gmail.com"
+    }
+  ],
   "name": "vinyl-source-stream",
+  "optionalDependencies": {},
+  "publish_time": 1514007207446,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/hughsk/vinyl-source-stream.git"

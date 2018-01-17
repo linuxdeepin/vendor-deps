@@ -1,19 +1,39 @@
 {
-  "_from": "shasum@^1.0.0",
+  "_args": [
+    [
+      {
+        "raw": "shasum@^1.0.0",
+        "scope": null,
+        "escapedName": "shasum",
+        "name": "shasum",
+        "rawSpec": "^1.0.0",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify"
+    ]
+  ],
+  "_cnpm_publish_time": 1444114529524,
+  "_from": "shasum@>=1.0.0 <2.0.0",
+  "_hasShrinkwrap": false,
   "_id": "shasum@1.0.2",
-  "_inBundle": false,
-  "_integrity": "sha1-5wEjENj0F/TetXEhUOVni4euVl8=",
+  "_inCache": true,
   "_location": "/shasum",
+  "_nodeVersion": "2.3.1",
+  "_npmUser": {
+    "name": "dominictarr",
+    "email": "dominic.tarr@gmail.com"
+  },
+  "_npmVersion": "3.3.1",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "shasum@^1.0.0",
-    "name": "shasum",
+    "scope": null,
     "escapedName": "shasum",
+    "name": "shasum",
     "rawSpec": "^1.0.0",
-    "saveSpec": null,
-    "fetchSpec": "^1.0.0"
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/browserify",
@@ -21,8 +41,9 @@
   ],
   "_resolved": "http://r.cnpmjs.org/shasum/download/shasum-1.0.2.tgz",
   "_shasum": "e7012310d8f417f4deb5712150e5678b87ae565f",
+  "_shrinkwrap": null,
   "_spec": "shasum@^1.0.0",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/browserify",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify",
   "author": {
     "name": "'Dominic Tarr'",
     "email": "dominic.tarr@gmail.com",
@@ -34,17 +55,32 @@
   "bugs": {
     "url": "https://github.com/dominictarr/shasum/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "json-stable-stringify": "~0.0.0",
     "sha.js": "~2.4.4"
   },
-  "deprecated": false,
   "description": "Single function that return the sha1sum. Installing this is just a little bit quicker than reading the crypto documentation.",
   "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "e7012310d8f417f4deb5712150e5678b87ae565f",
+    "size": 2013,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/shasum/download/shasum-1.0.2.tgz"
+  },
+  "gitHead": "7cf9cac58f72da0a85d184162ae3dd1176d8e86b",
   "homepage": "https://github.com/dominictarr/shasum",
   "license": "MIT",
+  "maintainers": [
+    {
+      "name": "dominictarr",
+      "email": "dominic.tarr@gmail.com"
+    }
+  ],
   "name": "shasum",
+  "optionalDependencies": {},
+  "publish_time": 1444114529524,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/dominictarr/shasum.git"

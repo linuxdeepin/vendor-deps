@@ -1,27 +1,48 @@
 {
-  "_from": "lexical-scope@^1.2.0",
+  "_args": [
+    [
+      {
+        "raw": "lexical-scope@^1.2.0",
+        "scope": null,
+        "escapedName": "lexical-scope",
+        "name": "lexical-scope",
+        "rawSpec": "^1.2.0",
+        "spec": ">=1.2.0 <2.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/insert-module-globals"
+    ]
+  ],
+  "_cnpm_publish_time": 1442603997119,
+  "_from": "lexical-scope@>=1.2.0 <2.0.0",
+  "_hasShrinkwrap": false,
   "_id": "lexical-scope@1.2.0",
-  "_inBundle": false,
-  "_integrity": "sha1-/Ope3HBKSzqHls3KQZw6CvryLfQ=",
+  "_inCache": true,
   "_location": "/lexical-scope",
+  "_nodeVersion": "2.4.0",
+  "_npmUser": {
+    "name": "substack",
+    "email": "substack@gmail.com"
+  },
+  "_npmVersion": "3.3.2",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "lexical-scope@^1.2.0",
-    "name": "lexical-scope",
+    "scope": null,
     "escapedName": "lexical-scope",
+    "name": "lexical-scope",
     "rawSpec": "^1.2.0",
-    "saveSpec": null,
-    "fetchSpec": "^1.2.0"
+    "spec": ">=1.2.0 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/insert-module-globals"
   ],
   "_resolved": "http://r.cnpmjs.org/lexical-scope/download/lexical-scope-1.2.0.tgz",
   "_shasum": "fcea5edc704a4b3a8796cdca419c3a0afaf22df4",
+  "_shrinkwrap": null,
   "_spec": "lexical-scope@^1.2.0",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/insert-module-globals",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/insert-module-globals",
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",
@@ -30,16 +51,22 @@
   "bugs": {
     "url": "https://github.com/substack/lexical-scope/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "astw": "^2.0.0"
   },
-  "deprecated": false,
   "description": "detect global and local lexical identifiers from javascript source code",
   "devDependencies": {
     "brfs": "~0.0.3",
     "tape": "~2.4.1"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "fcea5edc704a4b3a8796cdca419c3a0afaf22df4",
+    "size": 39314,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/lexical-scope/download/lexical-scope-1.2.0.tgz"
+  },
+  "gitHead": "c761d2cb7e5f47bbde920cafd5dcf3ba6fac4b87",
   "homepage": "https://github.com/substack/lexical-scope",
   "keywords": [
     "ast",
@@ -53,7 +80,20 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "substack",
+      "email": "substack@gmail.com"
+    },
+    {
+      "name": "zertosh",
+      "email": "zertosh@gmail.com"
+    }
+  ],
   "name": "lexical-scope",
+  "optionalDependencies": {},
+  "publish_time": 1442603997119,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/substack/lexical-scope.git"

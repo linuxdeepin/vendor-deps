@@ -1,27 +1,52 @@
 {
-  "_from": "lazy-cache@^2.0.2",
+  "_args": [
+    [
+      {
+        "raw": "lazy-cache@^2.0.2",
+        "scope": null,
+        "escapedName": "lazy-cache",
+        "name": "lazy-cache",
+        "rawSpec": "^2.0.2",
+        "spec": ">=2.0.2 <3.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/use"
+    ]
+  ],
+  "_cnpm_publish_time": 1478577913081,
+  "_from": "lazy-cache@>=2.0.2 <3.0.0",
+  "_hasShrinkwrap": false,
   "_id": "lazy-cache@2.0.2",
-  "_inBundle": false,
-  "_integrity": "sha1-uRkKT5EzVGlIQIWfio9whNiCImQ=",
+  "_inCache": true,
   "_location": "/lazy-cache",
+  "_nodeVersion": "6.7.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/lazy-cache-2.0.2.tgz_1478577911105_0.547785654431209"
+  },
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "_npmVersion": "3.10.3",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "lazy-cache@^2.0.2",
-    "name": "lazy-cache",
+    "scope": null,
     "escapedName": "lazy-cache",
+    "name": "lazy-cache",
     "rawSpec": "^2.0.2",
-    "saveSpec": null,
-    "fetchSpec": "^2.0.2"
+    "spec": ">=2.0.2 <3.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/use"
   ],
   "_resolved": "http://r.cnpmjs.org/lazy-cache/download/lazy-cache-2.0.2.tgz",
   "_shasum": "b9190a4f913354694840859f8a8f7084d8822264",
+  "_shrinkwrap": null,
   "_spec": "lazy-cache@^2.0.2",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/use",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/use",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
@@ -29,7 +54,6 @@
   "bugs": {
     "url": "https://github.com/jonschlinkert/lazy-cache/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Brian Woodward",
@@ -45,7 +69,6 @@
   "dependencies": {
     "set-getter": "^0.1.0"
   },
-  "deprecated": false,
   "description": "Cache requires to be lazy-loaded when needed.",
   "devDependencies": {
     "ansi-cyan": "^0.1.1",
@@ -57,12 +80,20 @@
     "object.omit": "^2.0.0",
     "object.pick": "^1.1.2"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "b9190a4f913354694840859f8a8f7084d8822264",
+    "size": 4559,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/lazy-cache/download/lazy-cache-2.0.2.tgz"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
   "files": [
     "index.js"
   ],
+  "gitHead": "ca0579a0687f9a7d915d9ecf53a93af7ad72762d",
   "homepage": "https://github.com/jonschlinkert/lazy-cache",
   "keywords": [
     "cache",
@@ -75,7 +106,20 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    },
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
   "name": "lazy-cache",
+  "optionalDependencies": {},
+  "publish_time": 1478577913081,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonschlinkert/lazy-cache.git"

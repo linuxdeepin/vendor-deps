@@ -1,27 +1,52 @@
 {
-  "_from": "buffer@^5.0.2",
+  "_args": [
+    [
+      {
+        "raw": "buffer@^5.0.2",
+        "scope": null,
+        "escapedName": "buffer",
+        "name": "buffer",
+        "rawSpec": "^5.0.2",
+        "spec": ">=5.0.2 <6.0.0",
+        "type": "range"
+      },
+      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify"
+    ]
+  ],
+  "_cnpm_publish_time": 1506728928079,
+  "_from": "buffer@>=5.0.2 <6.0.0",
+  "_hasShrinkwrap": false,
   "_id": "buffer@5.0.8",
-  "_inBundle": false,
-  "_integrity": "sha1-hNqlLnzy+ozkGVvFzw94CeCTCyQ=",
+  "_inCache": true,
   "_location": "/buffer",
+  "_nodeVersion": "8.6.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/buffer-5.0.8.tgz_1506728927930_0.79850033367984"
+  },
+  "_npmUser": {
+    "name": "feross",
+    "email": "feross@feross.org"
+  },
+  "_npmVersion": "5.3.0",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
     "raw": "buffer@^5.0.2",
-    "name": "buffer",
+    "scope": null,
     "escapedName": "buffer",
+    "name": "buffer",
     "rawSpec": "^5.0.2",
-    "saveSpec": null,
-    "fetchSpec": "^5.0.2"
+    "spec": ">=5.0.2 <6.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/browserify"
   ],
   "_resolved": "http://r.cnpmjs.org/buffer/download/buffer-5.0.8.tgz",
   "_shasum": "84daa52e7cf2fa8ce4195bc5cf0f7809e0930b24",
+  "_shrinkwrap": null,
   "_spec": "buffer@^5.0.2",
-  "_where": "/home/liulang/dev/deepin/vendor-deps/node_modules/browserify",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify",
   "author": {
     "name": "Feross Aboukhadijeh",
     "email": "feross@feross.org",
@@ -30,7 +55,6 @@
   "bugs": {
     "url": "https://github.com/feross/buffer/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Romain Beauxis",
@@ -45,7 +69,6 @@
     "base64-js": "^1.0.2",
     "ieee754": "^1.1.4"
   },
-  "deprecated": false,
   "description": "Node.js Buffer API, for the browser",
   "devDependencies": {
     "benchmark": "^2.0.0",
@@ -61,6 +84,14 @@
     "uglify-js": "^2.7.3",
     "zuul": "^3.0.0"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "84daa52e7cf2fa8ce4195bc5cf0f7809e0930b24",
+    "size": 56070,
+    "noattachment": false,
+    "tarball": "http://r.cnpmjs.org/buffer/download/buffer-5.0.8.tgz"
+  },
+  "gitHead": "8bba72251eeb636cfcc9a7d3d3fe690f205bf4a8",
   "homepage": "https://github.com/feross/buffer",
   "jspm": {
     "map": {
@@ -80,7 +111,16 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "feross",
+      "email": "feross@feross.org"
+    }
+  ],
   "name": "buffer",
+  "optionalDependencies": {},
+  "publish_time": 1506728928079,
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/feross/buffer.git"
