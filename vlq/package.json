@@ -1,35 +1,39 @@
 {
-  "_from": "vlq@^0.2.1",
+  "_args": [
+    [
+      "vlq@0.2.3",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "vlq@0.2.3",
   "_id": "vlq@0.2.3",
   "_inBundle": false,
   "_integrity": "sha1-jz5DKM9jsVQMDWfhsneDhviXWyY=",
   "_location": "/vlq",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "vlq@^0.2.1",
+    "raw": "vlq@0.2.3",
     "name": "vlq",
     "escapedName": "vlq",
-    "rawSpec": "^0.2.1",
+    "rawSpec": "0.2.3",
     "saveSpec": null,
-    "fetchSpec": "^0.2.1"
+    "fetchSpec": "0.2.3"
   },
   "_requiredBy": [
     "/magic-string"
   ],
   "_resolved": "http://r.cnpmjs.org/vlq/download/vlq-0.2.3.tgz",
-  "_shasum": "8f3e4328cf63b1540c0d67e1b2778386f8975b26",
-  "_spec": "vlq@^0.2.1",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-web/node_modules/magic-string",
+  "_spec": "0.2.3",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "Rich Harris"
   },
   "bugs": {
     "url": "https://github.com/Rich-Harris/vlq/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Generate, and decode, base64 VLQ mappings for source maps and other uses",
   "devDependencies": {
     "eslint": "^3.19.0",

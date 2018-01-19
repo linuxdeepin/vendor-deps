@@ -1,5 +1,12 @@
 {
-  "_from": "copy-webpack-plugin@^4.1.1",
+  "_args": [
+    [
+      "copy-webpack-plugin@4.3.0",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "copy-webpack-plugin@4.3.0",
   "_id": "copy-webpack-plugin@4.3.0",
   "_inBundle": false,
   "_integrity": "sha1-z99NExx41mkXobuGP4ZjBJeqz0I=",
@@ -11,29 +18,27 @@
     "object-assign": "4.1.1"
   },
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "copy-webpack-plugin@^4.1.1",
+    "raw": "copy-webpack-plugin@4.3.0",
     "name": "copy-webpack-plugin",
     "escapedName": "copy-webpack-plugin",
-    "rawSpec": "^4.1.1",
+    "rawSpec": "4.3.0",
     "saveSpec": null,
-    "fetchSpec": "^4.1.1"
+    "fetchSpec": "4.3.0"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
   "_resolved": "http://r.cnpmjs.org/copy-webpack-plugin/download/copy-webpack-plugin-4.3.0.tgz",
-  "_shasum": "cfdf4d131c78d66917a1bb863f86630497aacf42",
-  "_spec": "copy-webpack-plugin@^4.1.1",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-server/web/node_modules/@angular/cli",
+  "_spec": "4.3.0",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "Len Boyette"
   },
   "bugs": {
     "url": "https://github.com/webpack-contrib/copy-webpack-plugin/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "cacache": "^10.0.1",
     "find-cache-dir": "^1.0.0",
@@ -46,7 +51,6 @@
     "pify": "^3.0.0",
     "serialize-javascript": "^1.4.0"
   },
-  "deprecated": false,
   "description": "Copy files and directories in webpack",
   "devDependencies": {
     "babel-cli": "^6.8.0",

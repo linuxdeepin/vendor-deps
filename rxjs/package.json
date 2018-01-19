@@ -1,30 +1,34 @@
 {
-  "_from": "rxjs@^5.5.2",
+  "_args": [
+    [
+      "rxjs@5.5.5",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_from": "rxjs@5.5.5",
   "_id": "rxjs@5.5.5",
   "_inBundle": false,
   "_integrity": "sha1-4WTxHTjq8p9W8Iw0R/dP8C3YTpc=",
   "_location": "/rxjs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "rxjs@^5.5.2",
+    "raw": "rxjs@5.5.5",
     "name": "rxjs",
     "escapedName": "rxjs",
-    "rawSpec": "^5.5.2",
+    "rawSpec": "5.5.5",
     "saveSpec": null,
-    "fetchSpec": "^5.5.2"
+    "fetchSpec": "5.5.5"
   },
   "_requiredBy": [
-    "#USER",
     "/",
     "/@angular-devkit/schematics",
     "/@angular/cli"
   ],
   "_resolved": "http://r.cnpmjs.org/rxjs/download/rxjs-5.5.5.tgz",
-  "_shasum": "e164f11d38eaf29f56f08c3447f74ff02dd84e97",
-  "_spec": "rxjs@^5.5.2",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-server/web",
+  "_spec": "5.5.5",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "Ben Lesh",
     "email": "ben@benlesh.com"
@@ -32,7 +36,6 @@
   "bugs": {
     "url": "https://github.com/ReactiveX/RxJS/issues"
   },
-  "bundleDependencies": false,
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -67,7 +70,6 @@
   "dependencies": {
     "symbol-observable": "1.0.1"
   },
-  "deprecated": false,
   "description": "Reactive Extensions for modern JavaScript",
   "devDependencies": {
     "@angular-devkit/build-optimizer": "0.0.24",

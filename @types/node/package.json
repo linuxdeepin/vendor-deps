@@ -1,4 +1,11 @@
 {
+  "_args": [
+    [
+      "@types/node@6.0.94",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_development": true,
   "_from": "@types/node@6.0.94",
   "_id": "@types/node@6.0.94",
   "_inBundle": false,
@@ -18,14 +25,11 @@
   },
   "_requiredBy": [
     "#DEV:/",
-    "#USER",
     "/protractor"
   ],
   "_resolved": "http://r.cnpmjs.org/@types/node/download/@types/node-6.0.94.tgz",
-  "_shasum": "70e509b07ed9f961c8f6f4a73a61d922be5029a7",
-  "_spec": "@types/node@6.0.94",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-server/web",
-  "bundleDependencies": false,
+  "_spec": "6.0.94",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "contributors": [
     {
       "name": "Microsoft TypeScript",
@@ -49,7 +53,6 @@
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "TypeScript definitions for Node.js",
   "license": "MIT",
   "main": "",

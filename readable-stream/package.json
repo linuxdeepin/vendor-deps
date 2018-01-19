@@ -1,35 +1,48 @@
 {
-  "_from": "readable-stream@^2.0.1",
+  "_args": [
+    [
+      "readable-stream@2.3.3",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "readable-stream@2.3.3",
   "_id": "readable-stream@2.3.3",
   "_inBundle": false,
   "_integrity": "sha1-No8lEtefnUb9/HE0mueHi7weuVw=",
   "_location": "/readable-stream",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "readable-stream@^2.0.1",
+    "raw": "readable-stream@2.3.3",
     "name": "readable-stream",
     "escapedName": "readable-stream",
-    "rawSpec": "^2.0.1",
+    "rawSpec": "2.3.3",
     "saveSpec": null,
-    "fetchSpec": "^2.0.1"
+    "fetchSpec": "2.3.3"
   },
   "_requiredBy": [
     "/are-we-there-yet",
+    "/concat-stream",
+    "/duplexify",
+    "/flush-write-stream",
+    "/from2",
+    "/fs-write-stream-atomic",
     "/hpack.js",
     "/memory-fs",
     "/node-libs-browser",
+    "/parallel-transform",
     "/readdirp",
     "/spdy-transport",
     "/stdout-stream",
     "/stream-browserify",
-    "/stream-http"
+    "/stream-http",
+    "/through2"
   ],
   "_resolved": "http://r.cnpmjs.org/readable-stream/download/readable-stream-2.3.3.tgz",
-  "_shasum": "368f2512d79f9d46fdfc71349ae7878bbc1eb95c",
-  "_spec": "readable-stream@^2.0.1",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-web/node_modules/memory-fs",
+  "_spec": "2.3.3",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "browser": {
     "util": false,
     "./readable.js": "./readable-browser.js",
@@ -40,7 +53,6 @@
   "bugs": {
     "url": "https://github.com/nodejs/readable-stream/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "core-util-is": "~1.0.0",
     "inherits": "~2.0.3",
@@ -50,7 +62,6 @@
     "string_decoder": "~1.0.3",
     "util-deprecate": "~1.0.1"
   },
-  "deprecated": false,
   "description": "Streams3, a user-land copy of the stream library from Node.js",
   "devDependencies": {
     "assert": "~1.4.0",

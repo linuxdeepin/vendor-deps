@@ -1,34 +1,39 @@
 {
-  "_from": "tsickle@^0.25.5",
+  "_args": [
+    [
+      "tsickle@0.25.5",
+      "/home/myml/Src/deepin/dstore-metadata-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "tsickle@0.25.5",
   "_id": "tsickle@0.25.5",
   "_inBundle": false,
   "_integrity": "sha1-KJHSn5fEqrEwbgY3jYSW0XZaS/4=",
   "_location": "/tsickle",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "tsickle@^0.25.5",
+    "raw": "tsickle@0.25.5",
     "name": "tsickle",
     "escapedName": "tsickle",
-    "rawSpec": "^0.25.5",
+    "rawSpec": "0.25.5",
     "saveSpec": null,
-    "fetchSpec": "^0.25.5"
+    "fetchSpec": "0.25.5"
   },
   "_requiredBy": [
     "/@angular/compiler-cli"
   ],
   "_resolved": "http://r.cnpmjs.org/tsickle/download/tsickle-0.25.5.tgz",
-  "_shasum": "2891d29f97c4aab1306e06378d8496d1765a4bfe",
-  "_spec": "tsickle@^0.25.5",
-  "_where": "/home/liulang/dev/deepin/dstore-metadata-server/web/node_modules/@angular/compiler-cli",
+  "_spec": "0.25.5",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "bin": {
     "tsickle": "src/main.js"
   },
   "bugs": {
     "url": "https://github.com/angular/tsickle/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Evan Martin",
@@ -61,7 +66,6 @@
     "source-map": "^0.5.6",
     "source-map-support": "^0.4.2"
   },
-  "deprecated": false,
   "description": "Transpile TypeScript code to JavaScript with Closure annotations.",
   "devDependencies": {
     "@bazel/typescript": "^0.3.1",
