@@ -23,7 +23,7 @@ git push -u origin deepin-manual
 所有的 npm 包即可.
 ```shell
 cd /PATH/TO/deepin-manual
-git submodule add -b deepin-manual -f --depth 1 https://cr.deepin.io/vendor-deps src/web/node_modules
+git submodule add --branch deepin-manual -f https://cr.deepin.io/vendor-deps src/web/node_modules
 ```
 
 最后, 拉取 vendor-deps 内容.
