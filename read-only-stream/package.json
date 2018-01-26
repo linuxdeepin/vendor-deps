@@ -1,30 +1,16 @@
 {
   "_args": [
     [
-      {
-        "raw": "read-only-stream@^2.0.0",
-        "scope": null,
-        "escapedName": "read-only-stream",
-        "name": "read-only-stream",
-        "rawSpec": "^2.0.0",
-        "spec": ">=2.0.0 <3.0.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify"
+      "read-only-stream@2.0.0",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1440392541229,
-  "_from": "read-only-stream@>=2.0.0 <3.0.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "read-only-stream@2.0.0",
   "_id": "read-only-stream@2.0.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-JyT9aoET1zdkrCiNQ4YnDB2/F/A=",
   "_location": "/read-only-stream",
-  "_nodeVersion": "2.4.0",
-  "_npmUser": {
-    "name": "substack",
-    "email": "substack@gmail.com"
-  },
-  "_npmVersion": "3.2.2",
   "_phantomChildren": {
     "core-util-is": "1.0.2",
     "inherits": "2.0.3",
@@ -33,22 +19,21 @@
     "util-deprecate": "1.0.2"
   },
   "_requested": {
-    "raw": "read-only-stream@^2.0.0",
-    "scope": null,
-    "escapedName": "read-only-stream",
+    "type": "version",
+    "registry": true,
+    "raw": "read-only-stream@2.0.0",
     "name": "read-only-stream",
-    "rawSpec": "^2.0.0",
-    "spec": ">=2.0.0 <3.0.0",
-    "type": "range"
+    "escapedName": "read-only-stream",
+    "rawSpec": "2.0.0",
+    "saveSpec": null,
+    "fetchSpec": "2.0.0"
   },
   "_requiredBy": [
     "/browserify"
   ],
   "_resolved": "http://r.cnpmjs.org/read-only-stream/download/read-only-stream-2.0.0.tgz",
-  "_shasum": "2724fd6a8113d73764ac288d4386270c1dbf17f0",
-  "_shrinkwrap": null,
-  "_spec": "read-only-stream@^2.0.0",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify",
+  "_spec": "2.0.0",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",
@@ -68,14 +53,6 @@
     "through": "^2.3.4",
     "through2": "^2.0.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "2724fd6a8113d73764ac288d4386270c1dbf17f0",
-    "size": 2486,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/read-only-stream/download/read-only-stream-2.0.0.tgz"
-  },
-  "gitHead": "406ff9a52ad9f80d85b6037e09472ba4a6527576",
   "homepage": "https://github.com/substack/read-only-stream",
   "keywords": [
     "stream",
@@ -83,16 +60,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "substack",
-      "email": "substack@gmail.com"
-    }
-  ],
   "name": "read-only-stream",
-  "optionalDependencies": {},
-  "publish_time": 1440392541229,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/substack/read-only-stream.git"

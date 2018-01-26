@@ -1,34 +1,16 @@
 {
   "_args": [
     [
-      {
-        "raw": "module-deps@^4.0.8",
-        "scope": null,
-        "escapedName": "module-deps",
-        "name": "module-deps",
-        "rawSpec": "^4.0.8",
-        "spec": ">=4.0.8 <5.0.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify"
+      "module-deps@4.1.1",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1487056761931,
-  "_from": "module-deps@>=4.0.8 <5.0.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "module-deps@4.1.1",
   "_id": "module-deps@4.1.1",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-IyFYM/HaE/1gbMuAh7RIUty4If0=",
   "_location": "/module-deps",
-  "_nodeVersion": "6.3.1",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/module-deps-4.1.1.tgz_1487056761669_0.6252274899743497"
-  },
-  "_npmUser": {
-    "name": "substack",
-    "email": "substack@gmail.com"
-  },
-  "_npmVersion": "3.10.5",
   "_phantomChildren": {
     "core-util-is": "1.0.2",
     "inherits": "2.0.3",
@@ -37,22 +19,21 @@
     "util-deprecate": "1.0.2"
   },
   "_requested": {
-    "raw": "module-deps@^4.0.8",
-    "scope": null,
-    "escapedName": "module-deps",
+    "type": "version",
+    "registry": true,
+    "raw": "module-deps@4.1.1",
     "name": "module-deps",
-    "rawSpec": "^4.0.8",
-    "spec": ">=4.0.8 <5.0.0",
-    "type": "range"
+    "escapedName": "module-deps",
+    "rawSpec": "4.1.1",
+    "saveSpec": null,
+    "fetchSpec": "4.1.1"
   },
   "_requiredBy": [
     "/browserify"
   ],
   "_resolved": "http://r.cnpmjs.org/module-deps/download/module-deps-4.1.1.tgz",
-  "_shasum": "23215833f1da13fd606ccb8087b44852dcb821fd",
-  "_shrinkwrap": null,
-  "_spec": "module-deps@^4.0.8",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/browserify",
+  "_spec": "4.1.1",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",
@@ -86,17 +67,9 @@
     "browser-pack": "^5.0.0",
     "tap": "^1.0.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "23215833f1da13fd606ccb8087b44852dcb821fd",
-    "size": 17527,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/module-deps/download/module-deps-4.1.1.tgz"
-  },
   "engines": {
     "node": ">= 0.6"
   },
-  "gitHead": "4cce7975e909b91775411731a28e9d7e123e7079",
   "homepage": "https://github.com/substack/module-deps",
   "keywords": [
     "dependency",
@@ -109,168 +82,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "ahdinosaur",
-      "email": "dinosaur@riseup.net"
-    },
-    {
-      "name": "anandthakker",
-      "email": "vestibule@anandthakker.net"
-    },
-    {
-      "name": "ashaffer88",
-      "email": "darawk@gmail.com"
-    },
-    {
-      "name": "balupton",
-      "email": "b@lupton.cc"
-    },
-    {
-      "name": "bpostlethwaite",
-      "email": "post.ben.here@gmail.com"
-    },
-    {
-      "name": "bret",
-      "email": "bcomnes@gmail.com"
-    },
-    {
-      "name": "cwmma",
-      "email": "calvin.metcalf@gmail.com"
-    },
-    {
-      "name": "dcousens",
-      "email": "email@dcousens.com"
-    },
-    {
-      "name": "dominictarr",
-      "email": "dominic.tarr@gmail.com"
-    },
-    {
-      "name": "elnounch",
-      "email": "contact@elnounch.net"
-    },
-    {
-      "name": "emilbayes",
-      "email": "github@tixz.dk"
-    },
-    {
-      "name": "feross",
-      "email": "feross@feross.org"
-    },
-    {
-      "name": "forbeslindesay",
-      "email": "forbes@lindesay.co.uk"
-    },
-    {
-      "name": "fpereira1",
-      "email": "pereira.filype@gmail.com"
-    },
-    {
-      "name": "garann",
-      "email": "garann@gmail.com"
-    },
-    {
-      "name": "gkatsev",
-      "email": "me@gkatsev.com"
-    },
-    {
-      "name": "goto-bus-stop",
-      "email": "rene@kooi.me"
-    },
-    {
-      "name": "hughsk",
-      "email": "hughskennedy@gmail.com"
-    },
-    {
-      "name": "indutny",
-      "email": "fedor@indutny.com"
-    },
-    {
-      "name": "jmm",
-      "email": "npm-public@jessemccarthy.net"
-    },
-    {
-      "name": "jprichardson",
-      "email": "jprichardson@gmail.com"
-    },
-    {
-      "name": "jryans",
-      "email": "jryans@gmail.com"
-    },
-    {
-      "name": "leichtgewicht",
-      "email": "mh@leichtgewicht.at"
-    },
-    {
-      "name": "mafintosh",
-      "email": "mathiasbuus@gmail.com"
-    },
-    {
-      "name": "mattdesl",
-      "email": "dave.des@gmail.com"
-    },
-    {
-      "name": "maxogden",
-      "email": "max@maxogden.com"
-    },
-    {
-      "name": "mellowmelon",
-      "email": "palmermebane@gmail.com"
-    },
-    {
-      "name": "parshap",
-      "email": "parshap+npm@gmail.com"
-    },
-    {
-      "name": "pkrumins",
-      "email": "peteris.krumins@gmail.com"
-    },
-    {
-      "name": "sethvincent",
-      "email": "sethvincent@gmail.com"
-    },
-    {
-      "name": "stevemao",
-      "email": "maochenyan@gmail.com"
-    },
-    {
-      "name": "substack",
-      "email": "substack@gmail.com"
-    },
-    {
-      "name": "tehshrike",
-      "email": "me@JoshDuff.com"
-    },
-    {
-      "name": "terinjokes",
-      "email": "terinjokes@gmail.com"
-    },
-    {
-      "name": "thlorenz",
-      "email": "thlorenz@gmx.de"
-    },
-    {
-      "name": "ungoldman",
-      "email": "ungoldman@gmail.com"
-    },
-    {
-      "name": "yerkopalma",
-      "email": "yerko.palma@usach.cl"
-    },
-    {
-      "name": "yoshuawuyts",
-      "email": "i@yoshuawuyts.com"
-    },
-    {
-      "name": "zertosh",
-      "email": "zertosh@gmail.com"
-    }
-  ],
   "name": "module-deps",
-  "optionalDependencies": {},
-  "publish_time": 1487056761931,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/substack/module-deps.git"

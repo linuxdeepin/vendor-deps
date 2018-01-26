@@ -1,53 +1,34 @@
 {
   "_args": [
     [
-      {
-        "raw": "mime-types@~2.1.7",
-        "scope": null,
-        "escapedName": "mime-types",
-        "name": "mime-types",
-        "rawSpec": "~2.1.7",
-        "spec": ">=2.1.7 <2.2.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/request"
+      "mime-types@2.1.17",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1504322794147,
-  "_from": "mime-types@>=2.1.7 <2.2.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "mime-types@2.1.17",
   "_id": "mime-types@2.1.17",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-Cdejk/A+mVp5+K+Fe3Cp4KsWVXo=",
   "_location": "/mime-types",
-  "_nodeVersion": "6.11.1",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/mime-types-2.1.17.tgz_1504322793218_0.6663200033362955"
-  },
-  "_npmUser": {
-    "name": "dougwilson",
-    "email": "doug@somethingdoug.com"
-  },
-  "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "mime-types@~2.1.7",
-    "scope": null,
-    "escapedName": "mime-types",
+    "type": "version",
+    "registry": true,
+    "raw": "mime-types@2.1.17",
     "name": "mime-types",
-    "rawSpec": "~2.1.7",
-    "spec": ">=2.1.7 <2.2.0",
-    "type": "range"
+    "escapedName": "mime-types",
+    "rawSpec": "2.1.17",
+    "saveSpec": null,
+    "fetchSpec": "2.1.17"
   },
   "_requiredBy": [
     "/form-data",
     "/request"
   ],
   "_resolved": "http://r.cnpmjs.org/mime-types/download/mime-types-2.1.17.tgz",
-  "_shasum": "09d7a393f03e995a79f8af857b70a9e0ab16557a",
-  "_shrinkwrap": null,
-  "_spec": "mime-types@~2.1.7",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/request",
+  "_spec": "2.1.17",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "bugs": {
     "url": "https://github.com/jshttp/mime-types/issues"
   },
@@ -81,13 +62,6 @@
     "istanbul": "0.4.5",
     "mocha": "1.21.5"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "09d7a393f03e995a79f8af857b70a9e0ab16557a",
-    "size": 4759,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/mime-types/download/mime-types-2.1.17.tgz"
-  },
   "engines": {
     "node": ">= 0.6"
   },
@@ -96,31 +70,13 @@
     "LICENSE",
     "index.js"
   ],
-  "gitHead": "80039fe78213821c2e9b25132d6b02cc37202e8a",
   "homepage": "https://github.com/jshttp/mime-types#readme",
   "keywords": [
     "mime",
     "types"
   ],
   "license": "MIT",
-  "maintainers": [
-    {
-      "name": "dougwilson",
-      "email": "doug@somethingdoug.com"
-    },
-    {
-      "name": "fishrock123",
-      "email": "fishrock123@rocketmail.com"
-    },
-    {
-      "name": "jongleberry",
-      "email": "jonathanrichardong@gmail.com"
-    }
-  ],
   "name": "mime-types",
-  "optionalDependencies": {},
-  "publish_time": 1504322794147,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jshttp/mime-types.git"

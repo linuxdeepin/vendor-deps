@@ -1,52 +1,32 @@
 {
   "_args": [
     [
-      {
-        "raw": "cheerio",
-        "scope": null,
-        "escapedName": "cheerio",
-        "name": "cheerio",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
+      "cheerio@1.0.0-rc.2",
       "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1499017015384,
-  "_from": "cheerio@latest",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "cheerio@1.0.0-rc.2",
   "_id": "cheerio@1.0.0-rc.2",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-S59TqBsn5NXawxwP/Qz6A8xoMNs=",
   "_location": "/cheerio",
-  "_nodeVersion": "6.10.3",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cheerio-1.0.0-rc.2.tgz_1499017014157_0.4666579710319638"
-  },
-  "_npmUser": {
-    "name": "jugglinmike",
-    "email": "mike@mikepennisi.com"
-  },
-  "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "cheerio",
-    "scope": null,
-    "escapedName": "cheerio",
+    "type": "version",
+    "registry": true,
+    "raw": "cheerio@1.0.0-rc.2",
     "name": "cheerio",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "escapedName": "cheerio",
+    "rawSpec": "1.0.0-rc.2",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0-rc.2"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/cheerio/download/cheerio-1.0.0-rc.2.tgz",
-  "_shasum": "4b9f53a81b27e4d5dac31c0ffd0cfa03cc6830db",
-  "_shrinkwrap": null,
-  "_spec": "cheerio",
+  "_spec": "1.0.0-rc.2",
   "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "Matt Mueller",
@@ -76,13 +56,6 @@
     "mocha": "^3.1.2",
     "xyz": "~1.1.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "4b9f53a81b27e4d5dac31c0ffd0cfa03cc6830db",
-    "size": 32275,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/cheerio/download/cheerio-1.0.0-rc.2.tgz"
-  },
   "engines": {
     "node": ">= 0.6"
   },
@@ -90,7 +63,6 @@
     "index.js",
     "lib"
   ],
-  "gitHead": "48eae25c93702a29b8cd0d09c4a2dce2f912d1f4",
   "homepage": "https://github.com/cheeriojs/cheerio#readme",
   "keywords": [
     "htmlparser",
@@ -102,28 +74,7 @@
   ],
   "license": "MIT",
   "main": "./index.js",
-  "maintainers": [
-    {
-      "name": "davidchambers",
-      "email": "dc@davidchambers.me"
-    },
-    {
-      "name": "feedic",
-      "email": "me@feedic.com"
-    },
-    {
-      "name": "jugglinmike",
-      "email": "mike@mikepennisi.com"
-    },
-    {
-      "name": "mattmueller",
-      "email": "mattmuelle@gmail.com"
-    }
-  ],
   "name": "cheerio",
-  "optionalDependencies": {},
-  "publish_time": 1499017015384,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/cheeriojs/cheerio.git"

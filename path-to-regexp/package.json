@@ -1,52 +1,33 @@
 {
   "_args": [
     [
-      {
-        "raw": "path-to-regexp@^1.7.0",
-        "scope": null,
-        "escapedName": "path-to-regexp",
-        "name": "path-to-regexp",
-        "rawSpec": "^1.7.0",
-        "spec": ">=1.7.0 <2.0.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/react-router"
+      "path-to-regexp@1.7.0",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1478630329258,
-  "_from": "path-to-regexp@>=1.7.0 <2.0.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "path-to-regexp@1.7.0",
   "_id": "path-to-regexp@1.7.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-Wf3g9DW62suhA6hOnTvGTpa5k30=",
   "_location": "/path-to-regexp",
-  "_nodeVersion": "6.9.1",
-  "_npmOperationalInternal": {
-    "host": "packages-18-east.internal.npmjs.com",
-    "tmp": "tmp/path-to-regexp-1.7.0.tgz_1478630327407_0.5980636477470398"
-  },
-  "_npmUser": {
-    "name": "blakeembrey",
-    "email": "hello@blakeembrey.com"
-  },
-  "_npmVersion": "3.10.8",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "path-to-regexp@^1.7.0",
-    "scope": null,
-    "escapedName": "path-to-regexp",
+    "type": "version",
+    "registry": true,
+    "raw": "path-to-regexp@1.7.0",
     "name": "path-to-regexp",
-    "rawSpec": "^1.7.0",
-    "spec": ">=1.7.0 <2.0.0",
-    "type": "range"
+    "escapedName": "path-to-regexp",
+    "rawSpec": "1.7.0",
+    "saveSpec": null,
+    "fetchSpec": "1.7.0"
   },
   "_requiredBy": [
     "/react-router"
   ],
   "_resolved": "http://r.cnpmjs.org/path-to-regexp/download/path-to-regexp-1.7.0.tgz",
-  "_shasum": "59fde0f435badacba103a84e9d3bc64e96b9937d",
-  "_shrinkwrap": null,
-  "_spec": "path-to-regexp@^1.7.0",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/react-router",
+  "_spec": "1.7.0",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "bugs": {
     "url": "https://github.com/pillarjs/path-to-regexp/issues"
   },
@@ -68,19 +49,11 @@
     "typescript": "^1.8.7",
     "typings": "^1.0.4"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "59fde0f435badacba103a84e9d3bc64e96b9937d",
-    "size": 8736,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/path-to-regexp/download/path-to-regexp-1.7.0.tgz"
-  },
   "files": [
     "index.js",
     "index.d.ts",
     "LICENSE"
   ],
-  "gitHead": "a99ec3c149e8c1d91fa533aa54d3ee7e34449bb3",
   "homepage": "https://github.com/pillarjs/path-to-regexp#readme",
   "keywords": [
     "express",
@@ -90,32 +63,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "blakeembrey",
-      "email": "hello@blakeembrey.com"
-    },
-    {
-      "name": "defunctzombie",
-      "email": "shtylman@gmail.com"
-    },
-    {
-      "name": "dougwilson",
-      "email": "doug@somethingdoug.com"
-    },
-    {
-      "name": "jonathanong",
-      "email": "jonathanrichardong@gmail.com"
-    },
-    {
-      "name": "jongleberry",
-      "email": "jonathanrichardong@gmail.com"
-    }
-  ],
   "name": "path-to-regexp",
-  "optionalDependencies": {},
-  "publish_time": 1478630329258,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pillarjs/path-to-regexp.git"

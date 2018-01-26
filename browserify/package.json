@@ -1,34 +1,16 @@
 {
   "_args": [
     [
-      {
-        "raw": "browserify@^14.5.0",
-        "scope": null,
-        "escapedName": "browserify",
-        "name": "browserify",
-        "rawSpec": "^14.5.0",
-        "spec": ">=14.5.0 <15.0.0",
-        "type": "range"
-      },
+      "browserify@14.5.0",
       "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1508490210828,
-  "_from": "browserify@>=14.5.0 <15.0.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "browserify@14.5.0",
   "_id": "browserify@14.5.0",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-C7vOUhrNbk0dVNjpNlAI77hanMU=",
   "_location": "/browserify",
-  "_nodeVersion": "8.7.0",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/browserify-14.5.0.tgz_1508490209460_0.5321614954154938"
-  },
-  "_npmUser": {
-    "name": "goto-bus-stop",
-    "email": "rene@kooi.me"
-  },
-  "_npmVersion": "5.5.1",
   "_phantomChildren": {
     "brace-expansion": "1.1.8",
     "core-util-is": "1.0.2",
@@ -42,21 +24,20 @@
     "util-deprecate": "1.0.2"
   },
   "_requested": {
-    "raw": "browserify@^14.5.0",
-    "scope": null,
-    "escapedName": "browserify",
+    "type": "version",
+    "registry": true,
+    "raw": "browserify@14.5.0",
     "name": "browserify",
-    "rawSpec": "^14.5.0",
-    "spec": ">=14.5.0 <15.0.0",
-    "type": "range"
+    "escapedName": "browserify",
+    "rawSpec": "14.5.0",
+    "saveSpec": null,
+    "fetchSpec": "14.5.0"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/browserify/download/browserify-14.5.0.tgz",
-  "_shasum": "0bbbce521acd6e4d1d54d8e9365008efb85a9cc5",
-  "_shrinkwrap": null,
-  "_spec": "browserify@^14.5.0",
+  "_spec": "14.5.0",
   "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "James Halliday",
@@ -131,14 +112,6 @@
     "temp": "^0.8.1",
     "through": "^2.3.4"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "0bbbce521acd6e4d1d54d8e9365008efb85a9cc5",
-    "size": 67262,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/browserify/download/browserify-14.5.0.tgz"
-  },
-  "gitHead": "ccc02139481fb7f107009c2bd60a5e6f03610a63",
   "homepage": "https://github.com/substack/node-browserify#readme",
   "keywords": [
     "browser",
@@ -151,172 +124,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "ahdinosaur",
-      "email": "dinosaur@riseup.net"
-    },
-    {
-      "name": "anandthakker",
-      "email": "vestibule@anandthakker.net"
-    },
-    {
-      "name": "ashaffer88",
-      "email": "darawk@gmail.com"
-    },
-    {
-      "name": "balupton",
-      "email": "b@lupton.cc"
-    },
-    {
-      "name": "bpostlethwaite",
-      "email": "post.ben.here@gmail.com"
-    },
-    {
-      "name": "bret",
-      "email": "bcomnes@gmail.com"
-    },
-    {
-      "name": "cwmma",
-      "email": "calvin.metcalf@gmail.com"
-    },
-    {
-      "name": "dcousens",
-      "email": "email@dcousens.com"
-    },
-    {
-      "name": "domenic",
-      "email": "domenic@domenicdenicola.com"
-    },
-    {
-      "name": "dominictarr",
-      "email": "dominic.tarr@gmail.com"
-    },
-    {
-      "name": "elnounch",
-      "email": "contact@elnounch.net"
-    },
-    {
-      "name": "emilbayes",
-      "email": "github@tixz.dk"
-    },
-    {
-      "name": "feross",
-      "email": "feross@feross.org"
-    },
-    {
-      "name": "forbeslindesay",
-      "email": "forbes@lindesay.co.uk"
-    },
-    {
-      "name": "fpereira1",
-      "email": "pereira.filype@gmail.com"
-    },
-    {
-      "name": "garann",
-      "email": "garann@gmail.com"
-    },
-    {
-      "name": "gkatsev",
-      "email": "me@gkatsev.com"
-    },
-    {
-      "name": "goto-bus-stop",
-      "email": "rene@kooi.me"
-    },
-    {
-      "name": "hughsk",
-      "email": "hughskennedy@gmail.com"
-    },
-    {
-      "name": "indutny",
-      "email": "fedor@indutny.com"
-    },
-    {
-      "name": "jmm",
-      "email": "npm-public@jessemccarthy.net"
-    },
-    {
-      "name": "jprichardson",
-      "email": "jprichardson@gmail.com"
-    },
-    {
-      "name": "jryans",
-      "email": "jryans@gmail.com"
-    },
-    {
-      "name": "leichtgewicht",
-      "email": "mh@leichtgewicht.at"
-    },
-    {
-      "name": "mafintosh",
-      "email": "mathiasbuus@gmail.com"
-    },
-    {
-      "name": "mattdesl",
-      "email": "dave.des@gmail.com"
-    },
-    {
-      "name": "maxogden",
-      "email": "max@maxogden.com"
-    },
-    {
-      "name": "mellowmelon",
-      "email": "palmermebane@gmail.com"
-    },
-    {
-      "name": "parshap",
-      "email": "parshap+npm@gmail.com"
-    },
-    {
-      "name": "pkrumins",
-      "email": "peteris.krumins@gmail.com"
-    },
-    {
-      "name": "sethvincent",
-      "email": "sethvincent@gmail.com"
-    },
-    {
-      "name": "stevemao",
-      "email": "maochenyan@gmail.com"
-    },
-    {
-      "name": "substack",
-      "email": "substack@gmail.com"
-    },
-    {
-      "name": "tehshrike",
-      "email": "me@JoshDuff.com"
-    },
-    {
-      "name": "terinjokes",
-      "email": "terinjokes@gmail.com"
-    },
-    {
-      "name": "thlorenz",
-      "email": "thlorenz@gmx.de"
-    },
-    {
-      "name": "ungoldman",
-      "email": "ungoldman@gmail.com"
-    },
-    {
-      "name": "yerkopalma",
-      "email": "yerko.palma@usach.cl"
-    },
-    {
-      "name": "yoshuawuyts",
-      "email": "i@yoshuawuyts.com"
-    },
-    {
-      "name": "zertosh",
-      "email": "zertosh@gmail.com"
-    }
-  ],
   "name": "browserify",
-  "optionalDependencies": {},
-  "publish_time": 1508490210828,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/substack/node-browserify.git"

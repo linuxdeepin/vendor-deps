@@ -1,49 +1,34 @@
 {
   "_args": [
     [
-      {
-        "raw": "lodash.memoize@~3.0.3",
-        "scope": null,
-        "escapedName": "lodash.memoize",
-        "name": "lodash.memoize",
-        "rawSpec": "~3.0.3",
-        "spec": ">=3.0.3 <3.1.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/combine-source-map"
+      "lodash.memoize@3.0.4",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1432065215936,
-  "_from": "lodash.memoize@>=3.0.3 <3.1.0",
-  "_hasShrinkwrap": false,
+  "_development": true,
+  "_from": "lodash.memoize@3.0.4",
   "_id": "lodash.memoize@3.0.4",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-LcvSwofLwKVcxCMovQxzYVDVPj8=",
   "_location": "/lodash.memoize",
-  "_nodeVersion": "0.12.3",
-  "_npmUser": {
-    "name": "jdalton",
-    "email": "john.david.dalton@gmail.com"
-  },
-  "_npmVersion": "2.10.0",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "lodash.memoize@~3.0.3",
-    "scope": null,
-    "escapedName": "lodash.memoize",
+    "type": "version",
+    "registry": true,
+    "raw": "lodash.memoize@3.0.4",
     "name": "lodash.memoize",
-    "rawSpec": "~3.0.3",
-    "spec": ">=3.0.3 <3.1.0",
-    "type": "range"
+    "escapedName": "lodash.memoize",
+    "rawSpec": "3.0.4",
+    "saveSpec": null,
+    "fetchSpec": "3.0.4"
   },
   "_requiredBy": [
     "/combine-source-map",
     "/insert-module-globals/combine-source-map"
   ],
   "_resolved": "http://r.cnpmjs.org/lodash.memoize/download/lodash.memoize-3.0.4.tgz",
-  "_shasum": "2dcbd2c287cbc0a55cc42328bd0c736150d53e3f",
-  "_shrinkwrap": null,
-  "_spec": "lodash.memoize@~3.0.3",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/combine-source-map",
+  "_spec": "3.0.4",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "John-David Dalton",
     "email": "john.david.dalton@gmail.com",
@@ -79,16 +64,7 @@
       "url": "https://mathiasbynens.be/"
     }
   ],
-  "dependencies": {},
   "description": "The modern build of lodash’s `_.memoize` as a module.",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "2dcbd2c287cbc0a55cc42328bd0c736150d53e3f",
-    "size": 3171,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/lodash.memoize/download/lodash.memoize-3.0.4.tgz"
-  },
   "homepage": "https://lodash.com/",
   "icon": "https://lodash.com/icon.svg",
   "keywords": [
@@ -98,20 +74,7 @@
     "util"
   ],
   "license": "MIT",
-  "maintainers": [
-    {
-      "name": "jdalton",
-      "email": "john.david.dalton@gmail.com"
-    },
-    {
-      "name": "mathias",
-      "email": "mathias@qiwi.be"
-    }
-  ],
   "name": "lodash.memoize",
-  "optionalDependencies": {},
-  "publish_time": 1432065215936,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lodash/lodash.git"

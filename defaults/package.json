@@ -1,48 +1,32 @@
 {
   "_args": [
     [
-      {
-        "raw": "defaults@^1.0.0",
-        "scope": null,
-        "escapedName": "defaults",
-        "name": "defaults",
-        "rawSpec": "^1.0.0",
-        "spec": ">=1.0.0 <2.0.0",
-        "type": "range"
-      },
-      "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/vinyl-fs"
+      "defaults@1.0.3",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
     ]
   ],
-  "_cnpm_publish_time": 1443824822099,
-  "_from": "defaults@>=1.0.0 <2.0.0",
-  "_hasShrinkwrap": false,
+  "_from": "defaults@1.0.3",
   "_id": "defaults@1.0.3",
-  "_inCache": true,
+  "_inBundle": false,
+  "_integrity": "sha1-xlYFHpgX2f8I7YgUd/P+QBnz730=",
   "_location": "/defaults",
-  "_nodeVersion": "4.1.1",
-  "_npmUser": {
-    "name": "tmpvar",
-    "email": "tmpvar@gmail.com"
-  },
-  "_npmVersion": "2.14.4",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "defaults@^1.0.0",
-    "scope": null,
-    "escapedName": "defaults",
+    "type": "version",
+    "registry": true,
+    "raw": "defaults@1.0.3",
     "name": "defaults",
-    "rawSpec": "^1.0.0",
-    "spec": ">=1.0.0 <2.0.0",
-    "type": "range"
+    "escapedName": "defaults",
+    "rawSpec": "1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "1.0.3"
   },
   "_requiredBy": [
     "/vinyl-fs"
   ],
   "_resolved": "http://r.cnpmjs.org/defaults/download/defaults-1.0.3.tgz",
-  "_shasum": "c656051e9817d9ff08ed881477f3fe4019f3ef7d",
-  "_shrinkwrap": null,
-  "_spec": "defaults@^1.0.0",
-  "_where": "/home/myml/Src/deepin/deepin-manual/src/web/node_modules/vinyl-fs",
+  "_spec": "1.0.3",
+  "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "Elijah Insua",
     "email": "tmpvar@gmail.com"
@@ -57,14 +41,6 @@
   "devDependencies": {
     "tap": "^2.0.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "c656051e9817d9ff08ed881477f3fe4019f3ef7d",
-    "size": 1978,
-    "noattachment": false,
-    "tarball": "http://r.cnpmjs.org/defaults/download/defaults-1.0.3.tgz"
-  },
-  "gitHead": "8831ec32a5f999bfae1a8c9bf32880971ed7c6f2",
   "homepage": "https://github.com/tmpvar/defaults#readme",
   "keywords": [
     "config",
@@ -72,16 +48,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "tmpvar",
-      "email": "tmpvar@gmail.com"
-    }
-  ],
   "name": "defaults",
-  "optionalDependencies": {},
-  "publish_time": 1443824822099,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git://github.com/tmpvar/defaults.git"
