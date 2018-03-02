@@ -17,12 +17,13 @@
   },
   "_requiredBy": [
     "#USER",
-    "/"
+    "/",
+    "/materialize-css"
   ],
   "_resolved": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
   "_shasum": "958ce29e81c9790f31be7792df5d4d95fc57fbca",
   "_spec": "jquery",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "JS Foundation and other contributors",
     "url": "https://github.com/jquery/jquery/blob/3.3.1/AUTHORS.txt"
