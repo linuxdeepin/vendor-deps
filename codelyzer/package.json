@@ -1,27 +1,33 @@
 {
-  "_from": "codelyzer@^4.0.1",
-  "_id": "codelyzer@4.1.0",
+  "_args": [
+    [
+      "codelyzer@4.2.1",
+      "/home/myml/Src/deepin/dstore-operation-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "codelyzer@4.2.1",
+  "_id": "codelyzer@4.2.1",
   "_inBundle": false,
-  "_integrity": "sha1-MRd1RTjY9f+jbf+R00BXOoNs83M=",
+  "_integrity": "sha1-1W6qzvyn6BOKrApjDkhL2wmYhUQ=",
   "_location": "/codelyzer",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "codelyzer@^4.0.1",
+    "raw": "codelyzer@4.2.1",
     "name": "codelyzer",
     "escapedName": "codelyzer",
-    "rawSpec": "^4.0.1",
+    "rawSpec": "4.2.1",
     "saveSpec": null,
-    "fetchSpec": "^4.0.1"
+    "fetchSpec": "4.2.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://r.cnpmjs.org/codelyzer/download/codelyzer-4.1.0.tgz",
-  "_shasum": "3117754538d8f5ffa36dff91d340573a836cf373",
-  "_spec": "codelyzer@^4.0.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web",
+  "_resolved": "http://registry.npm.taobao.org/codelyzer/download/codelyzer-4.2.1.tgz",
+  "_spec": "4.2.1",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
   "author": {
     "name": "Minko Gechev",
     "email": "mgechev@gmail.com"
@@ -29,7 +35,6 @@
   "bugs": {
     "url": "https://github.com/mgechev/codelyzer/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Minko Gechev",
@@ -56,7 +61,6 @@
     "source-map": "^0.5.6",
     "sprintf-js": "^1.0.3"
   },
-  "deprecated": false,
   "description": "Linting for Angular applications, following angular.io/styleguide.",
   "homepage": "https://github.com/mgechev/codelyzer#readme",
   "keywords": [
@@ -72,16 +76,16 @@
   "main": "index.js",
   "name": "codelyzer",
   "peerDependencies": {
-    "@angular/compiler": "^2.3.1 || >=4.0.0-beta <6.0.0",
-    "@angular/core": "^2.3.1 || >=4.0.0-beta <6.0.0",
-    "@angular/platform-browser-dynamic": "^2.3.1 || >=4.0.0-beta <6.0.0",
-    "@angular/platform-browser": "^2.3.1 || >=4.0.0-beta <6.0.0",
-    "@angular/common": "^2.3.1 || >=4.0.0-beta <6.0.0",
+    "@angular/compiler": ">=2.3.1 <7.0.0 || >6.0.0-beta <7.0.0",
+    "@angular/core": ">=2.3.1 <7.0.0 || >6.0.0-beta <7.0.0",
+    "@angular/platform-browser-dynamic": ">=2.3.1 <7.0.0 || >6.0.0-beta <7.0.0",
+    "@angular/platform-browser": ">=2.3.1 <7.0.0 || >6.0.0-beta <7.0.0",
+    "@angular/common": ">=2.3.1 <7.0.0 || >6.0.0-beta <7.0.0",
     "tslint": "^5.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mgechev/codelyzer.git"
   },
-  "version": "4.1.0"
+  "version": "4.2.1"
 }

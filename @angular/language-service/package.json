@@ -1,36 +1,40 @@
 {
-  "_from": "@angular/language-service@^5.2.0",
-  "_id": "@angular/language-service@5.2.1",
+  "_args": [
+    [
+      "@angular/language-service@5.2.9",
+      "/home/myml/Src/deepin/dstore-operation-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "@angular/language-service@5.2.9",
+  "_id": "@angular/language-service@5.2.9",
   "_inBundle": false,
-  "_integrity": "sha1-Q4vB9hurW6Lg7raHrmvp5qsO2xg=",
+  "_integrity": "sha1-SDi7YxnJno9b6wi9+zku6aEXN2Y=",
   "_location": "/@angular/language-service",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/language-service@^5.2.0",
+    "raw": "@angular/language-service@5.2.9",
     "name": "@angular/language-service",
     "escapedName": "@angular%2flanguage-service",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.9",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.9"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/language-service/download/@angular/language-service-5.2.1.tgz",
-  "_shasum": "438bc1f61bab5ba2e0eeb687ae6be9e6ab0edb18",
-  "_spec": "@angular/language-service@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/language-service/download/@angular/language-service-5.2.9.tgz",
+  "_spec": "5.2.9",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
   "author": {
     "name": "angular"
   },
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Angular - language services",
   "homepage": "https://github.com/angular/angular#readme",
   "license": "MIT",
@@ -42,5 +46,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./language-service.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.9"
 }
