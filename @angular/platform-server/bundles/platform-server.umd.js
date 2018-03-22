@@ -1,6 +1,6 @@
 /**
- * @license Angular v5.1.1
- * (c) 2010-2017 Google, Inc. https://angular.io/
+ * @license Angular v5.2.9
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 (function (global, factory) {
@@ -36,8 +36,8 @@ function __extends(d, b) {
 }
 
 /**
- * @license Angular v5.1.1
- * (c) 2010-2017 Google, Inc. https://angular.io/
+ * @license Angular v5.2.9
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 /**
@@ -361,13 +361,14 @@ var DominoAdapter = /** @class */ (function (_super) {
         if (styleAttribute) {
             var /** @type {?} */ styleList = styleAttribute.split(/;+/g);
             for (var /** @type {?} */ i = 0; i < styleList.length; i++) {
-                if (styleList[i].length > 0) {
-                    var /** @type {?} */ style = /** @type {?} */ (styleList[i]);
-                    var /** @type {?} */ colon = style.indexOf(':');
-                    if (colon === -1) {
+                var /** @type {?} */ style = styleList[i].trim();
+                if (style.length > 0) {
+                    var /** @type {?} */ colonIndex = style.indexOf(':');
+                    if (colonIndex === -1) {
                         throw new Error("Invalid CSS style: " + style);
                     }
-                    (/** @type {?} */ (styleMap))[style.substr(0, colon).trim()] = style.substr(colon + 1).trim();
+                    var /** @type {?} */ name_1 = style.substr(0, colonIndex).trim();
+                    styleMap[name_1] = style.substr(colonIndex + 1).trim();
                 }
             }
         }
@@ -409,8 +410,9 @@ var DominoAdapter = /** @class */ (function (_super) {
      * @return {?}
      */
     function (element, styleName, styleValue) {
+        styleName = styleName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
         var /** @type {?} */ styleMap = this._readStyleAttribute(element);
-        (/** @type {?} */ (styleMap))[styleName] = styleValue;
+        styleMap[styleName] = styleValue || '';
         this._writeStyleAttribute(element, styleMap);
     };
     /**
@@ -423,7 +425,11 @@ var DominoAdapter = /** @class */ (function (_super) {
      * @param {?} styleName
      * @return {?}
      */
-    function (element, styleName) { this.setStyle(element, styleName, null); };
+    function (element, styleName) {
+        // IE requires '' instead of null
+        // see https://github.com/angular/angular/issues/7916
+        this.setStyle(element, styleName, '');
+    };
     /**
      * @param {?} element
      * @param {?} styleName
@@ -436,7 +442,7 @@ var DominoAdapter = /** @class */ (function (_super) {
      */
     function (element, styleName) {
         var /** @type {?} */ styleMap = this._readStyleAttribute(element);
-        return styleMap.hasOwnProperty(styleName) ? (/** @type {?} */ (styleMap))[styleName] : '';
+        return styleMap[styleName] || '';
     };
     /**
      * @param {?} element
@@ -451,7 +457,7 @@ var DominoAdapter = /** @class */ (function (_super) {
      * @return {?}
      */
     function (element, styleName, styleValue) {
-        var /** @type {?} */ value = this.getStyle(element, styleName) || '';
+        var /** @type {?} */ value = this.getStyle(element, styleName);
         return styleValue ? value == styleValue : value.length > 0;
     };
     /**
@@ -1833,14 +1839,9 @@ function renderModuleFactory(moduleFactory, options) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * @module
- * @description
- * Entry point for all public APIs of the common package.
- */
-/**
  * \@stable
  */
-var VERSION = new _angular_core.Version('5.1.1');
+var VERSION = new _angular_core.Version('5.2.9');
 
 exports.PlatformState = PlatformState;
 exports.ServerModule = ServerModule;

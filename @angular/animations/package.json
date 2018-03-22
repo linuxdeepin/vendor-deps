@@ -1,32 +1,28 @@
 {
-  "_args": [
-    [
-      "@angular/animations@5.1.1",
-      "/home/myml/Src/deepin/dstore-metadata-server/web"
-    ]
-  ],
-  "_from": "@angular/animations@5.1.1",
-  "_id": "@angular/animations@5.1.1",
+  "_from": "@angular/animations@5.2.9",
+  "_id": "@angular/animations@5.2.9",
   "_inBundle": false,
-  "_integrity": "sha1-AHYh+LysFVYOFgWC6y6RAltrkQY=",
+  "_integrity": "sha1-Ig25+1pSoZPbACPXIbI93SWnV3A=",
   "_location": "/@angular/animations",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/animations@5.1.1",
+    "raw": "@angular/animations@5.2.9",
     "name": "@angular/animations",
     "escapedName": "@angular%2fanimations",
     "scope": "@angular",
-    "rawSpec": "5.1.1",
+    "rawSpec": "5.2.9",
     "saveSpec": null,
-    "fetchSpec": "5.1.1"
+    "fetchSpec": "5.2.9"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/animations/download/@angular/animations-5.1.1.tgz",
-  "_spec": "5.1.1",
+  "_resolved": "http://registry.npm.taobao.org/@angular/animations/download/@angular/animations-5.2.9.tgz",
+  "_shasum": "220db9fb5a52a193db0023d721b23ddd25a75770",
+  "_spec": "@angular/animations@5.2.9",
   "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
@@ -34,9 +30,11 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "tslib": "^1.7.1"
   },
+  "deprecated": false,
   "description": "Angular - animations integration with web-animationss",
   "es2015": "./esm2015/animations.js",
   "homepage": "https://github.com/angular/angular#readme",
@@ -45,12 +43,12 @@
   "module": "./esm5/animations.js",
   "name": "@angular/animations",
   "peerDependencies": {
-    "@angular/core": "5.1.1"
+    "@angular/core": "5.2.9"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./animations.d.ts",
-  "version": "5.1.1"
+  "version": "5.2.9"
 }

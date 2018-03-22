@@ -1,42 +1,38 @@
 {
-  "_args": [
-    [
-      "@ngtools/json-schema@1.1.0",
-      "/home/myml/Src/deepin/dstore-metadata-server/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "@ngtools/json-schema@1.1.0",
-  "_id": "@ngtools/json-schema@1.1.0",
+  "_from": "@ngtools/json-schema@1.2.0",
+  "_id": "@ngtools/json-schema@1.2.0",
   "_inBundle": false,
-  "_integrity": "sha1-w6DFRNYjkqzCgTpCyKDcb1j4aSI=",
+  "_integrity": "sha1-BuXs0p6aN9JgpEfdhz6ivs0ijE8=",
   "_location": "/@ngtools/json-schema",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@ngtools/json-schema@1.1.0",
+    "raw": "@ngtools/json-schema@1.2.0",
     "name": "@ngtools/json-schema",
     "escapedName": "@ngtools%2fjson-schema",
     "scope": "@ngtools",
-    "rawSpec": "1.1.0",
+    "rawSpec": "1.2.0",
     "saveSpec": null,
-    "fetchSpec": "1.1.0"
+    "fetchSpec": "1.2.0"
   },
   "_requiredBy": [
     "/@angular-devkit/schematics",
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/@ngtools/json-schema/download/@ngtools/json-schema-1.1.0.tgz",
-  "_spec": "1.1.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
+  "_resolved": "http://registry.npm.taobao.org/@ngtools/json-schema/download/@ngtools/json-schema-1.2.0.tgz",
+  "_shasum": "06e5ecd29e9a37d260a447dd873ea2becd228c4f",
+  "_spec": "@ngtools/json-schema@1.2.0",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular/cli",
   "author": {
     "name": "angular"
   },
   "bugs": {
     "url": "https://github.com/angular/angular-cli/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {},
+  "deprecated": false,
   "description": "Schema validating and reading for configurations, similar to Angular CLI config.",
   "engines": {
     "node": ">= 4.1.0",
@@ -59,5 +55,5 @@
     "url": "git+https://github.com/angular/angular-cli.git"
   },
   "typings": "src/index.d.ts",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

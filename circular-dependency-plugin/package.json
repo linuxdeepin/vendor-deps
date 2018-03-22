@@ -1,38 +1,34 @@
 {
-  "_args": [
-    [
-      "circular-dependency-plugin@4.3.0",
-      "/home/myml/Src/deepin/dstore-metadata-server/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "circular-dependency-plugin@4.3.0",
-  "_id": "circular-dependency-plugin@4.3.0",
+  "_from": "circular-dependency-plugin@^4.2.1",
+  "_id": "circular-dependency-plugin@4.4.0",
   "_inBundle": false,
-  "_integrity": "sha1-KhKCTlhFRuGu6lhlt78jShHEppU=",
+  "_integrity": "sha1-+KGnRqP2yOV/Ta6bVNmRzSpYL10=",
   "_location": "/circular-dependency-plugin",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "circular-dependency-plugin@4.3.0",
+    "raw": "circular-dependency-plugin@^4.2.1",
     "name": "circular-dependency-plugin",
     "escapedName": "circular-dependency-plugin",
-    "rawSpec": "4.3.0",
+    "rawSpec": "^4.2.1",
     "saveSpec": null,
-    "fetchSpec": "4.3.0"
+    "fetchSpec": "^4.2.1"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/circular-dependency-plugin/download/circular-dependency-plugin-4.3.0.tgz",
-  "_spec": "4.3.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
+  "_resolved": "http://registry.npm.taobao.org/circular-dependency-plugin/download/circular-dependency-plugin-4.4.0.tgz",
+  "_shasum": "f8a1a746a3f6c8e57f4dae9b54d991cd2a582f5d",
+  "_spec": "circular-dependency-plugin@^4.2.1",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular/cli",
   "author": "",
   "bugs": {
     "url": "https://github.com/aackerman/circular-dependency-plugin/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {},
+  "deprecated": false,
   "description": "Detect modules with circular dependencies when bundling with webpack.",
   "devDependencies": {
     "jest": "^20.0.4",
@@ -61,5 +57,5 @@
   "scripts": {
     "test": "jest"
   },
-  "version": "4.3.0"
+  "version": "4.4.0"
 }

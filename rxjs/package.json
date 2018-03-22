@@ -1,33 +1,31 @@
 {
-  "_args": [
-    [
-      "rxjs@5.5.5",
-      "/home/myml/Src/deepin/dstore-metadata-server/web"
-    ]
-  ],
-  "_from": "rxjs@5.5.5",
-  "_id": "rxjs@5.5.5",
+  "_from": "rxjs@5.5.7",
+  "_id": "rxjs@5.5.7",
   "_inBundle": false,
-  "_integrity": "sha1-4WTxHTjq8p9W8Iw0R/dP8C3YTpc=",
+  "_integrity": "sha1-r7PRZCsGmy+/IDkD1lAdGstM2ic=",
   "_location": "/rxjs",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "rxjs@5.5.5",
+    "raw": "rxjs@5.5.7",
     "name": "rxjs",
     "escapedName": "rxjs",
-    "rawSpec": "5.5.5",
+    "rawSpec": "5.5.7",
     "saveSpec": null,
-    "fetchSpec": "5.5.5"
+    "fetchSpec": "5.5.7"
   },
   "_requiredBy": [
+    "#USER",
     "/",
+    "/@angular-devkit/core",
     "/@angular-devkit/schematics",
-    "/@angular/cli"
+    "/@angular/cli",
+    "/@schematics/package-update"
   ],
-  "_resolved": "http://r.cnpmjs.org/rxjs/download/rxjs-5.5.5.tgz",
-  "_spec": "5.5.5",
+  "_resolved": "http://registry.npm.taobao.org/rxjs/download/rxjs-5.5.7.tgz",
+  "_shasum": "afb3d1642b069b2fbf203903d6501d1acb4cda27",
+  "_spec": "rxjs@5.5.7",
   "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "Ben Lesh",
@@ -36,6 +34,7 @@
   "bugs": {
     "url": "https://github.com/ReactiveX/RxJS/issues"
   },
+  "bundleDependencies": false,
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -70,6 +69,7 @@
   "dependencies": {
     "symbol-observable": "1.0.1"
   },
+  "deprecated": false,
   "description": "Reactive Extensions for modern JavaScript",
   "devDependencies": {
     "@angular-devkit/build-optimizer": "0.0.24",
@@ -199,5 +199,5 @@
     "watch": "Watch codebase, trigger compile when source code changes"
   },
   "typings": "./Rx.d.ts",
-  "version": "5.5.5"
+  "version": "5.5.7"
 }

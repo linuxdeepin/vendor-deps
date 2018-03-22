@@ -1,6 +1,6 @@
 /**
- * @license Angular v5.1.1
- * (c) 2010-2017 Google, Inc. https://angular.io/
+ * @license Angular v5.2.9
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 import { APP_ID, ApplicationRef, Inject, Injectable, InjectionToken, Injector, NgModule, NgZone, Optional, PLATFORM_ID, PLATFORM_INITIALIZER, RendererFactory2, Testability, Version, ViewEncapsulation, createPlatformFactory, platformCore, ɵALLOW_MULTIPLE_PLATFORMS } from '@angular/core';
@@ -244,13 +244,14 @@ class DominoAdapter extends ɵBrowserDomAdapter {
         if (styleAttribute) {
             const /** @type {?} */ styleList = styleAttribute.split(/;+/g);
             for (let /** @type {?} */ i = 0; i < styleList.length; i++) {
-                if (styleList[i].length > 0) {
-                    const /** @type {?} */ style = /** @type {?} */ (styleList[i]);
-                    const /** @type {?} */ colon = style.indexOf(':');
-                    if (colon === -1) {
+                const /** @type {?} */ style = styleList[i].trim();
+                if (style.length > 0) {
+                    const /** @type {?} */ colonIndex = style.indexOf(':');
+                    if (colonIndex === -1) {
                         throw new Error(`Invalid CSS style: ${style}`);
                     }
-                    (/** @type {?} */ (styleMap))[style.substr(0, colon).trim()] = style.substr(colon + 1).trim();
+                    const /** @type {?} */ name = style.substr(0, colonIndex).trim();
+                    styleMap[name] = style.substr(colonIndex + 1).trim();
                 }
             }
         }
@@ -279,8 +280,9 @@ class DominoAdapter extends ɵBrowserDomAdapter {
      * @return {?}
      */
     setStyle(element, styleName, styleValue) {
+        styleName = styleName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
         const /** @type {?} */ styleMap = this._readStyleAttribute(element);
-        (/** @type {?} */ (styleMap))[styleName] = styleValue;
+        styleMap[styleName] = styleValue || '';
         this._writeStyleAttribute(element, styleMap);
     }
     /**
@@ -288,7 +290,11 @@ class DominoAdapter extends ɵBrowserDomAdapter {
      * @param {?} styleName
      * @return {?}
      */
-    removeStyle(element, styleName) { this.setStyle(element, styleName, null); }
+    removeStyle(element, styleName) {
+        // IE requires '' instead of null
+        // see https://github.com/angular/angular/issues/7916
+        this.setStyle(element, styleName, '');
+    }
     /**
      * @param {?} element
      * @param {?} styleName
@@ -296,7 +302,7 @@ class DominoAdapter extends ɵBrowserDomAdapter {
      */
     getStyle(element, styleName) {
         const /** @type {?} */ styleMap = this._readStyleAttribute(element);
-        return styleMap.hasOwnProperty(styleName) ? (/** @type {?} */ (styleMap))[styleName] : '';
+        return styleMap[styleName] || '';
     }
     /**
      * @param {?} element
@@ -305,7 +311,7 @@ class DominoAdapter extends ɵBrowserDomAdapter {
      * @return {?}
      */
     hasStyle(element, styleName, styleValue) {
-        const /** @type {?} */ value = this.getStyle(element, styleName) || '';
+        const /** @type {?} */ value = this.getStyle(element, styleName);
         return styleValue ? value == styleValue : value.length > 0;
     }
     /**
@@ -1424,14 +1430,9 @@ function renderModuleFactory(moduleFactory, options) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * @module
- * @description
- * Entry point for all public APIs of the common package.
- */
-/**
  * \@stable
  */
-const VERSION = new Version('5.1.1');
+const VERSION = new Version('5.2.9');
 
 /**
  * @fileoverview added by tsickle
