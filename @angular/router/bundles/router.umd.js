@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -44,7 +44,7 @@ var __assign = Object.assign || function __assign(t) {
 };
 
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -722,14 +722,6 @@ function getFullPath(parentPath, currentRoute) {
         return parentPath + "/" + currentRoute.path;
     }
 }
-/**
- * @param {?} r
- * @return {?}
- */
-function copyConfig(r) {
-    var /** @type {?} */ children = r.children && r.children.map(copyConfig);
-    return children ? __assign({}, r, { children: children }) : __assign({}, r);
-}
 
 /**
  * @fileoverview added by tsickle
@@ -1247,7 +1239,7 @@ var DefaultUrlSerializer = /** @class */ (function () {
     function (tree) {
         var /** @type {?} */ segment = "/" + serializeSegment(tree.root, true);
         var /** @type {?} */ query = serializeQueryParams(tree.queryParams);
-        var /** @type {?} */ fragment = typeof tree.fragment === "string" ? "#" + encodeUriFragment((/** @type {?} */ ((tree.fragment)))) : '';
+        var /** @type {?} */ fragment = typeof tree.fragment === "string" ? "#" + encodeURI((/** @type {?} */ ((tree.fragment)))) : '';
         return "" + segment + query + fragment;
     };
     return DefaultUrlSerializer;
@@ -1292,53 +1284,25 @@ function serializeSegment(segment, root) {
     }
 }
 /**
- * Encodes a URI string with the default encoding. This function will only ever be called from
- * `encodeUriQuery` or `encodeUriSegment` as it's the base set of encodings to be used. We need
- * a custom encoding because encodeURIComponent is too aggressive and encodes stuff that doesn't
- * have to be encoded per https://url.spec.whatwg.org.
+ * This method is intended for encoding *key* or *value* parts of query component. We need a custom
+ * method because encodeURIComponent is too aggressive and encodes stuff that doesn't have to be
+ * encoded per http://tools.ietf.org/html/rfc3986:
+ *    query         = *( pchar / "/" / "?" )
+ *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "\@"
+ *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+ *    pct-encoded   = "%" HEXDIG HEXDIG
+ *    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
+ *                     / "*" / "+" / "," / ";" / "="
  * @param {?} s
  * @return {?}
  */
-function encodeUriString(s) {
+function encode(s) {
     return encodeURIComponent(s)
         .replace(/%40/g, '@')
         .replace(/%3A/gi, ':')
         .replace(/%24/g, '$')
-        .replace(/%2C/gi, ',');
-}
-/**
- * This function should be used to encode both keys and values in a query string key/value. In
- * the following URL, you need to call encodeUriQuery on "k" and "v":
- *
- * http://www.site.org/html;mk=mv?k=v#f
- * @param {?} s
- * @return {?}
- */
-function encodeUriQuery(s) {
-    return encodeUriString(s).replace(/%3B/gi, ';');
-}
-/**
- * This function should be used to encode a URL fragment. In the following URL, you need to call
- * encodeUriFragment on "f":
- *
- * http://www.site.org/html;mk=mv?k=v#f
- * @param {?} s
- * @return {?}
- */
-function encodeUriFragment(s) {
-    return encodeURI(s);
-}
-/**
- * This function should be run on any URI segment as well as the key and value in a key/value
- * pair for matrix params. In the following URL, you need to call encodeUriSegment on "html",
- * "mk", and "mv":
- *
- * http://www.site.org/html;mk=mv?k=v#f
- * @param {?} s
- * @return {?}
- */
-function encodeUriSegment(s) {
-    return encodeUriString(s).replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%26/gi, '&');
+        .replace(/%2C/gi, ',')
+        .replace(/%3B/gi, ';');
 }
 /**
  * @param {?} s
@@ -1348,27 +1312,18 @@ function decode(s) {
     return decodeURIComponent(s);
 }
 /**
- * @param {?} s
- * @return {?}
- */
-function decodeQuery(s) {
-    return decode(s.replace(/\+/g, '%20'));
-}
-/**
  * @param {?} path
  * @return {?}
  */
 function serializePath(path) {
-    return "" + encodeUriSegment(path.path) + serializeMatrixParams(path.parameters);
+    return "" + encode(path.path) + serializeParams(path.parameters);
 }
 /**
  * @param {?} params
  * @return {?}
  */
-function serializeMatrixParams(params) {
-    return Object.keys(params)
-        .map(function (key) { return ";" + encodeUriSegment(key) + "=" + encodeUriSegment(params[key]); })
-        .join('');
+function serializeParams(params) {
+    return Object.keys(params).map(function (key) { return ";" + encode(key) + "=" + encode(params[key]); }).join('');
 }
 /**
  * @param {?} params
@@ -1377,9 +1332,8 @@ function serializeMatrixParams(params) {
 function serializeQueryParams(params) {
     var /** @type {?} */ strParams = Object.keys(params).map(function (name) {
         var /** @type {?} */ value = params[name];
-        return Array.isArray(value) ?
-            value.map(function (v) { return encodeUriQuery(name) + "=" + encodeUriQuery(v); }).join('&') :
-            encodeUriQuery(name) + "=" + encodeUriQuery(value);
+        return Array.isArray(value) ? value.map(function (v) { return encode(name) + "=" + encode(v); }).join('&') :
+            encode(name) + "=" + encode(value);
     });
     return strParams.length ? "?" + strParams.join("&") : '';
 }
@@ -1451,7 +1405,7 @@ var UrlParser = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.consumeOptional('#') ? decodeURIComponent(this.remaining) : null;
+        return this.consumeOptional('#') ? decodeURI(this.remaining) : null;
     };
     /**
      * @return {?}
@@ -1559,8 +1513,8 @@ var UrlParser = /** @class */ (function () {
                 this.capture(value);
             }
         }
-        var /** @type {?} */ decodedKey = decodeQuery(key);
-        var /** @type {?} */ decodedVal = decodeQuery(value);
+        var /** @type {?} */ decodedKey = decode(key);
+        var /** @type {?} */ decodedVal = decode(value);
         if (params.hasOwnProperty(decodedKey)) {
             // Append to existing values
             var /** @type {?} */ currentVal = params[decodedKey];
@@ -4594,7 +4548,7 @@ var RouterConfigLoader = /** @class */ (function () {
                 _this.onLoadEndListener(route);
             }
             var /** @type {?} */ module = factory.create(parentInjector);
-            return new LoadedRouterConfig(flatten(module.injector.get(ROUTES)).map(copyConfig), module);
+            return new LoadedRouterConfig(flatten(module.injector.get(ROUTES)), module);
         });
     };
     /**
@@ -4843,15 +4797,14 @@ var Router = /** @class */ (function () {
      */
     function () {
         var _this = this;
-        // Don't need to use Zone.wrap any more, because zone.js
-        // already patch onPopState, so location change callback will
-        // run into ngZone
+        // Zone.current.wrap is needed because of the issue with RxJS scheduler,
+        // which does not work properly with zone.js in IE and Safari
         if (!this.locationSubscription) {
-            this.locationSubscription = /** @type {?} */ (this.location.subscribe(function (change) {
+            this.locationSubscription = /** @type {?} */ (this.location.subscribe(Zone.current.wrap(function (change) {
                 var /** @type {?} */ rawUrlTree = _this.urlSerializer.parse(change['url']);
                 var /** @type {?} */ source = change['type'] === 'popstate' ? 'popstate' : 'hashchange';
                 setTimeout(function () { _this.scheduleNavigation(rawUrlTree, source, { replaceUrl: true }); }, 0);
-            }));
+            })));
         }
     };
     Object.defineProperty(Router.prototype, "url", {
@@ -4924,7 +4877,7 @@ var Router = /** @class */ (function () {
      */
     function (config) {
         validateConfig(config);
-        this.config = config.map(copyConfig);
+        this.config = config;
         this.navigated = false;
     };
     /** @docsNotRequired */
@@ -5518,99 +5471,67 @@ var Router = /** @class */ (function () {
                     return { appliedUrl: appliedUrl, state: null, shouldActivate: shouldActivate };
                 }
             });
-            _this.activateRoutes(routerState$, _this.routerState, _this.currentUrlTree, id, url, rawUrl, skipLocationChange, replaceUrl, resolvePromise, rejectPromise);
-        });
-    };
-    /**
-     * Performs the logic of activating routes. This is a synchronous process by default. While this
-     * is a private method, it could be overridden to make activation asynchronous.
-     * @param {?} state
-     * @param {?} storedState
-     * @param {?} storedUrl
-     * @param {?} id
-     * @param {?} url
-     * @param {?} rawUrl
-     * @param {?} skipLocationChange
-     * @param {?} replaceUrl
-     * @param {?} resolvePromise
-     * @param {?} rejectPromise
-     * @return {?}
-     */
-    Router.prototype.activateRoutes = /**
-     * Performs the logic of activating routes. This is a synchronous process by default. While this
-     * is a private method, it could be overridden to make activation asynchronous.
-     * @param {?} state
-     * @param {?} storedState
-     * @param {?} storedUrl
-     * @param {?} id
-     * @param {?} url
-     * @param {?} rawUrl
-     * @param {?} skipLocationChange
-     * @param {?} replaceUrl
-     * @param {?} resolvePromise
-     * @param {?} rejectPromise
-     * @return {?}
-     */
-    function (state, storedState, storedUrl, id, url, rawUrl, skipLocationChange, replaceUrl, resolvePromise, rejectPromise) {
-        var _this = this;
-        // applied the new router state
-        // this operation has side effects
-        var /** @type {?} */ navigationIsSuccessful;
-        state
-            .forEach(function (_a) {
-            var appliedUrl = _a.appliedUrl, state = _a.state, shouldActivate = _a.shouldActivate;
-            if (!shouldActivate || id !== _this.navigationId) {
-                navigationIsSuccessful = false;
-                return;
-            }
-            _this.currentUrlTree = appliedUrl;
-            _this.rawUrlTree = _this.urlHandlingStrategy.merge(_this.currentUrlTree, rawUrl);
-            (/** @type {?} */ (_this)).routerState = state;
-            if (!skipLocationChange) {
-                var /** @type {?} */ path = _this.urlSerializer.serialize(_this.rawUrlTree);
-                if (_this.location.isCurrentPathEqualTo(path) || replaceUrl) {
-                    _this.location.replaceState(path);
+            // applied the new router state
+            // this operation has side effects
+            var /** @type {?} */ navigationIsSuccessful;
+            var /** @type {?} */ storedState = _this.routerState;
+            var /** @type {?} */ storedUrl = _this.currentUrlTree;
+            routerState$
+                .forEach(function (_a) {
+                var appliedUrl = _a.appliedUrl, state = _a.state, shouldActivate = _a.shouldActivate;
+                if (!shouldActivate || id !== _this.navigationId) {
+                    navigationIsSuccessful = false;
+                    return;
+                }
+                _this.currentUrlTree = appliedUrl;
+                _this.rawUrlTree = _this.urlHandlingStrategy.merge(_this.currentUrlTree, rawUrl);
+                (/** @type {?} */ (_this)).routerState = state;
+                if (!skipLocationChange) {
+                    var /** @type {?} */ path = _this.urlSerializer.serialize(_this.rawUrlTree);
+                    if (_this.location.isCurrentPathEqualTo(path) || replaceUrl) {
+                        _this.location.replaceState(path);
+                    }
+                    else {
+                        _this.location.go(path);
+                    }
+                }
+                new ActivateRoutes(_this.routeReuseStrategy, state, storedState, function (evt) { return _this.triggerEvent(evt); })
+                    .activate(_this.rootContexts);
+                navigationIsSuccessful = true;
+            })
+                .then(function () {
+                if (navigationIsSuccessful) {
+                    _this.navigated = true;
+                    (/** @type {?} */ (_this.events))
+                        .next(new NavigationEnd(id, _this.serializeUrl(url), _this.serializeUrl(_this.currentUrlTree)));
+                    resolvePromise(true);
                 }
                 else {
-                    _this.location.go(path);
+                    _this.resetUrlToCurrentUrlTree();
+                    (/** @type {?} */ (_this.events))
+                        .next(new NavigationCancel(id, _this.serializeUrl(url), ''));
+                    resolvePromise(false);
                 }
-            }
-            new ActivateRoutes(_this.routeReuseStrategy, state, storedState, function (evt) { return _this.triggerEvent(evt); })
-                .activate(_this.rootContexts);
-            navigationIsSuccessful = true;
-        })
-            .then(function () {
-            if (navigationIsSuccessful) {
-                _this.navigated = true;
-                (/** @type {?} */ (_this.events))
-                    .next(new NavigationEnd(id, _this.serializeUrl(url), _this.serializeUrl(_this.currentUrlTree)));
-                resolvePromise(true);
-            }
-            else {
-                _this.resetUrlToCurrentUrlTree();
-                (/** @type {?} */ (_this.events))
-                    .next(new NavigationCancel(id, _this.serializeUrl(url), ''));
-                resolvePromise(false);
-            }
-        }, function (e) {
-            if (isNavigationCancelingError(e)) {
-                _this.navigated = true;
-                _this.resetStateAndUrl(storedState, storedUrl, rawUrl);
-                (/** @type {?} */ (_this.events))
-                    .next(new NavigationCancel(id, _this.serializeUrl(url), e.message));
-                resolvePromise(false);
-            }
-            else {
-                _this.resetStateAndUrl(storedState, storedUrl, rawUrl);
-                (/** @type {?} */ (_this.events))
-                    .next(new NavigationError(id, _this.serializeUrl(url), e));
-                try {
-                    resolvePromise(_this.errorHandler(e));
+            }, function (e) {
+                if (isNavigationCancelingError(e)) {
+                    _this.navigated = true;
+                    _this.resetStateAndUrl(storedState, storedUrl, rawUrl);
+                    (/** @type {?} */ (_this.events))
+                        .next(new NavigationCancel(id, _this.serializeUrl(url), e.message));
+                    resolvePromise(false);
                 }
-                catch (/** @type {?} */ ee) {
-                    rejectPromise(ee);
+                else {
+                    _this.resetStateAndUrl(storedState, storedUrl, rawUrl);
+                    (/** @type {?} */ (_this.events))
+                        .next(new NavigationError(id, _this.serializeUrl(url), e));
+                    try {
+                        resolvePromise(_this.errorHandler(e));
+                    }
+                    catch (/** @type {?} */ ee) {
+                        rejectPromise(ee);
+                    }
                 }
-            }
+            });
         });
     };
     /**
@@ -7505,7 +7426,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('5.2.9');
+var VERSION = new _angular_core.Version('5.2.1');
 
 exports.RouterLink = RouterLink;
 exports.RouterLinkWithHref = RouterLinkWithHref;

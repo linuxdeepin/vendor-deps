@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -904,7 +904,7 @@ var CURRENCIES = {
  * @param {?} n
  * @return {?}
  */
-function plural(n) {
+function converter(n) {
     var /** @type {?} */ i = Math.floor(Math.abs(n)), /** @type {?} */ v = n.toString().replace(/^[^.]*\.?/, '').length;
     if (i === 1 && v === 0)
         return 1;
@@ -944,7 +944,7 @@ var localeEn = [
         '{1} \'at\' {0}',
     ],
     ['.', ',', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'US Dollar', plural
+    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'US Dollar', converter
 ];
 
 /**
@@ -1221,7 +1221,7 @@ function getLocaleWeekEndRange(locale) {
  */
 function getLocaleDateFormat(locale, width) {
     var /** @type {?} */ data = findLocaleData(locale);
-    return getLastDefinedValue(data[10 /* DateFormat */], width);
+    return data[10 /* DateFormat */][width];
 }
 /**
  * Time format that depends on the locale.
@@ -1248,7 +1248,7 @@ function getLocaleDateFormat(locale, width) {
  */
 function getLocaleTimeFormat(locale, width) {
     var /** @type {?} */ data = findLocaleData(locale);
-    return getLastDefinedValue(data[11 /* TimeFormat */], width);
+    return data[11 /* TimeFormat */][width];
 }
 /**
  * Date-time format that depends on the locale.
@@ -3403,12 +3403,7 @@ var NgStyle = /** @class */ (function () {
     function (nameAndUnit, value) {
         var _a = nameAndUnit.split('.'), name = _a[0], unit = _a[1];
         value = value != null && unit ? "" + value + unit : value;
-        if (value != null) {
-            this._renderer.setStyle(this._ngEl.nativeElement, name, /** @type {?} */ (value));
-        }
-        else {
-            this._renderer.removeStyle(this._ngEl.nativeElement, name);
-        }
+        this._renderer.setStyle(this._ngEl.nativeElement, name, /** @type {?} */ (value));
     };
     NgStyle.decorators = [
         { type: Directive, args: [{ selector: '[ngStyle]' },] },
@@ -3452,7 +3447,7 @@ var NgStyle = /** @class */ (function () {
  * `[ngTemplateOutletContext]` should be an object, the object's keys will be available for binding
  * by the local template `let` declarations.
  *
- * Note: using the key `$implicit` in the context object will set its value as default.
+ * Note: using the key `$implicit` in the context object will set it's value as default.
  *
  * ## Example
  *
@@ -6525,7 +6520,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new Version('5.2.9');
+var VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle

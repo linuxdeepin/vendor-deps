@@ -249,7 +249,7 @@ var MetadataCollector = /** @class */ (function () {
             return identifier && (exportMap.get(identifier.text) || identifier.text);
         };
         var exportedName = function (node) { return exportedIdentifierName(node.name); };
-        // Pre-declare classes and functions
+        // Predeclare classes and functions
         ts.forEachChild(sourceFile, function (node) {
             switch (node.kind) {
                 case ts.SyntaxKind.ClassDeclaration:
@@ -410,7 +410,7 @@ var MetadataCollector = /** @class */ (function () {
                             }
                             else {
                                 nextDefaultValue =
-                                    recordEntry(errorSym('Unsupported enum member name', member.name), node);
+                                    recordEntry(errorSym('Unsuppported enum member name', member.name), node);
                             }
                         }
                         if (writtenMembers) {

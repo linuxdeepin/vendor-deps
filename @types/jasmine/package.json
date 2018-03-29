@@ -1,35 +1,35 @@
 {
   "_args": [
     [
-      "@types/jasmine@2.8.6",
-      "/home/myml/Src/deepin/dstore-operation-server/web"
+      "@types/jasmine@2.8.4",
+      "/home/liulang/dev/deepin/dstore-operation-server/web"
     ]
   ],
   "_development": true,
-  "_from": "@types/jasmine@2.8.6",
-  "_id": "@types/jasmine@2.8.6",
+  "_from": "@types/jasmine@2.8.4",
+  "_id": "@types/jasmine@2.8.4",
   "_inBundle": false,
-  "_integrity": "sha1-FERbahYTz04F3WHDwyVtDpXAQh4=",
+  "_integrity": "sha1-VSj7XlPxsnWU+B8Y3rt+q43FMss=",
   "_location": "/@types/jasmine",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@types/jasmine@2.8.6",
+    "raw": "@types/jasmine@2.8.4",
     "name": "@types/jasmine",
     "escapedName": "@types%2fjasmine",
     "scope": "@types",
-    "rawSpec": "2.8.6",
+    "rawSpec": "2.8.4",
     "saveSpec": null,
-    "fetchSpec": "2.8.6"
+    "fetchSpec": "2.8.4"
   },
   "_requiredBy": [
     "#DEV:/",
     "/@types/jasminewd2"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@types/jasmine/download/@types/jasmine-2.8.6.tgz",
-  "_spec": "2.8.6",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
+  "_resolved": "http://r.cnpmjs.org/@types/jasmine/download/@types/jasmine-2.8.4.tgz",
+  "_spec": "2.8.4",
+  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
   "contributors": [
     {
       "name": "Boris Yankov",
@@ -50,10 +50,6 @@
     {
       "name": "Lukas Zech",
       "url": "https://github.com/lukas-zech-software"
-    },
-    {
-      "name": "Boris Breuer",
-      "url": "https://github.com/Engineer2B"
     }
   ],
   "dependencies": {},
@@ -67,6 +63,6 @@
   },
   "scripts": {},
   "typeScriptVersion": "2.1",
-  "typesPublisherContentHash": "92179f70f2b38380da53ee5f83cfc48a962e1ba600e3611a98509bfda63ac3af",
-  "version": "2.8.6"
+  "typesPublisherContentHash": "c9ebd1b20f1988c9f879e7e03d3fc4042c6e12ec65147f8ee36ec39e9a0f341a",
+  "version": "2.8.4"
 }

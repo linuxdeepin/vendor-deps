@@ -1,33 +1,33 @@
 {
   "_args": [
     [
-      "@types/lodash@4.14.105",
-      "/home/myml/Src/deepin/dstore-operation-server/web"
+      "@types/lodash@4.14.104",
+      "/home/liulang/dev/deepin/dstore-operation-server/web"
     ]
   ],
-  "_from": "@types/lodash@4.14.105",
-  "_id": "@types/lodash@4.14.105",
+  "_from": "@types/lodash@4.14.104",
+  "_id": "@types/lodash@4.14.104",
   "_inBundle": false,
-  "_integrity": "sha1-n8xGJ6H5j4+Pznndsr/0r9l+lZs=",
+  "_integrity": "sha512-ufQcVg4daO8xQ5kopxRHanqFdL4AI7ondQkV+2f+7mz3gvp0LkBx2zBRC6hfs3T87mzQFmf5Fck7Fi145Ul6NQ==",
   "_location": "/@types/lodash",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@types/lodash@4.14.105",
+    "raw": "@types/lodash@4.14.104",
     "name": "@types/lodash",
     "escapedName": "@types%2flodash",
     "scope": "@types",
-    "rawSpec": "4.14.105",
+    "rawSpec": "4.14.104",
     "saveSpec": null,
-    "fetchSpec": "4.14.105"
+    "fetchSpec": "4.14.104"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.105.tgz",
-  "_spec": "4.14.105",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
+  "_resolved": "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.104.tgz",
+  "_spec": "4.14.104",
+  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
   "contributors": [
     {
       "name": "Brian Zengel",
@@ -77,6 +77,6 @@
   },
   "scripts": {},
   "typeScriptVersion": "2.2",
-  "typesPublisherContentHash": "395d4571736b6ef678d53b777974c07fb85e555b44acab61b97e4d8f7910c52e",
-  "version": "4.14.105"
+  "typesPublisherContentHash": "c36738a623ac109215d6490f59bd1353f53841adaf45cf1a63b6415b5ba96bf5",
+  "version": "4.14.104"
 }

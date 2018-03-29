@@ -5,11 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// THIS CODE IS GENERATED - DO NOT MODIFY
-// See angular/tools/gulp-tasks/cldr/extract.js
-function plural(n) {
-    return 5;
-}
 export default [
     'rw',
     [
@@ -49,6 +44,7 @@ export default [
         ,
     ],
     [',', '.', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0%', '¤ #,##0.00', '#E0'], 'RF', 'RWF', plural
+    ['#,##0.###', '#,##0%', '¤ #,##0.00', '#E0'], 'RF', 'RWF',
+    function (n) { return 5; }
 ];
 //# sourceMappingURL=rw.js.map

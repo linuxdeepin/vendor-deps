@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -3293,13 +3293,13 @@ var AbstractControl = /** @class */ (function () {
         if (opts === void 0) { opts = {}; }
         (/** @type {?} */ (this)).status = DISABLED;
         (/** @type {?} */ (this)).errors = null;
-        this._forEachChild(function (control) { control.disable(__assign({}, opts, { onlySelf: true })); });
+        this._forEachChild(function (control) { control.disable({ onlySelf: true }); });
         this._updateValue();
         if (opts.emitEvent !== false) {
             (/** @type {?} */ (this.valueChanges)).emit(this.value);
             (/** @type {?} */ (this.statusChanges)).emit(this.status);
         }
-        this._updateAncestors(opts);
+        this._updateAncestors(!!opts.onlySelf);
         this._onDisabledChange.forEach(function (changeFn) { return changeFn(true); });
     };
     /**
@@ -3330,22 +3330,22 @@ var AbstractControl = /** @class */ (function () {
     function (opts) {
         if (opts === void 0) { opts = {}; }
         (/** @type {?} */ (this)).status = VALID;
-        this._forEachChild(function (control) { control.enable(__assign({}, opts, { onlySelf: true })); });
+        this._forEachChild(function (control) { control.enable({ onlySelf: true }); });
         this.updateValueAndValidity({ onlySelf: true, emitEvent: opts.emitEvent });
-        this._updateAncestors(opts);
+        this._updateAncestors(!!opts.onlySelf);
         this._onDisabledChange.forEach(function (changeFn) { return changeFn(false); });
     };
     /**
-     * @param {?} opts
+     * @param {?} onlySelf
      * @return {?}
      */
     AbstractControl.prototype._updateAncestors = /**
-     * @param {?} opts
+     * @param {?} onlySelf
      * @return {?}
      */
-    function (opts) {
-        if (this._parent && !opts.onlySelf) {
-            this._parent.updateValueAndValidity(opts);
+    function (onlySelf) {
+        if (this._parent && !onlySelf) {
+            this._parent.updateValueAndValidity();
             this._parent._updatePristine();
             this._parent._updateTouched();
         }
@@ -5025,7 +5025,9 @@ var FormArray = /** @class */ (function (_super) {
         this.updateValueAndValidity();
         this._onCollectionChange();
     };
-    /** Insert a new {@link AbstractControl} at the given `index` in the array. */
+    /**
+     * Insert a new {@link AbstractControl} at the given `index` in the array.
+     */
     /**
      * Insert a new {\@link AbstractControl} at the given `index` in the array.
      * @param {?} index
@@ -5042,8 +5044,11 @@ var FormArray = /** @class */ (function (_super) {
         this.controls.splice(index, 0, control);
         this._registerControl(control);
         this.updateValueAndValidity();
+        this._onCollectionChange();
     };
-    /** Remove the control at the given `index` in the array. */
+    /**
+     * Remove the control at the given `index` in the array.
+     */
     /**
      * Remove the control at the given `index` in the array.
      * @param {?} index
@@ -5059,6 +5064,7 @@ var FormArray = /** @class */ (function (_super) {
             this.controls[index]._registerOnCollectionChange(function () { });
         this.controls.splice(index, 1);
         this.updateValueAndValidity();
+        this._onCollectionChange();
     };
     /**
      * Replace an existing control.
@@ -7990,7 +7996,7 @@ var FormBuilder = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.2.9');
+var VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle

@@ -5,13 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// THIS CODE IS GENERATED - DO NOT MODIFY
-// See angular/tools/gulp-tasks/cldr/extract.js
-function plural(n) {
-    if (n === 1)
-        return 1;
-    return 5;
-}
 export default [
     'ee',
     [
@@ -29,8 +22,8 @@ export default [
         ['d', 'd', 't', 'a', 'd', 'm', 's', 'd', 'a', 'k', 'a', 'd'],
         ['dzv', 'dzd', 'ted', 'afɔ', 'dam', 'mas', 'sia', 'dea', 'any', 'kel', 'ade', 'dzm'],
         [
-            'dzove', 'dzodze', 'tedoxe', 'afɔfĩe', 'dama', 'masa', 'siamlɔm', 'deasiamime',
-            'anyɔnyɔ', 'kele', 'adeɛmekpɔxe', 'dzome'
+            'dzove', 'dzodze', 'tedoxe', 'afɔfĩe', 'dama', 'masa', 'siamlɔm', 'deasiamime', 'anyɔnyɔ',
+            'kele', 'adeɛmekpɔxe', 'dzome'
         ]
     ],
     ,
@@ -43,6 +36,10 @@ export default [
         ,
     ],
     ['.', ',', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'mnn', ':'],
-    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], 'GH₵', 'ghana siɖi', plural
+    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], 'GH₵', 'ghana siɖi', function (n) {
+        if (n === 1)
+            return 1;
+        return 5;
+    }
 ];
 //# sourceMappingURL=ee.js.map

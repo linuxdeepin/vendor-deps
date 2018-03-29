@@ -1,34 +1,34 @@
 {
   "_args": [
     [
-      "@angular/compiler-cli@5.2.9",
-      "/home/myml/Src/deepin/dstore-operation-server/web"
+      "@angular/compiler-cli@5.2.1",
+      "/home/liulang/dev/deepin/dstore-operation-server/web"
     ]
   ],
   "_development": true,
-  "_from": "@angular/compiler-cli@5.2.9",
-  "_id": "@angular/compiler-cli@5.2.9",
+  "_from": "@angular/compiler-cli@5.2.1",
+  "_id": "@angular/compiler-cli@5.2.1",
   "_inBundle": false,
-  "_integrity": "sha1-NqBpk31QqKKU7aIztbGyxxE5dR8=",
+  "_integrity": "sha1-nuNDHZN3Z6T0rkAfFytQe122RW4=",
   "_location": "/@angular/compiler-cli",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/compiler-cli@5.2.9",
+    "raw": "@angular/compiler-cli@5.2.1",
     "name": "@angular/compiler-cli",
     "escapedName": "@angular%2fcompiler-cli",
     "scope": "@angular",
-    "rawSpec": "5.2.9",
+    "rawSpec": "5.2.1",
     "saveSpec": null,
-    "fetchSpec": "5.2.9"
+    "fetchSpec": "5.2.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.9.tgz",
-  "_spec": "5.2.9",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
+  "_resolved": "http://r.cnpmjs.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.1.tgz",
+  "_spec": "5.2.1",
+  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
   "bin": {
     "ngc": "./src/main.js",
     "ng-xi18n": "./src/extract_i18n.js"
@@ -52,7 +52,7 @@
     "chokidar": "^1.4.2",
     "minimist": "^1.2.0",
     "reflect-metadata": "^0.1.2",
-    "tsickle": "^0.27.2"
+    "tsickle": "^0.26.0"
   },
   "description": "Angular - the compiler CLI for Node.js",
   "homepage": "https://github.com/angular/angular/tree/master/packages/compiler-cli",
@@ -65,12 +65,12 @@
   "name": "@angular/compiler-cli",
   "peerDependencies": {
     "typescript": ">=2.4.2 <2.7",
-    "@angular/compiler": "5.2.9"
+    "@angular/compiler": "5.2.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "index.d.ts",
-  "version": "5.2.9"
+  "version": "5.2.1"
 }

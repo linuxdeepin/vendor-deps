@@ -1,13 +1,13 @@
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/Observable'), require('rxjs/observable/merge'), require('rxjs/operator/share'), require('rxjs/Subject'), require('rxjs/Subscription')) :
-	typeof define === 'function' && define.amd ? define('@angular/core', ['exports', 'rxjs/Observable', 'rxjs/observable/merge', 'rxjs/operator/share', 'rxjs/Subject', 'rxjs/Subscription'], factory) :
-	(factory((global.ng = global.ng || {}, global.ng.core = {}),global.Rx,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx,global.Rx));
-}(this, (function (exports,rxjs_Observable,rxjs_observable_merge,rxjs_operator_share,rxjs_Subject,rxjs_Subscription) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('rxjs/Observable'), require('rxjs/observable/merge'), require('rxjs/operator/share'), require('rxjs/Subject')) :
+	typeof define === 'function' && define.amd ? define('@angular/core', ['exports', 'rxjs/Observable', 'rxjs/observable/merge', 'rxjs/operator/share', 'rxjs/Subject'], factory) :
+	(factory((global.ng = global.ng || {}, global.ng.core = {}),global.Rx,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx));
+}(this, (function (exports,rxjs_Observable,rxjs_observable_merge,rxjs_operator_share,rxjs_Subject) { 'use strict';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -44,7 +44,7 @@ var __assign = Object.assign || function __assign(t) {
 };
 
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -755,7 +755,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.2.9');
+var VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -869,7 +869,6 @@ var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefi
     self instanceof WorkerGlobalScope && self;
 var __global = typeof global !== 'undefined' && global;
 var _global = __window || __global || __self;
-var promise = Promise.resolve(0);
 var _symbolIterator = null;
 /**
  * @return {?}
@@ -899,13 +898,7 @@ function getSymbolIterator() {
  * @return {?}
  */
 function scheduleMicroTask(fn) {
-    if (typeof Zone === 'undefined') {
-        // use promise to schedule microTask instead of use Zone
-        promise.then(function () { fn && fn.apply(null, null); });
-    }
-    else {
-        Zone.current.scheduleMicroTask('scheduleMicrotask', fn);
-    }
+    Zone.current.scheduleMicroTask('scheduleMicrotask', fn);
 }
 /**
  * @param {?} a
@@ -2002,11 +1995,9 @@ function isType(v) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * Attention: These regex has to hold even if the code is minified!
+ * Attention: This regex has to hold even if the code is minified!
  */
 var DELEGATE_CTOR = /^function\s+\S+\(\)\s*{[\s\S]+\.apply\(this,\s*arguments\)/;
-var INHERITED_CLASS = /^class\s+[A-Za-z\d$_]*\s*extends\s+[A-Za-z\d$_]+\s*{/;
-var INHERITED_CLASS_WITH_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[A-Za-z\d$_]+\s*{[\s\S]*constructor\s*\(/;
 var ReflectionCapabilities = /** @class */ (function () {
     function ReflectionCapabilities(reflect) {
         this._reflect = reflect || _global['Reflect'];
@@ -2086,7 +2077,6 @@ var ReflectionCapabilities = /** @class */ (function () {
      * @return {?}
      */
     function (type, parentCtor) {
-        var /** @type {?} */ typeStr = type.toString();
         // If we have no decorators, we only have function.length as metadata.
         // In that case, to detect whether a child class declared an own constructor or not,
         // we need to look inside of that constructor to check whether it is
@@ -2094,8 +2084,7 @@ var ReflectionCapabilities = /** @class */ (function () {
         // This also helps to work around for https://github.com/Microsoft/TypeScript/issues/12439
         // that sets 'design:paramtypes' to []
         // if a class inherits from another class but has no ctor declared itself.
-        if (DELEGATE_CTOR.exec(typeStr) ||
-            (INHERITED_CLASS.exec(typeStr) && !INHERITED_CLASS_WITH_CTOR.exec(typeStr))) {
+        if (DELEGATE_CTOR.exec(type.toString())) {
             return null;
         }
         // Prefer the direct API.
@@ -2393,7 +2382,7 @@ function convertTsickleDecoratorIntoMetadata(decoratorInvocations) {
  * @return {?}
  */
 function getParentCtor(ctor) {
-    var /** @type {?} */ parentProto = ctor.prototype ? Object.getPrototypeOf(ctor.prototype) : null;
+    var /** @type {?} */ parentProto = Object.getPrototypeOf(ctor.prototype);
     var /** @type {?} */ parentCtor = parentProto ? parentProto.constructor : null;
     // Note: We always use `Object` as the null value
     // to simplify checking later on.
@@ -4388,11 +4377,7 @@ var EventEmitter = /** @class */ (function (_super) {
                     this.__isAsync ? function () { setTimeout(function () { return complete(); }); } : function () { complete(); };
             }
         }
-        var /** @type {?} */ sink = _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
-        if (generatorOrNext instanceof rxjs_Subscription.Subscription) {
-            generatorOrNext.add(sink);
-        }
-        return sink;
+        return _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
     };
     return EventEmitter;
 }(rxjs_Subject.Subject));
@@ -5016,13 +5001,23 @@ var Testability = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.isStable()) {
-            // Schedules the call backs in a new frame so that it is always async.
-            scheduleMicroTask(function () {
-                while (_this._callbacks.length !== 0) {
-                    (/** @type {?} */ ((_this._callbacks.pop())))(_this._didWork);
-                }
-                _this._didWork = false;
-            });
+            if (this._callbacks.length !== 0) {
+                // Schedules the call backs after a macro task run outside of the angular zone to make sure
+                // no new task are added
+                this._ngZone.runOutsideAngular(function () {
+                    setTimeout(function () {
+                        if (_this.isStable()) {
+                            while (_this._callbacks.length !== 0) {
+                                (/** @type {?} */ ((_this._callbacks.pop())))(_this._didWork);
+                            }
+                            _this._didWork = false;
+                        }
+                    });
+                });
+            }
+            else {
+                this._didWork = false;
+            }
         }
         else {
             // Not Ready
@@ -6331,7 +6326,6 @@ var QueryList = /** @class */ (function () {
         this.dirty = true;
         this._results = [];
         this.changes = new EventEmitter();
-        this.length = 0;
     }
     /**
      * See
@@ -9954,7 +9948,7 @@ function checkAndUpdateBinding(view, def, bindingIdx, value) {
 function checkBindingNoChanges(view, def, bindingIdx, value) {
     var /** @type {?} */ oldValue = view.oldValues[def.bindingIndex + bindingIdx];
     if ((view.state & 1 /* BeforeFirstCheck */) || !devModeEqual(oldValue, value)) {
-        var /** @type {?} */ bindingName = def.bindings[bindingIdx].name;
+        var /** @type {?} */ bindingName = def.bindings[def.bindingIndex].name;
         throw expressionChangedAfterItHasBeenCheckedError(Services.createDebugContext(view, def.nodeIndex), bindingName + ": " + oldValue, bindingName + ": " + value, (view.state & 1 /* BeforeFirstCheck */) !== 0);
     }
 }
@@ -18153,7 +18147,7 @@ function invertObject(obj) {
  * The `\@childAnimation` trigger will not animate because `\@.disabled` prevents it from happening
  * (when true).
  *
- * Note that `\@.disabled` will only disable all animations (this means any animations running on
+ * Note that `\@.disbled` will only disable all animations (this means any animations running on
  * the same element will also be disabled).
  *
  * ### Disabling Animations Application-wide
@@ -19309,36 +19303,35 @@ exports.style = style$$1;
 exports.state = state$$1;
 exports.keyframes = keyframes$$1;
 exports.transition = transition$$1;
-exports.ɵbf = animate$1;
-exports.ɵbg = group$1;
-exports.ɵbk = keyframes$1;
-exports.ɵbh = sequence$1;
-exports.ɵbj = state$1;
-exports.ɵbi = style$1;
-exports.ɵbl = transition$1;
-exports.ɵbe = trigger$1;
-exports.ɵn = _iterableDiffersFactory;
-exports.ɵo = _keyValueDiffersFactory;
-exports.ɵq = _localeFactory;
-exports.ɵi = _appIdRandomProviderFactory;
-exports.ɵj = defaultIterableDiffers;
-exports.ɵk = defaultKeyValueDiffers;
-exports.ɵl = DefaultIterableDifferFactory;
-exports.ɵm = DefaultKeyValueDifferFactory;
-exports.ɵf = ReflectiveInjector_;
-exports.ɵg = ReflectiveDependency;
-exports.ɵh = resolveReflectiveProviders;
-exports.ɵr = wtfEnabled;
-exports.ɵw = createScope;
-exports.ɵu = detectWTF;
-exports.ɵz = endTimeRange;
-exports.ɵx = leave;
-exports.ɵy = startTimeRange;
-exports.ɵbc = stringify$1;
+exports.ɵbe = animate$1;
+exports.ɵbf = group$1;
+exports.ɵbj = keyframes$1;
+exports.ɵbg = sequence$1;
+exports.ɵbi = state$1;
+exports.ɵbh = style$1;
+exports.ɵbk = transition$1;
+exports.ɵbd = trigger$1;
+exports.ɵm = _iterableDiffersFactory;
+exports.ɵn = _keyValueDiffersFactory;
+exports.ɵo = _localeFactory;
+exports.ɵh = _appIdRandomProviderFactory;
+exports.ɵi = defaultIterableDiffers;
+exports.ɵj = defaultKeyValueDiffers;
+exports.ɵk = DefaultIterableDifferFactory;
+exports.ɵl = DefaultKeyValueDifferFactory;
+exports.ɵd = ReflectiveInjector_;
+exports.ɵf = ReflectiveDependency;
+exports.ɵg = resolveReflectiveProviders;
+exports.ɵq = wtfEnabled;
+exports.ɵu = createScope;
+exports.ɵr = detectWTF;
+exports.ɵy = endTimeRange;
+exports.ɵw = leave;
+exports.ɵx = startTimeRange;
+exports.ɵbb = stringify$1;
 exports.ɵa = makeParamDecorator;
-exports.ɵd = makePropDecorator;
-exports.ɵba = _def;
-exports.ɵbb = DebugContext;
+exports.ɵz = _def;
+exports.ɵba = DebugContext;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

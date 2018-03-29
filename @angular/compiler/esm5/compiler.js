@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.9
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -633,7 +633,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.2.9');
+var VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -6757,8 +6757,7 @@ var _ParseAST = /** @class */ (function () {
             switch (operator) {
                 case '+':
                     this.advance();
-                    result = this.parsePrefix();
-                    return new Binary(this.span(start), '-', result, new LiteralPrimitive(new ParseSpan(start, start), 0));
+                    return this.parsePrefix();
                 case '-':
                     this.advance();
                     result = this.parsePrefix();
@@ -11603,10 +11602,8 @@ var _XMLNS = 'urn:oasis:names:tc:xliff:document:1.2';
 // TODO(vicb): make this a param (s/_/-/)
 var _DEFAULT_SOURCE_LANG = 'en';
 var _PLACEHOLDER_TAG = 'x';
-var _MARKER_TAG = 'mrk';
 var _FILE_TAG = 'file';
 var _SOURCE_TAG = 'source';
-var _SEGMENT_SOURCE_TAG = 'seg-source';
 var _TARGET_TAG = 'target';
 var _UNIT_TAG = 'trans-unit';
 var _CONTEXT_GROUP_TAG = 'context-group';
@@ -11867,9 +11864,8 @@ var XliffParser = /** @class */ (function () {
                     }
                 }
                 break;
-            // ignore those tags
             case _SOURCE_TAG:
-            case _SEGMENT_SOURCE_TAG:
+                // ignore source message
                 break;
             case _TARGET_TAG:
                 var /** @type {?} */ innerTextStart = /** @type {?} */ ((element.startSourceSpan)).end.offset;
@@ -11978,7 +11974,8 @@ var XmlToI18n = /** @class */ (function () {
         var /** @type {?} */ xmlIcu = new XmlParser().parse(message, url, true);
         this._errors = xmlIcu.errors;
         var /** @type {?} */ i18nNodes = this._errors.length > 0 || xmlIcu.rootNodes.length == 0 ?
-            [] : [].concat.apply([], visitAll(this, xmlIcu.rootNodes));
+            [] :
+            visitAll(this, xmlIcu.rootNodes);
         return {
             i18nNodes: i18nNodes,
             errors: this._errors,
@@ -12012,12 +12009,10 @@ var XmlToI18n = /** @class */ (function () {
                 return new Placeholder('', nameAttr.value, /** @type {?} */ ((el.sourceSpan)));
             }
             this._addError(el, "<" + _PLACEHOLDER_TAG + "> misses the \"id\" attribute");
-            return null;
         }
-        if (el.name === _MARKER_TAG) {
-            return [].concat.apply([], visitAll(this, el.children));
+        else {
+            this._addError(el, "Unexpected tag");
         }
-        this._addError(el, "Unexpected tag");
         return null;
     };
     /**
@@ -12122,7 +12117,6 @@ var _XMLNS$1 = 'urn:oasis:names:tc:xliff:document:2.0';
 var _DEFAULT_SOURCE_LANG$1 = 'en';
 var _PLACEHOLDER_TAG$1 = 'ph';
 var _PLACEHOLDER_SPANNING_TAG = 'pc';
-var _MARKER_TAG$1 = 'mrk';
 var _XLIFF_TAG = 'xliff';
 var _SOURCE_TAG$1 = 'source';
 var _TARGET_TAG$1 = 'target';
@@ -12578,8 +12572,6 @@ var XmlToI18n$1 = /** @class */ (function () {
                     return nodes.concat.apply(nodes, [new Placeholder('', startId, el.sourceSpan)].concat(el.children.map(function (node) { return node.visit(_this, null); }), [new Placeholder('', endId, el.sourceSpan)]));
                 }
                 break;
-            case _MARKER_TAG$1:
-                return [].concat.apply([], visitAll(this, el.children));
             default:
                 this._addError(el, "Unexpected tag");
         }
@@ -22828,11 +22820,10 @@ var ShadowCss = /** @class */ (function () {
      */
     function (cssText, selector, hostSelector) {
         if (hostSelector === void 0) { hostSelector = ''; }
-        var /** @type {?} */ commentsWithHash = extractCommentsWithHash(cssText);
+        var /** @type {?} */ sourceMappingUrl = extractSourceMappingUrl(cssText);
         cssText = stripComments(cssText);
         cssText = this._insertDirectives(cssText);
-        var /** @type {?} */ scopedCssText = this._scopeCssText(cssText, selector, hostSelector);
-        return [scopedCssText].concat(commentsWithHash).join('\n');
+        return this._scopeCssText(cssText, selector, hostSelector) + sourceMappingUrl;
     };
     /**
      * @param {?} cssText
@@ -23332,13 +23323,15 @@ var _commentRe = /\/\*\s*[\s\S]*?\*\//g;
 function stripComments(input) {
     return input.replace(_commentRe, '');
 }
-var _commentWithHashRe = /\/\*\s*#\s*source(Mapping)?URL=[\s\S]+?\*\//g;
+// all comments except inline source mapping
+var _sourceMappingUrlRe = /\/\*\s*#\s*sourceMappingURL=[\s\S]+?\*\//;
 /**
  * @param {?} input
  * @return {?}
  */
-function extractCommentsWithHash(input) {
-    return input.match(_commentWithHashRe) || [];
+function extractSourceMappingUrl(input) {
+    var /** @type {?} */ matcher = input.match(_sourceMappingUrlRe);
+    return matcher ? matcher[0] : '';
 }
 var _ruleRe = /(\s*)([^;\{\}]+?)(\s*)((?:{%BLOCK%}?\s*;?)|(?:\s*;))/g;
 var _curlyRe = /([{}])/g;
