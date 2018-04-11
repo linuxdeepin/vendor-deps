@@ -1,28 +1,28 @@
 {
-  "_from": "angular2-materialize",
+  "_from": "angular2-materialize@^15.1.10",
   "_id": "angular2-materialize@15.1.10",
   "_inBundle": false,
   "_integrity": "sha1-d17LSgs5tXieOkAOYMZ7xIyFNN8=",
   "_location": "/angular2-materialize",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "angular2-materialize",
+    "raw": "angular2-materialize@^15.1.10",
     "name": "angular2-materialize",
     "escapedName": "angular2-materialize",
-    "rawSpec": "",
+    "rawSpec": "^15.1.10",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^15.1.10"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/angular2-materialize/download/angular2-materialize-15.1.10.tgz",
+  "_resolved": "http://registry.npm.taobao.org/angular2-materialize/download/angular2-materialize-15.1.10.tgz",
   "_shasum": "775ecb4a0b39b5789e3a400e60c67bc48c8534df",
-  "_spec": "angular2-materialize",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/src/web",
+  "_spec": "angular2-materialize@^15.1.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Ruby Boyarski",
     "email": "rubyboy@gmail.com"

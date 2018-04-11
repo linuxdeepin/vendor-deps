@@ -1,28 +1,28 @@
 {
-  "_from": "materialize-css",
+  "_from": "materialize-css@^0.100.2",
   "_id": "materialize-css@0.100.2",
   "_inBundle": false,
   "_integrity": "sha1-nKMrJJBMmgRJH8fQoulALnsdrgc=",
   "_location": "/materialize-css",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "materialize-css",
+    "raw": "materialize-css@^0.100.2",
     "name": "materialize-css",
     "escapedName": "materialize-css",
-    "rawSpec": "",
+    "rawSpec": "^0.100.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.100.2"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/materialize-css/download/materialize-css-0.100.2.tgz",
+  "_resolved": "http://registry.npm.taobao.org/materialize-css/download/materialize-css-0.100.2.tgz",
   "_shasum": "9ca32b24904c9a04491fc7d0a2e9402e7b1dae07",
-  "_spec": "materialize-css",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/src/web",
+  "_spec": "materialize-css@^0.100.2",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Alvin Wang, Alan Chang"
   },
