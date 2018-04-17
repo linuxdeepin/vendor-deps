@@ -1,4 +1,11 @@
 {
+  "_args": [
+    [
+      "@angular/cli@1.6.5",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
   "_from": "@angular/cli@1.6.5",
   "_id": "@angular/cli@1.6.5",
   "_inBundle": false,
@@ -20,9 +27,8 @@
     "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/@angular/cli/download/@angular/cli-1.6.5.tgz",
-  "_shasum": "9217c5d5c366292aca61fb0328c406bb5b0f2d76",
-  "_spec": "@angular/cli@1.6.5",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_spec": "1.6.5",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Angular Authors"
   },
@@ -32,7 +38,6 @@
   "bugs": {
     "url": "https://github.com/angular/angular-cli/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "@angular-devkit/build-optimizer": "~0.0.41",
     "@angular-devkit/core": "~0.0.28",
@@ -93,7 +98,6 @@
     "webpack-sources": "^1.0.0",
     "webpack-subresource-integrity": "^1.0.1"
   },
-  "deprecated": false,
   "description": "CLI tool for Angular",
   "engines": {
     "node": ">= 6.9.0",

@@ -1,27 +1,33 @@
 {
-  "_from": "html-minifier@^3.2.3",
+  "_args": [
+    [
+      "html-minifier@3.5.8",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "html-minifier@3.5.8",
   "_id": "html-minifier@3.5.8",
   "_inBundle": false,
   "_integrity": "sha1-XM2x9zoNZU5gkBR1Efbmsu4xJwA=",
   "_location": "/html-minifier",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "html-minifier@^3.2.3",
+    "raw": "html-minifier@3.5.8",
     "name": "html-minifier",
     "escapedName": "html-minifier",
-    "rawSpec": "^3.2.3",
+    "rawSpec": "3.5.8",
     "saveSpec": null,
-    "fetchSpec": "^3.2.3"
+    "fetchSpec": "3.5.8"
   },
   "_requiredBy": [
     "/html-webpack-plugin"
   ],
   "_resolved": "http://r.cnpmjs.org/html-minifier/download/html-minifier-3.5.8.tgz",
-  "_shasum": "5ccdb1f73a0d654e6090147511f6e6b2ee312700",
-  "_spec": "html-minifier@^3.2.3",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/html-webpack-plugin",
+  "_spec": "3.5.8",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Juriy \"kangax\" Zaytsev"
   },
@@ -39,7 +45,6 @@
   "bugs": {
     "url": "https://github.com/kangax/html-minifier/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Gilmore Davidson",
@@ -64,7 +69,6 @@
     "relateurl": "0.2.x",
     "uglify-js": "3.3.x"
   },
-  "deprecated": false,
   "description": "Highly configurable, well-tested, JavaScript-based HTML minifier.",
   "devDependencies": {
     "grunt": "1.0.x",

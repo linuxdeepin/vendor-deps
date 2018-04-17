@@ -1,28 +1,29 @@
 {
-  "_from": "@angular/animations@^5.2.0",
-  "_id": "@angular/animations@5.2.1",
+  "_from": "@angular/animations@5.2.10",
+  "_id": "@angular/animations@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-zDJcI9uYwTU5y+35QFvAaL0wQc0=",
+  "_integrity": "sha1-YXGHkuCSKsYi/Xxt+wr7uZZjhpI=",
   "_location": "/@angular/animations",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/animations@^5.2.0",
+    "raw": "@angular/animations@5.2.10",
     "name": "@angular/animations",
     "escapedName": "@angular%2fanimations",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/animations/download/@angular/animations-5.2.1.tgz",
-  "_shasum": "cc325c23db98c13539cbedf9405bc068bd3041cd",
-  "_spec": "@angular/animations@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/animations/download/@angular/animations-5.2.10.tgz",
+  "_shasum": "61718792e0922ac622fd7c6dfb0afbb996638692",
+  "_spec": "@angular/animations@5.2.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
   },
@@ -42,12 +43,12 @@
   "module": "./esm5/animations.js",
   "name": "@angular/animations",
   "peerDependencies": {
-    "@angular/core": "5.2.1"
+    "@angular/core": "5.2.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./animations.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.10"
 }

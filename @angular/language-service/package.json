@@ -1,28 +1,29 @@
 {
-  "_from": "@angular/language-service@^5.2.0",
-  "_id": "@angular/language-service@5.2.1",
+  "_from": "@angular/language-service@5.2.10",
+  "_id": "@angular/language-service@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-Q4vB9hurW6Lg7raHrmvp5qsO2xg=",
+  "_integrity": "sha1-VpmvnUYDP6zO/rIdTRaFJNIYCow=",
   "_location": "/@angular/language-service",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/language-service@^5.2.0",
+    "raw": "@angular/language-service@5.2.10",
     "name": "@angular/language-service",
     "escapedName": "@angular%2flanguage-service",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
-    "#DEV:/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/language-service/download/@angular/language-service-5.2.1.tgz",
-  "_shasum": "438bc1f61bab5ba2e0eeb687ae6be9e6ab0edb18",
-  "_spec": "@angular/language-service@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/language-service/download/@angular/language-service-5.2.10.tgz",
+  "_shasum": "5699af9d46033faccefeb21d4d168524d2180a8c",
+  "_spec": "@angular/language-service@5.2.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
   },
@@ -42,5 +43,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./language-service.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.10"
 }
