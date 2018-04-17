@@ -1,9 +1,9 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
-import { ApplicationInitStatus, Compiler, Component, Injectable, InjectionToken, Injector, NgModule, NgZone, Optional, RendererFactory2, SkipSelf, getDebugNode, ɵclearOverrides, ɵoverrideComponentView, ɵoverrideProvider, ɵstringify } from '@angular/core';
+import { ApplicationInitStatus, Compiler, Component, InjectionToken, Injector, NgModule, NgZone, Optional, RendererFactory2, SkipSelf, getDebugNode, ɵclearOverrides, ɵoverrideComponentView, ɵoverrideProvider, ɵstringify } from '@angular/core';
 import { __extends } from 'tslib';
 
 /**
@@ -590,11 +590,6 @@ var TestingCompiler = /** @class */ (function (_super) {
        * This can be used for errors created by compileModule...
        */
     function (error) { throw unimplemented(); };
-    TestingCompiler.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    TestingCompiler.ctorParameters = function () { return []; };
     return TestingCompiler;
 }(Compiler));
 /**
@@ -928,10 +923,7 @@ var TestBed = /** @class */ (function () {
                 fixture.destroy();
             }
             catch (e) {
-                console.error('Error during cleanup of component', {
-                    component: fixture.componentInstance,
-                    stacktrace: e,
-                });
+                console.error('Error during cleanup of component', fixture.componentInstance);
             }
         });
         this._activeFixtures = [];

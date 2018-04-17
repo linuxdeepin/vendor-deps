@@ -1,33 +1,27 @@
 {
-  "_args": [
-    [
-      "autoprefixer@7.2.5",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "autoprefixer@7.2.5",
+  "_from": "autoprefixer@^7.2.3",
   "_id": "autoprefixer@7.2.5",
   "_inBundle": false,
   "_integrity": "sha1-BMy9DGphExttE/U9NxkmCSlS0ZI=",
   "_location": "/autoprefixer",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "autoprefixer@7.2.5",
+    "raw": "autoprefixer@^7.2.3",
     "name": "autoprefixer",
     "escapedName": "autoprefixer",
-    "rawSpec": "7.2.5",
+    "rawSpec": "^7.2.3",
     "saveSpec": null,
-    "fetchSpec": "7.2.5"
+    "fetchSpec": "^7.2.3"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
   "_resolved": "http://r.cnpmjs.org/autoprefixer/download/autoprefixer-7.2.5.tgz",
-  "_spec": "7.2.5",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_shasum": "04ccbd0c6a61131b6d13f53d371926092952d192",
+  "_spec": "autoprefixer@^7.2.3",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/@angular/cli",
   "author": {
     "name": "Andrey Sitnik",
     "email": "andrey@sitnik.ru"
@@ -38,6 +32,7 @@
   "bugs": {
     "url": "https://github.com/postcss/autoprefixer/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Aaron",
@@ -591,6 +586,7 @@
     "postcss": "^6.0.16",
     "postcss-value-parser": "^3.2.3"
   },
+  "deprecated": false,
   "description": "Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website",
   "homepage": "https://github.com/postcss/autoprefixer#readme",
   "keywords": [

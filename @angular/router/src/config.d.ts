@@ -352,4 +352,3 @@ export declare class LoadedRouterConfig {
     constructor(routes: Route[], module: NgModuleRef<any>);
 }
 export declare function validateConfig(config: Routes, parentPath?: string): void;
-export declare function copyConfig(r: Route): Route;

@@ -5,18 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// THIS CODE IS GENERATED - DO NOT MODIFY
-// See angular/tools/gulp-tasks/cldr/extract.js
-function plural(n) {
-    var i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
-    if (i === 1 && v === 0)
-        return 1;
-    if (i === Math.floor(i) && i >= 2 && i <= 4 && v === 0)
-        return 3;
-    if (!(v === 0))
-        return 4;
-    return 5;
-}
 export default [
     'sk',
     [
@@ -34,16 +22,16 @@ export default [
         ['j', 'f', 'm', 'a', 'm', 'j', 'j', 'a', 's', 'o', 'n', 'd'],
         ['jan', 'feb', 'mar', 'apr', 'máj', 'jún', 'júl', 'aug', 'sep', 'okt', 'nov', 'dec'],
         [
-            'januára', 'februára', 'marca', 'apríla', 'mája', 'júna', 'júla', 'augusta',
-            'septembra', 'októbra', 'novembra', 'decembra'
+            'januára', 'februára', 'marca', 'apríla', 'mája', 'júna', 'júla', 'augusta', 'septembra',
+            'októbra', 'novembra', 'decembra'
         ]
     ],
     [
         ['j', 'f', 'm', 'a', 'm', 'j', 'j', 'a', 's', 'o', 'n', 'd'],
         ['jan', 'feb', 'mar', 'apr', 'máj', 'jún', 'júl', 'aug', 'sep', 'okt', 'nov', 'dec'],
         [
-            'január', 'február', 'marec', 'apríl', 'máj', 'jún', 'júl', 'august', 'september',
-            'október', 'november', 'december'
+            'január', 'február', 'marec', 'apríl', 'máj', 'jún', 'júl', 'august', 'september', 'október',
+            'november', 'december'
         ]
     ],
     [['pred Kr.', 'po Kr.'], , ['pred Kristom', 'po Kristovi']], 1, [6, 0],
@@ -54,6 +42,16 @@ export default [
         ,
     ],
     [',', ' ', ';', '%', '+', '-', 'e', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0 %', '#,##0.00 ¤', '#E0'], '€', 'euro', plural
+    ['#,##0.###', '#,##0 %', '#,##0.00 ¤', '#E0'], '€', 'euro',
+    function (n) {
+        var i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
+        if (i === 1 && v === 0)
+            return 1;
+        if (i === Math.floor(i) && i >= 2 && i <= 4 && v === 0)
+            return 3;
+        if (!(v === 0))
+            return 4;
+        return 5;
+    }
 ];
 //# sourceMappingURL=sk.js.map

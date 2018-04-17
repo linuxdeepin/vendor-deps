@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1971,8 +1971,6 @@ function syncPendingControls(form, directives) {
 function selectValueAccessor(dir, valueAccessors) {
     if (!valueAccessors)
         return null;
-    if (!Array.isArray(valueAccessors))
-        _throwError(dir, 'Value accessor was not provided as an array for form control with');
     let /** @type {?} */ defaultAccessor = undefined;
     let /** @type {?} */ builtinAccessor = undefined;
     let /** @type {?} */ customAccessor = undefined;
@@ -2490,13 +2488,13 @@ class AbstractControl {
     disable(opts = {}) {
         (/** @type {?} */ (this)).status = DISABLED;
         (/** @type {?} */ (this)).errors = null;
-        this._forEachChild((control) => { control.disable(Object.assign({}, opts, { onlySelf: true })); });
+        this._forEachChild((control) => { control.disable({ onlySelf: true }); });
         this._updateValue();
         if (opts.emitEvent !== false) {
             (/** @type {?} */ (this.valueChanges)).emit(this.value);
             (/** @type {?} */ (this.statusChanges)).emit(this.status);
         }
-        this._updateAncestors(opts);
+        this._updateAncestors(!!opts.onlySelf);
         this._onDisabledChange.forEach((changeFn) => changeFn(true));
     }
     /**
@@ -2510,18 +2508,18 @@ class AbstractControl {
      */
     enable(opts = {}) {
         (/** @type {?} */ (this)).status = VALID;
-        this._forEachChild((control) => { control.enable(Object.assign({}, opts, { onlySelf: true })); });
+        this._forEachChild((control) => { control.enable({ onlySelf: true }); });
         this.updateValueAndValidity({ onlySelf: true, emitEvent: opts.emitEvent });
-        this._updateAncestors(opts);
+        this._updateAncestors(!!opts.onlySelf);
         this._onDisabledChange.forEach((changeFn) => changeFn(false));
     }
     /**
-     * @param {?} opts
+     * @param {?} onlySelf
      * @return {?}
      */
-    _updateAncestors(opts) {
-        if (this._parent && !opts.onlySelf) {
-            this._parent.updateValueAndValidity(opts);
+    _updateAncestors(onlySelf) {
+        if (this._parent && !onlySelf) {
+            this._parent.updateValueAndValidity();
             this._parent._updatePristine();
             this._parent._updateTouched();
         }
@@ -3514,6 +3512,7 @@ class FormArray extends AbstractControl {
         this.controls.splice(index, 0, control);
         this._registerControl(control);
         this.updateValueAndValidity();
+        this._onCollectionChange();
     }
     /**
      * Remove the control at the given `index` in the array.
@@ -3525,6 +3524,7 @@ class FormArray extends AbstractControl {
             this.controls[index]._registerOnCollectionChange(() => { });
         this.controls.splice(index, 1);
         this.updateValueAndValidity();
+        this._onCollectionChange();
     }
     /**
      * Replace an existing control.
@@ -5826,7 +5826,7 @@ FormBuilder.ctorParameters = () => [];
 /**
  * \@stable
  */
-const VERSION = new Version('5.2.10');
+const VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle

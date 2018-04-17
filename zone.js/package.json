@@ -1,32 +1,27 @@
 {
-  "_args": [
-    [
-      "zone.js@0.8.20",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_from": "zone.js@0.8.20",
+  "_from": "zone.js@^0.8.19",
   "_id": "zone.js@0.8.20",
   "_inBundle": false,
   "_integrity": "sha1-ohjEjbCUZLGf9vyPDUu1sQRuGF0=",
   "_location": "/zone.js",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "zone.js@0.8.20",
+    "raw": "zone.js@^0.8.19",
     "name": "zone.js",
     "escapedName": "zone.js",
-    "rawSpec": "0.8.20",
+    "rawSpec": "^0.8.19",
     "saveSpec": null,
-    "fetchSpec": "0.8.20"
+    "fetchSpec": "^0.8.19"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "http://r.cnpmjs.org/zone.js/download/zone.js-0.8.20.tgz",
-  "_spec": "0.8.20",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_shasum": "a218c48db09464b19ff6fc8f0d4bb5b1046e185d",
+  "_spec": "zone.js@^0.8.19",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
   "author": {
     "name": "Brian Ford"
   },
@@ -34,7 +29,9 @@
   "bugs": {
     "url": "https://github.com/angular/zone.js/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {},
+  "deprecated": false,
   "description": "Zones for JavaScript",
   "devDependencies": {
     "@types/jasmine": "2.2.33",

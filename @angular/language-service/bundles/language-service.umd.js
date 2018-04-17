@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -59,7 +59,7 @@ var __assign = Object.assign || function __assign(t) {
 };
 
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -294,7 +294,6 @@ MissingTranslationStrategy[MissingTranslationStrategy.Warning] = "Warning";
 MissingTranslationStrategy[MissingTranslationStrategy.Ignore] = "Ignore";
 /**
  * @record
- * @template T
  */
 function MetadataFactory() { }
 /**
@@ -692,7 +691,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION$1 = new Version('5.2.10');
+var VERSION$1 = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -2143,7 +2142,6 @@ function templateJitUrl(ngModuleType, compMeta) {
  * The path to the node at offset 9 would be `['+' at 1-10, '+' at 7-10,
  * 'c' at 9-10]` and the path the node at offset 1 would be
  * `['+' at 1-10, 'a' at 1-2]`.
- * @template T
  */
 var AstPath = /** @class */ (function () {
     function AstPath(path$$1, position) {
@@ -6817,8 +6815,7 @@ var _ParseAST = /** @class */ (function () {
             switch (operator) {
                 case '+':
                     this.advance();
-                    result = this.parsePrefix();
-                    return new Binary(this.span(start), '-', result, new LiteralPrimitive(new ParseSpan(start, start), 0));
+                    return this.parsePrefix();
                 case '-':
                     this.advance();
                     result = this.parsePrefix();
@@ -11556,7 +11553,7 @@ var Declaration = /** @class */ (function () {
         var _this = this;
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach(function (k) {
-            _this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            _this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -11595,7 +11592,7 @@ var Tag = /** @class */ (function () {
         this.children = children;
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach(function (k) {
-            _this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            _this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -11611,7 +11608,7 @@ var Tag = /** @class */ (function () {
 }());
 var Text$2 = /** @class */ (function () {
     function Text(unescapedValue) {
-        this.value = escapeXml(unescapedValue);
+        this.value = _escapeXml(unescapedValue);
     }
     /**
      * @param {?} visitor
@@ -11643,7 +11640,7 @@ var _ESCAPED_CHARS = [
  * @param {?} text
  * @return {?}
  */
-function escapeXml(text) {
+function _escapeXml(text) {
     return _ESCAPED_CHARS.reduce(function (text, entry) { return text.replace(entry[0], entry[1]); }, text);
 }
 
@@ -11663,10 +11660,8 @@ var _XMLNS = 'urn:oasis:names:tc:xliff:document:1.2';
 // TODO(vicb): make this a param (s/_/-/)
 var _DEFAULT_SOURCE_LANG = 'en';
 var _PLACEHOLDER_TAG = 'x';
-var _MARKER_TAG = 'mrk';
 var _FILE_TAG = 'file';
 var _SOURCE_TAG = 'source';
-var _SEGMENT_SOURCE_TAG = 'seg-source';
 var _TARGET_TAG = 'target';
 var _UNIT_TAG = 'trans-unit';
 var _CONTEXT_GROUP_TAG = 'context-group';
@@ -11927,9 +11922,8 @@ var XliffParser = /** @class */ (function () {
                     }
                 }
                 break;
-            // ignore those tags
             case _SOURCE_TAG:
-            case _SEGMENT_SOURCE_TAG:
+                // ignore source message
                 break;
             case _TARGET_TAG:
                 var /** @type {?} */ innerTextStart = /** @type {?} */ ((element.startSourceSpan)).end.offset;
@@ -12038,7 +12032,8 @@ var XmlToI18n = /** @class */ (function () {
         var /** @type {?} */ xmlIcu = new XmlParser().parse(message, url, true);
         this._errors = xmlIcu.errors;
         var /** @type {?} */ i18nNodes = this._errors.length > 0 || xmlIcu.rootNodes.length == 0 ?
-            [] : [].concat.apply([], visitAll(this, xmlIcu.rootNodes));
+            [] :
+            visitAll(this, xmlIcu.rootNodes);
         return {
             i18nNodes: i18nNodes,
             errors: this._errors,
@@ -12072,12 +12067,10 @@ var XmlToI18n = /** @class */ (function () {
                 return new Placeholder('', nameAttr.value, /** @type {?} */ ((el.sourceSpan)));
             }
             this._addError(el, "<" + _PLACEHOLDER_TAG + "> misses the \"id\" attribute");
-            return null;
         }
-        if (el.name === _MARKER_TAG) {
-            return [].concat.apply([], visitAll(this, el.children));
+        else {
+            this._addError(el, "Unexpected tag");
         }
-        this._addError(el, "Unexpected tag");
         return null;
     };
     /**
@@ -12182,7 +12175,6 @@ var _XMLNS$1 = 'urn:oasis:names:tc:xliff:document:2.0';
 var _DEFAULT_SOURCE_LANG$1 = 'en';
 var _PLACEHOLDER_TAG$1 = 'ph';
 var _PLACEHOLDER_SPANNING_TAG = 'pc';
-var _MARKER_TAG$1 = 'mrk';
 var _XLIFF_TAG = 'xliff';
 var _SOURCE_TAG$1 = 'source';
 var _TARGET_TAG$1 = 'target';
@@ -12638,8 +12630,6 @@ var XmlToI18n$1 = /** @class */ (function () {
                     return nodes.concat.apply(nodes, [new Placeholder('', startId, el.sourceSpan)].concat(el.children.map(function (node) { return node.visit(_this, null); }), [new Placeholder('', endId, el.sourceSpan)]));
                 }
                 break;
-            case _MARKER_TAG$1:
-                return [].concat.apply([], visitAll(this, el.children));
             default:
                 this._addError(el, "Unexpected tag");
         }
@@ -13558,11 +13548,7 @@ var I18nToHtmlVisitor = /** @class */ (function () {
      * @param {?=} context
      * @return {?}
      */
-    function (text, context) {
-        // `convert()` uses an `HtmlParser` to return `html.Node`s
-        // we should then make sure that any special characters are escaped
-        return escapeXml(text.value);
-    };
+    function (text, context) { return text.value; };
     /**
      * @param {?} container
      * @param {?=} context
@@ -22892,11 +22878,10 @@ var ShadowCss = /** @class */ (function () {
      */
     function (cssText, selector, hostSelector) {
         if (hostSelector === void 0) { hostSelector = ''; }
-        var /** @type {?} */ commentsWithHash = extractCommentsWithHash(cssText);
+        var /** @type {?} */ sourceMappingUrl = extractSourceMappingUrl(cssText);
         cssText = stripComments(cssText);
         cssText = this._insertDirectives(cssText);
-        var /** @type {?} */ scopedCssText = this._scopeCssText(cssText, selector, hostSelector);
-        return [scopedCssText].concat(commentsWithHash).join('\n');
+        return this._scopeCssText(cssText, selector, hostSelector) + sourceMappingUrl;
     };
     /**
      * @param {?} cssText
@@ -23396,13 +23381,15 @@ var _commentRe = /\/\*\s*[\s\S]*?\*\//g;
 function stripComments(input) {
     return input.replace(_commentRe, '');
 }
-var _commentWithHashRe = /\/\*\s*#\s*source(Mapping)?URL=[\s\S]+?\*\//g;
+// all comments except inline source mapping
+var _sourceMappingUrlRe = /\/\*\s*#\s*sourceMappingURL=[\s\S]+?\*\//;
 /**
  * @param {?} input
  * @return {?}
  */
-function extractCommentsWithHash(input) {
-    return input.match(_commentWithHashRe) || [];
+function extractSourceMappingUrl(input) {
+    var /** @type {?} */ matcher = input.match(_sourceMappingUrlRe);
+    return matcher ? matcher[0] : '';
 }
 var _ruleRe = /(\s*)([^;\{\}]+?)(\s*)((?:{%BLOCK%}?\s*;?)|(?:\s*;))/g;
 var _curlyRe = /([{}])/g;
@@ -33003,12 +32990,10 @@ function createAotCompiler(compilerHost, options, errorCollector) {
  */
 /**
  * @record
- * @template T
  */
 
 /**
  * @abstract
- * @template T
  */
 var SummaryResolver = /** @class */ (function () {
     function SummaryResolver() {
@@ -37545,6 +37530,9 @@ var Evaluator = /** @class */ (function () {
                     }
                 }
                 var args = arrayOrEmpty(callExpression.arguments).map(function (arg) { return _this.evaluateNode(arg); });
+                if (!this.options.verboseInvalidExpression && args.some(schema.isMetadataError)) {
+                    return args.find(schema.isMetadataError);
+                }
                 if (this.isFoldable(callExpression)) {
                     if (isMethodCallOf(callExpression, 'concat')) {
                         var arrayValue = this.evaluateNode(callExpression.expression.expression);
@@ -38258,7 +38246,7 @@ var MetadataCollector = /** @class */ (function () {
             return identifier && (exportMap.get(identifier.text) || identifier.text);
         };
         var exportedName = function (node) { return exportedIdentifierName(node.name); };
-        // Pre-declare classes and functions
+        // Predeclare classes and functions
         ts__default.forEachChild(sourceFile, function (node) {
             switch (node.kind) {
                 case ts__default.SyntaxKind.ClassDeclaration:
@@ -38419,7 +38407,7 @@ var MetadataCollector = /** @class */ (function () {
                             }
                             else {
                                 nextDefaultValue =
-                                    recordEntry(errorSym('Unsupported enum member name', member.name), node);
+                                    recordEntry(errorSym('Unsuppported enum member name', member.name), node);
                             }
                         }
                         if (writtenMembers) {
@@ -39232,8 +39220,6 @@ var CompilerHostAdapter = /** @class */ (function () {
         this.collector = new collector.MetadataCollector();
     }
     CompilerHostAdapter.prototype.getMetadataFor = function (fileName) {
-        if (!this.host.fileExists(fileName + '.ts'))
-            return undefined;
         var sourceFile = this.host.getSourceFile(fileName + '.ts', ts__default.ScriptTarget.Latest);
         return sourceFile && this.collector.getMetadata(sourceFile);
     };
@@ -42114,7 +42100,7 @@ function share() {
 var share_3 = share;
 
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -42150,7 +42136,6 @@ var share_3 = share;
  * {\@example core/di/ts/injector_spec.ts region='InjectionToken'}
  *
  * \@stable
- * @template T
  */
 var InjectionToken = /** @class */ (function () {
     function InjectionToken(_desc) {
@@ -42546,7 +42531,7 @@ var Version$1 = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION$2 = new Version$1('5.2.10');
+var VERSION$2 = new Version$1('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -42660,7 +42645,6 @@ var __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefi
     self instanceof WorkerGlobalScope && self;
 var __global = typeof global !== 'undefined' && global;
 var _global = __window || __global || __self;
-var promise = Promise.resolve(0);
 var _symbolIterator = null;
 /**
  * @return {?}
@@ -42690,13 +42674,7 @@ function getSymbolIterator() {
  * @return {?}
  */
 function scheduleMicroTask(fn) {
-    if (typeof Zone === 'undefined') {
-        // use promise to schedule microTask instead of use Zone
-        promise.then(function () { fn && fn.apply(null, null); });
-    }
-    else {
-        Zone.current.scheduleMicroTask('scheduleMicrotask', fn);
-    }
+    Zone.current.scheduleMicroTask('scheduleMicrotask', fn);
 }
 /**
  * @param {?} a
@@ -43793,11 +43771,9 @@ function isType(v) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * Attention: These regex has to hold even if the code is minified!
+ * Attention: This regex has to hold even if the code is minified!
  */
 var DELEGATE_CTOR = /^function\s+\S+\(\)\s*{[\s\S]+\.apply\(this,\s*arguments\)/;
-var INHERITED_CLASS = /^class\s+[A-Za-z\d$_]*\s*extends\s+[A-Za-z\d$_]+\s*{/;
-var INHERITED_CLASS_WITH_CTOR = /^class\s+[A-Za-z\d$_]*\s*extends\s+[A-Za-z\d$_]+\s*{[\s\S]*constructor\s*\(/;
 var ReflectionCapabilities = /** @class */ (function () {
     function ReflectionCapabilities(reflect) {
         this._reflect = reflect || _global['Reflect'];
@@ -43877,7 +43853,6 @@ var ReflectionCapabilities = /** @class */ (function () {
      * @return {?}
      */
     function (type, parentCtor) {
-        var /** @type {?} */ typeStr = type.toString();
         // If we have no decorators, we only have function.length as metadata.
         // In that case, to detect whether a child class declared an own constructor or not,
         // we need to look inside of that constructor to check whether it is
@@ -43885,8 +43860,7 @@ var ReflectionCapabilities = /** @class */ (function () {
         // This also helps to work around for https://github.com/Microsoft/TypeScript/issues/12439
         // that sets 'design:paramtypes' to []
         // if a class inherits from another class but has no ctor declared itself.
-        if (DELEGATE_CTOR.exec(typeStr) ||
-            (INHERITED_CLASS.exec(typeStr) && !INHERITED_CLASS_WITH_CTOR.exec(typeStr))) {
+        if (DELEGATE_CTOR.exec(type.toString())) {
             return null;
         }
         // Prefer the direct API.
@@ -44184,7 +44158,7 @@ function convertTsickleDecoratorIntoMetadata(decoratorInvocations) {
  * @return {?}
  */
 function getParentCtor(ctor) {
-    var /** @type {?} */ parentProto = ctor.prototype ? Object.getPrototypeOf(ctor.prototype) : null;
+    var /** @type {?} */ parentProto = Object.getPrototypeOf(ctor.prototype);
     var /** @type {?} */ parentCtor = parentProto ? parentProto.constructor : null;
     // Note: We always use `Object` as the null value
     // to simplify checking later on.
@@ -45686,7 +45660,6 @@ var CompilerFactory = /** @class */ (function () {
  * method.
  * \@stable
  * @abstract
- * @template C
  */
 var ComponentRef = /** @class */ (function () {
     function ComponentRef() {
@@ -45696,7 +45669,6 @@ var ComponentRef = /** @class */ (function () {
 /**
  * \@stable
  * @abstract
- * @template C
  */
 var ComponentFactory = /** @class */ (function () {
     function ComponentFactory() {
@@ -45758,9 +45730,6 @@ var ComponentFactoryResolver = /** @class */ (function () {
     ComponentFactoryResolver.NULL = new _NullComponentFactoryResolver();
     return ComponentFactoryResolver;
 }());
-/**
- * @template C
- */
 var ComponentFactoryBoundToModule = /** @class */ (function (_super) {
     __extends(ComponentFactoryBoundToModule, _super);
     function ComponentFactoryBoundToModule(factory, ngModule) {
@@ -45813,7 +45782,6 @@ var ComponentFactoryBoundToModule = /** @class */ (function (_super) {
  *
  * \@stable
  * @abstract
- * @template T
  */
 var NgModuleRef = /** @class */ (function () {
     function NgModuleRef() {
@@ -45822,13 +45790,11 @@ var NgModuleRef = /** @class */ (function () {
 }());
 /**
  * @record
- * @template T
  */
 
 /**
  * \@experimental
  * @abstract
- * @template T
  */
 var NgModuleFactory = /** @class */ (function () {
     function NgModuleFactory() {
@@ -46018,7 +45984,6 @@ var wtfLeave = wtfEnabled ? leave : function (s, r) { return r; };
  *
  * Once a reference implementation of the spec is available, switch to it.
  * \@stable
- * @template T
  */
 var EventEmitter = /** @class */ (function (_super) {
     __extends(EventEmitter, _super);
@@ -46085,11 +46050,7 @@ var EventEmitter = /** @class */ (function (_super) {
                     this.__isAsync ? function () { setTimeout(function () { return complete(); }); } : function () { complete(); };
             }
         }
-        var /** @type {?} */ sink = _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
-        if (generatorOrNext instanceof Subscription_2) {
-            generatorOrNext.add(sink);
-        }
-        return sink;
+        return _super.prototype.subscribe.call(this, schedulerFn, errorFn, completeFn);
     };
     return EventEmitter;
 }(Subject_2));
@@ -46713,13 +46674,23 @@ var Testability = /** @class */ (function () {
     function () {
         var _this = this;
         if (this.isStable()) {
-            // Schedules the call backs in a new frame so that it is always async.
-            scheduleMicroTask(function () {
-                while (_this._callbacks.length !== 0) {
-                    (/** @type {?} */ ((_this._callbacks.pop())))(_this._didWork);
-                }
-                _this._didWork = false;
-            });
+            if (this._callbacks.length !== 0) {
+                // Schedules the call backs after a macro task run outside of the angular zone to make sure
+                // no new task are added
+                this._ngZone.runOutsideAngular(function () {
+                    setTimeout(function () {
+                        if (_this.isStable()) {
+                            while (_this._callbacks.length !== 0) {
+                                (/** @type {?} */ ((_this._callbacks.pop())))(_this._didWork);
+                            }
+                            _this._didWork = false;
+                        }
+                    });
+                });
+            }
+            else {
+                this._didWork = false;
+            }
         }
         else {
             // Not Ready
@@ -47845,14 +47816,12 @@ var ElementRef = /** @class */ (function () {
  * }
  * ```
  * \@stable
- * @template T
  */
 var QueryList = /** @class */ (function () {
     function QueryList() {
         this.dirty = true;
         this._results = [];
         this.changes = new EventEmitter();
-        this.length = 0;
     }
     /**
      * See
@@ -48073,7 +48042,6 @@ function flatten$2(list) {
  * createEmbeddedView}, which will create the View and attach it to the View Container.
  * \@stable
  * @abstract
- * @template C
  */
 var TemplateRef = /** @class */ (function () {
     function TemplateRef() {
@@ -48214,7 +48182,6 @@ var ViewRef = /** @class */ (function (_super) {
  * ```
  * \@experimental
  * @abstract
- * @template C
  */
 var EmbeddedViewRef = /** @class */ (function (_super) {
     __extends(EmbeddedViewRef, _super);
@@ -48540,7 +48507,6 @@ function removeDebugNodeFromIndex(node) {
  *
  * \@experimental All debugging apis are currently experimental.
  * @record
- * @template T
  */
 
 /**
@@ -48768,7 +48734,6 @@ var DefaultIterableDifferFactory = /** @class */ (function () {
 var trackByIdentity = function (index, item) { return item; };
 /**
  * @deprecated v4.0.0 - Should not be part of public API.
- * @template V
  */
 var DefaultIterableDiffer = /** @class */ (function () {
     function DefaultIterableDiffer(trackByFn) {
@@ -49075,7 +49040,7 @@ var DefaultIterableDiffer = /** @class */ (function () {
             this._movesHead = this._movesTail = null;
             this._removalsHead = this._removalsTail = null;
             this._identityChangesHead = this._identityChangesTail = null;
-            // TODO(vicb): when assert gets supported
+            // todo(vicb) when assert gets supported
             // assert(!this.isDirty);
         }
     };
@@ -49386,12 +49351,12 @@ var DefaultIterableDiffer = /** @class */ (function () {
     function (record, prevRecord, index) {
         this._insertAfter(record, prevRecord, index);
         if (this._additionsTail === null) {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(this._additionsHead === null);
             this._additionsTail = this._additionsHead = record;
         }
         else {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(_additionsTail._nextAdded === null);
             // assert(record._nextAdded === null);
             this._additionsTail = this._additionsTail._nextAdded = record;
@@ -49414,12 +49379,12 @@ var DefaultIterableDiffer = /** @class */ (function () {
      * @return {?}
      */
     function (record, prevRecord, index) {
-        // TODO(vicb):
+        // todo(vicb)
         // assert(record != prevRecord);
         // assert(record._next === null);
         // assert(record._prev === null);
         var /** @type {?} */ next = prevRecord === null ? this._itHead : prevRecord._next;
-        // TODO(vicb):
+        // todo(vicb)
         // assert(next != record);
         // assert(prevRecord != record);
         record._next = next;
@@ -49474,7 +49439,7 @@ var DefaultIterableDiffer = /** @class */ (function () {
         }
         var /** @type {?} */ prev = record._prev;
         var /** @type {?} */ next = record._next;
-        // TODO(vicb):
+        // todo(vicb)
         // assert((record._prev = null) === null);
         // assert((record._next = null) === null);
         if (prev === null) {
@@ -49505,18 +49470,18 @@ var DefaultIterableDiffer = /** @class */ (function () {
      * @return {?}
      */
     function (record, toIndex) {
-        // TODO(vicb):
+        // todo(vicb)
         // assert(record._nextMoved === null);
         if (record.previousIndex === toIndex) {
             return record;
         }
         if (this._movesTail === null) {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(_movesHead === null);
             this._movesTail = this._movesHead = record;
         }
         else {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(_movesTail._nextMoved === null);
             this._movesTail = this._movesTail._nextMoved = record;
         }
@@ -49538,13 +49503,13 @@ var DefaultIterableDiffer = /** @class */ (function () {
         record.currentIndex = null;
         record._nextRemoved = null;
         if (this._removalsTail === null) {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(_removalsHead === null);
             this._removalsTail = this._removalsHead = record;
             record._prevRemoved = null;
         }
         else {
-            // TODO(vicb):
+            // todo(vicb)
             // assert(_removalsTail._nextRemoved === null);
             // assert(record._nextRemoved === null);
             record._prevRemoved = this._removalsTail;
@@ -49579,7 +49544,6 @@ var DefaultIterableDiffer = /** @class */ (function () {
 }());
 /**
  * \@stable
- * @template V
  */
 var IterableChangeRecord_ = /** @class */ (function () {
     function IterableChangeRecord_(item, trackById) {
@@ -49630,9 +49594,6 @@ var IterableChangeRecord_ = /** @class */ (function () {
     }
     return IterableChangeRecord_;
 }());
-/**
- * @template V
- */
 var _DuplicateItemRecordList = /** @class */ (function () {
     function _DuplicateItemRecordList() {
         /**
@@ -49671,7 +49632,7 @@ var _DuplicateItemRecordList = /** @class */ (function () {
         }
         else {
             /** @type {?} */ ((
-            // TODO(vicb):
+            // todo(vicb)
             // assert(record.item ==  _head.item ||
             //       record.item is num && record.item.isNaN && _head.item is num && _head.item.isNaN);
             this._tail))._nextDup = record;
@@ -49722,7 +49683,7 @@ var _DuplicateItemRecordList = /** @class */ (function () {
      * @return {?}
      */
     function (record) {
-        // TODO(vicb):
+        // todo(vicb)
         // assert(() {
         //  // verify that the record being removed is in the list.
         //  for (IterableChangeRecord_ cursor = _head; cursor != null; cursor = cursor._nextDup) {
@@ -49748,9 +49709,6 @@ var _DuplicateItemRecordList = /** @class */ (function () {
     };
     return _DuplicateItemRecordList;
 }());
-/**
- * @template V
- */
 var _DuplicateMap = /** @class */ (function () {
     function _DuplicateMap() {
         this.map = new Map();
@@ -49877,9 +49835,6 @@ function getPreviousIndex(item, addRemoveOffset, moveOffsets) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-/**
- * @template K, V
- */
 var DefaultKeyValueDifferFactory = /** @class */ (function () {
     function DefaultKeyValueDifferFactory() {
     }
@@ -49903,9 +49858,6 @@ var DefaultKeyValueDifferFactory = /** @class */ (function () {
     function () { return new DefaultKeyValueDiffer(); };
     return DefaultKeyValueDifferFactory;
 }());
-/**
- * @template K, V
- */
 var DefaultKeyValueDiffer = /** @class */ (function () {
     function DefaultKeyValueDiffer() {
         this._records = new Map();
@@ -50267,7 +50219,6 @@ var DefaultKeyValueDiffer = /** @class */ (function () {
 }());
 /**
  * \@stable
- * @template K, V
  */
 var KeyValueChangeRecord_ = /** @class */ (function () {
     function KeyValueChangeRecord_(key) {
@@ -50319,7 +50270,6 @@ var KeyValueChangeRecord_ = /** @class */ (function () {
  *
  * \@stable
  * @record
- * @template V
  */
 
 /**
@@ -50328,7 +50278,6 @@ var KeyValueChangeRecord_ = /** @class */ (function () {
  *
  * \@stable
  * @record
- * @template V
  */
 
 /**
@@ -50336,13 +50285,11 @@ var KeyValueChangeRecord_ = /** @class */ (function () {
  *
  * \@stable
  * @record
- * @template V
  */
 
 /**
  * @deprecated v4.0.0 - Use IterableChangeRecord instead.
  * @record
- * @template V
  */
 
 /**
@@ -50351,7 +50298,6 @@ var KeyValueChangeRecord_ = /** @class */ (function () {
  *
  * \@stable
  * @record
- * @template T
  */
 
 /**
@@ -50509,7 +50455,6 @@ function getTypeNameForDebugging(type) {
  *
  * \@stable
  * @record
- * @template K, V
  */
 
 /**
@@ -50518,7 +50463,6 @@ function getTypeNameForDebugging(type) {
  *
  * \@stable
  * @record
- * @template K, V
  */
 
 /**
@@ -50526,7 +50470,6 @@ function getTypeNameForDebugging(type) {
  *
  * \@stable
  * @record
- * @template K, V
  */
 
 /**
@@ -50909,14 +50852,12 @@ var Sanitizer = /** @class */ (function () {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// unsupported: template constraints.
 /**
  * Factory for ViewDefinitions/NgModuleDefinitions.
  * We use a function so we can reexeute it in case an error happens and use the given logger
  * function to log the error from the definition of the node, which is shown in all browser
  * logs.
  * @record
- * @template D
  */
 
 /**
@@ -50926,10 +50867,8 @@ var Sanitizer = /** @class */ (function () {
  * @record
  */
 
-// unsupported: template constraints.
 /**
  * @record
- * @template DF
  */
 
 /**
@@ -51312,7 +51251,7 @@ function checkAndUpdateBinding(view, def, bindingIdx, value) {
 function checkBindingNoChanges(view, def, bindingIdx, value) {
     var /** @type {?} */ oldValue = view.oldValues[def.bindingIndex + bindingIdx];
     if ((view.state & 1 /* BeforeFirstCheck */) || !devModeEqual(oldValue, value)) {
-        var /** @type {?} */ bindingName = def.bindings[bindingIdx].name;
+        var /** @type {?} */ bindingName = def.bindings[def.bindingIndex].name;
         throw expressionChangedAfterItHasBeenCheckedError(Services.createDebugContext(view, def.nodeIndex), bindingName + ": " + oldValue, bindingName + ": " + value, (view.state & 1 /* BeforeFirstCheck */) !== 0);
     }
 }
@@ -56422,12 +56361,8 @@ function isDifferent(a, b) {
 /**
  * A predicate which determines if a given element/directive should be included in the query
  * @record
- * @template T
  */
 
-/**
- * @template T
- */
 var QueryList_ = /** @class */ (function () {
     function QueryList_() {
         this.dirty = false;
@@ -56836,7 +56771,7 @@ function initViewStaticData(viewIndex, parent) {
 var NO_CHANGE = /** @type {?} */ ({});
 
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58577,7 +58512,7 @@ var ReflectorHost = /** @class */ (function () {
                 throw new Error('Resolution of relative paths requires a containing file.');
             }
             // Any containing file gives the same result for absolute imports
-            containingFile = path.join(this.options.basePath, 'index.ts').replace(/\\/g, '/');
+            containingFile = path.join(this.options.basePath, 'index.ts');
         }
         var resolved = ts.resolveModuleName(moduleName, containingFile, this.options, this.hostAdapter)
             .resolvedModule;
@@ -59485,7 +59420,7 @@ function create(info /* ts.server.PluginCreateInfo */) {
 /**
  * @stable
  */
-var VERSION = new Version$1('5.2.10');
+var VERSION = new Version$1('5.2.1');
 
 exports.createLanguageService = createLanguageService;
 exports.TypeScriptServiceHost = TypeScriptServiceHost;

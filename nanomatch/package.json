@@ -1,33 +1,27 @@
 {
-  "_args": [
-    [
-      "nanomatch@1.2.7",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "nanomatch@1.2.7",
+  "_from": "nanomatch@^1.2.5",
   "_id": "nanomatch@1.2.7",
   "_inBundle": false,
   "_integrity": "sha1-U81KoQn/aLf4aVkf3J0Q2u7qPnk=",
   "_location": "/nanomatch",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "nanomatch@1.2.7",
+    "raw": "nanomatch@^1.2.5",
     "name": "nanomatch",
     "escapedName": "nanomatch",
-    "rawSpec": "1.2.7",
+    "rawSpec": "^1.2.5",
     "saveSpec": null,
-    "fetchSpec": "1.2.7"
+    "fetchSpec": "^1.2.5"
   },
   "_requiredBy": [
     "/webpack-dev-server/micromatch"
   ],
   "_resolved": "http://r.cnpmjs.org/nanomatch/download/nanomatch-1.2.7.tgz",
-  "_spec": "1.2.7",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_shasum": "53cd4aa109ff68b7f869591fdc9d10daeeea3e79",
+  "_spec": "nanomatch@^1.2.5",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/webpack-dev-server/node_modules/micromatch",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
@@ -35,6 +29,7 @@
   "bugs": {
     "url": "https://github.com/micromatch/nanomatch/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Devon Govett",
@@ -58,6 +53,7 @@
     "snapdragon": "^0.8.1",
     "to-regex": "^3.0.1"
   },
+  "deprecated": false,
   "description": "Fast, minimal glob matcher for node.js. Similar to micromatch, minimatch and multimatch, but complete Bash 4.3 wildcard support only (no support for exglobs, posix brackets or braces)",
   "devDependencies": {
     "bash-match": "^1.0.2",

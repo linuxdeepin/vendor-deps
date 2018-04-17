@@ -1,35 +1,30 @@
 {
-  "_args": [
-    [
-      "@types/node@6.0.96",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "@types/node@6.0.96",
+  "_from": "@types/node@~6.0.60",
   "_id": "@types/node@6.0.96",
   "_inBundle": false,
   "_integrity": "sha1-e/C/QNbOUek3YsxH0BDIzF67IXk=",
   "_location": "/@types/node",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@types/node@6.0.96",
+    "raw": "@types/node@~6.0.60",
     "name": "@types/node",
     "escapedName": "@types%2fnode",
     "scope": "@types",
-    "rawSpec": "6.0.96",
+    "rawSpec": "~6.0.60",
     "saveSpec": null,
-    "fetchSpec": "6.0.96"
+    "fetchSpec": "~6.0.60"
   },
   "_requiredBy": [
     "#DEV:/",
     "/protractor"
   ],
   "_resolved": "http://r.cnpmjs.org/@types/node/download/@types/node-6.0.96.tgz",
-  "_spec": "6.0.96",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_shasum": "7bf0bf40d6ce51e93762cc47d010c8cc5ebb2179",
+  "_spec": "@types/node@~6.0.60",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Microsoft TypeScript",
@@ -53,6 +48,7 @@
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "TypeScript definitions for Node.js",
   "license": "MIT",
   "main": "",

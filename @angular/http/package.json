@@ -1,29 +1,28 @@
 {
-  "_from": "@angular/http@5.2.10",
-  "_id": "@angular/http@5.2.10",
+  "_from": "@angular/http@^5.2.0",
+  "_id": "@angular/http@5.2.1",
   "_inBundle": false,
-  "_integrity": "sha1-2A1g/CBbBD9yvWG6IueqOG1qUew=",
+  "_integrity": "sha1-3YR/uKoJcrGQbfU3Ywc1S4GO9L4=",
   "_location": "/@angular/http",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@angular/http@5.2.10",
+    "raw": "@angular/http@^5.2.0",
     "name": "@angular/http",
     "escapedName": "@angular%2fhttp",
     "scope": "@angular",
-    "rawSpec": "5.2.10",
+    "rawSpec": "^5.2.0",
     "saveSpec": null,
-    "fetchSpec": "5.2.10"
+    "fetchSpec": "^5.2.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/http/download/@angular/http-5.2.10.tgz",
-  "_shasum": "d80d60fc205b043f72bd61ba22e7aa386d6a51ec",
-  "_spec": "@angular/http@5.2.10",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_resolved": "http://r.cnpmjs.org/@angular/http/download/@angular/http-5.2.1.tgz",
+  "_shasum": "dd847fb8aa0972b1906df5376307354b818ef4be",
+  "_spec": "@angular/http@^5.2.0",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
   "author": {
     "name": "angular"
   },
@@ -44,13 +43,13 @@
   "name": "@angular/http",
   "peerDependencies": {
     "rxjs": "^5.5.0",
-    "@angular/core": "5.2.10",
-    "@angular/platform-browser": "5.2.10"
+    "@angular/core": "5.2.1",
+    "@angular/platform-browser": "5.2.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./http.d.ts",
-  "version": "5.2.10"
+  "version": "5.2.1"
 }

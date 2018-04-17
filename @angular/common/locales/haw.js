@@ -5,13 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// THIS CODE IS GENERATED - DO NOT MODIFY
-// See angular/tools/gulp-tasks/cldr/extract.js
-function plural(n) {
-    if (n === 1)
-        return 1;
-    return 5;
-}
 export default [
     'haw',
     [
@@ -27,13 +20,10 @@ export default [
     ,
     [
         ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+        ['Ian.', 'Pep.', 'Mal.', 'ʻAp.', 'Mei', 'Iun.', 'Iul.', 'ʻAu.', 'Kep.', 'ʻOk.', 'Now.', 'Kek.'],
         [
-            'Ian.', 'Pep.', 'Mal.', 'ʻAp.', 'Mei', 'Iun.', 'Iul.', 'ʻAu.', 'Kep.', 'ʻOk.', 'Now.',
-            'Kek.'
-        ],
-        [
-            'Ianuali', 'Pepeluali', 'Malaki', 'ʻApelila', 'Mei', 'Iune', 'Iulai', 'ʻAukake',
-            'Kepakemapa', 'ʻOkakopa', 'Nowemapa', 'Kekemapa'
+            'Ianuali', 'Pepeluali', 'Malaki', 'ʻApelila', 'Mei', 'Iune', 'Iulai', 'ʻAukake', 'Kepakemapa',
+            'ʻOkakopa', 'Nowemapa', 'Kekemapa'
         ]
     ],
     ,
@@ -49,6 +39,10 @@ export default [
         ,
     ],
     ['.', ',', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'USD', plural
+    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'USD', function (n) {
+        if (n === 1)
+            return 1;
+        return 5;
+    }
 ];
 //# sourceMappingURL=haw.js.map

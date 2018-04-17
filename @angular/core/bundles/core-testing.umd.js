@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -36,7 +36,7 @@ function __extends(d, b) {
 }
 
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -624,11 +624,6 @@ var TestingCompiler = /** @class */ (function (_super) {
        * This can be used for errors created by compileModule...
        */
     function (error) { throw unimplemented(); };
-    TestingCompiler.decorators = [
-        { type: _angular_core.Injectable },
-    ];
-    /** @nocollapse */
-    TestingCompiler.ctorParameters = function () { return []; };
     return TestingCompiler;
 }(_angular_core.Compiler));
 /**
@@ -962,10 +957,7 @@ var TestBed = /** @class */ (function () {
                 fixture.destroy();
             }
             catch (e) {
-                console.error('Error during cleanup of component', {
-                    component: fixture.componentInstance,
-                    stacktrace: e,
-                });
+                console.error('Error during cleanup of component', fixture.componentInstance);
             }
         });
         this._activeFixtures = [];

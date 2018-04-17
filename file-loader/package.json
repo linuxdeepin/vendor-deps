@@ -1,43 +1,39 @@
 {
-  "_args": [
-    [
-      "file-loader@1.1.6",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "file-loader@1.1.6",
+  "_from": "file-loader@^1.1.5",
   "_id": "file-loader@1.1.6",
   "_inBundle": false,
   "_integrity": "sha1-e5qPLFjwCnf930npQPesl4o+oOg=",
   "_location": "/file-loader",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "file-loader@1.1.6",
+    "raw": "file-loader@^1.1.5",
     "name": "file-loader",
     "escapedName": "file-loader",
-    "rawSpec": "1.1.6",
+    "rawSpec": "^1.1.5",
     "saveSpec": null,
-    "fetchSpec": "1.1.6"
+    "fetchSpec": "^1.1.5"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
   "_resolved": "http://r.cnpmjs.org/file-loader/download/file-loader-1.1.6.tgz",
-  "_spec": "1.1.6",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_shasum": "7b9a8f2c58f00a77fddf49e940f7ac978a3ea0e8",
+  "_spec": "file-loader@^1.1.5",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/@angular/cli",
   "author": {
     "name": "Tobias Koppers @sokra"
   },
   "bugs": {
     "url": "https://github.com/webpack/file-loader/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "loader-utils": "^1.0.2",
     "schema-utils": "^0.3.0"
   },
+  "deprecated": false,
   "description": "file loader module for webpack",
   "devDependencies": {
     "babel-cli": "^6.0.0",

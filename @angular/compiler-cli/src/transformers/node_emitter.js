@@ -44,11 +44,6 @@ var TypeScriptNodeEmitter = /** @class */ (function () {
     return TypeScriptNodeEmitter;
 }());
 exports.TypeScriptNodeEmitter = TypeScriptNodeEmitter;
-function escapeLiteral(value) {
-    return value.replace(/(\"|\\)/g, '\\$1').replace(/(\n)|(\r)/g, function (v, n, r) {
-        return n ? '\\n' : '\\r';
-    });
-}
 function createLiteral(value) {
     if (value === null) {
         return ts.createNull();
@@ -57,16 +52,7 @@ function createLiteral(value) {
         return ts.createIdentifier('undefined');
     }
     else {
-        var result = ts.createLiteral(value);
-        if (ts.isStringLiteral(result) && result.text.indexOf('\\') >= 0) {
-            // Hack to avoid problems cause indirectly by:
-            //    https://github.com/Microsoft/TypeScript/issues/20192
-            // This avoids the string escaping normally performed for a string relying on that
-            // TypeScript just emits the text raw for a numeric literal.
-            result.kind = ts.SyntaxKind.NumericLiteral;
-            result.text = "\"" + escapeLiteral(result.text) + "\"";
-        }
-        return result;
+        return ts.createLiteral(value);
     }
 }
 /**

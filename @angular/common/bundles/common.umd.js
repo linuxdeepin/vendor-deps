@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -44,7 +44,7 @@ var __assign = Object.assign || function __assign(t) {
 };
 
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -946,7 +946,7 @@ var CURRENCIES = {
  * @param {?} n
  * @return {?}
  */
-function plural(n) {
+function converter(n) {
     var /** @type {?} */ i = Math.floor(Math.abs(n)), /** @type {?} */ v = n.toString().replace(/^[^.]*\.?/, '').length;
     if (i === 1 && v === 0)
         return 1;
@@ -986,7 +986,7 @@ var localeEn = [
         '{1} \'at\' {0}',
     ],
     ['.', ',', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'US Dollar', plural
+    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '$', 'US Dollar', converter
 ];
 
 /**
@@ -1263,7 +1263,7 @@ function getLocaleWeekEndRange(locale) {
  */
 function getLocaleDateFormat(locale, width) {
     var /** @type {?} */ data = findLocaleData(locale);
-    return getLastDefinedValue(data[10 /* DateFormat */], width);
+    return data[10 /* DateFormat */][width];
 }
 /**
  * Time format that depends on the locale.
@@ -1290,7 +1290,7 @@ function getLocaleDateFormat(locale, width) {
  */
 function getLocaleTimeFormat(locale, width) {
     var /** @type {?} */ data = findLocaleData(locale);
-    return getLastDefinedValue(data[11 /* TimeFormat */], width);
+    return data[11 /* TimeFormat */][width];
 }
 /**
  * Date-time format that depends on the locale.
@@ -2118,10 +2118,10 @@ var NgClass = /** @class */ (function () {
          * @return {?}
          */
         function (v) {
-            this._removeClasses(this._initialClasses);
+            this._applyInitialClasses(true);
             this._initialClasses = typeof v === 'string' ? v.split(/\s+/) : [];
-            this._applyClasses(this._initialClasses);
-            this._applyClasses(this._rawClass);
+            this._applyInitialClasses(false);
+            this._applyClasses(this._rawClass, false);
         },
         enumerable: true,
         configurable: true
@@ -2132,8 +2132,7 @@ var NgClass = /** @class */ (function () {
          * @return {?}
          */
         function (v) {
-            this._removeClasses(this._rawClass);
-            this._applyClasses(this._initialClasses);
+            this._cleanupClasses(this._rawClass);
             this._iterableDiffer = null;
             this._keyValueDiffer = null;
             this._rawClass = typeof v === 'string' ? v.split(/\s+/) : v;
@@ -2168,6 +2167,18 @@ var NgClass = /** @class */ (function () {
                 this._applyKeyValueChanges(keyValueChanges);
             }
         }
+    };
+    /**
+     * @param {?} rawClassVal
+     * @return {?}
+     */
+    NgClass.prototype._cleanupClasses = /**
+     * @param {?} rawClassVal
+     * @return {?}
+     */
+    function (rawClassVal) {
+        this._applyClasses(rawClassVal, true);
+        this._applyInitialClasses(false);
     };
     /**
      * @param {?} changes
@@ -2208,56 +2219,38 @@ var NgClass = /** @class */ (function () {
         changes.forEachRemovedItem(function (record) { return _this._toggleClass(record.item, false); });
     };
     /**
-     * Applies a collection of CSS classes to the DOM element.
-     *
-     * For argument of type Set and Array CSS class names contained in those collections are always
-     * added.
-     * For argument of type Map CSS class name in the map's key is toggled based on the value (added
-     * for truthy and removed for falsy).
+     * @param {?} isCleanup
+     * @return {?}
+     */
+    NgClass.prototype._applyInitialClasses = /**
+     * @param {?} isCleanup
+     * @return {?}
+     */
+    function (isCleanup) {
+        var _this = this;
+        this._initialClasses.forEach(function (klass) { return _this._toggleClass(klass, !isCleanup); });
+    };
+    /**
      * @param {?} rawClassVal
+     * @param {?} isCleanup
      * @return {?}
      */
     NgClass.prototype._applyClasses = /**
-     * Applies a collection of CSS classes to the DOM element.
-     *
-     * For argument of type Set and Array CSS class names contained in those collections are always
-     * added.
-     * For argument of type Map CSS class name in the map's key is toggled based on the value (added
-     * for truthy and removed for falsy).
      * @param {?} rawClassVal
+     * @param {?} isCleanup
      * @return {?}
      */
-    function (rawClassVal) {
+    function (rawClassVal, isCleanup) {
         var _this = this;
         if (rawClassVal) {
             if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
-                (/** @type {?} */ (rawClassVal)).forEach(function (klass) { return _this._toggleClass(klass, true); });
+                (/** @type {?} */ (rawClassVal)).forEach(function (klass) { return _this._toggleClass(klass, !isCleanup); });
             }
             else {
-                Object.keys(rawClassVal).forEach(function (klass) { return _this._toggleClass(klass, !!rawClassVal[klass]); });
-            }
-        }
-    };
-    /**
-     * Removes a collection of CSS classes from the DOM element. This is mostly useful for cleanup
-     * purposes.
-     * @param {?} rawClassVal
-     * @return {?}
-     */
-    NgClass.prototype._removeClasses = /**
-     * Removes a collection of CSS classes from the DOM element. This is mostly useful for cleanup
-     * purposes.
-     * @param {?} rawClassVal
-     * @return {?}
-     */
-    function (rawClassVal) {
-        var _this = this;
-        if (rawClassVal) {
-            if (Array.isArray(rawClassVal) || rawClassVal instanceof Set) {
-                (/** @type {?} */ (rawClassVal)).forEach(function (klass) { return _this._toggleClass(klass, false); });
-            }
-            else {
-                Object.keys(rawClassVal).forEach(function (klass) { return _this._toggleClass(klass, false); });
+                Object.keys(rawClassVal).forEach(function (klass) {
+                    if (rawClassVal[klass] != null)
+                        _this._toggleClass(klass, !isCleanup);
+                });
             }
         }
     };
@@ -2442,7 +2435,6 @@ var NgComponentOutlet = /** @class */ (function () {
  */
 /**
  * \@stable
- * @template T
  */
 var NgForOfContext = /** @class */ (function () {
     function NgForOfContext($implicit, ngForOf, index, count) {
@@ -2554,7 +2546,6 @@ var NgForOfContext = /** @class */ (function () {
  * example.
  *
  * \@stable
- * @template T
  */
 var NgForOf = /** @class */ (function () {
     function NgForOf(_viewContainer, _template, _differs) {
@@ -2705,9 +2696,6 @@ var NgForOf = /** @class */ (function () {
     };
     return NgForOf;
 }());
-/**
- * @template T
- */
 var RecordViewTuple = /** @class */ (function () {
     function RecordViewTuple(record, view) {
         this.record = record;
@@ -3457,12 +3445,7 @@ var NgStyle = /** @class */ (function () {
     function (nameAndUnit, value) {
         var _a = nameAndUnit.split('.'), name = _a[0], unit = _a[1];
         value = value != null && unit ? "" + value + unit : value;
-        if (value != null) {
-            this._renderer.setStyle(this._ngEl.nativeElement, name, /** @type {?} */ (value));
-        }
-        else {
-            this._renderer.removeStyle(this._ngEl.nativeElement, name);
-        }
+        this._renderer.setStyle(this._ngEl.nativeElement, name, /** @type {?} */ (value));
     };
     NgStyle.decorators = [
         { type: _angular_core.Directive, args: [{ selector: '[ngStyle]' },] },
@@ -3506,7 +3489,7 @@ var NgStyle = /** @class */ (function () {
  * `[ngTemplateOutletContext]` should be an object, the object's keys will be available for binding
  * by the local template `let` declarations.
  *
- * Note: using the key `$implicit` in the context object will set its value as default.
+ * Note: using the key `$implicit` in the context object will set it's value as default.
  *
  * ## Example
  *
@@ -6579,7 +6562,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('5.2.10');
+var VERSION = new _angular_core.Version('5.2.1');
 
 exports.ɵregisterLocaleData = registerLocaleData;
 exports.NgLocaleLocalization = NgLocaleLocalization;

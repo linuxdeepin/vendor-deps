@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -236,7 +236,6 @@ MissingTranslationStrategy[MissingTranslationStrategy.Warning] = "Warning";
 MissingTranslationStrategy[MissingTranslationStrategy.Ignore] = "Ignore";
 /**
  * @record
- * @template T
  */
 function MetadataFactory() { }
 /**
@@ -634,7 +633,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.2.10');
+var VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -2085,7 +2084,6 @@ function templateJitUrl(ngModuleType, compMeta) {
  * The path to the node at offset 9 would be `['+' at 1-10, '+' at 7-10,
  * 'c' at 9-10]` and the path the node at offset 1 would be
  * `['+' at 1-10, 'a' at 1-2]`.
- * @template T
  */
 var AstPath = /** @class */ (function () {
     function AstPath(path, position) {
@@ -6759,8 +6757,7 @@ var _ParseAST = /** @class */ (function () {
             switch (operator) {
                 case '+':
                     this.advance();
-                    result = this.parsePrefix();
-                    return new Binary(this.span(start), '-', result, new LiteralPrimitive(new ParseSpan(start, start), 0));
+                    return this.parsePrefix();
                 case '-':
                     this.advance();
                     result = this.parsePrefix();
@@ -11498,7 +11495,7 @@ var Declaration = /** @class */ (function () {
         var _this = this;
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach(function (k) {
-            _this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            _this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -11537,7 +11534,7 @@ var Tag = /** @class */ (function () {
         this.children = children;
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach(function (k) {
-            _this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            _this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -11553,7 +11550,7 @@ var Tag = /** @class */ (function () {
 }());
 var Text$2 = /** @class */ (function () {
     function Text(unescapedValue) {
-        this.value = escapeXml(unescapedValue);
+        this.value = _escapeXml(unescapedValue);
     }
     /**
      * @param {?} visitor
@@ -11585,7 +11582,7 @@ var _ESCAPED_CHARS = [
  * @param {?} text
  * @return {?}
  */
-function escapeXml(text) {
+function _escapeXml(text) {
     return _ESCAPED_CHARS.reduce(function (text, entry) { return text.replace(entry[0], entry[1]); }, text);
 }
 
@@ -11605,10 +11602,8 @@ var _XMLNS = 'urn:oasis:names:tc:xliff:document:1.2';
 // TODO(vicb): make this a param (s/_/-/)
 var _DEFAULT_SOURCE_LANG = 'en';
 var _PLACEHOLDER_TAG = 'x';
-var _MARKER_TAG = 'mrk';
 var _FILE_TAG = 'file';
 var _SOURCE_TAG = 'source';
-var _SEGMENT_SOURCE_TAG = 'seg-source';
 var _TARGET_TAG = 'target';
 var _UNIT_TAG = 'trans-unit';
 var _CONTEXT_GROUP_TAG = 'context-group';
@@ -11869,9 +11864,8 @@ var XliffParser = /** @class */ (function () {
                     }
                 }
                 break;
-            // ignore those tags
             case _SOURCE_TAG:
-            case _SEGMENT_SOURCE_TAG:
+                // ignore source message
                 break;
             case _TARGET_TAG:
                 var /** @type {?} */ innerTextStart = /** @type {?} */ ((element.startSourceSpan)).end.offset;
@@ -11980,7 +11974,8 @@ var XmlToI18n = /** @class */ (function () {
         var /** @type {?} */ xmlIcu = new XmlParser().parse(message, url, true);
         this._errors = xmlIcu.errors;
         var /** @type {?} */ i18nNodes = this._errors.length > 0 || xmlIcu.rootNodes.length == 0 ?
-            [] : [].concat.apply([], visitAll(this, xmlIcu.rootNodes));
+            [] :
+            visitAll(this, xmlIcu.rootNodes);
         return {
             i18nNodes: i18nNodes,
             errors: this._errors,
@@ -12014,12 +12009,10 @@ var XmlToI18n = /** @class */ (function () {
                 return new Placeholder('', nameAttr.value, /** @type {?} */ ((el.sourceSpan)));
             }
             this._addError(el, "<" + _PLACEHOLDER_TAG + "> misses the \"id\" attribute");
-            return null;
         }
-        if (el.name === _MARKER_TAG) {
-            return [].concat.apply([], visitAll(this, el.children));
+        else {
+            this._addError(el, "Unexpected tag");
         }
-        this._addError(el, "Unexpected tag");
         return null;
     };
     /**
@@ -12124,7 +12117,6 @@ var _XMLNS$1 = 'urn:oasis:names:tc:xliff:document:2.0';
 var _DEFAULT_SOURCE_LANG$1 = 'en';
 var _PLACEHOLDER_TAG$1 = 'ph';
 var _PLACEHOLDER_SPANNING_TAG = 'pc';
-var _MARKER_TAG$1 = 'mrk';
 var _XLIFF_TAG = 'xliff';
 var _SOURCE_TAG$1 = 'source';
 var _TARGET_TAG$1 = 'target';
@@ -12580,8 +12572,6 @@ var XmlToI18n$1 = /** @class */ (function () {
                     return nodes.concat.apply(nodes, [new Placeholder('', startId, el.sourceSpan)].concat(el.children.map(function (node) { return node.visit(_this, null); }), [new Placeholder('', endId, el.sourceSpan)]));
                 }
                 break;
-            case _MARKER_TAG$1:
-                return [].concat.apply([], visitAll(this, el.children));
             default:
                 this._addError(el, "Unexpected tag");
         }
@@ -13500,11 +13490,7 @@ var I18nToHtmlVisitor = /** @class */ (function () {
      * @param {?=} context
      * @return {?}
      */
-    function (text, context) {
-        // `convert()` uses an `HtmlParser` to return `html.Node`s
-        // we should then make sure that any special characters are escaped
-        return escapeXml(text.value);
-    };
+    function (text, context) { return text.value; };
     /**
      * @param {?} container
      * @param {?=} context
@@ -22834,11 +22820,10 @@ var ShadowCss = /** @class */ (function () {
      */
     function (cssText, selector, hostSelector) {
         if (hostSelector === void 0) { hostSelector = ''; }
-        var /** @type {?} */ commentsWithHash = extractCommentsWithHash(cssText);
+        var /** @type {?} */ sourceMappingUrl = extractSourceMappingUrl(cssText);
         cssText = stripComments(cssText);
         cssText = this._insertDirectives(cssText);
-        var /** @type {?} */ scopedCssText = this._scopeCssText(cssText, selector, hostSelector);
-        return [scopedCssText].concat(commentsWithHash).join('\n');
+        return this._scopeCssText(cssText, selector, hostSelector) + sourceMappingUrl;
     };
     /**
      * @param {?} cssText
@@ -23338,13 +23323,15 @@ var _commentRe = /\/\*\s*[\s\S]*?\*\//g;
 function stripComments(input) {
     return input.replace(_commentRe, '');
 }
-var _commentWithHashRe = /\/\*\s*#\s*source(Mapping)?URL=[\s\S]+?\*\//g;
+// all comments except inline source mapping
+var _sourceMappingUrlRe = /\/\*\s*#\s*sourceMappingURL=[\s\S]+?\*\//;
 /**
  * @param {?} input
  * @return {?}
  */
-function extractCommentsWithHash(input) {
-    return input.match(_commentWithHashRe) || [];
+function extractSourceMappingUrl(input) {
+    var /** @type {?} */ matcher = input.match(_sourceMappingUrlRe);
+    return matcher ? matcher[0] : '';
 }
 var _ruleRe = /(\s*)([^;\{\}]+?)(\s*)((?:{%BLOCK%}?\s*;?)|(?:\s*;))/g;
 var _curlyRe = /([{}])/g;
@@ -32945,12 +32932,10 @@ function createAotCompiler(compilerHost, options, errorCollector) {
  */
 /**
  * @record
- * @template T
  */
 
 /**
  * @abstract
- * @template T
  */
 var SummaryResolver = /** @class */ (function () {
     function SummaryResolver() {

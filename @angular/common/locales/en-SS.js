@@ -5,14 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-// THIS CODE IS GENERATED - DO NOT MODIFY
-// See angular/tools/gulp-tasks/cldr/extract.js
-function plural(n) {
-    var i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
-    if (i === 1 && v === 0)
-        return 1;
-    return 5;
-}
 export default [
     'en-SS',
     [
@@ -47,6 +39,12 @@ export default [
         '{1} \'at\' {0}',
     ],
     ['.', ',', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
-    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '£', 'South Sudanese Pound', plural
+    ['#,##0.###', '#,##0%', '¤#,##0.00', '#E0'], '£', 'South Sudanese Pound',
+    function (n) {
+        var i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
+        if (i === 1 && v === 0)
+            return 1;
+        return 5;
+    }
 ];
 //# sourceMappingURL=en-SS.js.map

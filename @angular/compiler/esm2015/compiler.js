@@ -1,5 +1,5 @@
 /**
- * @license Angular v5.2.10
+ * @license Angular v5.2.1
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -217,7 +217,6 @@ MissingTranslationStrategy[MissingTranslationStrategy.Warning] = "Warning";
 MissingTranslationStrategy[MissingTranslationStrategy.Ignore] = "Ignore";
 /**
  * @record
- * @template T
  */
 function MetadataFactory() { }
 /**
@@ -582,7 +581,7 @@ class Version {
 /**
  * \@stable
  */
-const VERSION = new Version('5.2.10');
+const VERSION = new Version('5.2.1');
 
 /**
  * @fileoverview added by tsickle
@@ -1909,7 +1908,6 @@ function templateJitUrl(ngModuleType, compMeta) {
  * The path to the node at offset 9 would be `['+' at 1-10, '+' at 7-10,
  * 'c' at 9-10]` and the path the node at offset 1 would be
  * `['+' at 1-10, 'a' at 1-2]`.
- * @template T
  */
 class AstPath {
     /**
@@ -5710,8 +5708,7 @@ class _ParseAST {
             switch (operator) {
                 case '+':
                     this.advance();
-                    result = this.parsePrefix();
-                    return new Binary(this.span(start), '-', result, new LiteralPrimitive(new ParseSpan(start, start), 0));
+                    return this.parsePrefix();
                 case '-':
                     this.advance();
                     result = this.parsePrefix();
@@ -9617,7 +9614,7 @@ class Declaration {
     constructor(unescapedAttrs) {
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach((k) => {
-            this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -9652,7 +9649,7 @@ class Tag {
         this.children = children;
         this.attrs = {};
         Object.keys(unescapedAttrs).forEach((k) => {
-            this.attrs[k] = escapeXml(unescapedAttrs[k]);
+            this.attrs[k] = _escapeXml(unescapedAttrs[k]);
         });
     }
     /**
@@ -9665,7 +9662,7 @@ class Text$2 {
     /**
      * @param {?} unescapedValue
      */
-    constructor(unescapedValue) { this.value = escapeXml(unescapedValue); }
+    constructor(unescapedValue) { this.value = _escapeXml(unescapedValue); }
     /**
      * @param {?} visitor
      * @return {?}
@@ -9689,7 +9686,7 @@ const _ESCAPED_CHARS = [
  * @param {?} text
  * @return {?}
  */
-function escapeXml(text) {
+function _escapeXml(text) {
     return _ESCAPED_CHARS.reduce((text, entry) => text.replace(entry[0], entry[1]), text);
 }
 
@@ -9709,10 +9706,8 @@ const _XMLNS = 'urn:oasis:names:tc:xliff:document:1.2';
 // TODO(vicb): make this a param (s/_/-/)
 const _DEFAULT_SOURCE_LANG = 'en';
 const _PLACEHOLDER_TAG = 'x';
-const _MARKER_TAG = 'mrk';
 const _FILE_TAG = 'file';
 const _SOURCE_TAG = 'source';
-const _SEGMENT_SOURCE_TAG = 'seg-source';
 const _TARGET_TAG = 'target';
 const _UNIT_TAG = 'trans-unit';
 const _CONTEXT_GROUP_TAG = 'context-group';
@@ -9903,9 +9898,8 @@ class XliffParser {
                     }
                 }
                 break;
-            // ignore those tags
             case _SOURCE_TAG:
-            case _SEGMENT_SOURCE_TAG:
+                // ignore source message
                 break;
             case _TARGET_TAG:
                 const /** @type {?} */ innerTextStart = /** @type {?} */ ((element.startSourceSpan)).end.offset;
@@ -9977,7 +9971,7 @@ class XmlToI18n {
         this._errors = xmlIcu.errors;
         const /** @type {?} */ i18nNodes = this._errors.length > 0 || xmlIcu.rootNodes.length == 0 ?
             [] :
-            [].concat(...visitAll(this, xmlIcu.rootNodes));
+            visitAll(this, xmlIcu.rootNodes);
         return {
             i18nNodes: i18nNodes,
             errors: this._errors,
@@ -10001,12 +9995,10 @@ class XmlToI18n {
                 return new Placeholder('', nameAttr.value, /** @type {?} */ ((el.sourceSpan)));
             }
             this._addError(el, `<${_PLACEHOLDER_TAG}> misses the "id" attribute`);
-            return null;
         }
-        if (el.name === _MARKER_TAG) {
-            return [].concat(...visitAll(this, el.children));
+        else {
+            this._addError(el, `Unexpected tag`);
         }
-        this._addError(el, `Unexpected tag`);
         return null;
     }
     /**
@@ -10085,7 +10077,6 @@ const _XMLNS$1 = 'urn:oasis:names:tc:xliff:document:2.0';
 const _DEFAULT_SOURCE_LANG$1 = 'en';
 const _PLACEHOLDER_TAG$1 = 'ph';
 const _PLACEHOLDER_SPANNING_TAG = 'pc';
-const _MARKER_TAG$1 = 'mrk';
 const _XLIFF_TAG = 'xliff';
 const _SOURCE_TAG$1 = 'source';
 const _TARGET_TAG$1 = 'target';
@@ -10423,8 +10414,6 @@ class XmlToI18n$1 {
                     return nodes.concat(new Placeholder('', startId, el.sourceSpan), ...el.children.map(node => node.visit(this, null)), new Placeholder('', endId, el.sourceSpan));
                 }
                 break;
-            case _MARKER_TAG$1:
-                return [].concat(...visitAll(this, el.children));
             default:
                 this._addError(el, `Unexpected tag`);
         }
@@ -11113,11 +11102,7 @@ class I18nToHtmlVisitor {
      * @param {?=} context
      * @return {?}
      */
-    visitText(text, context) {
-        // `convert()` uses an `HtmlParser` to return `html.Node`s
-        // we should then make sure that any special characters are escaped
-        return escapeXml(text.value);
-    }
+    visitText(text, context) { return text.value; }
     /**
      * @param {?} container
      * @param {?=} context
@@ -18675,11 +18660,10 @@ class ShadowCss {
      * @return {?}
      */
     shimCssText(cssText, selector, hostSelector = '') {
-        const /** @type {?} */ commentsWithHash = extractCommentsWithHash(cssText);
+        const /** @type {?} */ sourceMappingUrl = extractSourceMappingUrl(cssText);
         cssText = stripComments(cssText);
         cssText = this._insertDirectives(cssText);
-        const /** @type {?} */ scopedCssText = this._scopeCssText(cssText, selector, hostSelector);
-        return [scopedCssText, ...commentsWithHash].join('\n');
+        return this._scopeCssText(cssText, selector, hostSelector) + sourceMappingUrl;
     }
     /**
      * @param {?} cssText
@@ -19052,13 +19036,15 @@ const _commentRe = /\/\*\s*[\s\S]*?\*\//g;
 function stripComments(input) {
     return input.replace(_commentRe, '');
 }
-const _commentWithHashRe = /\/\*\s*#\s*source(Mapping)?URL=[\s\S]+?\*\//g;
+// all comments except inline source mapping
+const _sourceMappingUrlRe = /\/\*\s*#\s*sourceMappingURL=[\s\S]+?\*\//;
 /**
  * @param {?} input
  * @return {?}
  */
-function extractCommentsWithHash(input) {
-    return input.match(_commentWithHashRe) || [];
+function extractSourceMappingUrl(input) {
+    const /** @type {?} */ matcher = input.match(_sourceMappingUrlRe);
+    return matcher ? matcher[0] : '';
 }
 const _ruleRe = /(\s*)([^;\{\}]+?)(\s*)((?:{%BLOCK%}?\s*;?)|(?:\s*;))/g;
 const _curlyRe = /([{}])/g;
@@ -27054,12 +27040,10 @@ function createAotCompiler(compilerHost, options, errorCollector) {
  */
 /**
  * @record
- * @template T
  */
 
 /**
  * @abstract
- * @template T
  */
 class SummaryResolver {
 }
