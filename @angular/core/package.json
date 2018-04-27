@@ -1,28 +1,27 @@
 {
-  "_from": "@angular/core@5.2.9",
-  "_id": "@angular/core@5.2.9",
+  "_from": "@angular/core@5.2.10",
+  "_id": "@angular/core@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-Pa8T75qnVLmVTtIdo+syLosg9mc=",
+  "_integrity": "sha1-puugbK5yZ++9Jmbj+l5CuEwiYd4=",
   "_location": "/@angular/core",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/core@5.2.9",
+    "raw": "@angular/core@5.2.10",
     "name": "@angular/core",
     "escapedName": "@angular%2fcore",
     "scope": "@angular",
-    "rawSpec": "5.2.9",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "5.2.9"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/core/download/@angular/core-5.2.9.tgz",
-  "_shasum": "3daf13ef9aa754b9954ed21da3eb322e8b20f667",
-  "_spec": "@angular/core@5.2.9",
+  "_resolved": "http://registry.npm.taobao.org/@angular/core/download/@angular/core-5.2.10.tgz",
+  "_shasum": "a6eba06cae7267efbd2666e3fa5e42b84c2261de",
+  "_spec": "@angular/core@5.2.10",
   "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
@@ -51,5 +50,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./core.d.ts",
-  "version": "5.2.9"
+  "version": "5.2.10"
 }

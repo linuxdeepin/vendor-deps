@@ -1,28 +1,27 @@
 {
-  "_from": "@angular/animations@5.2.9",
-  "_id": "@angular/animations@5.2.9",
+  "_from": "@angular/animations@5.2.10",
+  "_id": "@angular/animations@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-Ig25+1pSoZPbACPXIbI93SWnV3A=",
+  "_integrity": "sha1-YXGHkuCSKsYi/Xxt+wr7uZZjhpI=",
   "_location": "/@angular/animations",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/animations@5.2.9",
+    "raw": "@angular/animations@5.2.10",
     "name": "@angular/animations",
     "escapedName": "@angular%2fanimations",
     "scope": "@angular",
-    "rawSpec": "5.2.9",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "5.2.9"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/animations/download/@angular/animations-5.2.9.tgz",
-  "_shasum": "220db9fb5a52a193db0023d721b23ddd25a75770",
-  "_spec": "@angular/animations@5.2.9",
+  "_resolved": "http://registry.npm.taobao.org/@angular/animations/download/@angular/animations-5.2.10.tgz",
+  "_shasum": "61718792e0922ac622fd7c6dfb0afbb996638692",
+  "_spec": "@angular/animations@5.2.10",
   "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
@@ -43,12 +42,12 @@
   "module": "./esm5/animations.js",
   "name": "@angular/animations",
   "peerDependencies": {
-    "@angular/core": "5.2.9"
+    "@angular/core": "5.2.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./animations.d.ts",
-  "version": "5.2.9"
+  "version": "5.2.10"
 }

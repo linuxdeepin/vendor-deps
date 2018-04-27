@@ -1,28 +1,27 @@
 {
-  "_from": "@angular/compiler-cli@5.2.9",
-  "_id": "@angular/compiler-cli@5.2.9",
+  "_from": "@angular/compiler-cli@5.2.10",
+  "_id": "@angular/compiler-cli@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-NqBpk31QqKKU7aIztbGyxxE5dR8=",
+  "_integrity": "sha1-fp3q0HMNwg92WOEQpVi1V7YOe+I=",
   "_location": "/@angular/compiler-cli",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/compiler-cli@5.2.9",
+    "raw": "@angular/compiler-cli@5.2.10",
     "name": "@angular/compiler-cli",
     "escapedName": "@angular%2fcompiler-cli",
     "scope": "@angular",
-    "rawSpec": "5.2.9",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "5.2.9"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.9.tgz",
-  "_shasum": "36a069937d50a8a294eda233b5b1b2c71139751f",
-  "_spec": "@angular/compiler-cli@5.2.9",
+  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.10.tgz",
+  "_shasum": "7e9dead0730dc20f7658e110a558b557b60e7be2",
+  "_spec": "@angular/compiler-cli@5.2.10",
   "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "bin": {
     "ngc": "./src/main.js",
@@ -62,12 +61,12 @@
   "name": "@angular/compiler-cli",
   "peerDependencies": {
     "typescript": ">=2.4.2 <2.7",
-    "@angular/compiler": "5.2.9"
+    "@angular/compiler": "5.2.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "index.d.ts",
-  "version": "5.2.9"
+  "version": "5.2.10"
 }
