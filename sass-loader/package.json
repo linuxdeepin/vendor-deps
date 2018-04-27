@@ -1,8 +1,8 @@
 {
   "_from": "sass-loader@^6.0.6",
-  "_id": "sass-loader@6.0.6",
+  "_id": "sass-loader@6.0.7",
   "_inBundle": false,
-  "_integrity": "sha1-6dXmwfFV+qMqSybXqbcQfCJeQPk=",
+  "_integrity": "sha1-3S/bPn7v9KU/NbpqxAhxVIg1PQA=",
   "_location": "/sass-loader",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/sass-loader/download/sass-loader-6.0.6.tgz",
-  "_shasum": "e9d5e6c1f155faa32a4b26d7a9b7107c225e40f9",
+  "_resolved": "http://registry.npm.taobao.org/sass-loader/download/sass-loader-6.0.7.tgz",
+  "_shasum": "dd2fdb3e7eeff4a53f35ba6ac408715488353d00",
   "_spec": "sass-loader@^6.0.6",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/@angular/cli",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
   "author": {
     "name": "J. Tangelder"
   },
@@ -30,10 +30,10 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "async": "^2.1.5",
-    "clone-deep": "^0.3.0",
+    "clone-deep": "^2.0.1",
     "loader-utils": "^1.0.1",
     "lodash.tail": "^4.1.1",
+    "neo-async": "^2.5.0",
     "pify": "^3.0.0"
   },
   "deprecated": false,
@@ -73,11 +73,11 @@
   "name": "sass-loader",
   "peerDependencies": {
     "node-sass": "^4.0.0",
-    "webpack": "^2.0.0 || >= 3.0.0-rc.0 || ^3.0.0"
+    "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/webpack-contrib/sass-loader.git"
+    "url": "git+https://github.com/webpack-contrib/sass-loader.git"
   },
   "scripts": {
     "appveyor:test": "npm test",
@@ -96,5 +96,5 @@
     "travis:lint": "npm run lint",
     "travis:test": "npm run test"
   },
-  "version": "6.0.6"
+  "version": "6.0.7"
 }

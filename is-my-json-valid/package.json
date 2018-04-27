@@ -1,8 +1,8 @@
 {
   "_from": "is-my-json-valid@^2.12.4",
-  "_id": "is-my-json-valid@2.17.1",
+  "_id": "is-my-json-valid@2.17.2",
   "_inBundle": false,
-  "_integrity": "sha1-PamJFKcKIvCoVj7xURokbG/FVHE=",
+  "_integrity": "sha1-ayEDoojpTvPeXPFdKd2F/Et41lw=",
   "_location": "/is-my-json-valid",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "/loggly/har-validator",
     "/node-sass/har-validator"
   ],
-  "_resolved": "http://r.cnpmjs.org/is-my-json-valid/download/is-my-json-valid-2.17.1.tgz",
-  "_shasum": "3da98914a70a22f0a8563ef1511a246c6fc55471",
+  "_resolved": "http://registry.npm.taobao.org/is-my-json-valid/download/is-my-json-valid-2.17.2.tgz",
+  "_shasum": "6b2103a288e94ef3de5cf15d29dd85fc4b78d65c",
   "_spec": "is-my-json-valid@^2.12.4",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/node-sass/node_modules/har-validator",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/loggly/node_modules/har-validator",
   "author": {
     "name": "Mathias Buus"
   },
@@ -33,12 +33,14 @@
   "dependencies": {
     "generate-function": "^2.0.0",
     "generate-object-property": "^1.1.0",
+    "is-my-ip-valid": "^1.0.0",
     "jsonpointer": "^4.0.0",
     "xtend": "^4.0.0"
   },
   "deprecated": false,
   "description": "A JSONSchema validator that uses code generation to be extremely fast",
   "devDependencies": {
+    "safe-regex": "^1.1.0",
     "tape": "^2.13.4"
   },
   "homepage": "https://github.com/mafintosh/is-my-json-valid",
@@ -58,5 +60,5 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "version": "2.17.1"
+  "version": "2.17.2"
 }

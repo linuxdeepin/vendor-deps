@@ -10,6 +10,7 @@ import { logging } from '@angular-devkit/core';
 import { Observable } from 'rxjs/Observable';
 import { Url } from 'url';
 import { FileEntry, MergeStrategy, Tree } from '../tree/interface';
+import { TaskConfigurationGenerator, TaskExecutor, TaskId } from './task';
 /**
  * The description (metadata) of a collection. This type contains every information the engine
  * needs to run. The CollectionMetadataT type parameter contains additional metadata that you
@@ -17,6 +18,7 @@ import { FileEntry, MergeStrategy, Tree } from '../tree/interface';
  */
 export declare type CollectionDescription<CollectionMetadataT extends object> = CollectionMetadataT & {
     readonly name: string;
+    readonly extends?: string[];
 };
 /**
  * The description (metadata) of a schematic. This type contains every information the engine
@@ -39,10 +41,12 @@ export interface EngineHost<CollectionMetadataT extends object, SchematicMetadat
      */
     listSchematics(collection: Collection<CollectionMetadataT, SchematicMetadataT>): string[];
     listSchematicNames(collection: CollectionDescription<CollectionMetadataT>): string[];
-    createSchematicDescription(name: string, collection: CollectionDescription<CollectionMetadataT>): SchematicDescription<CollectionMetadataT, SchematicMetadataT>;
+    createSchematicDescription(name: string, collection: CollectionDescription<CollectionMetadataT>): SchematicDescription<CollectionMetadataT, SchematicMetadataT> | null;
     getSchematicRuleFactory<OptionT extends object>(schematic: SchematicDescription<CollectionMetadataT, SchematicMetadataT>, collection: CollectionDescription<CollectionMetadataT>): RuleFactory<OptionT>;
     createSourceFromUrl(url: Url, context: TypedSchematicContext<CollectionMetadataT, SchematicMetadataT>): Source | null;
     transformOptions<OptionT extends object, ResultT extends object>(schematic: SchematicDescription<CollectionMetadataT, SchematicMetadataT>, options: OptionT): Observable<ResultT>;
+    createTaskExecutor(name: string): Observable<TaskExecutor>;
+    hasTaskExecutor(name: string): boolean;
     readonly defaultMergeStrategy?: MergeStrategy;
 }
 /**
@@ -61,6 +65,7 @@ export interface Engine<CollectionMetadataT extends object, SchematicMetadataT e
     createSchematic(name: string, collection: Collection<CollectionMetadataT, SchematicMetadataT>): Schematic<CollectionMetadataT, SchematicMetadataT>;
     createSourceFromUrl(url: Url, context: TypedSchematicContext<CollectionMetadataT, SchematicMetadataT>): Source;
     transformOptions<OptionT extends object, ResultT extends object>(schematic: Schematic<CollectionMetadataT, SchematicMetadataT>, options: OptionT): Observable<ResultT>;
+    executePostTasks(): Observable<void>;
     readonly defaultMergeStrategy: MergeStrategy;
 }
 /**
@@ -69,6 +74,7 @@ export interface Engine<CollectionMetadataT extends object, SchematicMetadataT e
  */
 export interface Collection<CollectionMetadataT extends object, SchematicMetadataT extends object> {
     readonly description: CollectionDescription<CollectionMetadataT>;
+    readonly baseDescriptions?: Array<CollectionDescription<CollectionMetadataT>>;
     createSchematic(name: string): Schematic<CollectionMetadataT, SchematicMetadataT>;
     listSchematicNames(): string[];
 }
@@ -91,6 +97,7 @@ export interface TypedSchematicContext<CollectionMetadataT extends object, Schem
     readonly logger: logging.LoggerApi;
     readonly schematic: Schematic<CollectionMetadataT, SchematicMetadataT>;
     readonly strategy: MergeStrategy;
+    addTask<T>(task: TaskConfigurationGenerator<T>, dependencies?: Array<TaskId>): TaskId;
 }
 /**
  * This is used by the Schematics implementations in order to avoid needing to have typing from

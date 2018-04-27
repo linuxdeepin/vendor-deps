@@ -1,28 +1,28 @@
 {
-  "_from": "@angular-devkit/schematics@~0.0.51",
-  "_id": "@angular-devkit/schematics@0.0.51",
+  "_from": "@angular-devkit/schematics@0.3.2",
+  "_id": "@angular-devkit/schematics@0.3.2",
   "_inBundle": false,
-  "_integrity": "sha1-W15bFgSjTiAPt0nRB2BkN091cnY=",
+  "_integrity": "sha1-CaImj61h9PlW9C24eRO4dIxRKng=",
   "_location": "/@angular-devkit/schematics",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular-devkit/schematics@~0.0.51",
+    "raw": "@angular-devkit/schematics@0.3.2",
     "name": "@angular-devkit/schematics",
     "escapedName": "@angular-devkit%2fschematics",
     "scope": "@angular-devkit",
-    "rawSpec": "~0.0.51",
+    "rawSpec": "0.3.2",
     "saveSpec": null,
-    "fetchSpec": "~0.0.51"
+    "fetchSpec": "0.3.2"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.0.51.tgz",
-  "_shasum": "5b5e5b1604a34e200fb749d1076064374f757276",
-  "_spec": "@angular-devkit/schematics@~0.0.51",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/@angular/cli",
+  "_resolved": "http://registry.npm.taobao.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.3.2.tgz",
+  "_shasum": "09a2268fad61f4f956f42db87913b8748c512a78",
+  "_spec": "@angular-devkit/schematics@0.3.2",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
   "author": {
     "name": "Angular Authors"
   },
@@ -57,12 +57,12 @@
   "main": "src/index.js",
   "name": "@angular-devkit/schematics",
   "peerDependencies": {
-    "@angular-devkit/core": "0.0.28"
+    "@angular-devkit/core": "0.3.2"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/devkit.git"
   },
   "typings": "src/index.d.ts",
-  "version": "0.0.51"
+  "version": "0.3.2"
 }

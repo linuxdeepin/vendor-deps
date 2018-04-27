@@ -39,7 +39,7 @@ const SyntaxError = require('./Error')
  *
  * @return {cb} cb      Result
  */
-module.exports = function loader (css, map) {
+module.exports = function loader (css, map, meta) {
   const options = Object.assign({}, loaderUtils.getOptions(this))
 
   validateOptions(require('./options.json'), options, 'PostCSS Loader')
@@ -90,6 +90,8 @@ module.exports = function loader (css, map) {
       }
     }
 
+    rc.ctx.webpack = this;
+
     return postcssrc(rc.ctx, rc.path, { argv: false })
   }).then((config) => {
     if (!config) config = {}
@@ -103,7 +105,6 @@ module.exports = function loader (css, map) {
 
     let plugins = config.plugins || []
     let options = Object.assign({
-      to: file,
       from: file,
       map: sourceMap
         ? sourceMap === 'inline'
@@ -160,6 +161,11 @@ module.exports = function loader (css, map) {
           map.sources = map.sources.map((src) => path.resolve(src))
         }
 
+        if (!meta) meta = {}
+
+        meta.ast = { 'type': 'postcss', root: result.root }
+        meta.messages = result.messages
+
         if (this.loaderIndex === 0) {
           /**
            * @memberof loader
@@ -173,6 +179,7 @@ module.exports = function loader (css, map) {
 
           return null
         }
+
         /**
          * @memberof loader
          * @callback cb
@@ -181,11 +188,13 @@ module.exports = function loader (css, map) {
          * @param {String} css  Result (Raw Module)
          * @param {Object} map  Source Map
          */
-        cb(null, css, map)
+        cb(null, css, map, meta)
 
         return null
       })
   }).catch((err) => {
+    if (err.file) this.addDependency(err.file)
+
     return err.name === 'CssSyntaxError' ? cb(new SyntaxError(err)) : cb(err)
   })
 }

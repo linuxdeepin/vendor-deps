@@ -61,8 +61,8 @@ export declare class OwlDateTimeComponent<T> extends OwlDateTime<T> implements O
     registerInput(input: OwlDateTimeInputDirective<T>): void;
     open(): void;
     select(date: T[] | T): void;
+    close(event?: any): void;
     private confirmSelect(event?);
-    private hidePicker(event?);
     private openAsDialog();
     private openAsPopup();
     private createPopup();

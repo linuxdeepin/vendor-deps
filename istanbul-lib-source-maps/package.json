@@ -1,35 +1,29 @@
 {
-  "_args": [
-    [
-      "istanbul-lib-source-maps@1.2.2",
-      "/home/liulang/dev/deepin/dstore-operation-server/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "istanbul-lib-source-maps@1.2.2",
-  "_id": "istanbul-lib-source-maps@1.2.2",
+  "_from": "istanbul-lib-source-maps@^1.2.4",
+  "_id": "istanbul-lib-source-maps@1.2.4",
   "_inBundle": false,
-  "_integrity": "sha1-dQV4YCQ18ooMBO5tfZ4PKWDmLBw=",
+  "_integrity": "sha1-zHzK1hYp9O//ji94rbjFIsmXbsc=",
   "_location": "/istanbul-lib-source-maps",
   "_phantomChildren": {
     "ms": "2.0.0"
   },
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "istanbul-lib-source-maps@1.2.2",
+    "raw": "istanbul-lib-source-maps@^1.2.4",
     "name": "istanbul-lib-source-maps",
     "escapedName": "istanbul-lib-source-maps",
-    "rawSpec": "1.2.2",
+    "rawSpec": "^1.2.4",
     "saveSpec": null,
-    "fetchSpec": "1.2.2"
+    "fetchSpec": "^1.2.4"
   },
   "_requiredBy": [
     "/istanbul-api"
   ],
-  "_resolved": "http://r.cnpmjs.org/istanbul-lib-source-maps/download/istanbul-lib-source-maps-1.2.2.tgz",
-  "_spec": "1.2.2",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
+  "_resolved": "http://registry.npm.taobao.org/istanbul-lib-source-maps/download/istanbul-lib-source-maps-1.2.4.tgz",
+  "_shasum": "cc7ccad61629f4efff8e2f78adb8c522c9976ec7",
+  "_spec": "istanbul-lib-source-maps@^1.2.4",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/istanbul-api",
   "author": {
     "name": "Krishnan Anantheswaran",
     "email": "kananthmail-github@yahoo.com"
@@ -37,13 +31,15 @@
   "bugs": {
     "url": "https://github.com/istanbuljs/istanbuljs/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "debug": "^3.1.0",
-    "istanbul-lib-coverage": "^1.1.1",
+    "istanbul-lib-coverage": "^1.2.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.1",
     "source-map": "^0.5.3"
   },
+  "deprecated": false,
   "description": "Source maps support for istanbul",
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -76,5 +72,5 @@
     "pretest": "jshint index.js lib/ test/",
     "test": "mocha"
   },
-  "version": "1.2.2"
+  "version": "1.2.4"
 }

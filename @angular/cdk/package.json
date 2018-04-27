@@ -1,8 +1,8 @@
 {
   "_from": "@angular/cdk@^5.2.0",
-  "_id": "@angular/cdk@5.2.4",
+  "_id": "@angular/cdk@5.2.5",
   "_inBundle": false,
-  "_integrity": "sha1-wKQpqHENj+2xV/VG4hy0nUM19/c=",
+  "_integrity": "sha1-yuKxLhmQppLdJnpz/bHUnbN/lgQ=",
   "_location": "/@angular/cdk",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
   "_requiredBy": [
     "/ng-pick-datetime"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/cdk/download/@angular/cdk-5.2.4.tgz",
-  "_shasum": "c0a429a8710d8fedb157f546e21cb49d4335f7f7",
+  "_resolved": "http://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-5.2.5.tgz",
+  "_shasum": "cae2b12e1990a692dd267a73fdb1d49db37f9604",
   "_spec": "@angular/cdk@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web/node_modules/ng-pick-datetime",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/ng-pick-datetime",
   "bugs": {
     "url": "https://github.com/angular/material2/issues"
   },
@@ -46,13 +46,13 @@
   "module": "./esm5/cdk.es5.js",
   "name": "@angular/cdk",
   "peerDependencies": {
-    "@angular/core": "^5.0.0",
-    "@angular/common": "^5.0.0"
+    "@angular/core": ">=5.0.0 <7.0.0",
+    "@angular/common": ">=5.0.0 <7.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/material2.git"
   },
   "typings": "./cdk.d.ts",
-  "version": "5.2.4"
+  "version": "5.2.5"
 }

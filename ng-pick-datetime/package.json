@@ -1,28 +1,28 @@
 {
-  "_from": "ng-pick-datetime",
-  "_id": "ng-pick-datetime@5.2.3",
+  "_from": "ng-pick-datetime@5.2.6",
+  "_id": "ng-pick-datetime@5.2.6",
   "_inBundle": false,
-  "_integrity": "sha1-x5c/nqeMV3ZM3r3VFylaCFfccsk=",
+  "_integrity": "sha1-pR80Q+79WUSuQcVW2B+tDBQaQSs=",
   "_location": "/ng-pick-datetime",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "ng-pick-datetime",
+    "raw": "ng-pick-datetime@5.2.6",
     "name": "ng-pick-datetime",
     "escapedName": "ng-pick-datetime",
-    "rawSpec": "",
+    "rawSpec": "5.2.6",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "5.2.6"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/ng-pick-datetime/download/ng-pick-datetime-5.2.3.tgz",
-  "_shasum": "c7973f9ea78c57764cdebdd517295a0857dc72c9",
-  "_spec": "ng-pick-datetime",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
+  "_resolved": "http://registry.npm.taobao.org/ng-pick-datetime/download/ng-pick-datetime-5.2.6.tgz",
+  "_shasum": "a51f3443eefd5944ae41c556d81fad0c141a412b",
+  "_spec": "ng-pick-datetime@5.2.6",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
   "author": {
     "name": "daniel pan",
     "email": "myron.yk.pan@gmail.com"
@@ -55,5 +55,5 @@
     "url": "git+https://github.com/DanielYKPan/date-time-picker.git"
   },
   "types": "picker.d.ts",
-  "version": "5.2.3"
+  "version": "5.2.6"
 }

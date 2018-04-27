@@ -251,7 +251,7 @@ var OwlDateTimeComponent = (function (_super) {
         this.pickerContainer.picker = this;
         this.hidePickerStreamSub = this.pickerContainer.hidePickerStream
             .subscribe(function () {
-            _this.hidePicker();
+            _this.close();
         });
         this.confirmSelectedStreamSub = this.pickerContainer.confirmSelectedStream
             .subscribe(function (event) {
@@ -272,18 +272,7 @@ var OwlDateTimeComponent = (function (_super) {
             this.confirmSelect();
         }
     };
-    OwlDateTimeComponent.prototype.confirmSelect = function (event) {
-        if (this.isInSingleMode) {
-            var selected = this.selected || this.startAt || this.dateTimeAdapter.now();
-            this.confirmSelectedChange.emit(selected);
-        }
-        else if (this.isInRangeMode) {
-            this.confirmSelectedChange.emit(this.selecteds);
-        }
-        this.hidePicker(event);
-        return;
-    };
-    OwlDateTimeComponent.prototype.hidePicker = function (event) {
+    OwlDateTimeComponent.prototype.close = function (event) {
         if (!this.opened) {
             return;
         }
@@ -293,6 +282,17 @@ var OwlDateTimeComponent = (function (_super) {
         if (this.popupRef) {
             this.pickerContainer.hidePickerViaAnimation();
         }
+    };
+    OwlDateTimeComponent.prototype.confirmSelect = function (event) {
+        if (this.isInSingleMode) {
+            var selected = this.selected || this.startAt || this.dateTimeAdapter.now();
+            this.confirmSelectedChange.emit(selected);
+        }
+        else if (this.isInRangeMode) {
+            this.confirmSelectedChange.emit(this.selecteds);
+        }
+        this.close(event);
+        return;
     };
     OwlDateTimeComponent.prototype.openAsDialog = function () {
         var _this = this;
@@ -321,7 +321,7 @@ var OwlDateTimeComponent = (function (_super) {
                 _this.popupRef.updatePosition();
             });
         }
-        merge(this.popupRef.backdropClick(), this.popupRef.detachments(), this.popupRef.keydownEvents().pipe(filter(function (event) { return event.keyCode === ESCAPE; }))).subscribe(function () { return _this.hidePicker(); });
+        merge(this.popupRef.backdropClick(), this.popupRef.detachments(), this.popupRef.keydownEvents().pipe(filter(function (event) { return event.keyCode === ESCAPE; }))).subscribe(function () { return _this.close(); });
         this.pickerContainer.animationStateChanged.subscribe(function (event) {
             if (event.phaseName === 'done' && event.toState === 'visible') {
                 _this.afterPickerOpen.emit(null);

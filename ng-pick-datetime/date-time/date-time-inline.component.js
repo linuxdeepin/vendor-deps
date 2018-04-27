@@ -76,7 +76,22 @@ var OwlDateTimeInlineComponent = (function (_super) {
     });
     Object.defineProperty(OwlDateTimeInlineComponent.prototype, "startAt", {
         get: function () {
-            return this._startAt;
+            if (this._startAt) {
+                return this._startAt;
+            }
+            if (this.selectMode === 'single') {
+                return this.value || null;
+            }
+            else if (this.selectMode === 'range' ||
+                this.selectMode === 'rangeFrom') {
+                return this.values[0] || null;
+            }
+            else if (this.selectMode === 'rangeTo') {
+                return this.values[1] || null;
+            }
+            else {
+                return null;
+            }
         },
         set: function (date) {
             this._startAt = this.getValidDate(this.dateTimeAdapter.deserialize(date));
@@ -144,8 +159,12 @@ var OwlDateTimeInlineComponent = (function (_super) {
                 });
                 this._values = values.slice();
                 this.selecteds = values.slice();
-                this.container.pickerMoment = values[this.container.activeSelectedIndex];
             }
+            else {
+                this._values = [];
+                this.selecteds = [];
+            }
+            this.container.pickerMoment = this._values[this.container.activeSelectedIndex];
         },
         enumerable: true,
         configurable: true

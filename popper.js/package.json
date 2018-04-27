@@ -1,32 +1,28 @@
 {
-  "_args": [
-    [
-      "popper.js@1.12.9",
-      "/home/liulang/dev/deepin/dstore-operation-server/web"
-    ]
-  ],
-  "_from": "popper.js@1.12.9",
-  "_id": "popper.js@1.12.9",
+  "_from": "popper.js@1.14.3",
+  "_id": "popper.js@1.14.3",
   "_inBundle": false,
-  "_integrity": "sha1-DfvC3/lsRRuzMu3Pz6r1ZtMx1bM=",
+  "_integrity": "sha1-FDj5jQRqz3tNeM1QK/QYrGTU8JU=",
   "_location": "/popper.js",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "popper.js@1.12.9",
+    "raw": "popper.js@1.14.3",
     "name": "popper.js",
     "escapedName": "popper.js",
-    "rawSpec": "1.12.9",
+    "rawSpec": "1.14.3",
     "saveSpec": null,
-    "fetchSpec": "1.12.9"
+    "fetchSpec": "1.14.3"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.12.9.tgz",
-  "_spec": "1.12.9",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/web",
+  "_resolved": "http://registry.npm.taobao.org/popper.js/download/popper.js-1.14.3.tgz",
+  "_shasum": "1438f98d046acf7b4d78cd502bf418ac64d4f095",
+  "_spec": "popper.js@1.14.3",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
   "author": {
     "name": "Federico Zivolo",
     "email": "federico.zivolo@gmail.com"
@@ -34,12 +30,14 @@
   "bugs": {
     "url": "https://github.com/FezVrasta/popper.js/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Contributors",
       "url": "https://github.com/FezVrasta/popper.js/graphs/contributors"
     }
   ],
+  "deprecated": false,
   "description": "A kickass library to manage your poppers",
   "devDependencies": {
     "@popperjs/bundle": "^1.0.2",
@@ -47,7 +45,8 @@
     "@popperjs/test": "^1.0.0",
     "@popperjs/test-utils": "^1.0.0",
     "eslint": "^4.1.1",
-    "nuget-publish": "^1.0.3"
+    "nuget-publish": "^1.0.3",
+    "typescript": "^2.7.1"
   },
   "homepage": "https://popper.js.org",
   "keywords": [
@@ -75,6 +74,7 @@
     "coverage": "COVERAGE=true yarn test",
     "lint": "eslint .",
     "postpublish": "nuget-publish && ./bower-publish.sh",
+    "posttest": "tsc --project tests/types/tsconfig.json",
     "prebuild": "yarn lint",
     "prepare": "yarn build",
     "pretest": "yarn lint",
@@ -82,5 +82,5 @@
     "test:dev": "BROWSERS=Chrome NODE_ENV=development yarn test"
   },
   "types": "index.d.ts",
-  "version": "1.12.9"
+  "version": "1.14.3"
 }
