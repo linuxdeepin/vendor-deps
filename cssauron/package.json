@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/codelyzer"
   ],
-  "_resolved": "http://r.cnpmjs.org/cssauron/download/cssauron-1.4.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/cssauron/download/cssauron-1.4.0.tgz",
   "_shasum": "a6602dff7e04a8306dc0db9a551e92e8b5662ad8",
   "_spec": "cssauron@^1.4.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/codelyzer",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/codelyzer",
   "author": {
     "name": "Chris Dickinson",
     "email": "chris@neversaw.us"

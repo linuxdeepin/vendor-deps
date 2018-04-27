@@ -1,28 +1,28 @@
 {
-  "_from": "@schematics/angular@~0.1.16",
-  "_id": "@schematics/angular@0.1.16",
+  "_from": "@schematics/angular@0.3.2",
+  "_id": "@schematics/angular@0.3.2",
   "_inBundle": false,
-  "_integrity": "sha1-F0q5lP1WxCNnQXGuWiJAe6PuISM=",
+  "_integrity": "sha1-viCaAyo+RXeZLZT7qhS9S/3kheI=",
   "_location": "/@schematics/angular",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@schematics/angular@~0.1.16",
+    "raw": "@schematics/angular@0.3.2",
     "name": "@schematics/angular",
     "escapedName": "@schematics%2fangular",
     "scope": "@schematics",
-    "rawSpec": "~0.1.16",
+    "rawSpec": "0.3.2",
     "saveSpec": null,
-    "fetchSpec": "~0.1.16"
+    "fetchSpec": "0.3.2"
   },
   "_requiredBy": [
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/@schematics/angular/download/@schematics/angular-0.1.16.tgz",
-  "_shasum": "174ab994fd56c423674171ae5a22407ba3ee2123",
-  "_spec": "@schematics/angular@~0.1.16",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/@angular/cli",
+  "_resolved": "http://registry.npm.taobao.org/@schematics/angular/download/@schematics/angular-0.3.2.tgz",
+  "_shasum": "be209a032a3e4577992d94fbaa14bd4bfde485e2",
+  "_spec": "@schematics/angular@0.3.2",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/@angular/cli",
   "author": {
     "name": "Angular Authors"
   },
@@ -52,13 +52,13 @@
   "license": "MIT",
   "name": "@schematics/angular",
   "peerDependencies": {
-    "@angular-devkit/core": "0.0.28",
-    "@angular-devkit/schematics": "0.0.51"
+    "@angular-devkit/core": "0.3.2",
+    "@angular-devkit/schematics": "0.3.2"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/devkit.git"
   },
   "schematics": "./collection.json",
-  "version": "0.1.16"
+  "version": "0.3.2"
 }

@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/codelyzer"
   ],
-  "_resolved": "http://r.cnpmjs.org/app-root-path/download/app-root-path-2.0.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/app-root-path/download/app-root-path-2.0.1.tgz",
   "_shasum": "cd62dcf8e4fd5a417efc664d2e5b10653c651b46",
   "_spec": "app-root-path@^2.0.1",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/codelyzer",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/codelyzer",
   "author": {
     "name": "Chris Morrell",
     "email": "http://cmorrell.com"

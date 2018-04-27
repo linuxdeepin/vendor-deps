@@ -1,8 +1,8 @@
 {
   "_from": "regex-not@^1.0.0",
-  "_id": "regex-not@1.0.0",
+  "_id": "regex-not@1.0.2",
   "_inBundle": false,
-  "_integrity": "sha1-Qvg+OXcWIt+CawKvF2Ul1qXxV/k=",
+  "_integrity": "sha1-H07OJ+ALC2XgJHpoEOaoXYOldSw=",
   "_location": "/regex-not",
   "_phantomChildren": {},
   "_requested": {
@@ -18,14 +18,17 @@
   "_requiredBy": [
     "/nanomatch",
     "/to-regex",
+    "/watchpack/expand-brackets",
+    "/watchpack/extglob",
+    "/watchpack/micromatch",
     "/webpack-dev-server/expand-brackets",
     "/webpack-dev-server/extglob",
     "/webpack-dev-server/micromatch"
   ],
-  "_resolved": "http://r.cnpmjs.org/regex-not/download/regex-not-1.0.0.tgz",
-  "_shasum": "42f83e39771622df826b02af176525d6a5f157f9",
+  "_resolved": "http://registry.npm.taobao.org/regex-not/download/regex-not-1.0.2.tgz",
+  "_shasum": "1f4ece27e00b0b65e0247a6810e6a85d83a5752c",
   "_spec": "regex-not@^1.0.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/webpack-dev-server/node_modules/micromatch",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/watchpack/node_modules/micromatch",
   "author": {
     "name": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert"
@@ -35,13 +38,14 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "extend-shallow": "^2.0.1"
+    "extend-shallow": "^3.0.2",
+    "safe-regex": "^1.1.0"
   },
   "deprecated": false,
   "description": "Create a javascript regular expression for matching everything except for the given string.",
   "devDependencies": {
-    "gulp-format-md": "^0.1.10",
-    "mocha": "^3.0.2"
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.3"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -93,5 +97,5 @@
       "reflinks": true
     }
   },
-  "version": "1.0.0"
+  "version": "1.0.2"
 }

@@ -1,28 +1,36 @@
 {
-  "_from": "@angular/compiler-cli@^5.2.0",
-  "_id": "@angular/compiler-cli@5.2.1",
+  "_args": [
+    [
+      "@angular/compiler-cli@5.2.10",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "@angular/compiler-cli@5.2.10",
+  "_id": "@angular/compiler-cli@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-nuNDHZN3Z6T0rkAfFytQe122RW4=",
+  "_integrity": "sha1-fp3q0HMNwg92WOEQpVi1V7YOe+I=",
   "_location": "/@angular/compiler-cli",
-  "_phantomChildren": {},
+  "_phantomChildren": {
+    "mkdirp": "0.5.1"
+  },
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/compiler-cli@^5.2.0",
+    "raw": "@angular/compiler-cli@5.2.10",
     "name": "@angular/compiler-cli",
     "escapedName": "@angular%2fcompiler-cli",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.1.tgz",
-  "_shasum": "9ee3431d937767a4f4ae401f172b507b5db6456e",
-  "_spec": "@angular/compiler-cli@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.10.tgz",
+  "_spec": "5.2.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "bin": {
     "ngc": "./src/main.js",
     "ng-xi18n": "./src/extract_i18n.js"
@@ -30,7 +38,6 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Tobias Bosch",
@@ -47,9 +54,8 @@
     "chokidar": "^1.4.2",
     "minimist": "^1.2.0",
     "reflect-metadata": "^0.1.2",
-    "tsickle": "^0.26.0"
+    "tsickle": "^0.27.2"
   },
-  "deprecated": false,
   "description": "Angular - the compiler CLI for Node.js",
   "homepage": "https://github.com/angular/angular/tree/master/packages/compiler-cli",
   "keywords": [
@@ -61,12 +67,12 @@
   "name": "@angular/compiler-cli",
   "peerDependencies": {
     "typescript": ">=2.4.2 <2.7",
-    "@angular/compiler": "5.2.1"
+    "@angular/compiler": "5.2.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "index.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.10"
 }

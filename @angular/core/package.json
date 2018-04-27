@@ -1,39 +1,42 @@
 {
-  "_from": "@angular/core@^5.2.0",
-  "_id": "@angular/core@5.2.1",
+  "_args": [
+    [
+      "@angular/core@5.2.10",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_from": "@angular/core@5.2.10",
+  "_id": "@angular/core@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-RzR+QJiw6ZciDXdlL02cpE3aiSM=",
+  "_integrity": "sha1-puugbK5yZ++9Jmbj+l5CuEwiYd4=",
   "_location": "/@angular/core",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/core@^5.2.0",
+    "raw": "@angular/core@5.2.10",
     "name": "@angular/core",
     "escapedName": "@angular%2fcore",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/core/download/@angular/core-5.2.1.tgz",
-  "_shasum": "47347e4098b0e997220d77652f4d9ca44dda8923",
-  "_spec": "@angular/core@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/core/download/@angular/core-5.2.10.tgz",
+  "_spec": "5.2.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
   },
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "tslib": "^1.7.1"
   },
-  "deprecated": false,
   "description": "Angular - the core framework",
   "es2015": "./esm2015/core.js",
   "homepage": "https://github.com/angular/angular#readme",
@@ -50,5 +53,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./core.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.10"
 }

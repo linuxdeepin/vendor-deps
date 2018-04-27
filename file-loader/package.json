@@ -1,8 +1,8 @@
 {
   "_from": "file-loader@^1.1.5",
-  "_id": "file-loader@1.1.6",
+  "_id": "file-loader@1.1.11",
   "_inBundle": false,
-  "_integrity": "sha1-e5qPLFjwCnf930npQPesl4o+oOg=",
+  "_integrity": "sha1-b+iGRJsPKpNuQ8q6rAzb+zaVBvg=",
   "_location": "/file-loader",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/file-loader/download/file-loader-1.1.6.tgz",
-  "_shasum": "7b9a8f2c58f00a77fddf49e940f7ac978a3ea0e8",
+  "_resolved": "http://registry.npm.taobao.org/file-loader/download/file-loader-1.1.11.tgz",
+  "_shasum": "6fe886449b0f2a936e43cabaac0cdbfb369506f8",
   "_spec": "file-loader@^1.1.5",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/@angular/cli",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/@angular/cli",
   "author": {
     "name": "Tobias Koppers @sokra"
   },
@@ -31,7 +31,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "loader-utils": "^1.0.2",
-    "schema-utils": "^0.3.0"
+    "schema-utils": "^0.4.5"
   },
   "deprecated": false,
   "description": "file loader module for webpack",
@@ -73,7 +73,7 @@
   "main": "dist/cjs.js",
   "name": "file-loader",
   "peerDependencies": {
-    "webpack": "^2.0.0 || ^3.0.0"
+    "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "pre-commit": "lint-staged",
   "repository": {
@@ -87,7 +87,7 @@
     "lint": "eslint --cache src test",
     "lint-staged": "lint-staged",
     "prebuild": "npm run clean",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "release": "standard-version",
     "security": "nsp check",
     "start": "npm run build -- -w",
@@ -99,5 +99,5 @@
     "travis:test": "npm run test -- --runInBand",
     "webpack-defaults": "webpack-defaults"
   },
-  "version": "1.1.6"
+  "version": "1.1.11"
 }

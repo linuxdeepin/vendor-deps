@@ -1,39 +1,42 @@
 {
-  "_from": "@angular/forms@^5.2.0",
-  "_id": "@angular/forms@5.2.1",
+  "_args": [
+    [
+      "@angular/forms@5.2.10",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_from": "@angular/forms@5.2.10",
+  "_id": "@angular/forms@5.2.10",
   "_inBundle": false,
-  "_integrity": "sha1-Uw8SSbxx2VYCl75kLVWlpsQ52SA=",
+  "_integrity": "sha1-akz5yHtXAFWZwOxZp5t/GwY3VZE=",
   "_location": "/@angular/forms",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@angular/forms@^5.2.0",
+    "raw": "@angular/forms@5.2.10",
     "name": "@angular/forms",
     "escapedName": "@angular%2fforms",
     "scope": "@angular",
-    "rawSpec": "^5.2.0",
+    "rawSpec": "5.2.10",
     "saveSpec": null,
-    "fetchSpec": "^5.2.0"
+    "fetchSpec": "5.2.10"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://r.cnpmjs.org/@angular/forms/download/@angular/forms-5.2.1.tgz",
-  "_shasum": "530f1249bc71d9560297be642d55a5a6c439d920",
-  "_spec": "@angular/forms@^5.2.0",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web",
+  "_resolved": "http://registry.npm.taobao.org/@angular/forms/download/@angular/forms-5.2.10.tgz",
+  "_spec": "5.2.10",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
   },
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "tslib": "^1.7.1"
   },
-  "deprecated": false,
   "description": "Angular - directives and services for creating forms",
   "es2015": "./esm2015/forms.js",
   "homepage": "https://github.com/angular/angular#readme",
@@ -43,14 +46,14 @@
   "name": "@angular/forms",
   "peerDependencies": {
     "rxjs": "^5.5.0",
-    "@angular/core": "5.2.1",
-    "@angular/common": "5.2.1",
-    "@angular/platform-browser": "5.2.1"
+    "@angular/core": "5.2.10",
+    "@angular/common": "5.2.10",
+    "@angular/platform-browser": "5.2.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./forms.d.ts",
-  "version": "5.2.1"
+  "version": "5.2.10"
 }

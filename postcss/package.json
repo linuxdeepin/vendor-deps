@@ -1,13 +1,12 @@
 {
   "_from": "postcss@^6.0.16",
-  "_id": "postcss@6.0.16",
+  "_id": "postcss@6.0.21",
   "_inBundle": false,
-  "_integrity": "sha1-ES4v4qbSEJvglXaHJDFw6lWJ4UY=",
+  "_integrity": "sha1-gmVmJpTt356aWWDbbaM8OeTNBp0=",
   "_location": "/postcss",
   "_phantomChildren": {
-    "ansi-styles": "3.2.0",
-    "escape-string-regexp": "1.0.5",
-    "has-flag": "2.0.0"
+    "color-convert": "1.9.1",
+    "escape-string-regexp": "1.0.5"
   },
   "_requested": {
     "type": "range",
@@ -20,20 +19,16 @@
     "fetchSpec": "^6.0.16"
   },
   "_requiredBy": [
+    "/@angular/cli",
     "/autoprefixer",
-    "/icss-utils",
     "/postcss-import",
     "/postcss-loader",
-    "/postcss-modules-extract-imports",
-    "/postcss-modules-local-by-default",
-    "/postcss-modules-scope",
-    "/postcss-modules-values",
     "/postcss-url"
   ],
-  "_resolved": "http://r.cnpmjs.org/postcss/download/postcss-6.0.16.tgz",
-  "_shasum": "112e2fe2a6d2109be0957687243170ea5589e146",
+  "_resolved": "http://registry.npm.taobao.org/postcss/download/postcss-6.0.21.tgz",
+  "_shasum": "8265662694eddf9e9a5960db6da33c39e4cd069d",
   "_spec": "postcss@^6.0.16",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/autoprefixer",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/@angular/cli",
   "author": {
     "name": "Andrey Sitnik",
     "email": "andrey@sitnik.ru"
@@ -48,9 +43,9 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.3.2",
     "source-map": "^0.6.1",
-    "supports-color": "^5.1.0"
+    "supports-color": "^5.3.0"
   },
   "deprecated": false,
   "description": "Tool for transforming styles with JS plugins",
@@ -77,5 +72,5 @@
     "url": "git+https://github.com/postcss/postcss.git"
   },
   "types": "lib/postcss.d.ts",
-  "version": "6.0.16"
+  "version": "6.0.21"
 }
