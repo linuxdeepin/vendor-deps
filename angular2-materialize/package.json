@@ -1,27 +1,31 @@
 {
-  "_from": "angular2-materialize@^15.1.10",
+  "_args": [
+    [
+      "angular2-materialize@15.1.10",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_from": "angular2-materialize@15.1.10",
   "_id": "angular2-materialize@15.1.10",
   "_inBundle": false,
   "_integrity": "sha1-d17LSgs5tXieOkAOYMZ7xIyFNN8=",
   "_location": "/angular2-materialize",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "angular2-materialize@^15.1.10",
+    "raw": "angular2-materialize@15.1.10",
     "name": "angular2-materialize",
     "escapedName": "angular2-materialize",
-    "rawSpec": "^15.1.10",
+    "rawSpec": "15.1.10",
     "saveSpec": null,
-    "fetchSpec": "^15.1.10"
+    "fetchSpec": "15.1.10"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "http://registry.npm.taobao.org/angular2-materialize/download/angular2-materialize-15.1.10.tgz",
-  "_shasum": "775ecb4a0b39b5789e3a400e60c67bc48c8534df",
-  "_spec": "angular2-materialize@^15.1.10",
+  "_spec": "15.1.10",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Ruby Boyarski",
@@ -30,7 +34,6 @@
   "bugs": {
     "url": "https://github.com/InfomediaLtd/angular2-materialize/issues"
   },
-  "bundleDependencies": false,
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
@@ -39,7 +42,6 @@
       "pre-commit": "npm run build"
     }
   },
-  "deprecated": false,
   "description": "Angular 2 support for Materialize CSS framework",
   "devDependencies": {
     "@angular/common": "^4.0.2",

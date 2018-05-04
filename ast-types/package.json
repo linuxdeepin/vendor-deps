@@ -1,27 +1,34 @@
 {
-  "_from": "ast-types@0.x.x",
+  "_args": [
+    [
+      "ast-types@0.11.3",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "ast-types@0.11.3",
   "_id": "ast-types@0.11.3",
   "_inBundle": false,
   "_integrity": "sha1-wgdX/nLucSeOoP89h+XCyjDZ7fg=",
   "_location": "/ast-types",
+  "_optional": true,
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ast-types@0.x.x",
+    "raw": "ast-types@0.11.3",
     "name": "ast-types",
     "escapedName": "ast-types",
-    "rawSpec": "0.x.x",
+    "rawSpec": "0.11.3",
     "saveSpec": null,
-    "fetchSpec": "0.x.x"
+    "fetchSpec": "0.11.3"
   },
   "_requiredBy": [
     "/degenerator"
   ],
   "_resolved": "http://registry.npm.taobao.org/ast-types/download/ast-types-0.11.3.tgz",
-  "_shasum": "c20757fe72ee71278ea0ff3d87e5c2ca30d9edf8",
-  "_spec": "ast-types@0.x.x",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/degenerator",
+  "_spec": "0.11.3",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Ben Newman",
     "email": "bn@cs.stanford.edu"
@@ -29,9 +36,7 @@
   "bugs": {
     "url": "https://github.com/benjamn/ast-types/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {},
-  "deprecated": false,
   "description": "Esprima-compatible implementation of the Mozilla JS Parser API",
   "devDependencies": {
     "babel-types": "^6.26.0",

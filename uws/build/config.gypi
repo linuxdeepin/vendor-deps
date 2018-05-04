@@ -96,7 +96,7 @@
     "init_author_name": "",
     "init_author_url": "",
     "tmp": "/tmp",
-    "depth": "",
+    "depth": "Infinity",
     "package_lock_only": "",
     "save_dev": "",
     "usage": "",

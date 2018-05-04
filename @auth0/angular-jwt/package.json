@@ -1,28 +1,33 @@
 {
-  "_from": "@auth0/angular-jwt",
+  "_args": [
+    [
+      "@auth0/angular-jwt@1.1.0",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "@auth0/angular-jwt@1.1.0",
   "_id": "@auth0/angular-jwt@1.1.0",
   "_inBundle": false,
   "_integrity": "sha1-zrax7tT7KYEqQ12ni0IMpurIEAk=",
   "_location": "/@auth0/angular-jwt",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "@auth0/angular-jwt",
+    "raw": "@auth0/angular-jwt@1.1.0",
     "name": "@auth0/angular-jwt",
     "escapedName": "@auth0%2fangular-jwt",
     "scope": "@auth0",
-    "rawSpec": "",
+    "rawSpec": "1.1.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "1.1.0"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
   "_resolved": "http://registry.npm.taobao.org/@auth0/angular-jwt/download/@auth0/angular-jwt-1.1.0.tgz",
-  "_shasum": "ceb6b1eed4fb29812a435da78b420ca6eac81009",
-  "_spec": "@auth0/angular-jwt",
+  "_spec": "1.1.0",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Ryan Chenkie"
@@ -30,11 +35,9 @@
   "bugs": {
     "url": "https://github.com/auth0/angular2-jwt/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "url": "^0.11.0"
   },
-  "deprecated": false,
   "description": "JSON Web Token helper library for Angular",
   "devDependencies": {
     "@angular/animations": "^4.4.6||^5.0.0",

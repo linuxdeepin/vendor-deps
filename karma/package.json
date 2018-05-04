@@ -1,4 +1,11 @@
 {
+  "_args": [
+    [
+      "karma@2.0.2",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
   "_from": "karma@2.0.2",
   "_id": "karma@2.0.2",
   "_inBundle": false,
@@ -16,12 +23,10 @@
     "fetchSpec": "2.0.2"
   },
   "_requiredBy": [
-    "#DEV:/",
-    "#USER"
+    "#DEV:/"
   ],
   "_resolved": "http://registry.npm.taobao.org/karma/download/karma-2.0.2.tgz",
-  "_shasum": "4d2db9402850a66551fa784b0164fb0824ed8c4b",
-  "_spec": "karma@2.0.2",
+  "_spec": "2.0.2",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Vojta Jína",
@@ -33,7 +38,6 @@
   "bugs": {
     "url": "https://github.com/karma-runner/karma/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Friedel Ziegelmayer",
@@ -1358,7 +1362,6 @@
     "tmp": "0.0.33",
     "useragent": "2.2.1"
   },
-  "deprecated": false,
   "description": "Spectacular Test Runner for JavaScript.",
   "devDependencies": {
     "LiveScript": "^1.3.0",

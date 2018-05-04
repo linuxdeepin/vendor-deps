@@ -1,38 +1,42 @@
 {
-  "_from": "randomfill@^1.0.3",
-  "_id": "randomfill@1.0.3",
+  "_args": [
+    [
+      "randomfill@1.0.4",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "randomfill@1.0.4",
+  "_id": "randomfill@1.0.4",
   "_inBundle": false,
-  "_integrity": "sha1-uWt99YfwHdkXJsQY8wVTsUGOPWI=",
+  "_integrity": "sha1-ySGW/IarQr6YPxvzF3giSTHWFFg=",
   "_location": "/randomfill",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "randomfill@^1.0.3",
+    "raw": "randomfill@1.0.4",
     "name": "randomfill",
     "escapedName": "randomfill",
-    "rawSpec": "^1.0.3",
+    "rawSpec": "1.0.4",
     "saveSpec": null,
-    "fetchSpec": "^1.0.3"
+    "fetchSpec": "1.0.4"
   },
   "_requiredBy": [
     "/crypto-browserify"
   ],
-  "_resolved": "http://r.cnpmjs.org/randomfill/download/randomfill-1.0.3.tgz",
-  "_shasum": "b96b7df587f01dd91726c418f30553b1418e3d62",
-  "_spec": "randomfill@^1.0.3",
-  "_where": "/home/liulang/dev/deepin/deepin-appstore/deepin-appstore-web/node_modules/crypto-browserify",
+  "_resolved": "http://registry.npm.taobao.org/randomfill/download/randomfill-1.0.4.tgz",
+  "_spec": "1.0.4",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": "",
   "browser": "browser.js",
   "bugs": {
-    "url": "https://github.com/crypto-browserify/randombytes/issues"
+    "url": "https://github.com/crypto-browserify/randomfill/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "randombytes": "^2.0.5",
     "safe-buffer": "^5.1.0"
   },
-  "deprecated": false,
   "description": "random fill from browserify stand alone",
   "devDependencies": {
     "phantomjs": "^1.9.9",
@@ -41,7 +45,7 @@
     "tape": "^4.6.3",
     "zuul": "^3.7.2"
   },
-  "homepage": "https://github.com/crypto-browserify/randombytes",
+  "homepage": "https://github.com/crypto-browserify/randomfill",
   "keywords": [
     "crypto",
     "random"
@@ -51,12 +55,12 @@
   "name": "randomfill",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/crypto-browserify/randombytes.git"
+    "url": "git+https://github.com/crypto-browserify/randomfill.git"
   },
   "scripts": {
     "local": "zuul --local --no-coverage -- test.js",
     "phantom": "zuul --phantom -- test.js",
     "test": "standard && node test.js | tspec"
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }

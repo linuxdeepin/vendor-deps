@@ -1,27 +1,33 @@
 {
-  "_from": "uglify-js@3.3.x",
-  "_id": "uglify-js@3.3.22",
+  "_args": [
+    [
+      "uglify-js@3.3.23",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "uglify-js@3.3.23",
+  "_id": "uglify-js@3.3.23",
   "_inBundle": false,
-  "_integrity": "sha1-5fDlDd04a341tyi1FgC/enrQsNw=",
+  "_integrity": "sha1-SOpD5jg2TRi+KSpv3CtbfDXyOas=",
   "_location": "/uglify-js",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "uglify-js@3.3.x",
+    "raw": "uglify-js@3.3.23",
     "name": "uglify-js",
     "escapedName": "uglify-js",
-    "rawSpec": "3.3.x",
+    "rawSpec": "3.3.23",
     "saveSpec": null,
-    "fetchSpec": "3.3.x"
+    "fetchSpec": "3.3.23"
   },
   "_requiredBy": [
     "/html-minifier"
   ],
-  "_resolved": "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.3.22.tgz",
-  "_shasum": "e5f0e50ddd386b7e35b728b51600bf7a7ad0b0dc",
-  "_spec": "uglify-js@3.3.x",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/html-minifier",
+  "_resolved": "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.3.23.tgz",
+  "_spec": "3.3.23",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Mihai Bazon",
     "email": "mihai.bazon@gmail.com",
@@ -33,12 +39,10 @@
   "bugs": {
     "url": "https://github.com/mishoo/UglifyJS2/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "commander": "~2.15.0",
     "source-map": "~0.6.1"
   },
-  "deprecated": false,
   "description": "JavaScript parser, mangler/compressor and beautifier toolkit",
   "devDependencies": {
     "acorn": "~5.5.3",
@@ -100,5 +104,5 @@
   "scripts": {
     "test": "node test/run-tests.js"
   },
-  "version": "3.3.22"
+  "version": "3.3.23"
 }

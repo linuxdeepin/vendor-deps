@@ -1,27 +1,31 @@
 {
-  "_from": "materialize-css@^0.100.2",
+  "_args": [
+    [
+      "materialize-css@0.100.2",
+      "/home/myml/Src/deepin/deepin-appstore/src/web"
+    ]
+  ],
+  "_from": "materialize-css@0.100.2",
   "_id": "materialize-css@0.100.2",
   "_inBundle": false,
   "_integrity": "sha1-nKMrJJBMmgRJH8fQoulALnsdrgc=",
   "_location": "/materialize-css",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "materialize-css@^0.100.2",
+    "raw": "materialize-css@0.100.2",
     "name": "materialize-css",
     "escapedName": "materialize-css",
-    "rawSpec": "^0.100.2",
+    "rawSpec": "0.100.2",
     "saveSpec": null,
-    "fetchSpec": "^0.100.2"
+    "fetchSpec": "0.100.2"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "http://registry.npm.taobao.org/materialize-css/download/materialize-css-0.100.2.tgz",
-  "_shasum": "9ca32b24904c9a04491fc7d0a2e9402e7b1dae07",
-  "_spec": "materialize-css@^0.100.2",
+  "_spec": "0.100.2",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Alvin Wang, Alan Chang"
@@ -29,12 +33,10 @@
   "bugs": {
     "url": "https://github.com/Dogfalo/materialize/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "hammerjs": "^2.0.8",
     "jquery": "^3.0.0 || ^2.1.4"
   },
-  "deprecated": false,
   "description": "Builds Materialize distribution packages",
   "devDependencies": {
     "autoprefixer": "^7.1.1",
