@@ -1,43 +1,40 @@
 {
-  "_args": [
-    [
-      "@auth0/angular-jwt@1.1.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "@auth0/angular-jwt@1.1.0",
-  "_id": "@auth0/angular-jwt@1.1.0",
+  "_from": "@auth0/angular-jwt@1.2.0",
+  "_id": "@auth0/angular-jwt@1.2.0",
   "_inBundle": false,
-  "_integrity": "sha1-zrax7tT7KYEqQ12ni0IMpurIEAk=",
+  "_integrity": "sha1-z6wE/j+T42q5iB1GnfLAVW8uc5I=",
   "_location": "/@auth0/angular-jwt",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@auth0/angular-jwt@1.1.0",
+    "raw": "@auth0/angular-jwt@1.2.0",
     "name": "@auth0/angular-jwt",
     "escapedName": "@auth0%2fangular-jwt",
     "scope": "@auth0",
-    "rawSpec": "1.1.0",
+    "rawSpec": "1.2.0",
     "saveSpec": null,
-    "fetchSpec": "1.1.0"
+    "fetchSpec": "1.2.0"
   },
   "_requiredBy": [
-    "#DEV:/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@auth0/angular-jwt/download/@auth0/angular-jwt-1.1.0.tgz",
-  "_spec": "1.1.0",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_resolved": "http://r.cnpmjs.org/@auth0/angular-jwt/download/@auth0/angular-jwt-1.2.0.tgz",
+  "_shasum": "cfac04fe3f93e36ab9881d469df2c0556f2e7392",
+  "_spec": "@auth0/angular-jwt@1.2.0",
+  "_where": "/home/liulang/dev/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Ryan Chenkie"
   },
   "bugs": {
     "url": "https://github.com/auth0/angular2-jwt/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "url": "^0.11.0"
   },
+  "deprecated": false,
   "description": "JSON Web Token helper library for Angular",
   "devDependencies": {
     "@angular/animations": "^4.4.6||^5.0.0",
@@ -67,7 +64,7 @@
     "ts-helpers": "^1.1.2",
     "tslint": "^5.3.2",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.3.3",
+    "typescript": "^2.6.2",
     "webpack": "^3.1.0",
     "zone.js": "^0.8.11"
   },
@@ -94,5 +91,5 @@
     "prepublish": "ngc && npm run build"
   },
   "typings": "index.d.ts",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }
