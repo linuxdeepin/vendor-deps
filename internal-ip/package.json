@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/webpack-dev-server"
   ],
-  "_resolved": "http://r.cnpmjs.org/internal-ip/download/internal-ip-1.2.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/internal-ip/download/internal-ip-1.2.0.tgz",
   "_shasum": "ae9fbf93b984878785d50a8de1b356956058cf5c",
   "_spec": "internal-ip@1.2.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/webpack-dev-server",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/webpack-dev-server",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",

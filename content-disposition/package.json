@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/express"
   ],
-  "_resolved": "http://r.cnpmjs.org/content-disposition/download/content-disposition-0.5.2.tgz",
+  "_resolved": "http://registry.npm.taobao.org/content-disposition/download/content-disposition-0.5.2.tgz",
   "_shasum": "0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4",
   "_spec": "content-disposition@0.5.2",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/express",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/express",
   "bugs": {
     "url": "https://github.com/jshttp/content-disposition/issues"
   },

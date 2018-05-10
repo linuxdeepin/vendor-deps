@@ -23,10 +23,10 @@
   "_requiredBy": [
     "/webpack-dev-server"
   ],
-  "_resolved": "http://r.cnpmjs.org/del/download/del-3.0.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/del/download/del-3.0.0.tgz",
   "_shasum": "53ecf699ffcbcb39637691ab13baf160819766e5",
   "_spec": "del@^3.0.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/webpack-dev-server",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/webpack-dev-server",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",

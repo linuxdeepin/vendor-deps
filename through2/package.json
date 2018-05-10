@@ -16,17 +16,12 @@
     "fetchSpec": "^2.0.0"
   },
   "_requiredBy": [
-    "/browser-pack",
-    "/browserify",
-    "/deps-sort",
-    "/insert-module-globals",
-    "/mississippi",
-    "/module-deps"
+    "/mississippi"
   ],
-  "_resolved": "http://r.cnpmjs.org/through2/download/through2-2.0.3.tgz",
+  "_resolved": "http://registry.npm.taobao.org/through2/download/through2-2.0.3.tgz",
   "_shasum": "0004569b37c7c74ba39c43f3ced78d1ad94140be",
   "_spec": "through2@^2.0.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/mississippi",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/mississippi",
   "author": {
     "name": "Rod Vagg",
     "email": "r@va.gg",

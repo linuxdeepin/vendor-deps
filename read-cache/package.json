@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/postcss-import"
   ],
-  "_resolved": "http://r.cnpmjs.org/read-cache/download/read-cache-1.0.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/read-cache/download/read-cache-1.0.0.tgz",
   "_shasum": "e664ef31161166c9751cdbe8dbcf86b5fb58f774",
   "_spec": "read-cache@^1.0.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/postcss-import",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/postcss-import",
   "author": {
     "name": "Bogdan Chadkin",
     "email": "trysound@yandex.ru"

@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/browserify-aes"
   ],
-  "_resolved": "http://r.cnpmjs.org/buffer-xor/download/buffer-xor-1.0.3.tgz",
+  "_resolved": "http://registry.npm.taobao.org/buffer-xor/download/buffer-xor-1.0.3.tgz",
   "_shasum": "26e61ed1422fb70dd42e6e36729ed51d855fe8d9",
   "_spec": "buffer-xor@^1.0.3",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/browserify-aes",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/browserify-aes",
   "author": {
     "name": "Daniel Cousens"
   },

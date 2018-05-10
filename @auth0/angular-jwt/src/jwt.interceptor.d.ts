@@ -5,7 +5,7 @@ import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/mergeMap';
 export declare class JwtInterceptor implements HttpInterceptor {
     jwtHelper: JwtHelperService;
-    tokenGetter: () => string | Promise<string>;
+    tokenGetter: () => string | null | Promise<string | null>;
     headerName: string;
     authScheme: string;
     whitelistedDomains: Array<string | RegExp>;
@@ -15,6 +15,6 @@ export declare class JwtInterceptor implements HttpInterceptor {
     constructor(config: any, jwtHelper: JwtHelperService);
     isWhitelistedDomain(request: HttpRequest<any>): boolean;
     isBlacklistedRoute(request: HttpRequest<any>): boolean;
-    handleInterception(token: string, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    handleInterception(token: string | null, request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
 }

@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/copy-webpack-plugin"
   ],
-  "_resolved": "http://r.cnpmjs.org/globby/download/globby-7.1.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/globby/download/globby-7.1.1.tgz",
   "_shasum": "fb2ccff9401f8600945dfada97440cca972b8680",
   "_spec": "globby@^7.1.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/copy-webpack-plugin",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/copy-webpack-plugin",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",

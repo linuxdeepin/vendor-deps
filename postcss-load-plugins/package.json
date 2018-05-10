@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/postcss-load-config"
   ],
-  "_resolved": "http://r.cnpmjs.org/postcss-load-plugins/download/postcss-load-plugins-2.3.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/postcss-load-plugins/download/postcss-load-plugins-2.3.0.tgz",
   "_shasum": "745768116599aca2f009fad426b00175049d8d92",
   "_spec": "postcss-load-plugins@^2.3.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/postcss-load-config",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/postcss-load-config",
   "author": {
     "name": "Michael Ciniawky",
     "email": "michael.ciniawsky@gmail.com"

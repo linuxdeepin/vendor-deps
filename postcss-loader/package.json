@@ -1,27 +1,27 @@
 {
-  "_from": "postcss-loader@^2.0.10",
-  "_id": "postcss-loader@2.1.4",
+  "_from": "postcss-loader@^2.1.4",
+  "_id": "postcss-loader@2.1.5",
   "_inBundle": false,
-  "_integrity": "sha1-9EpjkOA8hBCLKyBjGC0aEBGyznY=",
+  "_integrity": "sha1-PGM27mQcj5UTgXJTOuRhqDWV54g=",
   "_location": "/postcss-loader",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "postcss-loader@^2.0.10",
+    "raw": "postcss-loader@^2.1.4",
     "name": "postcss-loader",
     "escapedName": "postcss-loader",
-    "rawSpec": "^2.0.10",
+    "rawSpec": "^2.1.4",
     "saveSpec": null,
-    "fetchSpec": "^2.0.10"
+    "fetchSpec": "^2.1.4"
   },
   "_requiredBy": [
-    "/@angular/cli"
+    "/@angular-devkit/build-angular"
   ],
-  "_resolved": "http://registry.npm.taobao.org/postcss-loader/download/postcss-loader-2.1.4.tgz",
-  "_shasum": "f44a6390e03c84108b2b2063182d1a1011b2ce76",
-  "_spec": "postcss-loader@^2.0.10",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
+  "_resolved": "http://registry.npm.taobao.org/postcss-loader/download/postcss-loader-2.1.5.tgz",
+  "_shasum": "3c6336ee641c8f95138172533ae461a83595e788",
+  "_spec": "postcss-loader@^2.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Andrey Sitnik",
     "email": "andrey@sitnik.ru"
@@ -93,5 +93,5 @@
       "*.test.js"
     ]
   },
-  "version": "2.1.4"
+  "version": "2.1.5"
 }

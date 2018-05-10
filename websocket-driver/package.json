@@ -19,10 +19,10 @@
     "/faye-websocket",
     "/sockjs-client/faye-websocket"
   ],
-  "_resolved": "http://r.cnpmjs.org/websocket-driver/download/websocket-driver-0.7.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/websocket-driver/download/websocket-driver-0.7.0.tgz",
   "_shasum": "0caf9d2d755d93aee049d4bdd0d3fe2cca2a24eb",
   "_spec": "websocket-driver@>=0.5.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/faye-websocket",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/faye-websocket",
   "author": {
     "name": "James Coglan",
     "email": "jcoglan@gmail.com",

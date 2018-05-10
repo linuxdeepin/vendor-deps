@@ -1,27 +1,27 @@
 {
-  "_from": "@angular/compiler-cli@5.2.10",
-  "_id": "@angular/compiler-cli@5.2.10",
+  "_from": "@angular/compiler-cli@6.0.0",
+  "_id": "@angular/compiler-cli@6.0.0",
   "_inBundle": false,
-  "_integrity": "sha1-fp3q0HMNwg92WOEQpVi1V7YOe+I=",
+  "_integrity": "sha1-vlAnf6qlrAjzACwsjLjDnSIMdtU=",
   "_location": "/@angular/compiler-cli",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/compiler-cli@5.2.10",
+    "raw": "@angular/compiler-cli@6.0.0",
     "name": "@angular/compiler-cli",
     "escapedName": "@angular%2fcompiler-cli",
     "scope": "@angular",
-    "rawSpec": "5.2.10",
+    "rawSpec": "6.0.0",
     "saveSpec": null,
-    "fetchSpec": "5.2.10"
+    "fetchSpec": "6.0.0"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-5.2.10.tgz",
-  "_shasum": "7e9dead0730dc20f7658e110a558b557b60e7be2",
-  "_spec": "@angular/compiler-cli@5.2.10",
+  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-6.0.0.tgz",
+  "_shasum": "be50277faaa5ac08f3002c2c8cb8c39d220c76d5",
+  "_spec": "@angular/compiler-cli@6.0.0",
   "_where": "/home/myml/Src/deepin/dstore-operation-server/web",
   "bin": {
     "ngc": "./src/main.js",
@@ -51,6 +51,9 @@
   },
   "deprecated": false,
   "description": "Angular - the compiler CLI for Node.js",
+  "engines": {
+    "node": ">=8.0"
+  },
   "homepage": "https://github.com/angular/angular/tree/master/packages/compiler-cli",
   "keywords": [
     "angular",
@@ -59,14 +62,36 @@
   "license": "MIT",
   "main": "index.js",
   "name": "@angular/compiler-cli",
+  "ng-update": {
+    "packageGroup": [
+      "@angular/core",
+      "@angular/bazel",
+      "@angular/common",
+      "@angular/compiler",
+      "@angular/compiler-cli",
+      "@angular/animations",
+      "@angular/elements",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "@angular/forms",
+      "@angular/http",
+      "@angular/platform-server",
+      "@angular/platform-webworker",
+      "@angular/platform-webworker-dynamic",
+      "@angular/upgrade",
+      "@angular/router",
+      "@angular/language-service",
+      "@angular/service-worker"
+    ]
+  },
   "peerDependencies": {
-    "typescript": ">=2.4.2 <2.7",
-    "@angular/compiler": "5.2.10"
+    "typescript": ">=2.7.2 <2.8",
+    "@angular/compiler": "6.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "index.d.ts",
-  "version": "5.2.10"
+  "version": "6.0.0"
 }

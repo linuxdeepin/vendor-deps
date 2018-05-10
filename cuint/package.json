@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/xxhashjs"
   ],
-  "_resolved": "http://r.cnpmjs.org/cuint/download/cuint-0.2.2.tgz",
+  "_resolved": "http://registry.npm.taobao.org/cuint/download/cuint-0.2.2.tgz",
   "_shasum": "408086d409550c2631155619e9fa7bcadc3b991b",
   "_spec": "cuint@^0.2.2",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/xxhashjs",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/xxhashjs",
   "author": {
     "name": "Pierre Curto"
   },

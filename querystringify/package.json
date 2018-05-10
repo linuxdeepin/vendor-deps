@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/original/url-parse"
   ],
-  "_resolved": "http://r.cnpmjs.org/querystringify/download/querystringify-0.0.4.tgz",
+  "_resolved": "http://registry.npm.taobao.org/querystringify/download/querystringify-0.0.4.tgz",
   "_shasum": "0cf7f84f9463ff0ae51c4c4b142d95be37724d9c",
   "_spec": "querystringify@0.0.x",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/original/node_modules/url-parse",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/original/node_modules/url-parse",
   "author": {
     "name": "Arnout Kazemier"
   },

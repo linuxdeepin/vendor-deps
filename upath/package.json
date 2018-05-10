@@ -1,8 +1,8 @@
 {
   "_from": "upath@^1.0.0",
-  "_id": "upath@1.0.4",
+  "_id": "upath@1.0.5",
   "_inBundle": false,
-  "_integrity": "sha1-7iMhugp4bFCXPbBDpQt7y6giNh0=",
+  "_integrity": "sha1-Asq57OvpW77G1fwlZjJXJattGnM=",
   "_location": "/upath",
   "_phantomChildren": {},
   "_requested": {
@@ -16,13 +16,12 @@
     "fetchSpec": "^1.0.0"
   },
   "_requiredBy": [
-    "/watchpack/chokidar",
-    "/webpack-dev-server/chokidar"
+    "/@angular-devkit/core/chokidar"
   ],
-  "_resolved": "http://registry.npm.taobao.org/upath/download/upath-1.0.4.tgz",
-  "_shasum": "ee2321ba0a786c50973db043a50b7bcba822361d",
+  "_resolved": "http://registry.npm.taobao.org/upath/download/upath-1.0.5.tgz",
+  "_shasum": "02cab9ecebe95bbec6d5fc2566325725ab6d1a73",
   "_spec": "upath@^1.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/watchpack/node_modules/chokidar",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular-devkit/core/node_modules/chokidar",
   "author": {
     "name": "Angelos Pikoulas",
     "email": "agelos.pikoulas@gmail.com"
@@ -53,7 +52,7 @@
     "dist": "./build"
   },
   "engines": {
-    "node": ">=4 <=9"
+    "node": ">=4"
   },
   "homepage": "http://github.com/anodynos/upath/",
   "keywords": [
@@ -81,5 +80,5 @@
     "test": "grunt"
   },
   "types": "./upath.d.ts",
-  "version": "1.0.4"
+  "version": "1.0.5"
 }

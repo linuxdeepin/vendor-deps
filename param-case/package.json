@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/html-minifier"
   ],
-  "_resolved": "http://r.cnpmjs.org/param-case/download/param-case-2.1.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/param-case/download/param-case-2.1.1.tgz",
   "_shasum": "df94fd8cf6531ecf75e6bef9a0858fbc72be2247",
   "_spec": "param-case@2.1.x",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/html-minifier",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/html-minifier",
   "author": {
     "name": "Blake Embrey",
     "email": "hello@blakeembrey.com",

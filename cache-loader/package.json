@@ -1,5 +1,5 @@
 {
-  "_from": "cache-loader@^1.2.0",
+  "_from": "cache-loader@^1.2.2",
   "_id": "cache-loader@1.2.2",
   "_inBundle": false,
   "_integrity": "sha1-bVw43tlZoJzF1YGQq1r29zvTU/U=",
@@ -8,20 +8,20 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cache-loader@^1.2.0",
+    "raw": "cache-loader@^1.2.2",
     "name": "cache-loader",
     "escapedName": "cache-loader",
-    "rawSpec": "^1.2.0",
+    "rawSpec": "^1.2.2",
     "saveSpec": null,
-    "fetchSpec": "^1.2.0"
+    "fetchSpec": "^1.2.2"
   },
   "_requiredBy": [
-    "/@angular/cli"
+    "/@angular-devkit/build-angular"
   ],
   "_resolved": "http://registry.npm.taobao.org/cache-loader/download/cache-loader-1.2.2.tgz",
   "_shasum": "6d5c38ded959a09cc5d58190ab5af6f73bd353f5",
-  "_spec": "cache-loader@^1.2.0",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
+  "_spec": "cache-loader@^1.2.2",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Tobias Koppers @sokra"
   },

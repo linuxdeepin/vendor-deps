@@ -16,15 +16,15 @@
     "fetchSpec": "^0.4.1"
   },
   "_requiredBy": [
-    "/@angular/cli",
+    "/@angular-devkit/build-angular",
     "/enhanced-resolve",
     "/webpack",
     "/webpack-dev-middleware"
   ],
-  "_resolved": "http://r.cnpmjs.org/memory-fs/download/memory-fs-0.4.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/memory-fs/download/memory-fs-0.4.1.tgz",
   "_shasum": "3a9a20b8462523e447cfbc7e8bb80ed667bfc552",
   "_spec": "memory-fs@^0.4.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/@angular/cli",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Tobias Koppers @sokra"
   },

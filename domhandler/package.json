@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/htmlparser2"
   ],
-  "_resolved": "http://r.cnpmjs.org/domhandler/download/domhandler-2.1.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/domhandler/download/domhandler-2.1.0.tgz",
   "_shasum": "d2646f5e57f6c3bab11cf6cb05d3c0acf7412594",
   "_spec": "domhandler@2.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/htmlparser2",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/htmlparser2",
   "author": {
     "name": "Felix Boehm",
     "email": "me@feedic.com"

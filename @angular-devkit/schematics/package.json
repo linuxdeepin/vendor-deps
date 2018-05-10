@@ -1,27 +1,29 @@
 {
-  "_from": "@angular-devkit/schematics@0.3.2",
-  "_id": "@angular-devkit/schematics@0.3.2",
+  "_from": "@angular-devkit/schematics@0.6.0",
+  "_id": "@angular-devkit/schematics@0.6.0",
   "_inBundle": false,
-  "_integrity": "sha1-CaImj61h9PlW9C24eRO4dIxRKng=",
+  "_integrity": "sha1-ARfcfVkFsFPfTykY4uBz79EJH1w=",
   "_location": "/@angular-devkit/schematics",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular-devkit/schematics@0.3.2",
+    "raw": "@angular-devkit/schematics@0.6.0",
     "name": "@angular-devkit/schematics",
     "escapedName": "@angular-devkit%2fschematics",
     "scope": "@angular-devkit",
-    "rawSpec": "0.3.2",
+    "rawSpec": "0.6.0",
     "saveSpec": null,
-    "fetchSpec": "0.3.2"
+    "fetchSpec": "0.6.0"
   },
   "_requiredBy": [
-    "/@angular/cli"
+    "/@angular/cli",
+    "/@schematics/angular",
+    "/@schematics/update"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.3.2.tgz",
-  "_shasum": "09a2268fad61f4f956f42db87913b8748c512a78",
-  "_spec": "@angular-devkit/schematics@0.3.2",
+  "_resolved": "http://registry.npm.taobao.org/@angular-devkit/schematics/download/@angular-devkit/schematics-0.6.0.tgz",
+  "_shasum": "0117dc7d5905b053df4f2918e2e073efd1091f5c",
+  "_spec": "@angular-devkit/schematics@0.6.0",
   "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
   "author": {
     "name": "Angular Authors"
@@ -31,14 +33,14 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@ngtools/json-schema": "^1.1.0",
-    "rxjs": "^5.5.6"
+    "@angular-devkit/core": "0.6.0",
+    "rxjs": "^6.0.0"
   },
   "deprecated": false,
   "description": "Angular Schematics - Library",
   "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.1"
   },
   "homepage": "https://github.com/angular/devkit",
   "keywords": [
@@ -56,13 +58,10 @@
   "license": "MIT",
   "main": "src/index.js",
   "name": "@angular-devkit/schematics",
-  "peerDependencies": {
-    "@angular-devkit/core": "0.3.2"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/devkit.git"
   },
   "typings": "src/index.d.ts",
-  "version": "0.3.2"
+  "version": "0.6.0"
 }

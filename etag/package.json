@@ -19,10 +19,10 @@
     "/express",
     "/send"
   ],
-  "_resolved": "http://r.cnpmjs.org/etag/download/etag-1.8.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/etag/download/etag-1.8.1.tgz",
   "_shasum": "41ae2eeb65efa62268aebfea83ac7d79299b0887",
   "_spec": "etag@~1.8.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/express",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/express",
   "bugs": {
     "url": "https://github.com/jshttp/etag/issues"
   },

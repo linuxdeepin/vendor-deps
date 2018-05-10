@@ -19,13 +19,12 @@
     "/duplexify",
     "/mississippi",
     "/pump",
-    "/pumpify/pump",
     "/stream-each"
   ],
-  "_resolved": "http://r.cnpmjs.org/end-of-stream/download/end-of-stream-1.4.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/end-of-stream/download/end-of-stream-1.4.1.tgz",
   "_shasum": "ed29634d19baba463b6ce6b80a37213eab71ec43",
   "_spec": "end-of-stream@^1.1.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/mississippi",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/mississippi",
   "author": {
     "name": "Mathias Buus",
     "email": "mathiasbuus@gmail.com"

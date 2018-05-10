@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/unique-filename"
   ],
-  "_resolved": "http://r.cnpmjs.org/unique-slug/download/unique-slug-2.0.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/unique-slug/download/unique-slug-2.0.0.tgz",
   "_shasum": "db6676e7c7cc0629878ff196097c78855ae9f4ab",
   "_spec": "unique-slug@^2.0.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/unique-filename",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/unique-filename",
   "author": {
     "name": "Rebecca Turner",
     "email": "me@re-becca.org",

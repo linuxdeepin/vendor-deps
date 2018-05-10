@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/sockjs-client"
   ],
-  "_resolved": "http://r.cnpmjs.org/eventsource/download/eventsource-0.1.6.tgz",
+  "_resolved": "http://registry.npm.taobao.org/eventsource/download/eventsource-0.1.6.tgz",
   "_shasum": "0acede849ed7dd1ccc32c811bb11b944d4f29232",
   "_spec": "eventsource@0.1.6",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/sockjs-client",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/sockjs-client",
   "author": {
     "name": "Aslak Hellesøy",
     "email": "aslak.hellesoy@gmail.com"

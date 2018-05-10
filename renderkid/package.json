@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/pretty-error"
   ],
-  "_resolved": "http://r.cnpmjs.org/renderkid/download/renderkid-2.0.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/renderkid/download/renderkid-2.0.1.tgz",
   "_shasum": "898cabfc8bede4b7b91135a3ffd323e58c0db319",
   "_spec": "renderkid@^2.0.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/pretty-error",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/pretty-error",
   "author": {
     "name": "Aria Minaei"
   },

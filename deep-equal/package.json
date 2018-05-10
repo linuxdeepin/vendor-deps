@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/bonjour"
   ],
-  "_resolved": "http://r.cnpmjs.org/deep-equal/download/deep-equal-1.0.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/deep-equal/download/deep-equal-1.0.1.tgz",
   "_shasum": "f5d260292b660e084eff4cdbc9f08ad3247448b5",
   "_spec": "deep-equal@^1.0.1",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/bonjour",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/bonjour",
   "author": {
     "name": "James Halliday",
     "email": "mail@substack.net",

@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/define-properties"
   ],
-  "_resolved": "http://r.cnpmjs.org/foreach/download/foreach-2.0.5.tgz",
+  "_resolved": "http://registry.npm.taobao.org/foreach/download/foreach-2.0.5.tgz",
   "_shasum": "0bee005018aeb260d0a3af3ae658dd0136ec1b99",
   "_spec": "foreach@^2.0.5",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/define-properties",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/define-properties",
   "author": {
     "name": "Manuel Stofer",
     "email": "manuel@takimata.ch"

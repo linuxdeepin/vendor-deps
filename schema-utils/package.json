@@ -19,7 +19,10 @@
     "/cache-loader",
     "/file-loader",
     "/postcss-loader",
-    "/uglifyjs-webpack-plugin"
+    "/style-loader",
+    "/uglifyjs-webpack-plugin",
+    "/url-loader",
+    "/webpack"
   ],
   "_resolved": "http://registry.npm.taobao.org/schema-utils/download/schema-utils-0.4.5.tgz",
   "_shasum": "21836f0608aac17b78f9e3e24daff14a5ca13a3e",

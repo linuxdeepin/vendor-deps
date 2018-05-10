@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/webpack-dev-server"
   ],
-  "_resolved": "http://r.cnpmjs.org/html-entities/download/html-entities-1.2.1.tgz",
+  "_resolved": "http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz",
   "_shasum": "0df29351f0721163515dfb9e5543e5f6eed5162f",
   "_spec": "html-entities@^1.2.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/webpack-dev-server",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/webpack-dev-server",
   "author": {
     "name": "Marat Dulin",
     "email": "mdevils@yandex.ru"

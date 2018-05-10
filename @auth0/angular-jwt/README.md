@@ -58,7 +58,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:3001']
+        whitelistedDomains: ['localhost:3001'],
         blacklistedRoutes: ['localhost:3001/auth/']
       }
     })
@@ -127,7 +127,7 @@ initial auth route(s) are on a whitelisted domain and take basic auth headers.
 JwtModule.forRoot({
   config: {
     // ...
-    blacklistedRoutes: ['localhost:3001/auth/', 'foo.com/bar/']
+    blacklistedRoutes: ['localhost:3001/auth/', 'foo.com/bar/', /localhost:3001\/foo\/far.*/] // strings and regular expressions
   }
 });
 ```

@@ -20,10 +20,10 @@
     "/postcss-load-options",
     "/postcss-load-plugins"
   ],
-  "_resolved": "http://r.cnpmjs.org/cosmiconfig/download/cosmiconfig-2.2.2.tgz",
+  "_resolved": "http://registry.npm.taobao.org/cosmiconfig/download/cosmiconfig-2.2.2.tgz",
   "_shasum": "6173cebd56fac042c1f4390edf7af6c07c7cb892",
   "_spec": "cosmiconfig@^2.1.0",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/postcss-load-config",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/postcss-load-config",
   "author": {
     "name": "David Clark",
     "email": "david.dave.clark@gmail.com"

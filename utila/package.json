@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/pretty-error"
   ],
-  "_resolved": "http://r.cnpmjs.org/utila/download/utila-0.4.0.tgz",
+  "_resolved": "http://registry.npm.taobao.org/utila/download/utila-0.4.0.tgz",
   "_shasum": "8a16a05d445657a3aea5eecc5b12a4fa5379772c",
   "_spec": "utila@~0.4",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/pretty-error",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/pretty-error",
   "author": {
     "name": "Aria Minaei"
   },

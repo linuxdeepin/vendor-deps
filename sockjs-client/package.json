@@ -20,10 +20,10 @@
   "_requiredBy": [
     "/webpack-dev-server"
   ],
-  "_resolved": "http://r.cnpmjs.org/sockjs-client/download/sockjs-client-1.1.4.tgz",
+  "_resolved": "http://registry.npm.taobao.org/sockjs-client/download/sockjs-client-1.1.4.tgz",
   "_shasum": "5babe386b775e4cf14e7520911452654016c8b12",
   "_spec": "sockjs-client@1.1.4",
-  "_where": "/home/liulang/dev/deepin/dstore-operation-server/dstore-operation-web/node_modules/webpack-dev-server",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/webpack-dev-server",
   "author": {
     "name": "Bryce Kahle"
   },

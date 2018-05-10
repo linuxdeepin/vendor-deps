@@ -18,7 +18,8 @@
   "_requiredBy": [
     "/cache-loader",
     "/sass-loader",
-    "/watchpack"
+    "/watchpack",
+    "/webpack"
   ],
   "_resolved": "http://registry.npm.taobao.org/neo-async/download/neo-async-2.5.1.tgz",
   "_shasum": "acb909e327b1e87ec9ef15f41b8a269512ad41ee",

@@ -1,5 +1,5 @@
 {
-  "_from": "uglifyjs-webpack-plugin@^1.1.8",
+  "_from": "uglifyjs-webpack-plugin@^1.2.5",
   "_id": "uglifyjs-webpack-plugin@1.2.5",
   "_inBundle": false,
   "_integrity": "sha1-Lvg4fI8akD7F5E+jb588vc6mdkE=",
@@ -8,20 +8,21 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "uglifyjs-webpack-plugin@^1.1.8",
+    "raw": "uglifyjs-webpack-plugin@^1.2.5",
     "name": "uglifyjs-webpack-plugin",
     "escapedName": "uglifyjs-webpack-plugin",
-    "rawSpec": "^1.1.8",
+    "rawSpec": "^1.2.5",
     "saveSpec": null,
-    "fetchSpec": "^1.1.8"
+    "fetchSpec": "^1.2.5"
   },
   "_requiredBy": [
-    "/@angular/cli"
+    "/@angular-devkit/build-angular",
+    "/webpack"
   ],
   "_resolved": "http://registry.npm.taobao.org/uglifyjs-webpack-plugin/download/uglifyjs-webpack-plugin-1.2.5.tgz",
   "_shasum": "2ef8387c8f1a903ec5e44fa36f9f3cbdcea67641",
-  "_spec": "uglifyjs-webpack-plugin@^1.1.8",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular/cli",
+  "_spec": "uglifyjs-webpack-plugin@^1.2.5",
+  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "webpack Contrib Team"
   },
