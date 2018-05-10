@@ -22,7 +22,7 @@
   "_resolved": "http://registry.npm.taobao.org/p-limit/download/p-limit-1.2.0.tgz",
   "_shasum": "0e92b6bedcb59f022c13d0f1949dc82d15909f1c",
   "_spec": "p-limit@^1.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/copy-webpack-plugin",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/copy-webpack-plugin",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",

@@ -16,12 +16,13 @@
     "fetchSpec": "^5.0.0"
   },
   "_requiredBy": [
+    "/acorn-dynamic-import",
     "/webpack"
   ],
   "_resolved": "http://registry.npm.taobao.org/acorn/download/acorn-5.5.3.tgz",
   "_shasum": "f473dd47e0277a08e28e9bec5aeeb04751f0b8c9",
   "_spec": "acorn@^5.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/webpack",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/webpack",
   "bin": {
     "acorn": "./bin/acorn"
   },

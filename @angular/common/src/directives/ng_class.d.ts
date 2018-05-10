@@ -9,9 +9,7 @@ import { DoCheck, ElementRef, IterableDiffers, KeyValueDiffers, Renderer2 } from
 /**
  * @ngModule CommonModule
  *
- * @whatItDoes Adds and removes CSS classes on an HTML element.
- *
- * @howToUse
+ * @usageNotes
  * ```
  *     <some-element [ngClass]="'first second'">...</some-element>
  *
@@ -26,13 +24,15 @@ import { DoCheck, ElementRef, IterableDiffers, KeyValueDiffers, Renderer2 } from
  *
  * @description
  *
+ * Adds and removes CSS classes on an HTML element.
+ *
  * The CSS classes are updated as follows, depending on the type of the expression evaluation:
  * - `string` - the CSS classes listed in the string (space delimited) are added,
  * - `Array` - the CSS classes declared as Array elements are added,
  * - `Object` - keys are CSS classes that get added when the expression given in the value
  *              evaluates to a truthy value, otherwise they are removed.
  *
- * @stable
+ *
  */
 export declare class NgClass implements DoCheck {
     private _iterableDiffers;

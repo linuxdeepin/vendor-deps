@@ -1,34 +1,27 @@
 {
-  "_args": [
-    [
-      "yargs-parser@5.0.0",
-      "/home/myml/Src/deepin/dstore-metadata-server/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "yargs-parser@5.0.0",
-  "_id": "yargs-parser@5.0.0",
+  "_from": "yargs-parser@^10.0.0",
+  "_id": "yargs-parser@10.0.0",
   "_inBundle": false,
-  "_integrity": "sha1-J17PDX/+Bcd+ZOfIbkzZS/DhIoo=",
+  "_integrity": "sha1-xzfJPeJWdld1DLHywAvmOf0ZyZQ=",
   "_location": "/yargs-parser",
-  "_optional": true,
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "yargs-parser@5.0.0",
+    "raw": "yargs-parser@^10.0.0",
     "name": "yargs-parser",
     "escapedName": "yargs-parser",
-    "rawSpec": "5.0.0",
+    "rawSpec": "^10.0.0",
     "saveSpec": null,
-    "fetchSpec": "5.0.0"
+    "fetchSpec": "^10.0.0"
   },
   "_requiredBy": [
-    "/yargs"
+    "/@angular/cli"
   ],
-  "_resolved": "http://r.cnpmjs.org/yargs-parser/download/yargs-parser-5.0.0.tgz",
-  "_spec": "5.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
+  "_resolved": "http://registry.npm.taobao.org/yargs-parser/download/yargs-parser-10.0.0.tgz",
+  "_shasum": "c737c93de2567657750cb1f2c00be639fd19c994",
+  "_spec": "yargs-parser@^10.0.0",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular/cli",
   "author": {
     "name": "Ben Coe",
     "email": "ben@npmjs.com"
@@ -36,17 +29,19 @@
   "bugs": {
     "url": "https://github.com/yargs/yargs-parser/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
-    "camelcase": "^3.0.0"
+    "camelcase": "^4.1.0"
   },
+  "deprecated": false,
   "description": "the mighty option parser used by yargs",
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.12",
     "mocha": "^3.0.1",
-    "nyc": "^10.0.0",
-    "standard": "^8.0.0",
-    "standard-version": "^4.0.0"
+    "nyc": "^11.4.1",
+    "standard": "^10.0.2",
+    "standard-version": "^4.3.0"
   },
   "files": [
     "lib",
@@ -72,9 +67,9 @@
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "pretest": "standard",
+    "posttest": "standard",
     "release": "standard-version",
     "test": "nyc mocha test/*.js"
   },
-  "version": "5.0.0"
+  "version": "10.0.0"
 }

@@ -1,5 +1,5 @@
 {
-  "_from": "webpack-merge@^4.1.0",
+  "_from": "webpack-merge@^4.1.2",
   "_id": "webpack-merge@4.1.2",
   "_inBundle": false,
   "_integrity": "sha1-XTct3dPh5fiHT1v1qOkp2wn+shY=",
@@ -8,20 +8,20 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "webpack-merge@^4.1.0",
+    "raw": "webpack-merge@^4.1.2",
     "name": "webpack-merge",
     "escapedName": "webpack-merge",
-    "rawSpec": "^4.1.0",
+    "rawSpec": "^4.1.2",
     "saveSpec": null,
-    "fetchSpec": "^4.1.0"
+    "fetchSpec": "^4.1.2"
   },
   "_requiredBy": [
-    "/@angular/cli"
+    "/@angular-devkit/build-angular"
   ],
   "_resolved": "http://registry.npm.taobao.org/webpack-merge/download/webpack-merge-4.1.2.tgz",
   "_shasum": "5d372dddd3e1e5f8874f5bf5a8e929db09feb216",
-  "_spec": "webpack-merge@^4.1.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular/cli",
+  "_spec": "webpack-merge@^4.1.2",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Juho Vepsalainen",
     "email": "bebraw@gmail.com"

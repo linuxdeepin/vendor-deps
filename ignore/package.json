@@ -21,7 +21,7 @@
   "_resolved": "http://registry.npm.taobao.org/ignore/download/ignore-3.3.8.tgz",
   "_shasum": "3f8e9c35d38708a3a7e0e9abb6c73e7ee7707b2b",
   "_spec": "ignore@^3.3.5",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/globby",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/globby",
   "author": {
     "name": "kael"
   },

@@ -1,8 +1,8 @@
 {
   "_from": "uglify-js@3.3.x",
-  "_id": "uglify-js@3.3.22",
+  "_id": "uglify-js@3.3.24",
   "_inBundle": false,
-  "_integrity": "sha1-5fDlDd04a341tyi1FgC/enrQsNw=",
+  "_integrity": "sha1-q+rnaQxgLr0Ab0VnOHoMDDM73A0=",
   "_location": "/uglify-js",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/html-minifier"
   ],
-  "_resolved": "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.3.22.tgz",
-  "_shasum": "e5f0e50ddd386b7e35b728b51600bf7a7ad0b0dc",
+  "_resolved": "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.3.24.tgz",
+  "_shasum": "abeae7690c602ebd006f4567387a0c0c333bdc0d",
   "_spec": "uglify-js@3.3.x",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/html-minifier",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/html-minifier",
   "author": {
     "name": "Mihai Bazon",
     "email": "mihai.bazon@gmail.com",
@@ -100,5 +100,5 @@
   "scripts": {
     "test": "node test/run-tests.js"
   },
-  "version": "3.3.22"
+  "version": "3.3.24"
 }

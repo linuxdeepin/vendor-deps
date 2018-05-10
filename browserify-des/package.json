@@ -21,7 +21,7 @@
   "_resolved": "http://registry.npm.taobao.org/browserify-des/download/browserify-des-1.0.1.tgz",
   "_shasum": "3343124db6d7ad53e26a8826318712bdc8450f9c",
   "_spec": "browserify-des@^1.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/browserify-cipher",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/browserify-cipher",
   "author": {
     "name": "Calvin Metcalf",
     "email": "calvin.metcalf@gmail.com"

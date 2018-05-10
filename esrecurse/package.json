@@ -16,12 +16,12 @@
     "fetchSpec": "^4.1.0"
   },
   "_requiredBy": [
-    "/escope"
+    "/eslint-scope"
   ],
   "_resolved": "http://registry.npm.taobao.org/esrecurse/download/esrecurse-4.2.1.tgz",
   "_shasum": "007a3b9fdbc2b3bb87e4879ea19c92fdbd3942cf",
   "_spec": "esrecurse@^4.1.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/escope",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/eslint-scope",
   "babel": {
     "presets": [
       "es2015"

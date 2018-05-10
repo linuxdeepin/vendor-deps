@@ -21,7 +21,7 @@
   "_resolved": "http://registry.npm.taobao.org/make-dir/download/make-dir-1.2.0.tgz",
   "_shasum": "6d6a49eead4aae296c53bbf3a1a008bd6c89469b",
   "_spec": "make-dir@^1.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/find-cache-dir",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/find-cache-dir",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",

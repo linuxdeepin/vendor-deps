@@ -22,7 +22,7 @@
   "_resolved": "http://registry.npm.taobao.org/parse-asn1/download/parse-asn1-5.1.1.tgz",
   "_shasum": "f6bf293818332bd0dab54efb16087724745e6ca8",
   "_spec": "parse-asn1@^5.0.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/browserify-sign",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/browserify-sign",
   "author": "",
   "bugs": {
     "url": "https://github.com/crypto-browserify/parse-asn1/issues"

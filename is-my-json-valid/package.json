@@ -21,7 +21,7 @@
   "_resolved": "http://registry.npm.taobao.org/is-my-json-valid/download/is-my-json-valid-2.17.2.tgz",
   "_shasum": "6b2103a288e94ef3de5cf15d29dd85fc4b78d65c",
   "_spec": "is-my-json-valid@^2.12.4",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/node-sass/node_modules/har-validator",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/node-sass/node_modules/har-validator",
   "author": {
     "name": "Mathias Buus"
   },

@@ -1,5 +1,5 @@
 {
-  "_from": "es-abstract@^1.7.0",
+  "_from": "es-abstract@^1.5.1",
   "_id": "es-abstract@1.11.0",
   "_inBundle": false,
   "_integrity": "sha1-zOh9UY8Elok7GjDNhGGDVTVIBoE=",
@@ -8,20 +8,21 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "es-abstract@^1.7.0",
+    "raw": "es-abstract@^1.5.1",
     "name": "es-abstract",
     "escapedName": "es-abstract",
-    "rawSpec": "^1.7.0",
+    "rawSpec": "^1.5.1",
     "saveSpec": null,
-    "fetchSpec": "^1.7.0"
+    "fetchSpec": "^1.5.1"
   },
   "_requiredBy": [
-    "/array-includes"
+    "/array-includes",
+    "/object.getownpropertydescriptors"
   ],
   "_resolved": "http://registry.npm.taobao.org/es-abstract/download/es-abstract-1.11.0.tgz",
   "_shasum": "cce87d518f0496893b1a30cd8461835535480681",
-  "_spec": "es-abstract@^1.7.0",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/array-includes",
+  "_spec": "es-abstract@^1.5.1",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/object.getownpropertydescriptors",
   "author": {
     "name": "Jordan Harband",
     "email": "ljharb@gmail.com",

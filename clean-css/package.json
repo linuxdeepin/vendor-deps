@@ -16,13 +16,13 @@
     "fetchSpec": "^4.1.11"
   },
   "_requiredBy": [
-    "/@angular/cli",
+    "/@angular-devkit/build-angular",
     "/html-minifier"
   ],
   "_resolved": "http://registry.npm.taobao.org/clean-css/download/clean-css-4.1.11.tgz",
   "_shasum": "2ecdf145aba38f54740f26cefd0ff3e03e125d6a",
   "_spec": "clean-css@^4.1.11",
-  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular/cli",
+  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Jakub Pawlowicz",
     "email": "contact@jakubpawlowicz.com",
