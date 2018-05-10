@@ -6,36 +6,29 @@
  * found in the LICENSE file at https://angular.io/license
  */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
-	typeof define === 'function' && define.amd ? define('@angular/cdk/platform', ['exports', '@angular/core', '@angular/common'], factory) :
-	(factory((global.ng = global.ng || {}, global.ng.cdk = global.ng.cdk || {}, global.ng.cdk.platform = {}),global.ng.core,global.ng.common));
-}(this, (function (exports,core,common) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core'], factory) :
+	(factory((global.ng = global.ng || {}, global.ng.cdk = global.ng.cdk || {}, global.ng.cdk.platform = global.ng.cdk.platform || {}),global.ng.core));
+}(this, (function (exports,_angular_core) { 'use strict';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 // Whether the current platform supports the V8 Break Iterator. The V8 check
 // is necessary to detect all Blink based browsers.
-var /** @type {?} */ hasV8BreakIterator = (typeof Intl !== 'undefined' && (/** @type {?} */ (Intl)).v8BreakIterator);
+var hasV8BreakIterator = (typeof Intl !== 'undefined' && (/** @type {?} */ (Intl)).v8BreakIterator);
 /**
  * Service to detect the current platform by comparing the userAgent strings and
  * checking browser-specific global properties.
  */
 var Platform = /** @class */ (function () {
-    /**
-     * @deletion-target v7.0.0 remove optional decorator
-     */
-    function Platform(_platformId) {
-        this._platformId = _platformId;
+    function Platform() {
         /**
          * Whether the Angular application is being rendered in the browser.
-         * We want to use the Angular platform check because if the Document is shimmed
-         * without the navigator, the following checks will fail. This is preferred because
-         * sometimes the Document may be shimmed without the user's knowledge or intention
          */
-        this.isBrowser = this._platformId ?
-            common.isPlatformBrowser(this._platformId) : typeof document === 'object' && !!document;
+        this.isBrowser = typeof document === 'object' && !!document;
         /**
          * Whether the current browser is Microsoft Edge.
          */
@@ -73,13 +66,10 @@ var Platform = /** @class */ (function () {
         this.SAFARI = this.isBrowser && /safari/i.test(navigator.userAgent) && this.WEBKIT;
     }
     Platform.decorators = [
-        { type: core.Injectable, args: [{ providedIn: 'root' },] },
+        { type: _angular_core.Injectable },
     ];
     /** @nocollapse */
-    Platform.ctorParameters = function () { return [
-        { type: Object, decorators: [{ type: core.Optional }, { type: core.Inject, args: [core.PLATFORM_ID,] },] },
-    ]; };
-    /** @nocollapse */ Platform.ngInjectableDef = core.defineInjectable({ factory: function Platform_Factory() { return new Platform(core.inject(core.PLATFORM_ID, 8)); }, token: Platform, providedIn: "root" });
+    Platform.ctorParameters = function () { return []; };
     return Platform;
 }());
 
@@ -91,7 +81,7 @@ var Platform = /** @class */ (function () {
 /**
  * Cached result of whether the user's browser supports passive event listeners.
  */
-var /** @type {?} */ supportsPassiveEvents;
+var supportsPassiveEvents;
 /**
  * Checks whether the user's browser supports passive event listeners.
  * See: https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
@@ -113,11 +103,11 @@ function supportsPassiveEventListeners() {
 /**
  * Cached result Set of input types support by the current browser.
  */
-var /** @type {?} */ supportedInputTypes;
+var supportedInputTypes;
 /**
  * Types of `<input>` that *might* be supported.
  */
-var /** @type {?} */ candidateInputTypes = [
+var candidateInputTypes = [
     'color',
     'button',
     'checkbox',
@@ -168,12 +158,17 @@ function getSupportedInputTypes() {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 var PlatformModule = /** @class */ (function () {
     function PlatformModule() {
     }
     PlatformModule.decorators = [
-        { type: core.NgModule },
+        { type: _angular_core.NgModule, args: [{
+                    providers: [Platform]
+                },] },
     ];
+    /** @nocollapse */
+    PlatformModule.ctorParameters = function () { return []; };
     return PlatformModule;
 }());
 

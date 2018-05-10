@@ -14,6 +14,7 @@ import { OverlayRef } from '../overlay-ref';
  * element to become blurry.
  */
 export declare class GlobalPositionStrategy implements PositionStrategy {
+    private _document;
     /** The overlay to which this strategy is attached. */
     private _overlayRef;
     private _cssPosition;
@@ -25,6 +26,9 @@ export declare class GlobalPositionStrategy implements PositionStrategy {
     private _justifyContent;
     private _width;
     private _height;
+    /** A lazily-created wrapper for the overlay element that is used as a flex container. */
+    private _wrapper;
+    constructor(_document: any);
     attach(overlayRef: OverlayRef): void;
     /**
      * Sets the top position of the overlay. Clears any previously set vertical position.
@@ -77,11 +81,10 @@ export declare class GlobalPositionStrategy implements PositionStrategy {
     /**
      * Apply the position to the element.
      * @docs-private
+     *
+     * @returns Resolved when the styles have been applied.
      */
     apply(): void;
-    /**
-     * Noop implemented as a part of the PositionStrategy interface.
-     * @docs-private
-     */
+    /** Removes the wrapper element from the DOM. */
     dispose(): void;
 }

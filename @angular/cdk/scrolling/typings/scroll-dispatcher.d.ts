@@ -5,9 +5,10 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { ElementRef, NgZone, Optional, OnDestroy } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { ElementRef, NgZone, OnDestroy, Optional } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 import { CdkScrollable } from './scrollable';
 /** Time in ms to throttle the scrolling events by default. */
 export declare const DEFAULT_SCROLL_TIME = 20;
@@ -69,11 +70,11 @@ export declare class ScrollDispatcher implements OnDestroy {
     /** Cleans up the global scroll listener. */
     private _removeGlobalListener();
 }
-/** @docs-private @deprecated @deletion-target 7.0.0 */
+/** @docs-private */
 export declare function SCROLL_DISPATCHER_PROVIDER_FACTORY(parentDispatcher: ScrollDispatcher, ngZone: NgZone, platform: Platform): ScrollDispatcher;
-/** @docs-private @deprecated @deletion-target 7.0.0 */
+/** @docs-private */
 export declare const SCROLL_DISPATCHER_PROVIDER: {
     provide: typeof ScrollDispatcher;
     deps: (Optional[] | typeof NgZone | typeof Platform)[];
-    useFactory: typeof SCROLL_DISPATCHER_PROVIDER_FACTORY;
+    useFactory: (parentDispatcher: ScrollDispatcher, ngZone: NgZone, platform: Platform) => ScrollDispatcher;
 };

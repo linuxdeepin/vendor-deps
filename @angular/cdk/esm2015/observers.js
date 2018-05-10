@@ -5,15 +5,16 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { Directive, ElementRef, EventEmitter, Injectable, Input, NgModule, NgZone, Output } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Directive, ElementRef, EventEmitter, Injectable, Input, NgModule, NgZone, Output, defineInjectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
+import { debounceTime } from 'rxjs/operators/debounceTime';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Factory that creates a new MutationObserver and allows us to stub it out in unit tests.
  * \@docs-private
@@ -28,9 +29,10 @@ class MutationObserverFactory {
     }
 }
 MutationObserverFactory.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
-/** @nocollapse */ MutationObserverFactory.ngInjectableDef = defineInjectable({ factory: function MutationObserverFactory_Factory() { return new MutationObserverFactory(); }, token: MutationObserverFactory, providedIn: "root" });
+/** @nocollapse */
+MutationObserverFactory.ctorParameters = () => [];
 /**
  * Directive that triggers a callback whenever the content of
  * its associated element has changed.
@@ -153,6 +155,8 @@ ObserversModule.decorators = [
                 providers: [MutationObserverFactory]
             },] },
 ];
+/** @nocollapse */
+ObserversModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -163,6 +167,9 @@ ObserversModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+/**
+ * Generated bundle index. Do not edit.
+ */
 
-export { MutationObserverFactory, CdkObserveContent, ObserversModule };
+export { CdkObserveContent as ObserveContent, MutationObserverFactory, CdkObserveContent, ObserversModule };
 //# sourceMappingURL=observers.js.map

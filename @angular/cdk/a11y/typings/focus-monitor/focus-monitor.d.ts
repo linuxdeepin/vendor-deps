@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Platform } from '@angular/cdk/platform';
-import { ElementRef, EventEmitter, NgZone, OnDestroy, Optional } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ElementRef, EventEmitter, NgZone, OnDestroy, Optional, Renderer2 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 export declare const TOUCH_BUFFER_MS = 650;
 export declare type FocusOrigin = 'touch' | 'mouse' | 'keyboard' | 'program' | null;
 /** Monitors mouse and keyboard events to determine the cause of focus events. */
@@ -35,6 +35,12 @@ export declare class FocusMonitor implements OnDestroy {
     /** The number of elements currently being monitored. */
     private _monitoredElementCount;
     constructor(_ngZone: NgZone, _platform: Platform);
+    /**
+     * @docs-private
+     * @deprecated renderer param no longer needed.
+     * @deletion-target 6.0.0
+     */
+    monitor(element: HTMLElement, renderer: Renderer2, checkChildren: boolean): Observable<FocusOrigin>;
     /**
      * Monitors focus on an element and applies appropriate CSS classes.
      * @param element The element to monitor
@@ -87,7 +93,6 @@ export declare class FocusMonitor implements OnDestroy {
      * @param element The monitored element.
      */
     _onBlur(event: FocusEvent, element: HTMLElement): void;
-    private _emitOrigin(subject, origin);
     private _incrementMonitoredElementCount();
     private _decrementMonitoredElementCount();
 }
@@ -108,11 +113,11 @@ export declare class CdkMonitorFocus implements OnDestroy {
     constructor(_elementRef: ElementRef, _focusMonitor: FocusMonitor);
     ngOnDestroy(): void;
 }
-/** @docs-private @deprecated @deletion-target 7.0.0 */
+/** @docs-private */
 export declare function FOCUS_MONITOR_PROVIDER_FACTORY(parentDispatcher: FocusMonitor, ngZone: NgZone, platform: Platform): FocusMonitor;
-/** @docs-private @deprecated @deletion-target 7.0.0 */
+/** @docs-private */
 export declare const FOCUS_MONITOR_PROVIDER: {
     provide: typeof FocusMonitor;
     deps: (Optional[] | typeof NgZone | typeof Platform)[];
-    useFactory: typeof FOCUS_MONITOR_PROVIDER_FACTORY;
+    useFactory: (parentDispatcher: FocusMonitor, ngZone: NgZone, platform: Platform) => FocusMonitor;
 };

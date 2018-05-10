@@ -7,56 +7,40 @@
  */
 import { AfterContentChecked, ChangeDetectorRef, ElementRef, IterableDiffers, OnInit, QueryList, TrackByFunction, ViewContainerRef } from '@angular/core';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { CdkFooterRowDef, CdkHeaderRowDef, CdkRowDef } from './row';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { CdkHeaderRowDef, CdkRowDef } from './row';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CdkColumnDef } from './cell';
-/** Interface used to provide an outlet for rows to be inserted into. */
-export interface RowOutlet {
-    viewContainer: ViewContainerRef;
-}
+import { Observable } from 'rxjs/Observable';
 /**
  * Provides a handle for the table to grab the view container's ng-container to insert data rows.
  * @docs-private
  */
-export declare class DataRowOutlet implements RowOutlet {
+export declare class RowPlaceholder {
     viewContainer: ViewContainerRef;
-    elementRef: ElementRef;
-    constructor(viewContainer: ViewContainerRef, elementRef: ElementRef);
+    constructor(viewContainer: ViewContainerRef);
 }
 /**
  * Provides a handle for the table to grab the view container's ng-container to insert the header.
  * @docs-private
  */
-export declare class HeaderRowOutlet implements RowOutlet {
+export declare class HeaderRowPlaceholder {
     viewContainer: ViewContainerRef;
-    elementRef: ElementRef;
-    constructor(viewContainer: ViewContainerRef, elementRef: ElementRef);
-}
-/**
- * Provides a handle for the table to grab the view container's ng-container to insert the footer.
- * @docs-private
- */
-export declare class FooterRowOutlet implements RowOutlet {
-    viewContainer: ViewContainerRef;
-    elementRef: ElementRef;
-    constructor(viewContainer: ViewContainerRef, elementRef: ElementRef);
+    constructor(viewContainer: ViewContainerRef);
 }
 /**
  * The table template that can be used by the mat-table. Should not be used outside of the
  * material library.
- * @docs-private
  */
-export declare const CDK_TABLE_TEMPLATE = "\n  <ng-container headerRowOutlet></ng-container>\n  <ng-container rowOutlet></ng-container>\n  <ng-container footerRowOutlet></ng-container>";
+export declare const CDK_TABLE_TEMPLATE = "\n  <ng-container headerRowPlaceholder></ng-container>\n  <ng-container rowPlaceholder></ng-container>";
 /**
- * A data table that can render a header row, data rows, and a footer row.
- * Uses the dataSource input to determine the data to be rendered. The data can be provided either
- * as a data array, an Observable stream that emits the data array to render, or a DataSource with a
- * connect function that will return an Observable stream that emits the data array to render.
+ * A data table that renders a header row and data rows. Uses the dataSource input to determine
+ * the data to be rendered. The data can be provided either as a data array, an Observable stream
+ * that emits the data array to render, or a DataSource with a connect function that will
+ * return an Observable stream that emits the data array to render.
  */
 export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterContentChecked {
-    protected readonly _differs: IterableDiffers;
-    protected readonly _changeDetectorRef: ChangeDetectorRef;
-    protected readonly _elementRef: ElementRef;
+    private readonly _differs;
+    private readonly _changeDetectorRef;
     /** Subject that emits when the component has been destroyed. */
     private _onDestroy;
     /** Latest data provided by the data source. */
@@ -64,9 +48,9 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
     /** Subscription that listens for the data provided by the data source. */
     private _renderChangeSubscription;
     /**
-     * Map of all the user's defined columns (header, data, and footer cell template) identified by
-     * name. Collection populated by the column definitions gathered by `ContentChildren` as well as
-     * any custom column definitions added to `_customColumnDefs`.
+     * Map of all the user's defined columns (header and data cell template) identified by name.
+     * Collection populated by the column definitions gathered by `ContentChildren` as well as any
+     * custom column definitions added to `_customColumnDefs`.
      */
     private _columnDefsByName;
     /**
@@ -87,11 +71,6 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
      * content is checked.
      */
     private _headerRowDefChanged;
-    /**
-     * Whether the footer row definition has been changed. Triggers an update to the footer row after
-     * content is checked.
-     */
-    private _footerRowDefChanged;
     /**
      * Tracking function that will be used to check the differences in data changes. Used similarly
      * to `ngFor` `trackBy` function. Optimize row operations by identifying a row based on its data
@@ -130,12 +109,11 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
         start: number;
         end: number;
     }>;
-    _rowOutlet: DataRowOutlet;
-    _headerRowOutlet: HeaderRowOutlet;
-    _footerRowOutlet: FooterRowOutlet;
+    _rowPlaceholder: RowPlaceholder;
+    _headerRowPlaceholder: HeaderRowPlaceholder;
     /**
-     * The column definitions provided by the user that contain what the header, data, and footer
-     * cells should render for each column.
+     * The column definitions provided by the user that contain what the header and cells should
+     * render for each column.
      */
     _contentColumnDefs: QueryList<CdkColumnDef>;
     /** Set of template definitions that used as the data row containers. */
@@ -147,14 +125,7 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
      * content.
      */
     _headerRowDef: CdkHeaderRowDef;
-    /**
-     * Template definition used as the footer container. By default it stores the footer row
-     * definition found as a direct content child. Override this value through `setFooterRowDef` if
-     * the footer row definition should be changed or was not defined as a part of the table's
-     * content.
-     */
-    _footerRowDef: CdkFooterRowDef;
-    constructor(_differs: IterableDiffers, _changeDetectorRef: ChangeDetectorRef, _elementRef: ElementRef, role: string);
+    constructor(_differs: IterableDiffers, _changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, role: string);
     ngOnInit(): void;
     ngAfterContentChecked(): void;
     ngOnDestroy(): void;
@@ -175,12 +146,6 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
      * table's content is checked.
      */
     setHeaderRowDef(headerRowDef: CdkHeaderRowDef): void;
-    /**
-     * Sets the footer row definition to be used. Overrides the footer row definition gathered by
-     * using `ContentChild`, if one exists. Sets a flag that will re-render the footer row after the
-     * table's content is checked.
-     */
-    setFooterRowDef(footerRowDef: CdkFooterRowDef): void;
     /** Adds a column definition that was not included as part of the direct content children. */
     addColumnDef(columnDef: CdkColumnDef): void;
     /** Removes a column definition that was not included as part of the direct content children. */
@@ -194,28 +159,23 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
     /** Update the list of all available row definitions that can be used. */
     private _cacheRowDefs();
     /**
-     * Check if the header, data, or footer rows have changed what columns they want to display.
-     * If there is a diff, then re-render that section.
+     * Check if the header or rows have changed what columns they want to display. If there is a diff,
+     * then re-render that section.
      */
     private _renderUpdatedColumns();
     /**
      * Switch to the provided data source by resetting the data and unsubscribing from the current
      * render change subscription if one exists. If the data source is null, interpret this by
-     * clearing the row outlet. Otherwise start listening for new data.
+     * clearing the row placeholder. Otherwise start listening for new data.
      */
     private _switchDataSource(dataSource);
     /** Set up a subscription for the data provided by the data source. */
     private _observeRenderChanges();
     /**
-     * Clears any existing content in the header row outlet and creates a new embedded view
-     * in the outlet using the header row definition.
+     * Clears any existing content in the header row placeholder and creates a new embedded view
+     * in the placeholder using the header row definition.
      */
     private _renderHeaderRow();
-    /**
-     * Clears any existing content in the footer row outlet and creates a new embedded view
-     * in the outlet using the footer row definition.
-     */
-    private _renderFooterRow();
     /**
      * Finds the matching row definition that should be used for this row data. If there is only
      * one row definition, it is returned. Otherwise, find the row definition that has a when
@@ -229,18 +189,18 @@ export declare class CdkTable<T> implements CollectionViewer, OnInit, AfterConte
      */
     private _insertRow(rowData, index);
     /**
-     * Creates a new row template in the outlet and fills it with the set of cell templates.
-     * Optionally takes a context to provide to the row and cells, as well as an optional index
-     * of where to place the new row template in the outlet.
-     */
-    private _renderRow(outlet, rowDef, context?, index?);
-    /**
      * Updates the index-related context for each row to reflect any changes in the index of the rows,
      * e.g. first/last/even/odd.
      */
     private _updateRowIndexContext();
-    /** Gets the column definitions for the provided row def. */
-    private _getCellTemplates(rowDef);
-    /** Adds native table sections (e.g. tbody) and moves the row outlets into them. */
-    private _applyNativeTableSections();
+    /**
+     * Returns the cell template definitions to insert into the header
+     * as defined by its list of columns to display.
+     */
+    private _getHeaderCellTemplatesForRow(headerDef);
+    /**
+     * Returns the cell template definitions to insert in the provided row
+     * as defined by its list of columns to display.
+     */
+    private _getCellTemplatesForRow(rowDef);
 }

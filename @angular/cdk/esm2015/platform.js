@@ -5,35 +5,26 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Inject, Injectable, Optional, PLATFORM_ID, NgModule, defineInjectable, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, NgModule } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 // Whether the current platform supports the V8 Break Iterator. The V8 check
 // is necessary to detect all Blink based browsers.
-const /** @type {?} */ hasV8BreakIterator = (typeof Intl !== 'undefined' && (/** @type {?} */ (Intl)).v8BreakIterator);
+const hasV8BreakIterator = (typeof Intl !== 'undefined' && (/** @type {?} */ (Intl)).v8BreakIterator);
 /**
  * Service to detect the current platform by comparing the userAgent strings and
  * checking browser-specific global properties.
  */
 class Platform {
-    /**
-     * \@deletion-target v7.0.0 remove optional decorator
-     * @param {?=} _platformId
-     */
-    constructor(_platformId) {
-        this._platformId = _platformId;
+    constructor() {
         /**
          * Whether the Angular application is being rendered in the browser.
-         * We want to use the Angular platform check because if the Document is shimmed
-         * without the navigator, the following checks will fail. This is preferred because
-         * sometimes the Document may be shimmed without the user's knowledge or intention
          */
-        this.isBrowser = this._platformId ?
-            isPlatformBrowser(this._platformId) : typeof document === 'object' && !!document;
+        this.isBrowser = typeof document === 'object' && !!document;
         /**
          * Whether the current browser is Microsoft Edge.
          */
@@ -72,13 +63,10 @@ class Platform {
     }
 }
 Platform.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
 /** @nocollapse */
-Platform.ctorParameters = () => [
-    { type: Object, decorators: [{ type: Optional }, { type: Inject, args: [PLATFORM_ID,] },] },
-];
-/** @nocollapse */ Platform.ngInjectableDef = defineInjectable({ factory: function Platform_Factory() { return new Platform(inject(PLATFORM_ID, 8)); }, token: Platform, providedIn: "root" });
+Platform.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -88,7 +76,7 @@ Platform.ctorParameters = () => [
 /**
  * Cached result of whether the user's browser supports passive event listeners.
  */
-let /** @type {?} */ supportsPassiveEvents;
+let supportsPassiveEvents;
 /**
  * Checks whether the user's browser supports passive event listeners.
  * See: https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
@@ -110,11 +98,11 @@ function supportsPassiveEventListeners() {
 /**
  * Cached result Set of input types support by the current browser.
  */
-let /** @type {?} */ supportedInputTypes;
+let supportedInputTypes;
 /**
  * Types of `<input>` that *might* be supported.
  */
-const /** @type {?} */ candidateInputTypes = [
+const candidateInputTypes = [
     'color',
     'button',
     'checkbox',
@@ -165,11 +153,16 @@ function getSupportedInputTypes() {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 class PlatformModule {
 }
 PlatformModule.decorators = [
-    { type: NgModule },
+    { type: NgModule, args: [{
+                providers: [Platform]
+            },] },
 ];
+/** @nocollapse */
+PlatformModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -179,6 +172,9 @@ PlatformModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
  */
 
 export { Platform, supportsPassiveEventListeners, getSupportedInputTypes, PlatformModule };

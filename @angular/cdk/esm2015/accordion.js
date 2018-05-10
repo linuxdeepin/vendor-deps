@@ -5,32 +5,28 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Directive, Input, Output, EventEmitter, Optional, ChangeDetectorRef, NgModule } from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, NgModule, Optional, Output } from '@angular/core';
+import { UNIQUE_SELECTION_DISPATCHER_PROVIDER, UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Subject, Subscription } from 'rxjs';
-import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Used to generate unique ID for each accordion.
  */
-let /** @type {?} */ nextId = 0;
+let nextId$1 = 0;
 /**
  * Directive whose purpose is to manage the expanded state of CdkAccordionItem children.
  */
 class CdkAccordion {
     constructor() {
         /**
-         * Stream that emits true/false when openAll/closeAll is triggered.
-         */
-        this._openCloseAllActions = new Subject();
-        /**
          * A readonly id value to use for unique selection coordination.
          */
-        this.id = `cdk-accordion-${nextId++}`;
+        this.id = `cdk-accordion-${nextId$1++}`;
         this._multi = false;
     }
     /**
@@ -43,29 +39,6 @@ class CdkAccordion {
      * @return {?}
      */
     set multi(multi) { this._multi = coerceBooleanProperty(multi); }
-    /**
-     * Opens all enabled accordion items in an accordion where multi is enabled.
-     * @return {?}
-     */
-    openAll() {
-        this._openCloseAll(true);
-    }
-    /**
-     * Closes all enabled accordion items in an accordion where multi is enabled.
-     * @return {?}
-     */
-    closeAll() {
-        this._openCloseAll(false);
-    }
-    /**
-     * @param {?} expanded
-     * @return {?}
-     */
-    _openCloseAll(expanded) {
-        if (this.multi) {
-            this._openCloseAllActions.next(expanded);
-        }
-    }
 }
 CdkAccordion.decorators = [
     { type: Directive, args: [{
@@ -74,6 +47,7 @@ CdkAccordion.decorators = [
             },] },
 ];
 /** @nocollapse */
+CdkAccordion.ctorParameters = () => [];
 CdkAccordion.propDecorators = {
     "multi": [{ type: Input },],
 };
@@ -82,10 +56,11 @@ CdkAccordion.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Used to generate unique ID for each accordion item.
  */
-let /** @type {?} */ nextId$1 = 0;
+let nextId = 0;
 /**
  * An basic directive expected to be extended and decorated as a component.  Sets up all
  * events and attributes needed to be managed by a CdkAccordion parent.
@@ -100,10 +75,6 @@ class CdkAccordionItem {
         this.accordion = accordion;
         this._changeDetectorRef = _changeDetectorRef;
         this._expansionDispatcher = _expansionDispatcher;
-        /**
-         * Subscription to openAll/closeAll events.
-         */
-        this._openCloseAllSubscription = Subscription.EMPTY;
         /**
          * Event emitted every time the AccordionItem is closed.
          */
@@ -125,7 +96,7 @@ class CdkAccordionItem {
         /**
          * The unique AccordionItem id.
          */
-        this.id = `cdk-accordion-child-${nextId$1++}`;
+        this.id = `cdk-accordion-child-${nextId++}`;
         this._expanded = false;
         this._disabled = false;
         /**
@@ -139,10 +110,6 @@ class CdkAccordionItem {
                     this.expanded = false;
                 }
             });
-        // When an accordion item is hosted in an accordion, subscribe to open/close events.
-        if (this.accordion) {
-            this._openCloseAllSubscription = this._subscribeToOpenCloseAllActions();
-        }
     }
     /**
      * Whether the AccordionItem is expanded.
@@ -191,12 +158,8 @@ class CdkAccordionItem {
      * @return {?}
      */
     ngOnDestroy() {
-        this.opened.complete();
-        this.closed.complete();
         this.destroyed.emit();
-        this.destroyed.complete();
         this._removeUniqueSelectionListener();
-        this._openCloseAllSubscription.unsubscribe();
     }
     /**
      * Toggles the expanded state of the accordion item.
@@ -225,21 +188,10 @@ class CdkAccordionItem {
             this.expanded = true;
         }
     }
-    /**
-     * @return {?}
-     */
-    _subscribeToOpenCloseAllActions() {
-        return this.accordion._openCloseAllActions.subscribe(expanded => {
-            // Only change expanded state if item is enabled
-            if (!this.disabled) {
-                this.expanded = expanded;
-            }
-        });
-    }
 }
 CdkAccordionItem.decorators = [
     { type: Directive, args: [{
-                selector: 'cdk-accordion-item, [cdkAccordionItem]',
+                selector: 'cdk-accordion-item',
                 exportAs: 'cdkAccordionItem',
             },] },
 ];
@@ -262,14 +214,18 @@ CdkAccordionItem.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 class CdkAccordionModule {
 }
 CdkAccordionModule.decorators = [
     { type: NgModule, args: [{
                 exports: [CdkAccordion, CdkAccordionItem],
                 declarations: [CdkAccordion, CdkAccordionItem],
+                providers: [UNIQUE_SELECTION_DISPATCHER_PROVIDER],
             },] },
 ];
+/** @nocollapse */
+CdkAccordionModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -279,6 +235,9 @@ CdkAccordionModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
  */
 
 export { CdkAccordionItem, CdkAccordion, CdkAccordionModule };

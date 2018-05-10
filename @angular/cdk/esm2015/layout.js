@@ -5,34 +5,24 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { NgModule, Injectable, NgZone, defineInjectable, inject } from '@angular/core';
-import { Platform } from '@angular/cdk/platform';
-import { combineLatest, fromEventPattern, Subject } from 'rxjs';
-import { map, startWith, takeUntil } from 'rxjs/operators';
+import { Injectable, NgModule, NgZone } from '@angular/core';
+import { Platform, PlatformModule } from '@angular/cdk/platform';
+import { Subject } from 'rxjs/Subject';
+import { map } from 'rxjs/operators/map';
+import { startWith } from 'rxjs/operators/startWith';
+import { takeUntil } from 'rxjs/operators/takeUntil';
 import { coerceArray } from '@angular/cdk/coercion';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class LayoutModule {
-}
-LayoutModule.decorators = [
-    { type: NgModule },
-];
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import { fromEventPattern } from 'rxjs/observable/fromEventPattern';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
 /**
- * Global registry for all dynamically-created, injected media queries.
+ * Global registry for all dynamically-created, injected style tags.
  */
-const /** @type {?} */ mediaQueriesForWebkitCompatibility = new Set();
-/**
- * Style tag that holds all of the dynamically-created media queries.
- */
-let /** @type {?} */ mediaQueryStyleNode;
+const styleElementForWebkitCompatibility = new Map();
 /**
  * A utility for calling matchMedia queries.
  */
@@ -64,37 +54,34 @@ class MediaMatcher {
     }
 }
 MediaMatcher.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
 /** @nocollapse */
 MediaMatcher.ctorParameters = () => [
     { type: Platform, },
 ];
-/** @nocollapse */ MediaMatcher.ngInjectableDef = defineInjectable({ factory: function MediaMatcher_Factory() { return new MediaMatcher(inject(Platform)); }, token: MediaMatcher, providedIn: "root" });
 /**
- * For Webkit engines that only trigger the MediaQueryListListener when
- * there is at least one CSS selector for the respective media query.
+ * For Webkit engines that only trigger the MediaQueryListListener when there is at least one CSS
+ * selector for the respective media query.
  * @param {?} query
  * @return {?}
  */
 function createEmptyStyleRule(query) {
-    if (mediaQueriesForWebkitCompatibility.has(query)) {
-        return;
-    }
-    try {
-        if (!mediaQueryStyleNode) {
-            mediaQueryStyleNode = document.createElement('style');
-            mediaQueryStyleNode.setAttribute('type', 'text/css');
-            document.head.appendChild(mediaQueryStyleNode);
+    if (!styleElementForWebkitCompatibility.has(query)) {
+        try {
+            const /** @type {?} */ style = document.createElement('style');
+            style.setAttribute('type', 'text/css');
+            if (!style.sheet) {
+                const /** @type {?} */ cssText = `@media ${query} {.fx-query-test{ }}`;
+                style.appendChild(document.createTextNode(cssText));
+            }
+            document.getElementsByTagName('head')[0].appendChild(style);
+            // Store in private global registry
+            styleElementForWebkitCompatibility.set(query, style);
         }
-        if (mediaQueryStyleNode.sheet) {
-            (/** @type {?} */ (mediaQueryStyleNode.sheet))
-                .insertRule(`@media ${query} {.fx-query-test{ }}`, 0);
-            mediaQueriesForWebkitCompatibility.add(query);
+        catch (/** @type {?} */ e) {
+            console.error(e);
         }
-    }
-    catch (/** @type {?} */ e) {
-        console.error(e);
     }
 }
 /**
@@ -115,6 +102,11 @@ function noopMatchMedia(query) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+/**
+ * The current state of a layout breakpoint.
+ * @record
+ */
+
 /**
  * Utility for checking the matching state of \@media queries.
  */
@@ -149,23 +141,23 @@ class BreakpointObserver {
      * @return {?} Whether any of the media queries match.
      */
     isMatched(value) {
-        const /** @type {?} */ queries = splitQueries(coerceArray(value));
+        let /** @type {?} */ queries = coerceArray(value);
         return queries.some(mediaQuery => this._registerQuery(mediaQuery).mql.matches);
     }
     /**
      * Gets an observable of results for the given queries that will emit new results for any changes
      * in matching of the given queries.
-     * @param {?} value One or more media queries to check.
+     * @param {?} value
      * @return {?} A stream of matches for the given queries.
      */
     observe(value) {
-        const /** @type {?} */ queries = splitQueries(coerceArray(value));
-        const /** @type {?} */ observables = queries.map(query => this._registerQuery(query).observable);
-        return combineLatest(observables).pipe(map((breakpointStates) => {
+        let /** @type {?} */ queries = coerceArray(value);
+        let /** @type {?} */ observables = queries.map(query => this._registerQuery(query).observable);
+        return combineLatest(observables, (a, b) => {
             return {
-                matches: breakpointStates.some(state => state && state.matches)
+                matches: !!((a && a.matches) || (b && b.matches)),
             };
-        }));
+        });
     }
     /**
      * Registers a specific query to be listened for.
@@ -177,9 +169,9 @@ class BreakpointObserver {
         if (this._queries.has(query)) {
             return /** @type {?} */ ((this._queries.get(query)));
         }
-        const /** @type {?} */ mql = this.mediaMatcher.matchMedia(query);
+        let /** @type {?} */ mql = this.mediaMatcher.matchMedia(query);
         // Create callback for match changes and add it is as a listener.
-        const /** @type {?} */ queryObservable = fromEventPattern(
+        let /** @type {?} */ queryObservable = fromEventPattern(
         // Listener callback methods are wrapped to be placed back in ngZone. Callbacks must be placed
         // back into the zone because matchMedia is only included in Zone.js by loading the
         // webapis-media-query.js file alongside the zone.js file.  Additionally, some browsers do not
@@ -192,38 +184,26 @@ class BreakpointObserver {
         })
             .pipe(takeUntil(this._destroySubject), startWith(mql), map((nextMql) => ({ matches: nextMql.matches })));
         // Add the MediaQueryList to the set of queries.
-        const /** @type {?} */ output = { observable: queryObservable, mql: mql };
+        let /** @type {?} */ output = { observable: queryObservable, mql: mql };
         this._queries.set(query, output);
         return output;
     }
 }
 BreakpointObserver.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
 /** @nocollapse */
 BreakpointObserver.ctorParameters = () => [
     { type: MediaMatcher, },
     { type: NgZone, },
 ];
-/** @nocollapse */ BreakpointObserver.ngInjectableDef = defineInjectable({ factory: function BreakpointObserver_Factory() { return new BreakpointObserver(inject(MediaMatcher), inject(NgZone)); }, token: BreakpointObserver, providedIn: "root" });
-/**
- * Split each query string into separate query strings if two queries are provided as comma
- * separated.
- * @param {?} queries
- * @return {?}
- */
-function splitQueries(queries) {
-    return queries.map((query) => query.split(','))
-        .reduce((a1, a2) => a1.concat(a2))
-        .map(query => query.trim());
-}
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
 
-const /** @type {?} */ Breakpoints = {
+const Breakpoints = {
     XSmall: '(max-width: 599px)',
     Small: '(min-width: 600px) and (max-width: 959px)',
     Medium: '(min-width: 960px) and (max-width: 1279px)',
@@ -247,10 +227,23 @@ const /** @type {?} */ Breakpoints = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class LayoutModule {
+}
+LayoutModule.decorators = [
+    { type: NgModule, args: [{
+                providers: [BreakpointObserver, MediaMatcher],
+                imports: [PlatformModule],
+            },] },
+];
+/** @nocollapse */
+LayoutModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
  */
 
 export { LayoutModule, BreakpointObserver, Breakpoints, MediaMatcher };

@@ -5,13 +5,14 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { Directive, EventEmitter, Inject, Injectable, InjectionToken, Input, NgModule, Optional, Output } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { inject, InjectionToken, EventEmitter, Inject, Injectable, Optional, Directive, Output, Input, NgModule, defineInjectable } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Injection token used to inject the document into Directionality.
  * This is used so that the value can be faked in tests.
@@ -21,28 +22,8 @@ import { inject, InjectionToken, EventEmitter, Inject, Injectable, Optional, Dir
  *
  * We also can't re-provide the DOCUMENT token from platform-brower because the unit tests
  * themselves use things like `querySelector` in test code.
- *
- * This token is defined in a separate file from Directionality as a workaround for
- * https://github.com/angular/angular/issues/22559
- *
- * \@docs-private
  */
-const /** @type {?} */ DIR_DOCUMENT = new InjectionToken('cdk-dir-doc', {
-    providedIn: 'root',
-    factory: DIR_DOCUMENT_FACTORY,
-});
-/**
- * \@docs-private
- * @return {?}
- */
-function DIR_DOCUMENT_FACTORY() {
-    return inject(DOCUMENT);
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
+const DIR_DOCUMENT = new InjectionToken('cdk-dir-doc');
 /**
  * The directionality (LTR / RTL) context for the application (or a subtree of it).
  * Exposes the current direction and a stream of direction changes.
@@ -70,26 +51,20 @@ class Directionality {
             this.value = /** @type {?} */ ((bodyDir || htmlDir || 'ltr'));
         }
     }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.change.complete();
-    }
 }
 Directionality.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
 /** @nocollapse */
 Directionality.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DIR_DOCUMENT,] },] },
 ];
-/** @nocollapse */ Directionality.ngInjectableDef = defineInjectable({ factory: function Directionality_Factory() { return new Directionality(inject(DIR_DOCUMENT, 8)); }, token: Directionality, providedIn: "root" });
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Directive to listen for changes of direction of part of the DOM.
  *
@@ -152,6 +127,7 @@ Dir.decorators = [
             },] },
 ];
 /** @nocollapse */
+Dir.ctorParameters = () => [];
 Dir.propDecorators = {
     "change": [{ type: Output, args: ['dirChange',] },],
     "dir": [{ type: Input },],
@@ -161,14 +137,21 @@ Dir.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 class BidiModule {
 }
 BidiModule.decorators = [
     { type: NgModule, args: [{
                 exports: [Dir],
                 declarations: [Dir],
+                providers: [
+                    { provide: DIR_DOCUMENT, useExisting: DOCUMENT },
+                    Directionality,
+                ]
             },] },
 ];
+/** @nocollapse */
+BidiModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -179,6 +162,9 @@ BidiModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+/**
+ * Generated bundle index. Do not edit.
+ */
 
-export { Directionality, DIR_DOCUMENT, Dir, BidiModule, DIR_DOCUMENT_FACTORY as ɵa };
+export { Directionality, DIR_DOCUMENT, Dir, BidiModule };
 //# sourceMappingURL=bidi.js.map

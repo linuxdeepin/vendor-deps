@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { IterableChanges, IterableDiffer, IterableDiffers, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
-import { CdkCellDef, CdkColumnDef } from './cell';
+import { CdkCellDef } from './cell';
 /**
  * The row template that can be used by the mat-table. Should not be used outside of the
  * material library.
@@ -20,7 +20,7 @@ export declare abstract class BaseRowDef {
     /** @docs-private */ template: TemplateRef<any>;
     protected _differs: IterableDiffers;
     /** The columns to be displayed on this row. */
-    columns: Iterable<string>;
+    columns: string[];
     /** Differ used to check if any changes were made to the columns. */
     protected _columnsDiffer: IterableDiffer<any>;
     constructor(/** @docs-private */ template: TemplateRef<any>, _differs: IterableDiffers);
@@ -30,8 +30,6 @@ export declare abstract class BaseRowDef {
      * if there is no difference.
      */
     getColumnsDiff(): IterableChanges<any> | null;
-    /** Gets this row def's relevant cell template from the provided column def. */
-    abstract extractCellTemplate(column: CdkColumnDef): TemplateRef<any>;
 }
 /**
  * Header row definition for the CDK table.
@@ -39,17 +37,6 @@ export declare abstract class BaseRowDef {
  */
 export declare class CdkHeaderRowDef extends BaseRowDef {
     constructor(template: TemplateRef<any>, _differs: IterableDiffers);
-    /** Gets this row def's relevant cell template from the provided column def. */
-    extractCellTemplate(column: CdkColumnDef): TemplateRef<any>;
-}
-/**
- * Footer row definition for the CDK table.
- * Captures the footer row's template and other footer properties such as the columns to display.
- */
-export declare class CdkFooterRowDef extends BaseRowDef {
-    constructor(template: TemplateRef<any>, _differs: IterableDiffers);
-    /** Gets this row def's relevant cell template from the provided column def. */
-    extractCellTemplate(column: CdkColumnDef): TemplateRef<any>;
 }
 /**
  * Data row definition for the CDK table.
@@ -65,13 +52,11 @@ export declare class CdkRowDef<T> extends BaseRowDef {
      */
     when: (index: number, rowData: T) => boolean;
     constructor(template: TemplateRef<any>, _differs: IterableDiffers);
-    /** Gets this row def's relevant cell template from the provided column def. */
-    extractCellTemplate(column: CdkColumnDef): TemplateRef<any>;
 }
 /** Context provided to the row cells */
 export interface CdkCellOutletRowContext<T> {
     /** Data for the row that this cell is located within. */
-    $implicit?: T;
+    $implicit: T;
     /** Index location of the row that this cell is located within. */
     index?: number;
     /** Length of the number of total rows. */
@@ -107,9 +92,6 @@ export declare class CdkCellOutlet {
 }
 /** Header template container that contains the cell outlet. Adds the right class and role. */
 export declare class CdkHeaderRow {
-}
-/** Footer template container that contains the cell outlet. Adds the right class and role. */
-export declare class CdkFooterRow {
 }
 /** Data row template container that contains the cell outlet. Adds the right class and role. */
 export declare class CdkRow {

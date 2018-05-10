@@ -3,13 +3,7 @@
  * checking browser-specific global properties.
  */
 export declare class Platform {
-    private _platformId;
-    /**
-     * Whether the Angular application is being rendered in the browser.
-     * We want to use the Angular platform check because if the Document is shimmed
-     * without the navigator, the following checks will fail. This is preferred because
-     * sometimes the Document may be shimmed without the user's knowledge or intention
-     */
+    /** Whether the Angular application is being rendered in the browser. */
     isBrowser: boolean;
     /** Whether the current browser is Microsoft Edge. */
     EDGE: boolean;
@@ -27,8 +21,4 @@ export declare class Platform {
     ANDROID: boolean;
     /** Whether the current browser is Safari. */
     SAFARI: boolean;
-    /**
-     * @deletion-target v7.0.0 remove optional decorator
-     */
-    constructor(_platformId?: Object | undefined);
 }

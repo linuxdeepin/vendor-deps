@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Subject } from 'rxjs';
-import { Injectable, defineInjectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Injectable, Optional, SkipSelf } from '@angular/core';
 
 /**
  * @fileoverview added by tsickle
@@ -15,7 +15,6 @@ import { Injectable, defineInjectable } from '@angular/core';
 
 /**
  * @abstract
- * @template T
  */
 class DataSource {
 }
@@ -24,9 +23,9 @@ class DataSource {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Class to be used to power selecting one or more options from a list.
- * @template T
  */
 class SelectionModel {
     /**
@@ -212,6 +211,12 @@ class SelectionModel {
     }
 }
 /**
+ * Event emitted when the value of a MatSelectionModel has changed.
+ * \@docs-private
+ * @record
+ */
+
+/**
  * Returns an error that reports that multiple values are passed into a selection model
  * with a single value.
  * @return {?}
@@ -224,6 +229,7 @@ function getMultipleValuesInSingleSelectionError() {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Class to coordinate unique selection based on name.
  * Intended to be consumed as an Angular service.
@@ -269,9 +275,27 @@ class UniqueSelectionDispatcher {
     }
 }
 UniqueSelectionDispatcher.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] },
+    { type: Injectable },
 ];
-/** @nocollapse */ UniqueSelectionDispatcher.ngInjectableDef = defineInjectable({ factory: function UniqueSelectionDispatcher_Factory() { return new UniqueSelectionDispatcher(); }, token: UniqueSelectionDispatcher, providedIn: "root" });
+/** @nocollapse */
+UniqueSelectionDispatcher.ctorParameters = () => [];
+/**
+ * \@docs-private
+ * @param {?} parentDispatcher
+ * @return {?}
+ */
+function UNIQUE_SELECTION_DISPATCHER_PROVIDER_FACTORY(parentDispatcher) {
+    return parentDispatcher || new UniqueSelectionDispatcher();
+}
+/**
+ * \@docs-private
+ */
+const UNIQUE_SELECTION_DISPATCHER_PROVIDER = {
+    // If there is already a dispatcher available, use that. Otherwise, provide a new one.
+    provide: UniqueSelectionDispatcher,
+    deps: [[new Optional(), new SkipSelf(), UniqueSelectionDispatcher]],
+    useFactory: UNIQUE_SELECTION_DISPATCHER_PROVIDER_FACTORY
+};
 
 /**
  * @fileoverview added by tsickle
@@ -282,6 +306,9 @@ UniqueSelectionDispatcher.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+/**
+ * Generated bundle index. Do not edit.
+ */
 
-export { UniqueSelectionDispatcher, DataSource, SelectionModel, getMultipleValuesInSingleSelectionError };
+export { UniqueSelectionDispatcher, UNIQUE_SELECTION_DISPATCHER_PROVIDER, DataSource, SelectionModel, getMultipleValuesInSingleSelectionError, UNIQUE_SELECTION_DISPATCHER_PROVIDER_FACTORY as ɵa };
 //# sourceMappingURL=collections.js.map

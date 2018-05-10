@@ -8,5 +8,4 @@
 export * from './collection-viewer';
 export * from './data-source';
 export * from './selection';
-export { UniqueSelectionDispatcher, UniqueSelectionDispatcherListener } from './unique-selection-dispatcher';
-export * from './tree-adapter';
+export { UniqueSelectionDispatcher, UniqueSelectionDispatcherListener, UNIQUE_SELECTION_DISPATCHER_PROVIDER } from './unique-selection-dispatcher';

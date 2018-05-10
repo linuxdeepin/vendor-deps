@@ -5,19 +5,19 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Directive, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, EventEmitter, forwardRef, Inject, Input, Optional, Output, ViewChild, ViewEncapsulation, NgModule } from '@angular/core';
-import { FocusKeyManager } from '@angular/cdk/a11y';
-import { Directionality, BidiModule } from '@angular/cdk/bidi';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, Directive, EventEmitter, Inject, Input, NgModule, Optional, Output, TemplateRef, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
+import { DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, RIGHT_ARROW, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { END, ENTER, HOME, SPACE } from '@angular/cdk/keycodes';
 import '@angular/forms';
-import { Subject } from 'rxjs';
+import { BidiModule, Directionality } from '@angular/cdk/bidi';
+import { Subject } from 'rxjs/Subject';
 import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 class CdkStepLabel {
     /**
      * @param {?} template
@@ -40,10 +40,11 @@ CdkStepLabel.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Used to generate unique ID for each stepper component.
  */
-let /** @type {?} */ nextId = 0;
+let nextId = 0;
 /**
  * Change event emitted on selection changes.
  */
@@ -139,8 +140,9 @@ class CdkStep {
 CdkStep.decorators = [
     { type: Component, args: [{selector: 'cdk-step',
                 exportAs: 'cdkStep',
-                template: '<ng-template><ng-content></ng-content></ng-template>',
+                template: "<ng-template><ng-content></ng-content></ng-template>",
                 encapsulation: ViewEncapsulation.None,
+                preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
             },] },
 ];
@@ -175,6 +177,10 @@ class CdkStepper {
          * Event emitted when the selected step has changed.
          */
         this.selectionChange = new EventEmitter();
+        /**
+         * The index of the step that the focus can be set.
+         */
+        this._focusIndex = 0;
         this._orientation = 'horizontal';
         this._groupId = nextId++;
     }
@@ -203,14 +209,18 @@ class CdkStepper {
             if (index < 0 || index > this._steps.length - 1) {
                 throw Error('cdkStepper: Cannot assign out-of-bounds value to `selectedIndex`.');
             }
-            if (this._selectedIndex != index &&
-                !this._anyControlsInvalidOrPending(index) &&
-                (index >= this._selectedIndex || this._steps.toArray()[index].editable)) {
-                this._updateSelectedItemIndex(index);
+            if (this._anyControlsInvalidOrPending(index) || index < this._selectedIndex &&
+                !this._steps.toArray()[index].editable) {
+                // remove focus from clicked step header if the step is not able to be selected
+                this._stepHeader.toArray()[index].nativeElement.blur();
+            }
+            else if (this._selectedIndex != index) {
+                this._emitStepperSelectionEvent(index);
+                this._focusIndex = this._selectedIndex;
             }
         }
         else {
-            this._selectedIndex = index;
+            this._selectedIndex = this._focusIndex = index;
         }
     }
     /**
@@ -224,16 +234,6 @@ class CdkStepper {
      */
     set selected(step) {
         this.selectedIndex = this._steps.toArray().indexOf(step);
-    }
-    /**
-     * @return {?}
-     */
-    ngAfterViewInit() {
-        this._keyManager = new FocusKeyManager(this._stepHeader)
-            .withWrap()
-            .withHorizontalOrientation(this._layoutDirection())
-            .withVerticalOrientation(this._orientation === 'vertical');
-        this._keyManager.updateActiveItemIndex(this._selectedIndex);
     }
     /**
      * @return {?}
@@ -261,7 +261,7 @@ class CdkStepper {
      * @return {?}
      */
     reset() {
-        this._updateSelectedItemIndex(0);
+        this.selectedIndex = 0;
         this._steps.forEach(step => step.reset());
         this._stateChanged();
     }
@@ -318,17 +318,10 @@ class CdkStepper {
         }
     }
     /**
-     * Returns the index of the currently-focused step header.
-     * @return {?}
-     */
-    _getFocusIndex() {
-        return this._keyManager ? this._keyManager.activeItemIndex : this._selectedIndex;
-    }
-    /**
      * @param {?} newIndex
      * @return {?}
      */
-    _updateSelectedItemIndex(newIndex) {
+    _emitStepperSelectionEvent(newIndex) {
         const /** @type {?} */ stepsArray = this._steps.toArray();
         this.selectionChange.emit({
             selectedIndex: newIndex,
@@ -336,7 +329,6 @@ class CdkStepper {
             selectedStep: stepsArray[newIndex],
             previouslySelectedStep: stepsArray[this._selectedIndex],
         });
-        this._keyManager.updateActiveItemIndex(newIndex);
         this._selectedIndex = newIndex;
         this._stateChanged();
     }
@@ -346,21 +338,53 @@ class CdkStepper {
      */
     _onKeydown(event) {
         const /** @type {?} */ keyCode = event.keyCode;
-        if (this._keyManager.activeItemIndex != null && (keyCode === SPACE || keyCode === ENTER)) {
-            this.selectedIndex = this._keyManager.activeItemIndex;
+        // Note that the left/right arrows work both in vertical and horizontal mode.
+        if (keyCode === RIGHT_ARROW) {
+            this._layoutDirection() === 'rtl' ? this._focusPreviousStep() : this._focusNextStep();
             event.preventDefault();
         }
-        else if (keyCode === HOME) {
-            this._keyManager.setFirstItemActive();
+        if (keyCode === LEFT_ARROW) {
+            this._layoutDirection() === 'rtl' ? this._focusNextStep() : this._focusPreviousStep();
             event.preventDefault();
         }
-        else if (keyCode === END) {
-            this._keyManager.setLastItemActive();
+        // Note that the up/down arrows only work in vertical mode.
+        // See: https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel
+        if (this._orientation === 'vertical' && (keyCode === UP_ARROW || keyCode === DOWN_ARROW)) {
+            keyCode === UP_ARROW ? this._focusPreviousStep() : this._focusNextStep();
             event.preventDefault();
         }
-        else {
-            this._keyManager.onKeydown(event);
+        if (keyCode === SPACE || keyCode === ENTER) {
+            this.selectedIndex = this._focusIndex;
+            event.preventDefault();
         }
+        if (keyCode === HOME) {
+            this._focusStep(0);
+            event.preventDefault();
+        }
+        if (keyCode === END) {
+            this._focusStep(this._steps.length - 1);
+            event.preventDefault();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    _focusNextStep() {
+        this._focusStep((this._focusIndex + 1) % this._steps.length);
+    }
+    /**
+     * @return {?}
+     */
+    _focusPreviousStep() {
+        this._focusStep((this._focusIndex + this._steps.length - 1) % this._steps.length);
+    }
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    _focusStep(index) {
+        this._focusIndex = index;
+        this._stepHeader.toArray()[this._focusIndex].nativeElement.focus();
     }
     /**
      * @param {?} index
@@ -410,6 +434,7 @@ CdkStepper.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 /**
  * Button that moves to the next step in a stepper workflow.
  */
@@ -477,6 +502,7 @@ CdkStepperPrevious.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+
 class CdkStepperModule {
 }
 CdkStepperModule.decorators = [
@@ -486,6 +512,8 @@ CdkStepperModule.decorators = [
                 declarations: [CdkStep, CdkStepper, CdkStepLabel, CdkStepperNext, CdkStepperPrevious]
             },] },
 ];
+/** @nocollapse */
+CdkStepperModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -495,6 +523,9 @@ CdkStepperModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
  */
 
 export { StepperSelectionEvent, CdkStep, CdkStepper, CdkStepLabel, CdkStepperNext, CdkStepperPrevious, CdkStepperModule };

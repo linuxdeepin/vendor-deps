@@ -1,28 +1,34 @@
 {
-  "_from": "caniuse-lite@^1.0.30000832",
-  "_id": "caniuse-lite@1.0.30000836",
+  "_args": [
+    [
+      "caniuse-lite@1.0.30000838",
+      "/home/myml/Src/deepin/update/dstore-operation-server/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "caniuse-lite@1.0.30000838",
+  "_id": "caniuse-lite@1.0.30000838",
   "_inBundle": false,
-  "_integrity": "sha1-wI9AW4hNNtxE+kyahcLAbNqx27U=",
+  "_integrity": "sha1-JESHEX2qxuqN391fMqXvmzKFvCA=",
   "_location": "/caniuse-lite",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "caniuse-lite@^1.0.30000832",
+    "raw": "caniuse-lite@1.0.30000838",
     "name": "caniuse-lite",
     "escapedName": "caniuse-lite",
-    "rawSpec": "^1.0.30000832",
+    "rawSpec": "1.0.30000838",
     "saveSpec": null,
-    "fetchSpec": "^1.0.30000832"
+    "fetchSpec": "1.0.30000838"
   },
   "_requiredBy": [
     "/autoprefixer",
     "/browserslist"
   ],
-  "_resolved": "http://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30000836.tgz",
-  "_shasum": "c08f405b884d36dc44fa4c9a85c2c06cdab1dbb5",
-  "_spec": "caniuse-lite@^1.0.30000832",
-  "_where": "/home/myml/Src/deepin/dstore-operation-server/web/node_modules/autoprefixer",
+  "_resolved": "http://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30000838.tgz",
+  "_spec": "1.0.30000838",
+  "_where": "/home/myml/Src/deepin/update/dstore-operation-server/web",
   "author": {
     "name": "Ben Briggs",
     "email": "beneb.info@gmail.com",
@@ -36,8 +42,6 @@
   "bugs": {
     "url": "https://github.com/ben-eb/caniuse-lite/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "A smaller version of caniuse-db, with only the essentials!",
   "devDependencies": {
     "all-contributors-cli": "^3.0.7",
@@ -48,7 +52,7 @@
     "babel-register": "^6.18.0",
     "babel-types": "^6.21.0",
     "bunyan": "^1.8.10",
-    "caniuse-db": "1.0.30000836",
+    "caniuse-db": "1.0.30000838",
     "del-cli": "^0.2.1",
     "execa": "^0.6.3",
     "fecha": "^2.3.0",
@@ -91,5 +95,5 @@
     "size": "size-limit consumer.js",
     "test": "jest src"
   },
-  "version": "1.0.30000836"
+  "version": "1.0.30000838"
 }
