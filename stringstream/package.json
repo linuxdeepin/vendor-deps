@@ -1,14 +1,8 @@
 {
-  "_args": [
-    [
-      "stringstream@0.0.5",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
   "_from": "stringstream@0.0.5",
   "_id": "stringstream@0.0.5",
   "_inBundle": false,
-  "_integrity": "sha1-TkhM1N5aC7vuGORjB3EKioFiGHg=",
+  "_integrity": "",
   "_location": "/stringstream",
   "_phantomChildren": {},
   "_requested": {
@@ -24,12 +18,9 @@
   "_requiredBy": [
     "/less/request",
     "/loggly/request",
-    "/node-sass/request",
-    "/request"
+    "/node-sass/request"
   ],
-  "_resolved": "http://r.cnpmjs.org/stringstream/download/stringstream-0.0.5.tgz",
-  "_spec": "0.0.5",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_resolved": "",
   "author": {
     "name": "Michael Hart",
     "email": "michael.hart.au@gmail.com",

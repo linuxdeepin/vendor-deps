@@ -1,31 +1,31 @@
 {
   "_args": [
     [
-      "js-base64@2.4.3",
+      "js-base64@2.4.5",
       "/home/myml/Src/deepin/deepin-appstore/src/web"
     ]
   ],
-  "_from": "js-base64@2.4.3",
-  "_id": "js-base64@2.4.3",
+  "_from": "js-base64@2.4.5",
+  "_id": "js-base64@2.4.5",
   "_inBundle": false,
-  "_integrity": "sha1-LlRewrDylX9BNWUQIFIU6Y+tZYI=",
+  "_integrity": "sha1-4pPNPHyC8HDXAPx6HKCi5p8QH5I=",
   "_location": "/js-base64",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "js-base64@2.4.3",
+    "raw": "js-base64@2.4.5",
     "name": "js-base64",
     "escapedName": "js-base64",
-    "rawSpec": "2.4.3",
+    "rawSpec": "2.4.5",
     "saveSpec": null,
-    "fetchSpec": "2.4.3"
+    "fetchSpec": "2.4.5"
   },
   "_requiredBy": [
     "/scss-tokenizer"
   ],
-  "_resolved": "http://registry.npm.taobao.org/js-base64/download/js-base64-2.4.3.tgz",
-  "_spec": "2.4.3",
+  "_resolved": "http://r.cnpmjs.org/js-base64/download/js-base64-2.4.5.tgz",
+  "_spec": "2.4.5",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Dan Kogai"
@@ -57,5 +57,5 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register"
   },
-  "version": "2.4.3"
+  "version": "2.4.5"
 }

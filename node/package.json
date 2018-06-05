@@ -1,0 +1,56 @@
+{
+  "_from": "node@^8.11.2",
+  "_id": "node@8.11.2",
+  "_inBundle": false,
+  "_integrity": "sha512-7Uu01UtQYGuU/LvRZbL4AAuQ4eYtqfctn/RpcPvpVuWimOQ90I5z5+jkELdN7HlQa+cuedi1TaUCnbJTf51+KA==",
+  "_location": "/node",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "node@^8.11.2",
+    "name": "node",
+    "escapedName": "node",
+    "rawSpec": "^8.11.2",
+    "saveSpec": null,
+    "fetchSpec": "^8.11.2"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node/-/node-8.11.2.tgz",
+  "_shasum": "6fee188cf6072b4a5a09c2a5e59482f74c52f1db",
+  "_spec": "node@^8.11.2",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "author": "",
+  "bin": {
+    "node": "bin/node"
+  },
+  "bugs": {
+    "url": "https://github.com/aredridel/node-bin-gen/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "node-bin-setup": "^1.0.0"
+  },
+  "deprecated": false,
+  "description": "node",
+  "engines": {
+    "npm": ">=5.0.0"
+  },
+  "homepage": "https://github.com/aredridel/node-bin-gen#readme",
+  "keywords": [
+    "runtime"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aredridel/node-bin-gen.git"
+  },
+  "scripts": {
+    "preinstall": "node installArchSpecificPackage"
+  },
+  "version": "8.11.2"
+}
