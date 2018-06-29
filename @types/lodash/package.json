@@ -1,33 +1,33 @@
 {
-  "_args": [
-    [
-      "@types/lodash@4.14.108",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_from": "@types/lodash@4.14.108",
-  "_id": "@types/lodash@4.14.108",
+  "_from": "@types/lodash@4.14.110",
+  "_id": "@types/lodash@4.14.110",
   "_inBundle": false,
-  "_integrity": "sha1-AmVq863S5bMXT4MIYsR0IcAO+Bc=",
+  "_integrity": "sha512-iXYLa6olt4tnsCA+ZXeP6eEW3tk1SulWeYyP/yooWfAtXjozqXgtX4+XUtMuOCfYjKGz3F34++qUc3Q+TJuIIw==",
   "_location": "/@types/lodash",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@types/lodash@4.14.108",
+    "raw": "@types/lodash@4.14.110",
     "name": "@types/lodash",
     "escapedName": "@types%2flodash",
     "scope": "@types",
-    "rawSpec": "4.14.108",
+    "rawSpec": "4.14.110",
     "saveSpec": null,
-    "fetchSpec": "4.14.108"
+    "fetchSpec": "4.14.110"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.108.tgz",
-  "_spec": "4.14.108",
+  "_resolved": "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.110.tgz",
+  "_shasum": "fb07498f84152947f30ea09d89207ca07123461e",
+  "_spec": "@types/lodash@4.14.110",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Brian Zengel",
@@ -67,16 +67,18 @@
     }
   ],
   "dependencies": {},
+  "deprecated": false,
   "description": "TypeScript definitions for Lo-Dash",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
   "license": "MIT",
   "main": "",
   "name": "@types/lodash",
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
   },
   "scripts": {},
   "typeScriptVersion": "2.2",
-  "typesPublisherContentHash": "8580078b0f1c28ecc73adb0b6a1c889170f6cad5f2777bbb097db08c5704487e",
-  "version": "4.14.108"
+  "typesPublisherContentHash": "ddbd26faa38670a880f723bf4ae03db414e3aeaea656dff9a89414e0ed6fc685",
+  "version": "4.14.110"
 }

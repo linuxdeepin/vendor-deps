@@ -9,12 +9,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, bindNodeCallback } from 'rxjs';
-var BoundNodeCallbackObservable = /** @class */ (function (_super) {
+var BoundNodeCallbackObservable = (function (_super) {
     __extends(BoundNodeCallbackObservable, _super);
     function BoundNodeCallbackObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /* tslint:enable:max-line-length */
     BoundNodeCallbackObservable.create = function (func, selector, scheduler) {
         if (selector === void 0) { selector = undefined; }
         return bindNodeCallback(func, selector, scheduler);

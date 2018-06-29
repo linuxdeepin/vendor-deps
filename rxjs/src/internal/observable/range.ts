@@ -14,10 +14,12 @@ import { Observable } from '../Observable';
  * IScheduler and just delivers the notifications synchronously, but may use
  * an optional IScheduler to regulate those deliveries.
  *
- * @example <caption>Emits the numbers 1 to 10</caption>
- * var numbers = Rx.Observable.range(1, 10);
+ * ## Example
+ * Emits the numbers 1 to 10</caption>
+ * ```javascript
+ * const numbers = range(1, 10);
  * numbers.subscribe(x => console.log(x));
- *
+ * ```
  * @see {@link timer}
  * @see {@link interval}
  *
@@ -36,6 +38,7 @@ export function range(start: number = 0,
                       scheduler?: SchedulerLike): Observable<number> {
   return new Observable<number>(subscriber => {
     let index = 0;
+    let current = start;
 
     if (scheduler) {
       return scheduler.schedule(dispatch, 0, {
@@ -47,7 +50,7 @@ export function range(start: number = 0,
           subscriber.complete();
           break;
         }
-        subscriber.next(start++);
+        subscriber.next(current++);
         if (subscriber.closed) {
           break;
         }

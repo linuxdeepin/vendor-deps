@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -167,16 +167,14 @@ function defineInjector(options) {
  * overrides the above behavior and marks the token as belonging to a particular `\@NgModule`. As
  * mentioned above, `'root'` is the default value for `providedIn`.
  *
- * ### Example
- *
- * #### Tree-shakeable InjectionToken
- *
- * {\@example core/di/ts/injector_spec.ts region='ShakeableInjectionToken'}
- *
- * #### Plain InjectionToken
+ * \@usageNotes
+ * ### Basic Example
  *
  * {\@example core/di/ts/injector_spec.ts region='InjectionToken'}
  *
+ * ### Tree-shakeable Example
+ *
+ * {\@example core/di/ts/injector_spec.ts region='ShakeableInjectionToken'}
  *
  * @template T
  */
@@ -398,6 +396,7 @@ function makePropDecorator(name, props, parentClass) {
  * All components that are referenced in the `useValue` value (either directly
  * or in a nested array or map) will be added to the `entryComponents` property.
  *
+ * \@usageNotes
  * ### Example
  * The following example shows how the router can populate the `entryComponents`
  * field of an NgModule based on the router configuration which refers
@@ -437,17 +436,16 @@ const ANALYZE_FOR_ENTRY_COMPONENTS = new InjectionToken('AnalyzeForEntryComponen
 /**
  * Attribute decorator and metadata.
  *
- *
  * \@Annotation
  */
 const Attribute = makeParamDecorator('Attribute', (attributeName) => ({ attributeName }));
 /**
  * Base class for query metadata.
  *
- * See {\@link ContentChildren}, {\@link ContentChild}, {\@link ViewChildren}, {\@link ViewChild} for
- * more information.
- *
- *
+ * @see `ContentChildren`.
+ * @see `ContentChild`.
+ * @see `ViewChildren`.
+ * @see `ViewChild`.
  * @abstract
  */
 class Query {
@@ -455,9 +453,7 @@ class Query {
 /**
  * Type of the ContentChildren decorator / constructor function.
  *
- * See {\@link ContentChildren}.
- *
- *
+ * @see `ContentChildren`.
  * @record
  */
 
@@ -465,7 +461,7 @@ class Query {
  * ContentChildren decorator and metadata.
  *
  *
- *  \@Annotation
+ * \@Annotation
  */
 const ContentChildren = makePropDecorator('ContentChildren', (selector, data = {}) => (Object.assign({ selector, first: false, isViewQuery: false, descendants: false }, data)), Query);
 /**
@@ -486,7 +482,7 @@ const ContentChild = makePropDecorator('ContentChild', (selector, data = {}) => 
 /**
  * Type of the ViewChildren decorator / constructor function.
  *
- * See {\@link ViewChildren}.
+ * @see `ViewChildren`.
  *
  *
  * @record
@@ -495,22 +491,18 @@ const ContentChild = makePropDecorator('ContentChild', (selector, data = {}) => 
 /**
  * ViewChildren decorator and metadata.
  *
- *
  * \@Annotation
  */
 const ViewChildren = makePropDecorator('ViewChildren', (selector, data = {}) => (Object.assign({ selector, first: false, isViewQuery: true, descendants: true }, data)), Query);
 /**
  * Type of the ViewChild decorator / constructor function.
  *
- * See {\@link ViewChild}
- *
- *
+ * @see `ViewChild`.
  * @record
  */
 
 /**
  * ViewChild decorator and metadata.
- *
  *
  * \@Annotation
  */
@@ -601,21 +593,15 @@ function isDefaultChangeDetectionStrategy(changeDetectionStrategy) {
  */
 /**
  * Type of the Directive decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
- * Directive decorator and metadata.
- *
- *
- * \@Annotation
+ * Type of the Component metadata.
  */
 const Directive = makeDecorator('Directive', (dir = {}) => dir);
 /**
- * Type of the Component decorator / constructor function.
- *
+ * Component decorator interface
  *
  * @record
  */
@@ -623,82 +609,166 @@ const Directive = makeDecorator('Directive', (dir = {}) => dir);
 /**
  * Component decorator and metadata.
  *
+ * \@usageNotes
+ *
+ * ### Using animations
+ *
+ * The following snippet shows an animation trigger in a component's
+ * metadata. The trigger is attached to an element in the component's
+ * template, using "\@_trigger_name_", and a state expression that is evaluated
+ * at run time to determine whether the animation should start.
+ *
+ * ```typescript
+ * \@Component({
+ *   selector: 'animation-cmp',
+ *   templateUrl: 'animation-cmp.html',
+ *   animations: [
+ *     trigger('myTriggerName', [
+ *       state('on', style({ opacity: 1 }),
+ *       state('off', style({ opacity: 0 }),
+ *       transition('on => off', [
+ *         animate("1s")
+ *       ])
+ *     ])
+ *   ]
+ * })
+ * ```
+ *
+ * ```html
+ * <!-- animation-cmp.html -->
+ * <div \@myTriggerName="expression">...</div>
+ * ```
+ *
+ * ### Preserving whitespace
+ *
+ * Removing whitespace can greatly reduce AOT-generated code size, and speed up view creation.
+ * As of Angular 6, default for `preserveWhitespaces` is false (whitespace is removed).
+ * To change the default setting for all components in your application, set
+ * the `preserveWhitespaces` option of the AOT compiler.
+ *
+ * Current implementation removes whitespace characters as follows:
+ * - Trims all whitespaces at the beginning and the end of a template.
+ * - Removes whitespace-only text nodes. For example,
+ * `<button>Action 1</button>  <button>Action 2</button>` becomes
+ * `<button>Action 1</button><button>Action 2</button>`.
+ * - Replaces a series of whitespace characters in text nodes with a single space.
+ * For example, `<span>\n some text\n</span>` becomes `<span> some text </span>`.
+ * - Does NOT alter text nodes inside HTML tags such as `<pre>` or `<textarea>`,
+ * where whitespace characters are significant.
+ *
+ * Note that these transformations can influence DOM nodes layout, although impact
+ * should be minimal.
+ *
+ * You can override the default behavior to preserve whitespace characters
+ * in certain fragments of a template. For example, you can exclude an entire
+ * DOM sub-tree by using the `ngPreserveWhitespaces` attribute:
+ *
+ * ```html
+ * <div ngPreserveWhitespaces>
+ *     whitespaces are preserved here
+ *     <span>    and here </span>
+ * </div>
+ * ```
+ *
+ * You can force a single space to be preserved in a text node by using `&ngsp;`,
+ * which is replaced with a space character by Angular's template
+ * compiler:
+ *
+ * ```html
+ * <a>Spaces</a>&ngsp;<a>between</a>&ngsp;<a>links.</a>
+ * <!-->compiled to be equivalent to:</>
+ *  <a>Spaces</a> <a>between</a> <a>links.</a>
+ * ```
+ *
+ * Note that sequences of `&ngsp;` are still collapsed to just one space character when
+ * the `preserveWhitespaces` option is set to `false`.
+ *
+ * ```html
+ * <a>before</a>&ngsp;&ngsp;&ngsp;<a>after</a>
+ * <!-->compiled to be equivalent to:</>
+ *  <a>Spaces</a> <a>between</a> <a>links.</a>
+ * ```
+ *
+ * To preserve sequences of whitespace characters, use the
+ * `ngPreserveWhitespaces` attribute.
  *
  * \@Annotation
  */
 const Component = makeDecorator('Component', (c = {}) => (Object.assign({ changeDetection: ChangeDetectionStrategy.Default }, c)), Directive);
 /**
  * Type of the Pipe decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
- * Pipe decorator and metadata.
- *
- * Use the `\@Pipe` annotation to declare that a given class is a pipe. A pipe
- * class must also implement {\@link PipeTransform} interface.
- *
- * To use the pipe include a reference to the pipe class in
- * {\@link NgModule#declarations}.
  *
  *
  * \@Annotation
  */
 const Pipe = makeDecorator('Pipe', (p) => (Object.assign({ pure: true }, p)));
 /**
- * Type of the Input decorator / constructor function.
- *
  *
  * @record
  */
 
 /**
- * Input decorator and metadata.
- *
  *
  * \@Annotation
  */
 const Input = makePropDecorator('Input', (bindingPropertyName) => ({ bindingPropertyName }));
 /**
  * Type of the Output decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
- * Output decorator and metadata.
- *
  *
  * \@Annotation
  */
 const Output = makePropDecorator('Output', (bindingPropertyName) => ({ bindingPropertyName }));
 /**
  * Type of the HostBinding decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
- * HostBinding decorator and metadata.
- *
  *
  * \@Annotation
  */
 const HostBinding = makePropDecorator('HostBinding', (hostPropertyName) => ({ hostPropertyName }));
 /**
  * Type of the HostListener decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
- * HostListener decorator and metadata.
+ * Binds a CSS event to a host listener and supplies configuration metadata.
+ * Angular invokes the supplied handler method when the host element emits the specified event,
+ * and updates the bound element with the result.
+ * If the handler method returns false, applies `preventDefault` on the bound element.
  *
+ * \@usageNotes
+ *
+ * The following example declares a directive
+ * that attaches a click listener to a button and counts clicks.
+ *
+ * ```
+ * \@Directive({selector: 'button[counting]'})
+ * class CountClicks {
+ *   numberOfClicks = 0;
+ *
+ * \@HostListener('click', ['$event.target'])
+ *   onClick(btn) {
+ *     console.log('button', btn, 'number of clicks:', this.numberOfClicks++);
+ *  }
+ * }
+ *
+ * \@Component({
+ *   selector: 'app',
+ *   template: '<button counting>Increment</button>',
+ * })
+ * class App {}
+ * ```
  *
  * \@Annotation
  */
@@ -1183,6 +1253,7 @@ function getClosureSafeProperty(objWithPropertyToExtract, target) {
 /**
  * An interface that a function passed into {\@link forwardRef} has to implement.
  *
+ * \@usageNotes
  * ### Example
  *
  * {\@example core/di/ts/forward_ref/forward_ref_spec.ts region='forward_ref_fn'}
@@ -1194,10 +1265,10 @@ function getClosureSafeProperty(objWithPropertyToExtract, target) {
  * Allows to refer to references which are not yet defined.
  *
  * For instance, `forwardRef` is used when the `token` which we need to refer to for the purposes of
- * DI is declared,
- * but not yet defined. It is also used when the `token` which we use when creating a query is not
- * yet defined.
+ * DI is declared, but not yet defined. It is also used when the `token` which we use when creating
+ * a query is not yet defined.
  *
+ * \@usageNotes
  * ### Example
  * {\@example core/di/ts/forward_ref/forward_ref_spec.ts region='forward_ref'}
  * \@experimental
@@ -1214,11 +1285,12 @@ function forwardRef(forwardRefFn) {
  *
  * Acts as the identity function when given a non-forward-ref value.
  *
- * ### Example ([live demo](http://plnkr.co/edit/GU72mJrk1fiodChcmiDR?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * {\@example core/di/ts/forward_ref/forward_ref_spec.ts region='resolve_forward_ref'}
  *
- * See: {\@link forwardRef}
+ * @see `forwardRef`
  * \@experimental
  * @param {?} type
  * @return {?}
@@ -1246,70 +1318,55 @@ function resolveForwardRef(type) {
  */
 /**
  * Type of the Inject decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
  * Inject decorator and metadata.
  *
- *
  * \@Annotation
  */
 const Inject = makeParamDecorator('Inject', (token) => ({ token }));
 /**
  * Type of the Optional decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
  * Optional decorator and metadata.
  *
- *
  * \@Annotation
  */
 const Optional = makeParamDecorator('Optional');
 /**
  * Type of the Self decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
  * Self decorator and metadata.
  *
- *
  * \@Annotation
  */
 const Self = makeParamDecorator('Self');
 /**
  * Type of the SkipSelf decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
  * SkipSelf decorator and metadata.
  *
- *
  * \@Annotation
  */
 const SkipSelf = makeParamDecorator('SkipSelf');
 /**
  * Type of the Host decorator / constructor function.
- *
- *
  * @record
  */
 
 /**
  * Host decorator and metadata.
- *
  *
  * \@Annotation
  */
@@ -1352,23 +1409,17 @@ class NullInjector {
     }
 }
 /**
- * \@usageNotes
- * ```
- * const injector: Injector = ...;
- * injector.get(...);
- * ```
- *
- * \@description
- *
  * Concrete injectors implement this interface.
  *
- * For more details, see the {\@linkDocs guide/dependency-injection "Dependency Injection Guide"}.
+ * For more details, see the ["Dependency Injection Guide"](guide/dependency-injection).
  *
+ * \@usageNotes
  * ### Example
  *
  * {\@example core/di/ts/injector_spec.ts region='Injector'}
  *
  * `Injector` returns itself when given `Injector` as a token:
+ *
  * {\@example core/di/ts/injector_spec.ts region='injectInjector'}
  *
  *
@@ -1378,6 +1429,7 @@ class Injector {
     /**
      * Create a new Injector which is configure using `StaticProvider`s.
      *
+     * \@usageNotes
      * ### Example
      *
      * {\@example core/di/ts/provider_spec.ts region='ConstructorProvider'}
@@ -1815,8 +1867,6 @@ const ɵ0 = GET_PROPERTY_NAME;
 const USE_VALUE = getClosureSafeProperty({ provide: String, useValue: ɵ0 }, GET_PROPERTY_NAME);
 /**
  * Type of the Injectable decorator / constructor function.
- *
- *
  * @record
  */
 
@@ -1866,7 +1916,6 @@ function convertInjectableProviderToFactory(type, provider) {
 /**
  * Injectable decorator and metadata.
  *
- *
  * \@Annotation
  */
 const Injectable = makeDecorator('Injectable', undefined, undefined, undefined, (injectableType, options) => {
@@ -1898,24 +1947,28 @@ const Injectable = makeDecorator('Injectable', undefined, undefined, undefined, 
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * A wrapper around a module that also includes the providers.
+ * A wrapper around an NgModule that associates it with the providers.
  *
  *
  * @record
  */
 
 /**
- * Interface for schema definitions in \@NgModules.
+ * A schema definition associated with an NgModule.
+ *
+ * @see `\@NgModule`, `CUSTOM_ELEMENTS_SCHEMA`, `NO_ERRORS_SCHEMA`
+ *
+ * @param name The name of a defined schema.
  *
  * \@experimental
  * @record
  */
 
 /**
- * Defines a schema that will allow:
- * - any non-Angular elements with a `-` in their name,
- * - any properties on elements with a `-` in their name which is the common rule for custom
- * elements.
+ * Defines a schema that allows an NgModule to contain the following:
+ * - Non-Angular elements named with dash case (`-`).
+ * - Element properties named with dash case (`-`).
+ * Dash case is the naming convention for custom elements.
  *
  *
  */
@@ -1923,7 +1976,7 @@ const CUSTOM_ELEMENTS_SCHEMA = {
     name: 'custom-elements'
 };
 /**
- * Defines a schema that will allow any property on any element.
+ * Defines a schema that allows any property on any element.
  *
  * \@experimental
  */
@@ -1938,12 +1991,16 @@ const NO_ERRORS_SCHEMA = {
  */
 
 /**
- * NgModule decorator and metadata.
- *
+ * Decorator that marks the following class as an NgModule, and supplies
+ * configuration metadata for it.
  *
  * \@Annotation
  */
-const NgModule = makeDecorator('NgModule', (ngModule) => ngModule, undefined, undefined, (moduleType, metadata) => {
+const NgModule = makeDecorator('NgModule', (ngModule) => ngModule, undefined, undefined, /**
+     * Decorator that marks the following class as an NgModule, and supplies
+     * configuration metadata for it.
+     */
+(moduleType, metadata) => {
     let /** @type {?} */ imports = (metadata && metadata.imports) || [];
     if (metadata && metadata.exports) {
         imports = [...imports, metadata.exports];
@@ -2032,10 +2089,7 @@ class Version {
         this.patch = full.split('.').slice(2).join('.');
     }
 }
-/**
- *
- */
-const VERSION = new Version('6.0.0');
+const VERSION = new Version('6.0.7');
 
 /**
  * @fileoverview added by tsickle
@@ -2099,14 +2153,13 @@ function defaultErrorLogger(console, ...values) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *
- * \@description
  * Provides a hook for centralized exception handling.
  *
  * The default implementation of `ErrorHandler` prints error messages to the `console`. To
  * intercept error handling, write a custom exception handler that replaces this default as
  * appropriate for your app.
  *
+ * \@usageNotes
  * ### Example
  *
  * ```
@@ -2121,8 +2174,6 @@ function defaultErrorLogger(console, ...values) {
  * })
  * class MyModule {}
  * ```
- *
- *
  */
 class ErrorHandler {
     constructor() {
@@ -2262,7 +2313,8 @@ function addKey(injector, key) {
  * Thrown when trying to retrieve a dependency by key from {\@link Injector}, but the
  * {\@link Injector} does not have a {\@link Provider} for the given key.
  *
- * ### Example ([live demo](http://plnkr.co/edit/vq8D3FRB9aGbnWJqtEPE?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * class A {
@@ -2284,7 +2336,8 @@ function noProviderError(injector, key) {
 /**
  * Thrown when dependencies form a cycle.
  *
- * ### Example ([live demo](http://plnkr.co/edit/wYQdNos0Tzql3ei1EV9j?p=info))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * var injector = Injector.resolveAndCreate([
@@ -2311,7 +2364,8 @@ function cyclicDependencyError(injector, key) {
  * The `InstantiationError` class contains the original error plus the dependency graph which caused
  * this object to be instantiated.
  *
- * ### Example ([live demo](http://plnkr.co/edit/7aWYdcqTQsP0eNqEdUAf?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * class A {
@@ -2345,7 +2399,8 @@ function instantiationError(injector, originalException, originalStack, key) {
  * Thrown when an object other then {\@link Provider} (or `Type`) is passed to {\@link Injector}
  * creation.
  *
- * ### Example ([live demo](http://plnkr.co/edit/YatCFbPAMCL0JSSQ4mvH?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * expect(() => Injector.resolveAndCreate(["not a type"])).toThrowError();
@@ -2362,7 +2417,8 @@ function invalidProviderError(provider) {
  * Lack of annotation information prevents the {\@link Injector} from determining which dependencies
  * need to be injected into the constructor.
  *
- * ### Example ([live demo](http://plnkr.co/edit/rHnZtlNS7vJOPQ6pcVkm?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * class A {
@@ -2407,7 +2463,8 @@ function noAnnotationError(typeOrFunc, params) {
 /**
  * Thrown when getting an object by index.
  *
- * ### Example ([live demo](http://plnkr.co/edit/bRs0SX2OTQiJzqvjgl8P?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * ```typescript
  * class A {}
@@ -2426,6 +2483,7 @@ function outOfBoundsError(index) {
 /**
  * Thrown when a multi provider and a regular provider are bound to the same token.
  *
+ * \@usageNotes
  * ### Example
  *
  * ```typescript
@@ -2680,13 +2738,14 @@ class ReflectiveDependency {
 }
 const _EMPTY_LIST = [];
 /**
- * An internal resolved representation of a {\@link Provider} used by the {\@link Injector}.
+ * An internal resolved representation of a `Provider` used by the `Injector`.
  *
- * It is usually created automatically by `Injector.resolveAndCreate`.
+ * \@usageNotes
+ * This is usually created automatically by `Injector.resolveAndCreate`.
  *
  * It can be created manually, as follows:
  *
- * ### Example ([live demo](http://plnkr.co/edit/RfEnhh8kUEI0G3qsnIeT?p%3Dpreview&p=preview))
+ * ### Example
  *
  * ```typescript
  * var resolvedProviders = Injector.resolve([{ provide: 'message', useValue: 'Hello' }]);
@@ -2713,8 +2772,7 @@ class ResolvedReflectiveProvider_ {
     }
 }
 /**
- * An internal resolved representation of a factory function created by resolving {\@link
- * Provider}.
+ * An internal resolved representation of a factory function created by resolving `Provider`.
  * \@experimental
  */
 class ResolvedReflectiveFactory {
@@ -2755,10 +2813,10 @@ function resolveReflectiveFactory(provider) {
     return new ResolvedReflectiveFactory(factoryFn, resolvedDeps);
 }
 /**
- * Converts the {\@link Provider} into {\@link ResolvedProvider}.
+ * Converts the `Provider` into `ResolvedProvider`.
  *
- * {\@link Injector} internally only uses {\@link ResolvedProvider}, {\@link Provider} contains
- * convenience provider syntax.
+ * `Injector` internally only uses `ResolvedProvider`, `Provider` contains convenience provider
+ * syntax.
  * @param {?} provider
  * @return {?}
  */
@@ -2777,9 +2835,8 @@ function resolveReflectiveProviders(providers) {
     return Array.from(resolvedProviderMap.values());
 }
 /**
- * Merges a list of ResolvedProviders into a list where
- * each key is contained exactly once and multi providers
- * have been merged.
+ * Merges a list of ResolvedProviders into a list where each key is contained exactly once and
+ * multi providers have been merged.
  * @param {?} providers
  * @param {?} normalizedProvidersMap
  * @return {?}
@@ -2940,7 +2997,8 @@ const UNDEFINED = new Object();
  * In typical use, application code asks for the dependencies in the constructor and they are
  * resolved by the `Injector`.
  *
- * ### Example ([live demo](http://plnkr.co/edit/jzjec0?p=preview))
+ * \@usageNotes
+ * ### Example
  *
  * The following example creates an `Injector` configured to create `Engine` and `Car`.
  *
@@ -2971,9 +3029,10 @@ class ReflectiveInjector {
      * Turns an array of provider definitions into an array of resolved providers.
      *
      * A resolution is a process of flattening multiple nested arrays and converting individual
-     * providers into an array of {\@link ResolvedReflectiveProvider}s.
+     * providers into an array of `ResolvedReflectiveProvider`s.
      *
-     * ### Example ([live demo](http://plnkr.co/edit/AiXTHi?p=preview))
+     * \@usageNotes
+     * ### Example
      *
      * ```typescript
      * \@Injectable()
@@ -2998,7 +3057,6 @@ class ReflectiveInjector {
      * });
      * ```
      *
-     * See {\@link ReflectiveInjector#fromResolvedProviders fromResolvedProviders} for more info.
      * @param {?} providers
      * @return {?}
      */
@@ -3008,10 +3066,11 @@ class ReflectiveInjector {
     /**
      * Resolves an array of providers and creates an injector from those providers.
      *
-     * The passed-in providers can be an array of `Type`, {\@link Provider},
+     * The passed-in providers can be an array of `Type`, `Provider`,
      * or a recursive array of more providers.
      *
-     * ### Example ([live demo](http://plnkr.co/edit/ePOccA?p=preview))
+     * \@usageNotes
+     * ### Example
      *
      * ```typescript
      * \@Injectable()
@@ -3026,11 +3085,6 @@ class ReflectiveInjector {
      * var injector = ReflectiveInjector.resolveAndCreate([Car, Engine]);
      * expect(injector.get(Car) instanceof Car).toBe(true);
      * ```
-     *
-     * This function is slower than the corresponding `fromResolvedProviders`
-     * because it needs to resolve the passed-in providers first.
-     * See {\@link ReflectiveInjector#resolve resolve} and
-     * {\@link ReflectiveInjector#fromResolvedProviders fromResolvedProviders}.
      * @param {?} providers
      * @param {?=} parent
      * @return {?}
@@ -3044,7 +3098,8 @@ class ReflectiveInjector {
      *
      * This API is the recommended way to construct injectors in performance-sensitive parts.
      *
-     * ### Example ([live demo](http://plnkr.co/edit/KrSMci?p=preview))
+     * \@usageNotes
+     * ### Example
      *
      * ```typescript
      * \@Injectable()
@@ -3859,7 +3914,7 @@ ApplicationInitStatus.decorators = [
 ];
 /** @nocollapse */
 ApplicationInitStatus.ctorParameters = () => [
-    { type: Array, decorators: [{ type: Inject, args: [APP_INITIALIZER,] }, { type: Optional },] },
+    { type: Array, decorators: [{ type: Inject, args: [APP_INITIALIZER,] }, { type: Optional }] }
 ];
 
 /**
@@ -3962,8 +4017,6 @@ class Console {
 Console.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
-Console.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -4057,8 +4110,6 @@ class Compiler {
 Compiler.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
-Compiler.ctorParameters = () => [];
 /**
  * Token to provide CompilerOptions in the platform injector.
  *
@@ -4098,7 +4149,6 @@ class CompilerFactory {
 class ComponentRef {
 }
 /**
- *
  * @abstract
  * @template C
  */
@@ -4142,7 +4192,6 @@ class _NullComponentFactoryResolver {
     }
 }
 /**
- *
  * @abstract
  */
 class ComponentFactoryResolver {
@@ -4421,6 +4470,7 @@ const wtfEndTimeRange = wtfEnabled ? endTimeRange : (r) => null;
 /**
  * Use by directives and components to emit custom Events.
  *
+ * \@usageNotes
  * ### Examples
  *
  * In the following example, `Zippy` alternatively emits `open` and `close` events when its
@@ -4438,8 +4488,8 @@ const wtfEndTimeRange = wtfEnabled ? endTimeRange : (r) => null;
  *  </div>`})
  * export class Zippy {
  *   visible: boolean = true;
- *   \@Output() open: EventEmitter<any> = new EventEmitter();
- *   \@Output() close: EventEmitter<any> = new EventEmitter();
+ * \@Output() open: EventEmitter<any> = new EventEmitter();
+ * \@Output() close: EventEmitter<any> = new EventEmitter();
  *
  *   toggle() {
  *     this.visible = !this.visible;
@@ -4458,6 +4508,8 @@ const wtfEndTimeRange = wtfEnabled ? endTimeRange : (r) => null;
  * ```
  * <zippy (open)="onOpen($event)" (close)="onClose($event)"></zippy>
  * ```
+ *
+ * ### Notes
  *
  * Uses Rx.Observable but provides an adapter to make it work as specified here:
  * https://github.com/jhusain/observable-spec
@@ -4550,6 +4602,7 @@ class EventEmitter extends Subject {
  *   - link to runOutsideAngular/run (throughout this file!)
  *   -->
  *
+ * \@usageNotes
  * ### Example
  *
  * ```
@@ -5092,7 +5145,7 @@ Testability.decorators = [
 ];
 /** @nocollapse */
 Testability.ctorParameters = () => [
-    { type: NgZone, },
+    { type: NgZone }
 ];
 /**
  * A global registry of {\@link Testability} instances for specific elements.
@@ -5350,8 +5403,6 @@ function getPlatform() {
  *
  * A page's platform is initialized implicitly when a platform is created via a platform factory
  * (e.g. {\@link platformBrowser}), or explicitly by calling the {\@link createPlatform} function.
- *
- *
  */
 class PlatformRef {
     /**
@@ -5368,7 +5419,8 @@ class PlatformRef {
      * Creates an instance of an `\@NgModule` for the given platform
      * for offline compilation.
      *
-     * ## Simple Example
+     * \@usageNotes
+     * ### Simple Example
      *
      * ```typescript
      * my_module.ts:
@@ -5423,7 +5475,8 @@ class PlatformRef {
     /**
      * Creates an instance of an `\@NgModule` for a given platform using the given runtime compiler.
      *
-     * ## Simple Example
+     * \@usageNotes
+     * ### Simple Example
      *
      * ```typescript
      * \@NgModule({
@@ -5498,7 +5551,7 @@ PlatformRef.decorators = [
 ];
 /** @nocollapse */
 PlatformRef.ctorParameters = () => [
-    { type: Injector, },
+    { type: Injector }
 ];
 /**
  * @param {?=} ngZoneOption
@@ -5556,8 +5609,6 @@ function optionsReducer(dst, objs) {
 }
 /**
  * A reference to an Angular application running on a page.
- *
- *
  */
 class ApplicationRef {
     /**
@@ -5636,14 +5687,15 @@ class ApplicationRef {
     /**
      * Bootstrap a new component at the root level of the application.
      *
+     * \@usageNotes
      * ### Bootstrap process
      *
      * When bootstrapping a new root component into an application, Angular mounts the
-     * specified application component onto DOM elements identified by the [componentType]'s
+     * specified application component onto DOM elements identified by the componentType's
      * selector and kicks off automatic change detection to finish initializing the component.
      *
      * Optionally, a component can be mounted onto a DOM element that does not match the
-     * [componentType]'s selector.
+     * componentType's selector.
      *
      * ### Example
      * {\@example core/ts/platform/platform.ts region='longform'}
@@ -5780,12 +5832,12 @@ ApplicationRef.decorators = [
 ];
 /** @nocollapse */
 ApplicationRef.ctorParameters = () => [
-    { type: NgZone, },
-    { type: Console, },
-    { type: Injector, },
-    { type: ErrorHandler, },
-    { type: ComponentFactoryResolver, },
-    { type: ApplicationInitStatus, },
+    { type: NgZone },
+    { type: Console },
+    { type: Injector },
+    { type: ErrorHandler },
+    { type: ComponentFactoryResolver },
+    { type: ApplicationInitStatus }
 ];
 /**
  * @template T
@@ -6025,14 +6077,14 @@ function getModuleFactory(id) {
  *
  * NOTE: In the future this class will implement an `Observable` interface.
  *
- * ### Example ([live demo](http://plnkr.co/edit/RX8sJnQYl9FWuSCWme5z?p=preview))
+ * \@usageNotes
+ * ### Example
  * ```typescript
  * \@Component({...})
  * class Container {
- *   \@ViewChildren(Item) items:QueryList<Item>;
+ * \@ViewChildren(Item) items:QueryList<Item>;
  * }
  * ```
- *
  * @template T
  */
 class QueryList {
@@ -6230,8 +6282,8 @@ SystemJsNgModuleLoader.decorators = [
 ];
 /** @nocollapse */
 SystemJsNgModuleLoader.ctorParameters = () => [
-    { type: Compiler, },
-    { type: SystemJsNgModuleLoaderConfig, decorators: [{ type: Optional },] },
+    { type: Compiler },
+    { type: SystemJsNgModuleLoaderConfig, decorators: [{ type: Optional }] }
 ];
 /**
  * @param {?} value
@@ -6319,7 +6371,6 @@ class ViewContainerRef {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *
  * @abstract
  */
 class ChangeDetectorRef {
@@ -6337,7 +6388,6 @@ class ChangeDetectorRef {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *
  * @abstract
  */
 class ViewRef extends ChangeDetectorRef {
@@ -6351,9 +6401,10 @@ class ViewRef extends ChangeDetectorRef {
  *
  * Properties of elements in a View can change, but the structure (number and order) of elements in
  * a View cannot. Changing the structure of Elements can only be done by inserting, moving or
- * removing nested Views via a {\@link ViewContainerRef}. Each View can contain many View Containers.
+ * removing nested Views via a `ViewContainerRef`. Each View can contain many View Containers.
  * <!-- /TODO -->
  *
+ * \@usageNotes
  * ### Example
  *
  * Given this template...
@@ -6365,9 +6416,10 @@ class ViewRef extends ChangeDetectorRef {
  * </ul>
  * ```
  *
- * We have two {\@link TemplateRef}s:
+ * We have two `TemplateRef`s:
  *
- * Outer {\@link TemplateRef}:
+ * Outer `TemplateRef`:
+ *
  * ```
  * Count: {{items.length}}
  * <ul>
@@ -6375,14 +6427,15 @@ class ViewRef extends ChangeDetectorRef {
  * </ul>
  * ```
  *
- * Inner {\@link TemplateRef}:
+ * Inner `TemplateRef`:
+ *
  * ```
  *   <li>{{item}}</li>
  * ```
  *
- * Notice that the original template is broken down into two separate {\@link TemplateRef}s.
+ * Notice that the original template is broken down into two separate `TemplateRef`s.
  *
- * The outer/inner {\@link TemplateRef}s are then assembled into views like so:
+ * The outer/inner `TemplateRef`s are then assembled into views like so:
  *
  * ```
  * <!-- ViewRef: outer-0 -->
@@ -7450,7 +7503,6 @@ class DefaultIterableDiffer {
     }
 }
 /**
- *
  * @template V
  */
 class IterableChangeRecord_ {
@@ -7974,7 +8026,6 @@ class DefaultKeyValueDiffer {
     }
 }
 /**
- *
  * @template K, V
  */
 class KeyValueChangeRecord_ {
@@ -8097,11 +8148,12 @@ class IterableDiffers {
      * inherited {\@link IterableDiffers} instance with the provided factories and return a new
      * {\@link IterableDiffers} instance.
      *
+     * \@usageNotes
+     * ### Example
+     *
      * The following example shows how to extend an existing list of factories,
      * which will only be applied to the injector for this component and its children.
      * This step is all that's required to make a new {\@link IterableDiffer} available.
-     *
-     * ### Example
      *
      * ```
      * \@Component({
@@ -8225,11 +8277,12 @@ class KeyValueDiffers {
      * inherited {\@link KeyValueDiffers} instance with the provided factories and return a new
      * {\@link KeyValueDiffers} instance.
      *
+     * \@usageNotes
+     * ### Example
+     *
      * The following example shows how to extend an existing list of factories,
      * which will only be applied to the injector for this component and its children.
      * This step is all that's required to make a new {\@link KeyValueDiffer} available.
-     *
-     * ### Example
      *
      * ```
      * \@Component({
@@ -8345,8 +8398,9 @@ const platformCore = createPlatformFactory(null, 'core', _CORE_PLATFORM_PROVIDER
  * It is used for i18n extraction, by i18n pipes (DatePipe, I18nPluralPipe, CurrencyPipe,
  * DecimalPipe and PercentPipe) and by ICU expressions.
  *
- * See the {\@linkDocs guide/i18n#setting-up-locale i18n guide} for more information.
+ * See the [i18n guide](guide/i18n#setting-up-locale) for more information.
  *
+ * \@usageNotes
  * ### Example
  *
  * ```typescript
@@ -8366,8 +8420,9 @@ const LOCALE_ID = new InjectionToken('LocaleId');
  * Use this token at bootstrap to provide the content of your translation file (`xtb`,
  * `xlf` or `xlf2`) when you want to translate your application in another language.
  *
- * See the {\@linkDocs guide/i18n#merge i18n guide} for more information.
+ * See the [i18n guide](guide/i18n#merge) for more information.
  *
+ * \@usageNotes
  * ### Example
  *
  * ```typescript
@@ -8390,8 +8445,9 @@ const TRANSLATIONS = new InjectionToken('Translations');
  * Provide this token at bootstrap to set the format of your {\@link TRANSLATIONS}: `xtb`,
  * `xlf` or `xlf2`.
  *
- * See the {\@linkDocs guide/i18n#merge i18n guide} for more information.
+ * See the [i18n guide](guide/i18n#merge) for more information.
  *
+ * \@usageNotes
  * ### Example
  *
  * ```typescript
@@ -8478,7 +8534,7 @@ ApplicationModule.decorators = [
 ];
 /** @nocollapse */
 ApplicationModule.ctorParameters = () => [
-    { type: ApplicationRef, },
+    { type: ApplicationRef }
 ];
 
 /**
@@ -10567,6 +10623,9 @@ function resolveNgModuleDep(data, depDef, notFoundValue = Injector.THROW_IF_NOT_
             return (data._providers[index] =
                 _createProviderInstance$1(data, data._def.providersByKey[depDef.tokenKey]));
         }
+        else if (depDef.flags & 4 /* Self */) {
+            return notFoundValue;
+        }
         return data._parent.get(depDef.token, notFoundValue);
     }
     finally {
@@ -10610,6 +10669,14 @@ function _createProviderInstance$1(ngModule, providerDef) {
         case 256 /* TypeValueProvider */:
             injectable = providerDef.value;
             break;
+    }
+    // The read of `ngOnDestroy` here is slightly expensive as it's megamorphic, so it should be
+    // avoided if possible. The sequence of checks here determines whether ngOnDestroy needs to be
+    // checked. It might not if the `injectable` isn't an object or if NodeFlags.OnDestroy is already
+    // set (ngOnDestroy was detected statically).
+    if (injectable !== UNDEFINED_VALUE && injectable != null && typeof injectable === 'object' &&
+        !(providerDef.flags & 131072 /* OnDestroy */) && typeof injectable.ngOnDestroy === 'function') {
+        providerDef.flags |= 131072 /* OnDestroy */;
     }
     return injectable === undefined ? UNDEFINED_VALUE : injectable;
 }
@@ -10670,12 +10737,17 @@ function _callFactory(ngModule, factory, deps) {
  */
 function callNgModuleLifecycle(ngModule, lifecycles) {
     const /** @type {?} */ def = ngModule._def;
+    const /** @type {?} */ destroyed = new Set();
     for (let /** @type {?} */ i = 0; i < def.providers.length; i++) {
         const /** @type {?} */ provDef = def.providers[i];
         if (provDef.flags & 131072 /* OnDestroy */) {
             const /** @type {?} */ instance = ngModule._providers[i];
             if (instance && instance !== UNDEFINED_VALUE) {
-                instance.ngOnDestroy();
+                const /** @type {?} */ onDestroy = instance.ngOnDestroy;
+                if (typeof onDestroy === 'function' && !destroyed.has(instance)) {
+                    onDestroy.apply(instance);
+                    destroyed.add(instance);
+                }
             }
         }
     }
@@ -15772,8 +15844,7 @@ function addRemoveViewFromContainer(container, rootNode, insertMode, beforeNode)
  *  - Using a while loop because it's faster than recursion
  *  - Destroy only called on movement to sibling or movement to parent (laterally or up)
  *
- *  \@param rootView The view to destroy
- * @param {?} rootView
+ * @param {?} rootView The view to destroy
  * @return {?}
  */
 function destroyViewTree(rootView) {
@@ -18632,7 +18703,8 @@ class ViewRef$1 {
      *
      * <!-- TODO: Add a link to a chapter on OnPush components -->
      *
-     * ### Example ([live demo](https://stackblitz.com/edit/angular-kx7rrw))
+     * \@usageNotes
+     * ### Example
      *
      * ```typescript
      * \@Component({
@@ -18666,6 +18738,7 @@ class ViewRef$1 {
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      * <!-- TODO: Add a live demo once ref.detectChanges is merged into master -->
      *
+     * \@usageNotes
      * ### Example
      *
      * The following example defines a component with a large list of readonly data.
@@ -18717,7 +18790,8 @@ class ViewRef$1 {
      *
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      *
-     * ### Example ([live demo](https://stackblitz.com/edit/angular-ymgsxw))
+     * \@usageNotes
+     * ### Example
      *
      * The following example creates a component displaying `live` data. The component will detach
      * its change detector from the main change detector tree when the component's live property
@@ -18775,6 +18849,7 @@ class ViewRef$1 {
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      * <!-- TODO: Add a live demo once ref.detectChanges is merged into master -->
      *
+     * \@usageNotes
      * ### Example
      *
      * The following example defines a component with a large list of readonly data.

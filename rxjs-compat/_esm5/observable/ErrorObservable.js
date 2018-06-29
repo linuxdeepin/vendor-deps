@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, throwError } from 'rxjs';
-var ErrorObservable = /** @class */ (function (_super) {
+var ErrorObservable = (function (_super) {
     __extends(ErrorObservable, _super);
     function ErrorObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

@@ -1,33 +1,27 @@
 {
-  "_args": [
-    [
-      "@angular/language-service@6.0.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "@angular/language-service@6.0.0",
-  "_id": "@angular/language-service@6.0.0",
+  "_from": "@angular/language-service@6.0.7",
+  "_id": "@angular/language-service@6.0.7",
   "_inBundle": false,
-  "_integrity": "sha1-hb9Xf9f0Xv8TEo1PXwElB41hCuw=",
+  "_integrity": "sha512-R96kTy9Hpy5QPHirJz+5JjnzjJZdwbGwZ6rpq79Fe15RYaYfMjFTAAhmmOgWrnTFBug0QWBWyKV7950JcJIr3Q==",
   "_location": "/@angular/language-service",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/language-service@6.0.0",
+    "raw": "@angular/language-service@6.0.7",
     "name": "@angular/language-service",
     "escapedName": "@angular%2flanguage-service",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.0.7",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.0.7"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/language-service/download/@angular/language-service-6.0.0.tgz",
-  "_spec": "6.0.0",
+  "_resolved": "https://registry.npmjs.org/@angular/language-service/-/language-service-6.0.7.tgz",
+  "_shasum": "047dcd762be8a6c24e7309905e468ca82bcf91ec",
+  "_spec": "@angular/language-service@6.0.7",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
@@ -35,6 +29,8 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Angular - language services",
   "homepage": "https://github.com/angular/angular#readme",
   "license": "MIT",
@@ -68,5 +64,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./language-service.d.ts",
-  "version": "6.0.0"
+  "version": "6.0.7"
 }

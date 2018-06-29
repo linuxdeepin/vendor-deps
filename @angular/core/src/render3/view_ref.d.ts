@@ -29,7 +29,8 @@ export declare class ViewRef<T> implements viewEngine_EmbeddedViewRef<T> {
      *
      * <!-- TODO: Add a link to a chapter on OnPush components -->
      *
-     * ### Example ([live demo](https://stackblitz.com/edit/angular-kx7rrw))
+     * @usageNotes
+     * ### Example
      *
      * ```typescript
      * @Component({
@@ -62,6 +63,7 @@ export declare class ViewRef<T> implements viewEngine_EmbeddedViewRef<T> {
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      * <!-- TODO: Add a live demo once ref.detectChanges is merged into master -->
      *
+     * @usageNotes
      * ### Example
      *
      * The following example defines a component with a large list of readonly data.
@@ -112,7 +114,8 @@ export declare class ViewRef<T> implements viewEngine_EmbeddedViewRef<T> {
      *
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      *
-     * ### Example ([live demo](https://stackblitz.com/edit/angular-ymgsxw))
+     * @usageNotes
+     * ### Example
      *
      * The following example creates a component displaying `live` data. The component will detach
      * its change detector from the main change detector tree when the component's live property
@@ -169,6 +172,7 @@ export declare class ViewRef<T> implements viewEngine_EmbeddedViewRef<T> {
      * <!-- TODO: Add a link to a chapter on detach/reattach/local digest -->
      * <!-- TODO: Add a live demo once ref.detectChanges is merged into master -->
      *
+     * @usageNotes
      * ### Example
      *
      * The following example defines a component with a large list of readonly data.

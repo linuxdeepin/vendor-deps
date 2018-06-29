@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -90,7 +90,7 @@ function __spread() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-var _DOM = (null);
+var _DOM = null;
 function getDOM() {
     return _DOM;
 }
@@ -116,11 +116,7 @@ var DomAdapter = /** @class */ (function () {
          * Maps attribute names to their corresponding property names for cases
          * where attribute name doesn't match property name.
          */
-        get: /**
-           * Maps attribute names to their corresponding property names for cases
-           * where attribute name doesn't match property name.
-           */
-        function () { return this._attrToPropMap; },
+        get: function () { return this._attrToPropMap; },
         set: function (value) { this._attrToPropMap = value; },
         enumerable: true,
         configurable: true
@@ -276,10 +272,7 @@ var BrowserDomAdapter = /** @class */ (function (_super) {
         var _a;
     };
     // TODO(tbosch): move this into a separate environment class once we have it
-    // TODO(tbosch): move this into a separate environment class once we have it
-    BrowserDomAdapter.prototype.logError = 
-    // TODO(tbosch): move this into a separate environment class once we have it
-    function (error) {
+    BrowserDomAdapter.prototype.logError = function (error) {
         if (window.console) {
             if (console.error) {
                 console.error(error);
@@ -566,10 +559,7 @@ var BrowserDomAdapter = /** @class */ (function (_super) {
     };
     BrowserDomAdapter.prototype.getComputedStyle = function (element) { return getComputedStyle(element); };
     // TODO(tbosch): move this into a separate environment class once we have it
-    // TODO(tbosch): move this into a separate environment class once we have it
-    BrowserDomAdapter.prototype.supportsWebAnimation = 
-    // TODO(tbosch): move this into a separate environment class once we have it
-    function () {
+    BrowserDomAdapter.prototype.supportsWebAnimation = function () {
         return typeof Element.prototype['animate'] === 'function';
     };
     BrowserDomAdapter.prototype.performanceNow = function () {
@@ -590,7 +580,7 @@ var BrowserDomAdapter = /** @class */ (function (_super) {
 var baseElement = null;
 function getBaseElementHref() {
     if (!baseElement) {
-        baseElement = (document.querySelector('base'));
+        baseElement = document.querySelector('base');
         if (!baseElement) {
             return null;
         }
@@ -658,12 +648,7 @@ var BrowserPlatformLocation = /** @class */ (function (_super) {
     }
     // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
     /** @internal */
-    // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
-    /** @internal */
-    BrowserPlatformLocation.prototype._init = 
-    // This is moved to its own method so that `MockPlatformLocationStrategy` can overwrite it
-    /** @internal */
-    function () {
+    BrowserPlatformLocation.prototype._init = function () {
         this.location = getDOM().getLocation();
         this._history = getDOM().getHistory();
     };
@@ -713,7 +698,7 @@ var BrowserPlatformLocation = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     BrowserPlatformLocation.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return BrowserPlatformLocation;
 }(common.PlatformLocation));
@@ -761,20 +746,20 @@ var Meta = /** @class */ (function () {
     Meta.prototype.getTags = function (attrSelector) {
         if (!attrSelector)
             return [];
-        var list = this._dom.querySelectorAll(this._doc, "meta[" + attrSelector + "]");
+        var list /*NodeList*/ = this._dom.querySelectorAll(this._doc, "meta[" + attrSelector + "]");
         return list ? [].slice.call(list) : [];
     };
     Meta.prototype.updateTag = function (tag, selector) {
         if (!tag)
             return null;
         selector = selector || this._parseSelector(tag);
-        var meta = (this.getTag(selector));
+        var meta = this.getTag(selector);
         if (meta) {
             return this._setMetaElementAttributes(tag, meta);
         }
         return this._getOrCreateElement(tag, true);
     };
-    Meta.prototype.removeTag = function (attrSelector) { this.removeTagElement((this.getTag(attrSelector))); };
+    Meta.prototype.removeTag = function (attrSelector) { this.removeTagElement(this.getTag(attrSelector)); };
     Meta.prototype.removeTagElement = function (meta) {
         if (meta) {
             this._dom.remove(meta);
@@ -784,7 +769,7 @@ var Meta = /** @class */ (function () {
         if (forceCreation === void 0) { forceCreation = false; }
         if (!forceCreation) {
             var selector = this._parseSelector(meta);
-            var elem = (this.getTag(selector));
+            var elem = this.getTag(selector);
             // It's allowed to have multiple elements with the same name so it's not enough to
             // just check that element with the same name already present on the page. We also need to
             // check if element has tag attributes
@@ -815,7 +800,7 @@ var Meta = /** @class */ (function () {
     ];
     /** @nocollapse */
     Meta.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return Meta;
 }());
@@ -938,32 +923,18 @@ var Title = /** @class */ (function () {
     /**
      * Get the title of the current HTML document.
      */
-    /**
-       * Get the title of the current HTML document.
-       */
-    Title.prototype.getTitle = /**
-       * Get the title of the current HTML document.
-       */
-    function () { return getDOM().getTitle(this._doc); };
+    Title.prototype.getTitle = function () { return getDOM().getTitle(this._doc); };
     /**
      * Set the title of the current HTML document.
      * @param newTitle
      */
-    /**
-       * Set the title of the current HTML document.
-       * @param newTitle
-       */
-    Title.prototype.setTitle = /**
-       * Set the title of the current HTML document.
-       * @param newTitle
-       */
-    function (newTitle) { getDOM().setTitle(this._doc, newTitle); };
+    Title.prototype.setTitle = function (newTitle) { getDOM().setTitle(this._doc, newTitle); };
     Title.decorators = [
         { type: core.Injectable }
     ];
     /** @nocollapse */
     Title.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return Title;
 }());
@@ -1046,13 +1017,17 @@ var ELEMENT_PROBE_PROVIDERS = [
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *
+ * The injection token for the event-manager plug-in service.
  */
 var EVENT_MANAGER_PLUGINS = new core.InjectionToken('EventManagerPlugins');
 /**
- *
+ * An injectable service that provides event management for Angular
+ * through a browser plug-in.
  */
 var EventManager = /** @class */ (function () {
+    /**
+     * Initializes an instance of the event-manager service.
+     */
     function EventManager(plugins, _zone) {
         var _this = this;
         this._zone = _zone;
@@ -1060,19 +1035,38 @@ var EventManager = /** @class */ (function () {
         plugins.forEach(function (p) { return p.manager = _this; });
         this._plugins = plugins.slice().reverse();
     }
+    /**
+     * Registers a handler for a specific element and event.
+     *
+     * @param element The HTML element to receive event notifications.
+     * @param eventName The name of the event to listen for.
+     * @param handler A function to call when the notification occurs. Receives the
+     * event object as an argument.
+     * @returns  A callback function that can be used to remove the handler.
+     */
     EventManager.prototype.addEventListener = function (element, eventName, handler) {
         var plugin = this._findPluginFor(eventName);
         return plugin.addEventListener(element, eventName, handler);
     };
+    /**
+     * Registers a global handler for an event in a target view.
+     *
+     * @param target A target for global event notifications. One of "window", "document", or "body".
+     * @param eventName The name of the event to listen for.
+     * @param handler A function to call when the notification occurs. Receives the
+     * event object as an argument.
+     * @returns A callback function that can be used to remove the handler.
+     */
     EventManager.prototype.addGlobalEventListener = function (target, eventName, handler) {
         var plugin = this._findPluginFor(eventName);
         return plugin.addGlobalEventListener(target, eventName, handler);
     };
+    /**
+     * Retrieves the compilation zone in which event listeners are registered.
+     */
     EventManager.prototype.getZone = function () { return this._zone; };
     /** @internal */
-    /** @internal */
-    EventManager.prototype._findPluginFor = /** @internal */
-    function (eventName) {
+    EventManager.prototype._findPluginFor = function (eventName) {
         var plugin = this._eventNameToPlugin.get(eventName);
         if (plugin) {
             return plugin;
@@ -1092,8 +1086,8 @@ var EventManager = /** @class */ (function () {
     ];
     /** @nocollapse */
     EventManager.ctorParameters = function () { return [
-        { type: Array, decorators: [{ type: core.Inject, args: [EVENT_MANAGER_PLUGINS,] },] },
-        { type: core.NgZone, },
+        { type: Array, decorators: [{ type: core.Inject, args: [EVENT_MANAGER_PLUGINS,] }] },
+        { type: core.NgZone }
     ]; };
     return EventManager;
 }());
@@ -1139,8 +1133,6 @@ var SharedStylesHost = /** @class */ (function () {
     SharedStylesHost.decorators = [
         { type: core.Injectable }
     ];
-    /** @nocollapse */
-    SharedStylesHost.ctorParameters = function () { return []; };
     return SharedStylesHost;
 }());
 var DomSharedStylesHost = /** @class */ (function (_super) {
@@ -1176,7 +1168,7 @@ var DomSharedStylesHost = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     DomSharedStylesHost.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return DomSharedStylesHost;
 }(SharedStylesHost));
@@ -1269,8 +1261,8 @@ var DomRendererFactory2 = /** @class */ (function () {
     ];
     /** @nocollapse */
     DomRendererFactory2.ctorParameters = function () { return [
-        { type: EventManager, },
-        { type: DomSharedStylesHost, },
+        { type: EventManager },
+        { type: DomSharedStylesHost }
     ]; };
     return DomRendererFactory2;
 }());
@@ -1517,14 +1509,16 @@ var globalListener = function (event) {
 };
 var DomEventsPlugin = /** @class */ (function (_super) {
     __extends(DomEventsPlugin, _super);
-    function DomEventsPlugin(doc, ngZone) {
+    function DomEventsPlugin(doc, ngZone, platformId) {
         var _this = _super.call(this, doc) || this;
         _this.ngZone = ngZone;
-        _this.patchEvent();
+        if (!platformId || !common.isPlatformServer(platformId)) {
+            _this.patchEvent();
+        }
         return _this;
     }
     DomEventsPlugin.prototype.patchEvent = function () {
-        if (!Event || !Event.prototype) {
+        if (typeof Event === 'undefined' || !Event || !Event.prototype) {
             return;
         }
         if (Event.prototype[stopMethodSymbol]) {
@@ -1545,27 +1539,22 @@ var DomEventsPlugin = /** @class */ (function (_super) {
     };
     // This plugin should come last in the list of plugins, because it accepts all
     // events.
-    // This plugin should come last in the list of plugins, because it accepts all
-    // events.
-    DomEventsPlugin.prototype.supports = 
-    // This plugin should come last in the list of plugins, because it accepts all
-    // events.
-    function (eventName) { return true; };
+    DomEventsPlugin.prototype.supports = function (eventName) { return true; };
     DomEventsPlugin.prototype.addEventListener = function (element, eventName, handler) {
         var _this = this;
         /**
-             * This code is about to add a listener to the DOM. If Zone.js is present, than
-             * `addEventListener` has been patched. The patched code adds overhead in both
-             * memory and speed (3x slower) than native. For this reason if we detect that
-             * Zone.js is present we use a simple version of zone aware addEventListener instead.
-             * The result is faster registration and the zone will be restored.
-             * But ZoneSpec.onScheduleTask, ZoneSpec.onInvokeTask, ZoneSpec.onCancelTask
-             * will not be invoked
-             * We also do manual zone restoration in element.ts renderEventHandlerClosure method.
-             *
-             * NOTE: it is possible that the element is from different iframe, and so we
-             * have to check before we execute the method.
-             */
+         * This code is about to add a listener to the DOM. If Zone.js is present, than
+         * `addEventListener` has been patched. The patched code adds overhead in both
+         * memory and speed (3x slower) than native. For this reason if we detect that
+         * Zone.js is present we use a simple version of zone aware addEventListener instead.
+         * The result is faster registration and the zone will be restored.
+         * But ZoneSpec.onScheduleTask, ZoneSpec.onInvokeTask, ZoneSpec.onCancelTask
+         * will not be invoked
+         * We also do manual zone restoration in element.ts renderEventHandlerClosure method.
+         *
+         * NOTE: it is possible that the element is from different iframe, and so we
+         * have to check before we execute the method.
+         */
         var zoneJsLoaded = element[ADD_EVENT_LISTENER];
         var callback = handler;
         // if zonejs is loaded and current zone is not ngZone
@@ -1646,8 +1635,9 @@ var DomEventsPlugin = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     DomEventsPlugin.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
-        { type: core.NgZone, },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] },
+        { type: core.NgZone },
+        { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [core.PLATFORM_ID,] }] }
     ]; };
     return DomEventsPlugin;
 }(EventManagerPlugin));
@@ -1658,6 +1648,9 @@ var DomEventsPlugin = /** @class */ (function (_super) {
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Supported HammerJS recognizer event names.
  */
 var EVENT_NAMES = {
     // pan
@@ -1697,20 +1690,49 @@ var EVENT_NAMES = {
     'tap': true,
 };
 /**
- * A DI token that you can use to provide{@link HammerGestureConfig} to Angular. Use it to configure
- * Hammer gestures.
+ * DI token for providing [HammerJS](http://hammerjs.github.io/) support to Angular.
+ * @see `HammerGestureConfig`
  *
  * @experimental
  */
 var HAMMER_GESTURE_CONFIG = new core.InjectionToken('HammerGestureConfig');
 /**
+ * An injectable [HammerJS Manager](http://hammerjs.github.io/api/#hammer.manager)
+ * for gesture recognition. Configures specific event recognition.
  * @experimental
  */
 var HammerGestureConfig = /** @class */ (function () {
     function HammerGestureConfig() {
+        /**
+         * A set of supported event names for gestures to be used in Angular.
+         * Angular supports all built-in recognizers, as listed in
+         * [HammerJS documentation](http://hammerjs.github.io/).
+         */
         this.events = [];
+        /**
+        * Maps gesture event names to a set of configuration options
+        * that specify overrides to the default values for specific properties.
+        *
+        * The key is a supported event name to be configured,
+        * and the options object contains a set of properties, with override values
+        * to be applied to the named recognizer event.
+        * For example, to disable recognition of the rotate event, specify
+        *  `{"rotate": {"enable": false}}`.
+        *
+        * Properties that are not present take the HammerJS default values.
+        * For information about which properties are supported for which events,
+        * and their allowed and default values, see
+        * [HammerJS documentation](http://hammerjs.github.io/).
+        *
+        */
         this.overrides = {};
     }
+    /**
+     * Creates a [HammerJS Manager](http://hammerjs.github.io/api/#hammer.manager)
+     * and attaches it to a given HTML element.
+     * @param element The element that will recognize gestures.
+     * @returns A HammerJS event-manager object.
+     */
     HammerGestureConfig.prototype.buildHammer = function (element) {
         var mc = new Hammer(element, this.options);
         mc.get('pinch').set({ enable: true });
@@ -1723,8 +1745,6 @@ var HammerGestureConfig = /** @class */ (function () {
     HammerGestureConfig.decorators = [
         { type: core.Injectable }
     ];
-    /** @nocollapse */
-    HammerGestureConfig.ctorParameters = function () { return []; };
     return HammerGestureConfig;
 }());
 var HammerGesturesPlugin = /** @class */ (function (_super) {
@@ -1765,9 +1785,9 @@ var HammerGesturesPlugin = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     HammerGesturesPlugin.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
-        { type: HammerGestureConfig, decorators: [{ type: core.Inject, args: [HAMMER_GESTURE_CONFIG,] },] },
-        { type: core.ɵConsole, },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] },
+        { type: HammerGestureConfig, decorators: [{ type: core.Inject, args: [HAMMER_GESTURE_CONFIG,] }] },
+        { type: core.ɵConsole }
     ]; };
     return HammerGesturesPlugin;
 }(EventManagerPlugin));
@@ -1779,11 +1799,17 @@ var HammerGesturesPlugin = /** @class */ (function (_super) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+/**
+ * Defines supported modifiers for key events.
+ */
 var MODIFIER_KEYS = ['alt', 'control', 'meta', 'shift'];
 var ɵ0$1 = function (event) { return event.altKey; };
 var ɵ1$1 = function (event) { return event.ctrlKey; };
 var ɵ2$1 = function (event) { return event.metaKey; };
 var ɵ3 = function (event) { return event.shiftKey; };
+/**
+ * Retrieves modifiers from key-event objects.
+ */
 var MODIFIER_KEY_GETTERS = {
     'alt': ɵ0$1,
     'control': ɵ1$1,
@@ -1792,15 +1818,33 @@ var MODIFIER_KEY_GETTERS = {
 };
 /**
  * @experimental
+ * A browser plug-in that provides support for handling of key events in Angular.
  */
 var KeyEventsPlugin = /** @class */ (function (_super) {
     __extends(KeyEventsPlugin, _super);
+    /**
+     * Initializes an instance of the browser plug-in.
+     * @param doc The document in which key events will be detected.
+     */
     function KeyEventsPlugin(doc) {
         return _super.call(this, doc) || this;
     }
+    /**
+      * Reports whether a named key event is supported.
+      * @param eventName The event name to query.
+      * @return True if the named key event is supported.
+     */
     KeyEventsPlugin.prototype.supports = function (eventName) { return KeyEventsPlugin.parseEventName(eventName) != null; };
+    /**
+     * Registers a handler for a specific element and key event.
+     * @param element The HTML element to receive event notifications.
+     * @param eventName The name of the key event to listen for.
+     * @param handler A function to call when the notification occurs. Receives the
+     * event object as an argument.
+     * @returns The key event that was registered.
+    */
     KeyEventsPlugin.prototype.addEventListener = function (element, eventName, handler) {
-        var parsedEvent = (KeyEventsPlugin.parseEventName(eventName));
+        var parsedEvent = KeyEventsPlugin.parseEventName(eventName);
         var outsideHandler = KeyEventsPlugin.eventCallback(parsedEvent['fullKey'], handler, this.manager.getZone());
         return this.manager.getZone().runOutsideAngular(function () {
             return getDOM().onAndCancel(element, parsedEvent['domEventName'], outsideHandler);
@@ -1812,7 +1856,7 @@ var KeyEventsPlugin = /** @class */ (function (_super) {
         if ((parts.length === 0) || !(domEventName === 'keydown' || domEventName === 'keyup')) {
             return null;
         }
-        var key = KeyEventsPlugin._normalizeKey((parts.pop()));
+        var key = KeyEventsPlugin._normalizeKey(parts.pop());
         var fullKey = '';
         MODIFIER_KEYS.forEach(function (modifierName) {
             var index = parts.indexOf(modifierName);
@@ -1852,6 +1896,13 @@ var KeyEventsPlugin = /** @class */ (function (_super) {
         fullKey += key;
         return fullKey;
     };
+    /**
+     * Configures a handler callback for a key event.
+     * @param fullKey The event name that combines all simultaneous keystrokes.
+     * @param handler The function that responds to the key event.
+     * @param zone The zone in which the event occurred.
+     * @returns A callback function.
+     */
     KeyEventsPlugin.eventCallback = function (fullKey, handler, zone) {
         return function (event /** TODO #9100 */) {
             if (KeyEventsPlugin.getEventFullKey(event) === fullKey) {
@@ -1860,9 +1911,7 @@ var KeyEventsPlugin = /** @class */ (function (_super) {
         };
     };
     /** @internal */
-    /** @internal */
-    KeyEventsPlugin._normalizeKey = /** @internal */
-    function (keyName) {
+    KeyEventsPlugin._normalizeKey = function (keyName) {
         // TODO: switch to a Map if the mapping grows too much
         switch (keyName) {
             case 'esc':
@@ -1876,7 +1925,7 @@ var KeyEventsPlugin = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     KeyEventsPlugin.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return KeyEventsPlugin;
 }(EventManagerPlugin));
@@ -1987,14 +2036,14 @@ var DomSanitizerImpl = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     DomSanitizerImpl.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] },] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [DOCUMENT$1,] }] }
     ]; };
     return DomSanitizerImpl;
 }(DomSanitizer));
 var SafeValueImpl = /** @class */ (function () {
     function SafeValueImpl(changingThisBreaksApplicationSecurity) {
-        // empty
         this.changingThisBreaksApplicationSecurity = changingThisBreaksApplicationSecurity;
+        // empty
     }
     SafeValueImpl.prototype.toString = function () {
         return "SafeValue must use [property]=binding: " + this.changingThisBreaksApplicationSecurity +
@@ -2066,9 +2115,6 @@ var BROWSER_SANITIZATION_PROVIDERS = [
     { provide: core.Sanitizer, useExisting: DomSanitizer },
     { provide: DomSanitizer, useClass: DomSanitizerImpl, deps: [DOCUMENT$1] },
 ];
-/**
- *
- */
 var platformBrowser = core.createPlatformFactory(core.platformCore, 'browser', INTERNAL_BROWSER_PLATFORM_PROVIDERS);
 function initDomAdapter() {
     BrowserDomAdapter.makeCurrent();
@@ -2098,21 +2144,7 @@ var BrowserModule = /** @class */ (function () {
      *
      * @experimental
      */
-    /**
-       * Configures a browser-based application to transition from a server-rendered app, if
-       * one is present on the page. The specified parameters must include an application id,
-       * which must match between the client and server applications.
-       *
-       * @experimental
-       */
-    BrowserModule.withServerTransition = /**
-       * Configures a browser-based application to transition from a server-rendered app, if
-       * one is present on the page. The specified parameters must include an application id,
-       * which must match between the client and server applications.
-       *
-       * @experimental
-       */
-    function (params) {
+    BrowserModule.withServerTransition = function (params) {
         return {
             ngModule: BrowserModule,
             providers: [
@@ -2147,7 +2179,7 @@ var BrowserModule = /** @class */ (function () {
     ];
     /** @nocollapse */
     BrowserModule.ctorParameters = function () { return [
-        { type: BrowserModule, decorators: [{ type: core.Optional }, { type: core.SkipSelf },] },
+        { type: BrowserModule, decorators: [{ type: core.Optional }, { type: core.SkipSelf }] }
     ]; };
     return BrowserModule;
 }());
@@ -2200,42 +2232,7 @@ var AngularProfiler = /** @class */ (function () {
      * ng.profiler.timeChangeDetection({record: true})
      * ```
      */
-    // tslint:disable:no-console
-    /**
-       * Exercises change detection in a loop and then prints the average amount of
-       * time in milliseconds how long a single round of change detection takes for
-       * the current state of the UI. It runs a minimum of 5 rounds for a minimum
-       * of 500 milliseconds.
-       *
-       * Optionally, a user may pass a `config` parameter containing a map of
-       * options. Supported options are:
-       *
-       * `record` (boolean) - causes the profiler to record a CPU profile while
-       * it exercises the change detector. Example:
-       *
-       * ```
-       * ng.profiler.timeChangeDetection({record: true})
-       * ```
-       */
-    AngularProfiler.prototype.timeChangeDetection = 
-    // tslint:disable:no-console
-    /**
-       * Exercises change detection in a loop and then prints the average amount of
-       * time in milliseconds how long a single round of change detection takes for
-       * the current state of the UI. It runs a minimum of 5 rounds for a minimum
-       * of 500 milliseconds.
-       *
-       * Optionally, a user may pass a `config` parameter containing a map of
-       * options. Supported options are:
-       *
-       * `record` (boolean) - causes the profiler to record a CPU profile while
-       * it exercises the change detector. Example:
-       *
-       * ```
-       * ng.profiler.timeChangeDetection({record: true})
-       * ```
-       */
-    function (config) {
+    AngularProfiler.prototype.timeChangeDetection = function (config) {
         var record = config && config['record'];
         var profileName = 'Change Detection';
         // Profiler is not available in Android browsers, nor in IE 9 without dev tools opened
@@ -2251,10 +2248,6 @@ var AngularProfiler = /** @class */ (function () {
         }
         var end = getDOM().performanceNow();
         if (record && isProfilerAvailable) {
-            // need to cast to <any> because type checker thinks there's no argument
-            // while in fact there is:
-            //
-            // https://developer.mozilla.org/en-US/docs/Web/API/Console/profileEnd
             // need to cast to <any> because type checker thinks there's no argument
             // while in fact there is:
             //
@@ -2366,9 +2359,7 @@ var TransferState = /** @class */ (function () {
         this.onSerializeCallbacks = {};
     }
     /** @internal */
-    /** @internal */
-    TransferState.init = /** @internal */
-    function (initState) {
+    TransferState.init = function (initState) {
         var transferState = new TransferState();
         transferState.store = initState;
         return transferState;
@@ -2376,67 +2367,31 @@ var TransferState = /** @class */ (function () {
     /**
      * Get the value corresponding to a key. Return `defaultValue` if key is not found.
      */
-    /**
-       * Get the value corresponding to a key. Return `defaultValue` if key is not found.
-       */
-    TransferState.prototype.get = /**
-       * Get the value corresponding to a key. Return `defaultValue` if key is not found.
-       */
-    function (key, defaultValue) {
+    TransferState.prototype.get = function (key, defaultValue) {
         return this.store[key] !== undefined ? this.store[key] : defaultValue;
     };
     /**
      * Set the value corresponding to a key.
      */
-    /**
-       * Set the value corresponding to a key.
-       */
-    TransferState.prototype.set = /**
-       * Set the value corresponding to a key.
-       */
-    function (key, value) { this.store[key] = value; };
+    TransferState.prototype.set = function (key, value) { this.store[key] = value; };
     /**
      * Remove a key from the store.
      */
-    /**
-       * Remove a key from the store.
-       */
-    TransferState.prototype.remove = /**
-       * Remove a key from the store.
-       */
-    function (key) { delete this.store[key]; };
+    TransferState.prototype.remove = function (key) { delete this.store[key]; };
     /**
      * Test whether a key exists in the store.
      */
-    /**
-       * Test whether a key exists in the store.
-       */
-    TransferState.prototype.hasKey = /**
-       * Test whether a key exists in the store.
-       */
-    function (key) { return this.store.hasOwnProperty(key); };
+    TransferState.prototype.hasKey = function (key) { return this.store.hasOwnProperty(key); };
     /**
      * Register a callback to provide the value for a key when `toJson` is called.
      */
-    /**
-       * Register a callback to provide the value for a key when `toJson` is called.
-       */
-    TransferState.prototype.onSerialize = /**
-       * Register a callback to provide the value for a key when `toJson` is called.
-       */
-    function (key, callback) {
+    TransferState.prototype.onSerialize = function (key, callback) {
         this.onSerializeCallbacks[key] = callback;
     };
     /**
      * Serialize the current state of the store to JSON.
      */
-    /**
-       * Serialize the current state of the store to JSON.
-       */
-    TransferState.prototype.toJson = /**
-       * Serialize the current state of the store to JSON.
-       */
-    function () {
+    TransferState.prototype.toJson = function () {
         // Call the onSerialize callbacks and put those values into the store.
         for (var key in this.onSerializeCallbacks) {
             if (this.onSerializeCallbacks.hasOwnProperty(key)) {
@@ -2453,8 +2408,6 @@ var TransferState = /** @class */ (function () {
     TransferState.decorators = [
         { type: core.Injectable }
     ];
-    /** @nocollapse */
-    TransferState.ctorParameters = function () { return []; };
     return TransferState;
 }());
 function initTransferState(doc, appId) {
@@ -2486,8 +2439,6 @@ var BrowserTransferStateModule = /** @class */ (function () {
                     providers: [{ provide: TransferState, useFactory: initTransferState, deps: [DOCUMENT$1, core.APP_ID] }],
                 },] }
     ];
-    /** @nocollapse */
-    BrowserTransferStateModule.ctorParameters = function () { return []; };
     return BrowserTransferStateModule;
 }());
 
@@ -2513,21 +2464,7 @@ var By = /** @class */ (function () {
      *
      * {@example platform-browser/dom/debug/ts/by/by.ts region='by_all'}
      */
-    /**
-       * Match all elements.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_all'}
-       */
-    By.all = /**
-       * Match all elements.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_all'}
-       */
-    function () { return function (debugElement) { return true; }; };
+    By.all = function () { return function (debugElement) { return true; }; };
     /**
      * Match elements by the given CSS selector.
      *
@@ -2535,21 +2472,7 @@ var By = /** @class */ (function () {
      *
      * {@example platform-browser/dom/debug/ts/by/by.ts region='by_css'}
      */
-    /**
-       * Match elements by the given CSS selector.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_css'}
-       */
-    By.css = /**
-       * Match elements by the given CSS selector.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_css'}
-       */
-    function (selector) {
+    By.css = function (selector) {
         return function (debugElement) {
             return debugElement.nativeElement != null ?
                 getDOM().elementMatches(debugElement.nativeElement, selector) :
@@ -2563,21 +2486,7 @@ var By = /** @class */ (function () {
      *
      * {@example platform-browser/dom/debug/ts/by/by.ts region='by_directive'}
      */
-    /**
-       * Match elements that have the given directive present.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_directive'}
-       */
-    By.directive = /**
-       * Match elements that have the given directive present.
-       *
-       * ## Example
-       *
-       * {@example platform-browser/dom/debug/ts/by/by.ts region='by_directive'}
-       */
-    function (type) {
+    By.directive = function (type) {
         return function (debugElement) { return debugElement.providerTokens.indexOf(type) !== -1; };
     };
     return By;
@@ -2599,9 +2508,11 @@ var By = /** @class */ (function () {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *
+ * @module
+ * @description
+ * Entry point for all public APIs of the common package.
  */
-var VERSION = new core.Version('6.0.0');
+var VERSION = new core.Version('6.0.7');
 
 /**
  * @license
@@ -2617,6 +2528,11 @@ var VERSION = new core.Version('6.0.0');
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * @module
+ * @description
+ * Entry point for all public APIs of this package.
  */
 
 // This file only reexports content of the `src` folder. Keep it that way.
@@ -2628,6 +2544,10 @@ var VERSION = new core.Version('6.0.0');
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+// This file is not used to build this module. It is only used during editing
+// by the TypeScript language service and during build for verification. `ngc`
+// replaces this file with production index.ts when it rewrites private symbol
+// names.
 
 /**
  * Generated bundle index. Do not edit.

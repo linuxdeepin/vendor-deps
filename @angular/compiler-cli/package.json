@@ -1,33 +1,27 @@
 {
-  "_args": [
-    [
-      "@angular/compiler-cli@6.0.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "@angular/compiler-cli@6.0.0",
-  "_id": "@angular/compiler-cli@6.0.0",
+  "_from": "@angular/compiler-cli@6.0.7",
+  "_id": "@angular/compiler-cli@6.0.7",
   "_inBundle": false,
-  "_integrity": "sha1-vlAnf6qlrAjzACwsjLjDnSIMdtU=",
+  "_integrity": "sha512-nDIo4TtE3oXgZiQ5vJEcr5fi3FuXRDJQSOeOQinpCrtEt3s4pU5WAX5DLFGPSD2C/EXRDvHZgF9OTJeu5U4ErQ==",
   "_location": "/@angular/compiler-cli",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/compiler-cli@6.0.0",
+    "raw": "@angular/compiler-cli@6.0.7",
     "name": "@angular/compiler-cli",
     "escapedName": "@angular%2fcompiler-cli",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.0.7",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.0.7"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/compiler-cli/download/@angular/compiler-cli-6.0.0.tgz",
-  "_spec": "6.0.0",
+  "_resolved": "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-6.0.7.tgz",
+  "_shasum": "0f6ff586e7f7c5d37aa91d53521250bc02620a4f",
+  "_spec": "@angular/compiler-cli@6.0.7",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "bin": {
     "ngc": "./src/main.js",
@@ -36,6 +30,7 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Tobias Bosch",
@@ -52,8 +47,9 @@
     "chokidar": "^1.4.2",
     "minimist": "^1.2.0",
     "reflect-metadata": "^0.1.2",
-    "tsickle": "^0.27.2"
+    "tsickle": "^0.29.0"
   },
+  "deprecated": false,
   "description": "Angular - the compiler CLI for Node.js",
   "engines": {
     "node": ">=8.0"
@@ -90,12 +86,12 @@
   },
   "peerDependencies": {
     "typescript": ">=2.7.2 <2.8",
-    "@angular/compiler": "6.0.0"
+    "@angular/compiler": "6.0.7"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "index.d.ts",
-  "version": "6.0.0"
+  "version": "6.0.7"
 }

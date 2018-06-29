@@ -9,5 +9,6 @@
  * @class ArgumentOutOfRangeError
  */
 export declare class ArgumentOutOfRangeError extends Error {
+    readonly name: string;
     constructor();
 }

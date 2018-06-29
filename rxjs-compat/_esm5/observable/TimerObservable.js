@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, timer } from 'rxjs';
-var TimerObservable = /** @class */ (function (_super) {
+var TimerObservable = (function (_super) {
     __extends(TimerObservable, _super);
     function TimerObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

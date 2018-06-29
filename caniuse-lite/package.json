@@ -1,34 +1,28 @@
 {
-  "_args": [
-    [
-      "caniuse-lite@1.0.30000833",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "caniuse-lite@1.0.30000833",
-  "_id": "caniuse-lite@1.0.30000833",
+  "_from": "caniuse-lite@^1.0.30000859",
+  "_id": "caniuse-lite@1.0.30000860",
   "_inBundle": false,
-  "_integrity": "sha1-mOhPzbQ5nG+gsP1BSQ0yF6x4ArQ=",
+  "_integrity": "sha512-6HCqcu+cCwWCY+WLL+rtAsAFt1ufvqMhA8dTfhMQhCJHYhJDhRRrh105DfjqRlTrDK3vvbEq8K0drNsJbymDtQ==",
   "_location": "/caniuse-lite",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "caniuse-lite@1.0.30000833",
+    "raw": "caniuse-lite@^1.0.30000859",
     "name": "caniuse-lite",
     "escapedName": "caniuse-lite",
-    "rawSpec": "1.0.30000833",
+    "rawSpec": "^1.0.30000859",
     "saveSpec": null,
-    "fetchSpec": "1.0.30000833"
+    "fetchSpec": "^1.0.30000859"
   },
   "_requiredBy": [
     "/autoprefixer",
     "/browserslist"
   ],
-  "_resolved": "http://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30000833.tgz",
-  "_spec": "1.0.30000833",
-  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "_resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000860.tgz",
+  "_shasum": "c902e3df3cc4303f631abc7a1579a3ce0a6153a3",
+  "_spec": "caniuse-lite@^1.0.30000859",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web/node_modules/autoprefixer",
   "author": {
     "name": "Ben Briggs",
     "email": "beneb.info@gmail.com",
@@ -42,6 +36,8 @@
   "bugs": {
     "url": "https://github.com/ben-eb/caniuse-lite/issues"
   },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "A smaller version of caniuse-db, with only the essentials!",
   "devDependencies": {
     "all-contributors-cli": "^3.0.7",
@@ -52,7 +48,7 @@
     "babel-register": "^6.18.0",
     "babel-types": "^6.21.0",
     "bunyan": "^1.8.10",
-    "caniuse-db": "1.0.30000833",
+    "caniuse-db": "1.0.30000860",
     "del-cli": "^0.2.1",
     "execa": "^0.6.3",
     "fecha": "^2.3.0",
@@ -95,5 +91,5 @@
     "size": "size-limit consumer.js",
     "test": "jest src"
   },
-  "version": "1.0.30000833"
+  "version": "1.0.30000860"
 }

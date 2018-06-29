@@ -9,5 +9,6 @@
  * @class EmptyError
  */
 export declare class EmptyError extends Error {
+    readonly name: string;
     constructor();
 }

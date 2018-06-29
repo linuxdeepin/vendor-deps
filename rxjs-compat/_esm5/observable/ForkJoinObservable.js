@@ -9,12 +9,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, forkJoin } from 'rxjs';
-var ForkJoinObservable = /** @class */ (function (_super) {
+var ForkJoinObservable = (function (_super) {
     __extends(ForkJoinObservable, _super);
     function ForkJoinObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /* tslint:enable:max-line-length */
     ForkJoinObservable.create = function () {
         var sources = [];
         for (var _i = 0; _i < arguments.length; _i++) {

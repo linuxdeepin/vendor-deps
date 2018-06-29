@@ -1,32 +1,27 @@
 {
-  "_args": [
-    [
-      "@angular/platform-browser-dynamic@6.0.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_from": "@angular/platform-browser-dynamic@6.0.0",
-  "_id": "@angular/platform-browser-dynamic@6.0.0",
+  "_from": "@angular/platform-browser-dynamic@6.0.7",
+  "_id": "@angular/platform-browser-dynamic@6.0.7",
   "_inBundle": false,
-  "_integrity": "sha1-ZqNLZRNkRss+w5Ni/W0tu1SCunA=",
+  "_integrity": "sha512-8G45A9w8UJvX3vPEHqeJHt/sd0zu6w1M+rsnOCo78r35SjsLbrmDNhc4VkLZFJ+iNjgPWtNtdpeXQqtTHE46yw==",
   "_location": "/@angular/platform-browser-dynamic",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/platform-browser-dynamic@6.0.0",
+    "raw": "@angular/platform-browser-dynamic@6.0.7",
     "name": "@angular/platform-browser-dynamic",
     "escapedName": "@angular%2fplatform-browser-dynamic",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.0.7",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.0.7"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/platform-browser-dynamic/download/@angular/platform-browser-dynamic-6.0.0.tgz",
-  "_spec": "6.0.0",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.0.7.tgz",
+  "_shasum": "1c5f63f62eef1ca564e4db62f8e8419f402f044b",
+  "_spec": "@angular/platform-browser-dynamic@6.0.7",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
@@ -34,9 +29,11 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "tslib": "^1.9.0"
   },
+  "deprecated": false,
   "description": "Angular - library for using Angular in a web browser with JIT compilation",
   "es2015": "./fesm2015/platform-browser-dynamic.js",
   "esm2015": "./esm2015/platform-browser-dynamic.js",
@@ -71,10 +68,10 @@
     ]
   },
   "peerDependencies": {
-    "@angular/core": "6.0.0",
-    "@angular/common": "6.0.0",
-    "@angular/compiler": "6.0.0",
-    "@angular/platform-browser": "6.0.0"
+    "@angular/core": "6.0.7",
+    "@angular/common": "6.0.7",
+    "@angular/compiler": "6.0.7",
+    "@angular/platform-browser": "6.0.7"
   },
   "repository": {
     "type": "git",
@@ -82,5 +79,5 @@
   },
   "sideEffects": false,
   "typings": "./platform-browser-dynamic.d.ts",
-  "version": "6.0.0"
+  "version": "6.0.7"
 }

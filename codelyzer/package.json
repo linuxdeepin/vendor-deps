@@ -1,32 +1,27 @@
 {
-  "_args": [
-    [
-      "codelyzer@4.3.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_development": true,
-  "_from": "codelyzer@4.3.0",
-  "_id": "codelyzer@4.3.0",
+  "_from": "codelyzer@4.4.2",
+  "_id": "codelyzer@4.4.2",
   "_inBundle": false,
-  "_integrity": "sha1-a/O6aO/Z1lWkUeyqFKKFIAGkPfs=",
+  "_integrity": "sha512-tW796ECKMAynFtl/yyS5NRYhufbT3CEKjjMQ450kUeCcQlK7OIqD9VGRVwC3gSQSK4VaewCKCaVL0bzv9PhsLg==",
   "_location": "/codelyzer",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "codelyzer@4.3.0",
+    "raw": "codelyzer@4.4.2",
     "name": "codelyzer",
     "escapedName": "codelyzer",
-    "rawSpec": "4.3.0",
+    "rawSpec": "4.4.2",
     "saveSpec": null,
-    "fetchSpec": "4.3.0"
+    "fetchSpec": "4.4.2"
   },
   "_requiredBy": [
-    "#DEV:/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "http://registry.npm.taobao.org/codelyzer/download/codelyzer-4.3.0.tgz",
-  "_spec": "4.3.0",
+  "_resolved": "https://registry.npmjs.org/codelyzer/-/codelyzer-4.4.2.tgz",
+  "_shasum": "af11fed6ddf9362ed5b174495467fb7315306fb1",
+  "_spec": "codelyzer@4.4.2",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "Minko Gechev",
@@ -35,6 +30,7 @@
   "bugs": {
     "url": "https://github.com/mgechev/codelyzer/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Minko Gechev",
@@ -59,8 +55,9 @@
     "cssauron": "^1.4.0",
     "semver-dsl": "^1.0.1",
     "source-map": "^0.5.7",
-    "sprintf-js": "^1.0.3"
+    "sprintf-js": "^1.1.1"
   },
+  "deprecated": false,
   "description": "Linting for Angular applications, following angular.io/styleguide.",
   "homepage": "https://github.com/mgechev/codelyzer#readme",
   "keywords": [
@@ -73,6 +70,16 @@
     "tslint"
   ],
   "license": "MIT",
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint:fix",
+      "git add"
+    ],
+    "*.{css,json,md,scss,ts}": [
+      "npm run format:fix",
+      "git add"
+    ]
+  },
   "main": "index.js",
   "name": "codelyzer",
   "peerDependencies": {
@@ -84,5 +91,5 @@
     "type": "git",
     "url": "git+https://github.com/mgechev/codelyzer.git"
   },
-  "version": "4.3.0"
+  "version": "4.4.2"
 }

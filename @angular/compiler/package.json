@@ -1,32 +1,27 @@
 {
-  "_args": [
-    [
-      "@angular/compiler@6.0.0",
-      "/home/myml/Src/deepin/deepin-appstore/src/web"
-    ]
-  ],
-  "_from": "@angular/compiler@6.0.0",
-  "_id": "@angular/compiler@6.0.0",
+  "_from": "@angular/compiler@6.0.7",
+  "_id": "@angular/compiler@6.0.7",
   "_inBundle": false,
-  "_integrity": "sha1-kJKg8C8z3REIJ2q5PMSBQuNqHpU=",
+  "_integrity": "sha512-J9I2U4NiWIBXl0ZOJkBW5G7xXhphggSirTwFLD4yKCTeJXgyldZytJZRkDUx1uouZtI2/PycvaOZoRr85N67AA==",
   "_location": "/@angular/compiler",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/compiler@6.0.0",
+    "raw": "@angular/compiler@6.0.7",
     "name": "@angular/compiler",
     "escapedName": "@angular%2fcompiler",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.0.7",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.0.7"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/compiler/download/@angular/compiler-6.0.0.tgz",
-  "_spec": "6.0.0",
+  "_resolved": "https://registry.npmjs.org/@angular/compiler/-/compiler-6.0.7.tgz",
+  "_shasum": "8313251be50a4446653a52279d806de6582012a3",
+  "_spec": "@angular/compiler@6.0.7",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": {
     "name": "angular"
@@ -34,9 +29,11 @@
   "bugs": {
     "url": "https://github.com/angular/angular/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "tslib": "^1.9.0"
   },
+  "deprecated": false,
   "description": "Angular - the compiler library",
   "es2015": "./fesm2015/compiler.js",
   "esm2015": "./esm2015/compiler.js",
@@ -76,5 +73,5 @@
   },
   "sideEffects": false,
   "typings": "./compiler.d.ts",
-  "version": "6.0.0"
+  "version": "6.0.7"
 }

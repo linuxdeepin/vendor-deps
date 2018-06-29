@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -32,7 +32,7 @@ class DOMTestComponentRenderer extends TestComponentRenderer {
      */
     constructor(_doc /** TODO #9100 */) {
         super();
-        this._doc = _doc;
+        this._doc = _doc; /** TODO #9100 */
     }
     /**
      * @param {?} rootElId
@@ -53,7 +53,7 @@ DOMTestComponentRenderer.decorators = [
 ];
 /** @nocollapse */
 DOMTestComponentRenderer.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 
 /**
@@ -426,9 +426,6 @@ const platformCoreDynamicTesting = createPlatformFactory(ɵplatformCoreDynamic, 
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-/**
- *
- */
 const platformBrowserDynamicTesting = createPlatformFactory(platformCoreDynamicTesting, 'browserDynamicTesting', ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS);
 /**
  * NgModule for testing.
@@ -445,8 +442,6 @@ BrowserDynamicTestingModule.decorators = [
                 ]
             },] }
 ];
-/** @nocollapse */
-BrowserDynamicTestingModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle

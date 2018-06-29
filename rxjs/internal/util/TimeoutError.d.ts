@@ -6,5 +6,6 @@
  * @class TimeoutError
  */
 export declare class TimeoutError extends Error {
+    readonly name: string;
     constructor();
 }

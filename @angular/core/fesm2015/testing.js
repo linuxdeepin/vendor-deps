@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -415,7 +415,8 @@ let _inFakeAsyncCall = false;
  *
  * Can be used to wrap inject() calls.
  *
- * ## Example
+ * \@usageNotes
+ * ### Example
  *
  * {\@example core/testing/ts/fake_async.ts region='basic'}
  *
@@ -479,7 +480,8 @@ function _getFakeAsyncZoneSpec() {
  * The microtasks queue is drained at the very start of this function and after any timer callback
  * has been executed.
  *
- * ## Example
+ * \@usageNotes
+ * ### Example
  *
  * {\@example core/testing/ts/fake_async.ts region='basic'}
  *
@@ -554,7 +556,8 @@ function resetFakeAsyncZone() {
  *
  * Can be used to wrap inject() calls.
  *
- * ## Example
+ * \@usageNotes
+ * ### Example
  *
  * {\@example core/testing/ts/fake_async.ts region='basic'}
  *
@@ -577,7 +580,8 @@ function fakeAsync(fn) {
  * The microtasks queue is drained at the very start of this function and after any timer callback
  * has been executed.
  *
- * ## Example
+ * \@usageNotes
+ * ### Example
  *
  * {\@example core/testing/ts/fake_async.ts region='basic'}
  *
@@ -764,8 +768,6 @@ class TestingCompiler extends Compiler {
 TestingCompiler.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
-TestingCompiler.ctorParameters = () => [];
 /**
  * A factory for creating a Compiler
  *
@@ -1172,8 +1174,6 @@ class TestBed {
                             ],
                         },] },
             ];
-            /** @nocollapse */
-            RootScopeModule.ctorParameters = () => [];
             rootScopeImports.push(RootScopeModule);
         }
         providers.push({ provide: ɵAPP_ROOT, useValue: this._isRoot });
@@ -1184,8 +1184,6 @@ class TestBed {
         DynamicTestModule.decorators = [
             { type: NgModule, args: [{ providers, declarations, imports, schemas },] },
         ];
-        /** @nocollapse */
-        DynamicTestModule.ctorParameters = () => [];
         const /** @type {?} */ compilerFactory = this.platform.injector.get(TestingCompilerFactory);
         this._compiler = compilerFactory.createTestingCompiler(this._compilerOptions);
         for (const /** @type {?} */ summary of [this._testEnvAotSummaries, ...this._aotSummaries]) {
@@ -1347,8 +1345,6 @@ class TestBed {
         OverrideComponent.decorators = [
             { type: Component, args: [{ selector: 'empty', template },] },
         ];
-        /** @nocollapse */
-        OverrideComponent.ctorParameters = () => [];
         this._templateOverrides.push({ component, templateOf: OverrideComponent });
     }
     /**

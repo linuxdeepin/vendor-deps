@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -11,6 +11,18 @@ import { Injectable } from '@angular/core';
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+/**
+ * @return {?}
+ */
+function isBrowser() {
+    return (typeof window !== 'undefined' && typeof window.document !== 'undefined');
+}
+/**
+ * @return {?}
+ */
+function isNode() {
+    return (typeof process !== 'undefined');
+}
 /**
  * @param {?} players
  * @return {?}
@@ -161,10 +173,13 @@ let _matches = (element, selector) => false;
 let _query = (element, selector, multi) => {
     return [];
 };
-if (typeof Element != 'undefined') {
+// Define utility methods for browsers and platform-server(domino) where Element
+// and utility methods exist.
+const _isNode = isNode();
+if (_isNode || typeof Element !== 'undefined') {
     // this is well supported in all browsers
     _contains = (elm1, elm2) => { return /** @type {?} */ (elm1.contains(elm2)); };
-    if (Element.prototype.matches) {
+    if (_isNode || Element.prototype.matches) {
         _matches = (element, selector) => element.matches(selector);
     }
     else {
@@ -231,6 +246,18 @@ function getBodyNode() {
 const matchesElement = _matches;
 const containsElement = _contains;
 const invokeQuery = _query;
+/**
+ * @param {?} object
+ * @return {?}
+ */
+function hypenatePropsObject(object) {
+    const /** @type {?} */ newObj = {};
+    Object.keys(object).forEach(prop => {
+        const /** @type {?} */ newProp = prop.replace(/([a-z])([A-Z])/g, '$1-$2');
+        newObj[newProp] = object[prop];
+    });
+    return newObj;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -294,8 +321,6 @@ class NoopAnimationDriver {
 NoopAnimationDriver.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
-NoopAnimationDriver.ctorParameters = () => [];
 /**
  * \@experimental
  * @abstract
@@ -447,6 +472,46 @@ function copyStyles(styles, readPrototype, destination = {}) {
 }
 /**
  * @param {?} element
+ * @param {?} key
+ * @param {?} value
+ * @return {?}
+ */
+function getStyleAttributeString(element, key, value) {
+    // Return the key-value pair string to be added to the style attribute for the
+    // given CSS style key.
+    if (value) {
+        return key + ':' + value + ';';
+    }
+    else {
+        return '';
+    }
+}
+/**
+ * @param {?} element
+ * @return {?}
+ */
+function writeStyleAttribute(element) {
+    // Read the style property of the element and manually reflect it to the
+    // style attribute. This is needed because Domino on platform-server doesn't
+    // understand the full set of allowed CSS properties and doesn't reflect some
+    // of them automatically.
+    let /** @type {?} */ styleAttrValue = '';
+    for (let /** @type {?} */ i = 0; i < element.style.length; i++) {
+        const /** @type {?} */ key = element.style.item(i);
+        styleAttrValue += getStyleAttributeString(element, key, element.style.getPropertyValue(key));
+    }
+    for (const /** @type {?} */ key in element.style) {
+        // Skip internal Domino properties that don't need to be reflected.
+        if (!element.style.hasOwnProperty(key) || key.startsWith('_')) {
+            continue;
+        }
+        const /** @type {?} */ dashKey = camelCaseToDashCase(key);
+        styleAttrValue += getStyleAttributeString(element, dashKey, element.style[key]);
+    }
+    element.setAttribute('style', styleAttrValue);
+}
+/**
+ * @param {?} element
  * @param {?} styles
  * @return {?}
  */
@@ -456,6 +521,10 @@ function setStyles(element, styles) {
             const /** @type {?} */ camelProp = dashCaseToCamelCase(prop);
             element.style[camelProp] = styles[prop];
         });
+        // On the server set the 'style' attribute since it's not automatically reflected.
+        if (isNode()) {
+            writeStyleAttribute(element);
+        }
     }
 }
 /**
@@ -469,6 +538,10 @@ function eraseStyles(element, styles) {
             const /** @type {?} */ camelProp = dashCaseToCamelCase(prop);
             element.style[camelProp] = '';
         });
+        // On the server set the 'style' attribute since it's not automatically reflected.
+        if (isNode()) {
+            writeStyleAttribute(element);
+        }
     }
 }
 /**
@@ -563,6 +636,13 @@ const DASH_CASE_REGEXP = /-+([a-z0-9])/g;
  */
 function dashCaseToCamelCase(input) {
     return input.replace(DASH_CASE_REGEXP, (...m) => m[1].toUpperCase());
+}
+/**
+ * @param {?} input
+ * @return {?}
+ */
+function camelCaseToDashCase(input) {
+    return input.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 /**
  * @param {?} duration
@@ -2531,9 +2611,10 @@ class AnimationTransitionFactory {
      * @param {?=} currentOptions
      * @param {?=} nextOptions
      * @param {?=} subInstructions
+     * @param {?=} skipAstBuild
      * @return {?}
      */
-    build(driver, element, currentState, nextState, enterClassName, leaveClassName, currentOptions, nextOptions, subInstructions) {
+    build(driver, element, currentState, nextState, enterClassName, leaveClassName, currentOptions, nextOptions, subInstructions, skipAstBuild) {
         const /** @type {?} */ errors = [];
         const /** @type {?} */ transitionAnimationParams = this.ast.options && this.ast.options.params || EMPTY_OBJECT;
         const /** @type {?} */ currentAnimationParams = currentOptions && currentOptions.params || EMPTY_OBJECT;
@@ -2545,7 +2626,7 @@ class AnimationTransitionFactory {
         const /** @type {?} */ postStyleMap = new Map();
         const /** @type {?} */ isRemoval = nextState === 'void';
         const /** @type {?} */ animationOptions = { params: Object.assign({}, transitionAnimationParams, nextAnimationParams) };
-        const /** @type {?} */ timelines = buildAnimationTimelines(driver, element, this.ast.animation, enterClassName, leaveClassName, currentStateStyles, nextStateStyles, animationOptions, subInstructions, errors);
+        const /** @type {?} */ timelines = skipAstBuild ? [] : buildAnimationTimelines(driver, element, this.ast.animation, enterClassName, leaveClassName, currentStateStyles, nextStateStyles, animationOptions, subInstructions, errors);
         let /** @type {?} */ totalTime = 0;
         timelines.forEach(tl => { totalTime = Math.max(tl.duration + tl.delay, totalTime); });
         if (errors.length) {
@@ -2719,10 +2800,12 @@ function balanceProperties(obj, key1, key2) {
 const EMPTY_INSTRUCTION_MAP = new ElementInstructionMap();
 class TimelineAnimationEngine {
     /**
+     * @param {?} bodyNode
      * @param {?} _driver
      * @param {?} _normalizer
      */
-    constructor(_driver, _normalizer) {
+    constructor(bodyNode, _driver, _normalizer) {
+        this.bodyNode = bodyNode;
         this._driver = _driver;
         this._normalizer = _normalizer;
         this._animations = {};
@@ -2890,13 +2973,15 @@ const STAR_SELECTOR = '.ng-star-inserted';
 const EMPTY_PLAYER_ARRAY = [];
 const NULL_REMOVAL_STATE = {
     namespaceId: '',
-    setForRemoval: null,
+    setForRemoval: false,
+    setForMove: false,
     hasAnimation: false,
     removedBeforeQueried: false
 };
 const NULL_REMOVED_QUERIED_STATE = {
     namespaceId: '',
-    setForRemoval: null,
+    setForMove: false,
+    setForRemoval: false,
     hasAnimation: false,
     removedBeforeQueried: true
 };
@@ -2953,7 +3038,6 @@ class StateValue {
 }
 const VOID_VALUE = 'void';
 const DEFAULT_STATE_VALUE = new StateValue(VOID_VALUE);
-const DELETED_STATE_VALUE = new StateValue('DELETED');
 class AnimationTransitionNamespace {
     /**
      * @param {?} id
@@ -3063,9 +3147,6 @@ class AnimationTransitionNamespace {
         triggersWithStates[triggerName] = toState;
         if (!fromState) {
             fromState = DEFAULT_STATE_VALUE;
-        }
-        else if (fromState === DELETED_STATE_VALUE) {
-            return player;
         }
         const /** @type {?} */ isRemoval = toState.value === VOID_VALUE;
         // normally this isn't reached by here, however, if an object expression
@@ -3376,10 +3457,12 @@ class AnimationTransitionNamespace {
 
 class TransitionAnimationEngine {
     /**
+     * @param {?} bodyNode
      * @param {?} driver
      * @param {?} _normalizer
      */
-    constructor(driver, _normalizer) {
+    constructor(bodyNode, driver, _normalizer) {
+        this.bodyNode = bodyNode;
         this.driver = driver;
         this._normalizer = _normalizer;
         this.players = [];
@@ -3554,8 +3637,11 @@ class TransitionAnimationEngine {
      */
     trigger(namespaceId, element, name, value) {
         if (isElementNode(element)) {
-            this._fetchNamespace(namespaceId).trigger(element, name, value);
-            return true;
+            const /** @type {?} */ ns = this._fetchNamespace(namespaceId);
+            if (ns) {
+                ns.trigger(element, name, value);
+                return true;
+            }
         }
         return false;
     }
@@ -3574,6 +3660,11 @@ class TransitionAnimationEngine {
         const /** @type {?} */ details = /** @type {?} */ (element[REMOVAL_FLAG]);
         if (details && details.setForRemoval) {
             details.setForRemoval = false;
+            details.setForMove = true;
+            const /** @type {?} */ index = this.collectedLeaveElements.indexOf(element);
+            if (index >= 0) {
+                this.collectedLeaveElements.splice(index, 1);
+            }
         }
         // in the event that the namespaceId is blank then the caller
         // code does not contain any animation code in it, but it is
@@ -3670,10 +3761,11 @@ class TransitionAnimationEngine {
      * @param {?} subTimelines
      * @param {?} enterClassName
      * @param {?} leaveClassName
+     * @param {?=} skipBuildAst
      * @return {?}
      */
-    _buildInstruction(entry, subTimelines, enterClassName, leaveClassName) {
-        return entry.transition.build(this.driver, entry.element, entry.fromState.value, entry.toState.value, enterClassName, leaveClassName, entry.fromState.options, entry.toState.options, subTimelines);
+    _buildInstruction(entry, subTimelines, enterClassName, leaveClassName, skipBuildAst) {
+        return entry.transition.build(this.driver, entry.element, entry.fromState.value, entry.toState.value, enterClassName, leaveClassName, entry.fromState.options, entry.toState.options, subTimelines, skipBuildAst);
     }
     /**
      * @param {?} containerElement
@@ -3705,10 +3797,6 @@ class TransitionAnimationEngine {
                     player.destroy();
                 }
             });
-        }
-        const /** @type {?} */ stateMap = this.statesByElement.get(element);
-        if (stateMap) {
-            Object.keys(stateMap).forEach(triggerName => stateMap[triggerName] = DELETED_STATE_VALUE);
         }
     }
     /**
@@ -3840,7 +3928,7 @@ class TransitionAnimationEngine {
                 disabledElementsSet.add(nodesThatAreDisabled[i]);
             }
         });
-        const /** @type {?} */ bodyNode = getBodyNode();
+        const /** @type {?} */ bodyNode = this.bodyNode;
         const /** @type {?} */ allTriggerElements = Array.from(this.statesByElement.keys());
         const /** @type {?} */ enterNodeMap = buildRootMap(allTriggerElements, this.collectedEnterElements);
         // this must occur before the instructions are built below such that
@@ -3894,17 +3982,32 @@ class TransitionAnimationEngine {
             const /** @type {?} */ ns = this._namespaceList[i];
             ns.drainQueuedTransitions(microtaskId).forEach(entry => {
                 const /** @type {?} */ player = entry.player;
-                allPlayers.push(player);
                 const /** @type {?} */ element = entry.element;
-                if (!bodyNode || !this.driver.containsElement(bodyNode, element)) {
-                    player.destroy();
-                    return;
+                allPlayers.push(player);
+                if (this.collectedEnterElements.length) {
+                    const /** @type {?} */ details = /** @type {?} */ (element[REMOVAL_FLAG]);
+                    // move animations are currently not supported...
+                    if (details && details.setForMove) {
+                        player.destroy();
+                        return;
+                    }
                 }
+                const /** @type {?} */ nodeIsOrphaned = !bodyNode || !this.driver.containsElement(bodyNode, element);
                 const /** @type {?} */ leaveClassName = /** @type {?} */ ((leaveNodeMapIds.get(element)));
                 const /** @type {?} */ enterClassName = /** @type {?} */ ((enterNodeMapIds.get(element)));
-                const /** @type {?} */ instruction = /** @type {?} */ ((this._buildInstruction(entry, subTimelines, enterClassName, leaveClassName)));
+                const /** @type {?} */ instruction = /** @type {?} */ ((this._buildInstruction(entry, subTimelines, enterClassName, leaveClassName, nodeIsOrphaned)));
                 if (instruction.errors && instruction.errors.length) {
                     erroneousTransitions.push(instruction);
+                    return;
+                }
+                // even though the element may not be apart of the DOM, it may
+                // still be added at a later point (due to the mechanics of content
+                // projection and/or dynamic component insertion) therefore it's
+                // important we still style the element.
+                if (nodeIsOrphaned) {
+                    player.onStart(() => eraseStyles(element, instruction.fromStyles));
+                    player.onDestroy(() => setStyles(element, instruction.toStyles));
+                    skippedPlayers.push(player);
                     return;
                 }
                 // if a unmatched transition is queued to go then it SHOULD NOT render
@@ -4725,15 +4828,17 @@ function replacePostStylesAsPre(element, allPreStyleElements, allPostStyleElemen
  */
 class AnimationEngine {
     /**
+     * @param {?} bodyNode
      * @param {?} _driver
      * @param {?} normalizer
      */
-    constructor(_driver, normalizer) {
+    constructor(bodyNode, _driver, normalizer) {
+        this.bodyNode = bodyNode;
         this._driver = _driver;
         this._triggerCache = {};
         this.onRemovalComplete = (element, context) => { };
-        this._transitionEngine = new TransitionAnimationEngine(_driver, normalizer);
-        this._timelineEngine = new TimelineAnimationEngine(_driver, normalizer);
+        this._transitionEngine = new TransitionAnimationEngine(bodyNode, _driver, normalizer);
+        this._timelineEngine = new TimelineAnimationEngine(bodyNode, _driver, normalizer);
         this._transitionEngine.onRemovalComplete = (element, context) => this.onRemovalComplete(element, context);
     }
     /**
@@ -5269,14 +5374,14 @@ class CssKeyframesPlayer {
 class DirectStylePlayer extends NoopAnimationPlayer {
     /**
      * @param {?} element
-     * @param {?} _styles
+     * @param {?} styles
      */
-    constructor(element, _styles) {
+    constructor(element, styles) {
         super();
         this.element = element;
-        this._styles = _styles;
         this._startingStyles = {};
         this.__initialized = false;
+        this._styles = hypenatePropsObject(styles);
     }
     /**
      * @return {?}
@@ -5297,7 +5402,8 @@ class DirectStylePlayer extends NoopAnimationPlayer {
         if (!this._startingStyles)
             return;
         this.init();
-        Object.keys(this._styles).forEach(prop => { this.element.style[prop] = this._styles[prop]; });
+        Object.keys(this._styles)
+            .forEach(prop => this.element.style.setProperty(prop, this._styles[prop]));
         super.play();
     }
     /**
@@ -5309,7 +5415,7 @@ class DirectStylePlayer extends NoopAnimationPlayer {
         Object.keys(this._startingStyles).forEach(prop => {
             const /** @type {?} */ value = /** @type {?} */ ((this._startingStyles))[prop];
             if (value) {
-                this.element.style[prop] = value;
+                this.element.style.setProperty(prop, value);
             }
             else {
                 this.element.style.removeProperty(prop);
@@ -5471,18 +5577,6 @@ function flattenKeyframesIntoStyles(keyframes) {
         });
     }
     return flatKeyframes;
-}
-/**
- * @param {?} object
- * @return {?}
- */
-function hypenatePropsObject(object) {
-    const /** @type {?} */ newObj = {};
-    Object.keys(object).forEach(prop => {
-        const /** @type {?} */ newProp = prop.replace(/([a-z])([A-Z])/g, '$1-$2');
-        newObj[newProp] = object[prop];
-    });
-    return newObj;
 }
 /**
  * @param {?} node
@@ -5791,7 +5885,7 @@ function supportsWebAnimations() {
  * @return {?}
  */
 function getElementAnimateFn() {
-    return (typeof Element !== 'undefined' && (/** @type {?} */ (Element)).prototype['animate']) || {};
+    return (isBrowser() && (/** @type {?} */ (Element)).prototype['animate']) || {};
 }
 
 /**

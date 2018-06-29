@@ -1,5 +1,5 @@
 /**
- * @license Angular v6.0.0
+ * @license Angular v6.0.7
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -8,6 +8,7 @@ import { Inject, Injectable, InjectionToken, NgModule, NgZone, RendererFactory2,
 import { BrowserModule, DOCUMENT, ɵDomRendererFactory2 } from '@angular/platform-browser';
 import { AnimationBuilder, AnimationFactory, sequence } from '@angular/animations';
 import { AnimationDriver, ɵAnimationEngine, ɵAnimationStyleNormalizer, ɵCssKeyframesDriver, ɵNoopAnimationDriver, ɵWebAnimationsDriver, ɵWebAnimationsStyleNormalizer, ɵsupportsWebAnimations } from '@angular/animations/browser';
+import { DOCUMENT as DOCUMENT$1 } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -46,8 +47,8 @@ BrowserAnimationBuilder.decorators = [
 ];
 /** @nocollapse */
 BrowserAnimationBuilder.ctorParameters = () => [
-    { type: RendererFactory2, },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
+    { type: RendererFactory2 },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 class BrowserAnimationFactory extends AnimationFactory {
     /**
@@ -298,9 +299,9 @@ AnimationRendererFactory.decorators = [
 ];
 /** @nocollapse */
 AnimationRendererFactory.ctorParameters = () => [
-    { type: RendererFactory2, },
-    { type: ɵAnimationEngine, },
-    { type: NgZone, },
+    { type: RendererFactory2 },
+    { type: ɵAnimationEngine },
+    { type: NgZone }
 ];
 class BaseAnimationRenderer {
     /**
@@ -569,11 +570,12 @@ function parseTriggerCallbackName(triggerName) {
  */
 class InjectableAnimationEngine extends ɵAnimationEngine {
     /**
+     * @param {?} doc
      * @param {?} driver
      * @param {?} normalizer
      */
-    constructor(driver, normalizer) {
-        super(driver, normalizer);
+    constructor(doc, driver, normalizer) {
+        super(doc.body, driver, normalizer);
     }
 }
 InjectableAnimationEngine.decorators = [
@@ -581,8 +583,9 @@ InjectableAnimationEngine.decorators = [
 ];
 /** @nocollapse */
 InjectableAnimationEngine.ctorParameters = () => [
-    { type: AnimationDriver, },
-    { type: ɵAnimationStyleNormalizer, },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT$1,] }] },
+    { type: AnimationDriver },
+    { type: ɵAnimationStyleNormalizer }
 ];
 /**
  * @return {?}
@@ -650,8 +653,6 @@ BrowserAnimationsModule.decorators = [
                 providers: BROWSER_ANIMATIONS_PROVIDERS,
             },] }
 ];
-/** @nocollapse */
-BrowserAnimationsModule.ctorParameters = () => [];
 /**
  * \@experimental Animation support is experimental.
  */
@@ -663,8 +664,6 @@ NoopAnimationsModule.decorators = [
                 providers: BROWSER_NOOP_ANIMATIONS_PROVIDERS,
             },] }
 ];
-/** @nocollapse */
-NoopAnimationsModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle

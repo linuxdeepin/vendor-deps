@@ -4,5 +4,6 @@
  */
 export declare class UnsubscriptionError extends Error {
     errors: any[];
+    readonly name: string;
     constructor(errors: any[]);
 }

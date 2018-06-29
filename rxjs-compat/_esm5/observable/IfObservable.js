@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, iif } from 'rxjs';
-var IfObservable = /** @class */ (function (_super) {
+var IfObservable = (function (_super) {
     __extends(IfObservable, _super);
     function IfObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
