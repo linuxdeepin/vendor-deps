@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inject, Input, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, HostBinding, Inject, Input, Optional, Output, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { OwlDateTime } from './date-time.class';
@@ -31,6 +31,8 @@ var OwlDateTimeInlineComponent = (function (_super) {
         _this._disabled = false;
         _this._selectMode = 'single';
         _this._values = [];
+        _this.yearSelected = new EventEmitter();
+        _this.monthSelected = new EventEmitter();
         _this._selecteds = [];
         _this.onModelChange = function () {
         };
@@ -140,7 +142,6 @@ var OwlDateTimeInlineComponent = (function (_super) {
             value = this.getValidDate(value);
             this._value = value;
             this.selected = value;
-            this.container.pickerMoment = value;
         },
         enumerable: true,
         configurable: true
@@ -164,7 +165,6 @@ var OwlDateTimeInlineComponent = (function (_super) {
                 this._values = [];
                 this.selecteds = [];
             }
-            this.container.pickerMoment = this._values[this.container.activeSelectedIndex];
         },
         enumerable: true,
         configurable: true
@@ -191,6 +191,13 @@ var OwlDateTimeInlineComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(OwlDateTimeInlineComponent.prototype, "opened", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(OwlDateTimeInlineComponent.prototype, "pickerMode", {
         get: function () {
             return 'inline';
@@ -213,15 +220,24 @@ var OwlDateTimeInlineComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(OwlDateTimeInlineComponent.prototype, "owlDTInlineClass", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
     OwlDateTimeInlineComponent.prototype.ngOnInit = function () {
         this.container.picker = this;
     };
     OwlDateTimeInlineComponent.prototype.writeValue = function (value) {
         if (this.isInSingleMode) {
             this.value = value;
+            this.container.pickerMoment = value;
         }
         else {
             this.values = value;
+            this.container.pickerMoment = this._values[this.container.activeSelectedIndex];
         }
     };
     OwlDateTimeInlineComponent.prototype.registerOnChange = function (fn) {
@@ -245,6 +261,12 @@ var OwlDateTimeInlineComponent = (function (_super) {
         }
         this.onModelChange(date);
         this.onModelTouched();
+    };
+    OwlDateTimeInlineComponent.prototype.selectYear = function (normalizedYear) {
+        this.yearSelected.emit(normalizedYear);
+    };
+    OwlDateTimeInlineComponent.prototype.selectMonth = function (normalizedMonth) {
+        this.monthSelected.emit(normalizedMonth);
     };
     OwlDateTimeInlineComponent.decorators = [
         { type: Component, args: [{
@@ -274,6 +296,9 @@ var OwlDateTimeInlineComponent = (function (_super) {
         "maxDateTime": [{ type: Input, args: ['max',] },],
         "value": [{ type: Input },],
         "values": [{ type: Input },],
+        "yearSelected": [{ type: Output },],
+        "monthSelected": [{ type: Output },],
+        "owlDTInlineClass": [{ type: HostBinding, args: ['class.owl-dt-inline',] },],
     };
     return OwlDateTimeInlineComponent;
 }(OwlDateTime));

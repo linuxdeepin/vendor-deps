@@ -1,8 +1,6 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import { filter } from 'rxjs/operators/filter';
-import { take } from 'rxjs/operators/take';
+import { Subject, Subscription } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
 var OwlDialogRef = (function () {
     function OwlDialogRef(overlayRef, container, id, location) {
         var _this = this;

@@ -1,4 +1,4 @@
-import { AfterContentInit, EventEmitter, OnInit } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, EventEmitter, OnInit } from '@angular/core';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { CalendarCell, OwlCalendarBodyComponent } from './calendar-body.component';
 import { SelectMode } from './date-time.class';
@@ -6,8 +6,10 @@ import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 export declare const YEARS_PER_ROW = 3;
 export declare const YEAR_ROWS = 7;
 export declare class OwlMultiYearViewComponent<T> implements OnInit, AfterContentInit {
+    private cdRef;
     private pickerIntl;
     private dateTimeAdapter;
+    private _selectMode;
     selectMode: SelectMode;
     private _selected;
     selected: T | null;
@@ -34,16 +36,18 @@ export declare class OwlMultiYearViewComponent<T> implements OnInit, AfterConten
     readonly tableHeader: string;
     readonly prevButtonLabel: string;
     readonly nextButtonLabel: string;
-    readonly selectedChange: EventEmitter<T>;
+    readonly change: EventEmitter<T>;
+    readonly yearSelected: EventEmitter<T>;
     readonly pickerMomentChange: EventEmitter<T>;
     readonly keyboardEnter: EventEmitter<any>;
     calendarBodyElm: OwlCalendarBodyComponent;
     readonly owlDTCalendarView: boolean;
     readonly owlDTCalendarMultiYearView: boolean;
-    constructor(pickerIntl: OwlDateTimeIntl, dateTimeAdapter: DateTimeAdapter<T>);
+    constructor(cdRef: ChangeDetectorRef, pickerIntl: OwlDateTimeIntl, dateTimeAdapter: DateTimeAdapter<T>);
     ngOnInit(): void;
     ngAfterContentInit(): void;
-    yearSelected(year: number): void;
+    selectCalendarCell(cell: CalendarCell): void;
+    private selectYear(year);
     prevYearList(event: any): void;
     nextYearList(event: any): void;
     generateYearList(): void;

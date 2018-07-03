@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, Optional, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostBinding, Input, Optional, Output, ViewChild } from '@angular/core';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { CalendarCell, OwlCalendarBodyComponent } from './calendar-body.component';
 import { DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, PAGE_DOWN, PAGE_UP, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
@@ -6,15 +6,32 @@ import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 export var YEARS_PER_ROW = 3;
 export var YEAR_ROWS = 7;
 var OwlMultiYearViewComponent = (function () {
-    function OwlMultiYearViewComponent(pickerIntl, dateTimeAdapter) {
+    function OwlMultiYearViewComponent(cdRef, pickerIntl, dateTimeAdapter) {
+        this.cdRef = cdRef;
         this.pickerIntl = pickerIntl;
         this.dateTimeAdapter = dateTimeAdapter;
+        this._selectMode = 'single';
         this._selecteds = [];
         this.initiated = false;
-        this.selectedChange = new EventEmitter();
+        this.change = new EventEmitter();
+        this.yearSelected = new EventEmitter();
         this.pickerMomentChange = new EventEmitter();
         this.keyboardEnter = new EventEmitter();
     }
+    Object.defineProperty(OwlMultiYearViewComponent.prototype, "selectMode", {
+        get: function () {
+            return this._selectMode;
+        },
+        set: function (val) {
+            this._selectMode = val;
+            if (this.initiated) {
+                this.setSelectedYears();
+                this.cdRef.markForCheck();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(OwlMultiYearViewComponent.prototype, "selected", {
         get: function () {
             return this._selected;
@@ -191,11 +208,15 @@ var OwlMultiYearViewComponent = (function () {
         this.generateYearList();
         this.initiated = true;
     };
-    OwlMultiYearViewComponent.prototype.yearSelected = function (year) {
+    OwlMultiYearViewComponent.prototype.selectCalendarCell = function (cell) {
+        this.selectYear(cell.value);
+    };
+    OwlMultiYearViewComponent.prototype.selectYear = function (year) {
+        this.yearSelected.emit(this.dateTimeAdapter.createDate(year, 0, 1));
         var firstDateOfMonth = this.dateTimeAdapter.createDate(year, this.dateTimeAdapter.getMonth(this.pickerMoment), 1);
         var daysInMonth = this.dateTimeAdapter.getNumDaysInMonth(firstDateOfMonth);
         var selected = this.dateTimeAdapter.createDate(year, this.dateTimeAdapter.getMonth(this.pickerMoment), Math.min(daysInMonth, this.dateTimeAdapter.getDate(this.pickerMoment)), this.dateTimeAdapter.getHours(this.pickerMoment), this.dateTimeAdapter.getMinutes(this.pickerMoment), this.dateTimeAdapter.getSeconds(this.pickerMoment));
-        this.selectedChange.emit(selected);
+        this.change.emit(selected);
     };
     OwlMultiYearViewComponent.prototype.prevYearList = function (event) {
         this._pickerMoment = this.dateTimeAdapter.addCalendarYears(this.pickerMoment, -1 * YEAR_ROWS * YEARS_PER_ROW);
@@ -267,7 +288,7 @@ var OwlMultiYearViewComponent = (function () {
                 this.pickerMomentChange.emit(moment);
                 break;
             case ENTER:
-                this.yearSelected(this.dateTimeAdapter.getYear(this._pickerMoment));
+                this.selectYear(this.dateTimeAdapter.getYear(this._pickerMoment));
                 this.keyboardEnter.emit();
                 break;
             default:
@@ -279,7 +300,8 @@ var OwlMultiYearViewComponent = (function () {
     OwlMultiYearViewComponent.prototype.createYearCell = function (year) {
         var startDateOfYear = this.dateTimeAdapter.createDate(year, 0, 1);
         var ariaLabel = this.dateTimeAdapter.getYearName(startDateOfYear);
-        return new CalendarCell(year, year.toString(), ariaLabel, this.isYearEnabled(year));
+        var cellClass = 'owl-dt-year-' + year;
+        return new CalendarCell(year, year.toString(), ariaLabel, this.isYearEnabled(year), false, cellClass);
     };
     OwlMultiYearViewComponent.prototype.setSelectedYears = function () {
         var _this = this;
@@ -328,13 +350,14 @@ var OwlMultiYearViewComponent = (function () {
     OwlMultiYearViewComponent.decorators = [
         { type: Component, args: [{
                     selector: 'owl-date-time-multi-year-view',
-                    template: "<button class=\"owl-dt-control-button owl-dt-control-arrow-button\" [disabled]=\"!previousEnabled()\" [attr.aria-label]=\"prevButtonLabel\" type=\"button\" tabindex=\"0\" (click)=\"prevYearList($event)\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Left\"> --> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\" width=\"100%\" height=\"100%\"><path style=\"fill-rule: evenodd; clip-rule: evenodd;\" d=\"M96.633,125.369l95.053-94.533c7.101-7.055,7.101-18.492,0-25.546   c-7.1-7.054-18.613-7.054-25.714,0L58.989,111.689c-3.784,3.759-5.487,8.759-5.238,13.68c-0.249,4.922,1.454,9.921,5.238,13.681   l106.983,106.398c7.101,7.055,18.613,7.055,25.714,0c7.101-7.054,7.101-18.491,0-25.544L96.633,125.369z\"/></svg><!-- </editor-fold> --></span></button><table class=\"owl-dt-calendar-table owl-dt-calendar-multi-year-table\"><thead class=\"owl-dt-calendar-header\"><tr><th colspan=\"3\">{{tableHeader}}</th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [allowDisabledCellSelection]=\"true\" [rows]=\"years\" [numCols]=\"3\" [cellRatio]=\"3 / 7\" [activeCell]=\"activeCell\" [todayValue]=\"todayYear\" [selectedValues]=\"selectedYears\" [selectMode]=\"selectMode\" (keydown)=\"handleCalendarKeydown($event)\" (selectedValueChange)=\"yearSelected($event)\"></tbody></table><button class=\"owl-dt-control-button owl-dt-control-arrow-button\" [disabled]=\"!nextEnabled()\" [attr.aria-label]=\"nextButtonLabel\" type=\"button\" tabindex=\"0\" (click)=\"nextYearList($event)\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Right\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\"><path style=\"fill-rule:evenodd;clip-rule:evenodd;\" d=\"M191.75,111.689L84.766,5.291c-7.1-7.055-18.613-7.055-25.713,0\n                c-7.101,7.054-7.101,18.49,0,25.544l95.053,94.534l-95.053,94.533c-7.101,7.054-7.101,18.491,0,25.545\n                c7.1,7.054,18.613,7.054,25.713,0L191.75,139.05c3.784-3.759,5.487-8.759,5.238-13.681\n                C197.237,120.447,195.534,115.448,191.75,111.689z\"/></svg><!-- </editor-fold> --></span></button>",
+                    template: "<button class=\"owl-dt-control-button owl-dt-control-arrow-button\" [disabled]=\"!previousEnabled()\" [attr.aria-label]=\"prevButtonLabel\" type=\"button\" tabindex=\"0\" (click)=\"prevYearList($event)\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Left\"> --> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\" width=\"100%\" height=\"100%\"><path style=\"fill-rule: evenodd; clip-rule: evenodd;\" d=\"M96.633,125.369l95.053-94.533c7.101-7.055,7.101-18.492,0-25.546   c-7.1-7.054-18.613-7.054-25.714,0L58.989,111.689c-3.784,3.759-5.487,8.759-5.238,13.68c-0.249,4.922,1.454,9.921,5.238,13.681   l106.983,106.398c7.101,7.055,18.613,7.055,25.714,0c7.101-7.054,7.101-18.491,0-25.544L96.633,125.369z\"/></svg><!-- </editor-fold> --></span></button><table class=\"owl-dt-calendar-table owl-dt-calendar-multi-year-table\"><thead class=\"owl-dt-calendar-header\"><tr><th colspan=\"3\">{{tableHeader}}</th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [rows]=\"years\" [numCols]=\"3\" [cellRatio]=\"3 / 7\" [activeCell]=\"activeCell\" [todayValue]=\"todayYear\" [selectedValues]=\"selectedYears\" [selectMode]=\"selectMode\" (keydown)=\"handleCalendarKeydown($event)\" (select)=\"selectCalendarCell($event)\"></tbody></table><button class=\"owl-dt-control-button owl-dt-control-arrow-button\" [disabled]=\"!nextEnabled()\" [attr.aria-label]=\"nextButtonLabel\" type=\"button\" tabindex=\"0\" (click)=\"nextYearList($event)\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Right\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\"><path style=\"fill-rule:evenodd;clip-rule:evenodd;\" d=\"M191.75,111.689L84.766,5.291c-7.1-7.055-18.613-7.055-25.713,0\n                c-7.101,7.054-7.101,18.49,0,25.544l95.053,94.534l-95.053,94.533c-7.101,7.054-7.101,18.491,0,25.545\n                c7.1,7.054,18.613,7.054,25.713,0L191.75,139.05c3.784-3.759,5.487-8.759,5.238-13.681\n                C197.237,120.447,195.534,115.448,191.75,111.689z\"/></svg><!-- </editor-fold> --></span></button>",
                     styles: [""],
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                 },] },
     ];
     OwlMultiYearViewComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef, },
         { type: OwlDateTimeIntl, },
         { type: DateTimeAdapter, decorators: [{ type: Optional },] },
     ]; };
@@ -346,7 +369,8 @@ var OwlMultiYearViewComponent = (function () {
         "dateFilter": [{ type: Input },],
         "minDate": [{ type: Input },],
         "maxDate": [{ type: Input },],
-        "selectedChange": [{ type: Output },],
+        "change": [{ type: Output },],
+        "yearSelected": [{ type: Output },],
         "pickerMomentChange": [{ type: Output },],
         "keyboardEnter": [{ type: Output },],
         "calendarBodyElm": [{ type: ViewChild, args: [OwlCalendarBodyComponent,] },],

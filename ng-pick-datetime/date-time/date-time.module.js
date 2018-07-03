@@ -24,10 +24,15 @@ var OwlDateTimeModule = (function () {
         { type: NgModule, args: [{
                     imports: [CommonModule, OverlayModule, OwlDialogModule, A11yModule],
                     exports: [
+                        OwlCalendarComponent,
+                        OwlTimerComponent,
                         OwlDateTimeTriggerDirective,
                         OwlDateTimeInputDirective,
                         OwlDateTimeComponent,
                         OwlDateTimeInlineComponent,
+                        OwlMultiYearViewComponent,
+                        OwlYearViewComponent,
+                        OwlMonthViewComponent,
                     ],
                     declarations: [
                         OwlDateTimeTriggerDirective,
@@ -53,7 +58,6 @@ var OwlDateTimeModule = (function () {
                     ]
                 },] },
     ];
-    OwlDateTimeModule.ctorParameters = function () { return []; };
     return OwlDateTimeModule;
 }());
 export { OwlDateTimeModule };

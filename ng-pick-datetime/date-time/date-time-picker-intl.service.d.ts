@@ -1,4 +1,6 @@
+import { Subject } from 'rxjs';
 export declare class OwlDateTimeIntl {
+    readonly changes: Subject<void>;
     upSecondLabel: string;
     downSecondLabel: string;
     upMinuteLabel: string;

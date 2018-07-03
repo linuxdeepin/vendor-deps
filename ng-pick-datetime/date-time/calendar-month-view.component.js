@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Ho
 import { CalendarCell, OwlCalendarBodyComponent } from './calendar-body.component';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, PAGE_DOWN, PAGE_UP, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 var DAYS_PER_WEEK = 7;
 var WEEKS_PER_VIEW = 6;
 var OwlMonthViewComponent = (function () {
@@ -11,6 +12,9 @@ var OwlMonthViewComponent = (function () {
         this.cdRef = cdRef;
         this.dateTimeAdapter = dateTimeAdapter;
         this.dateTimeFormats = dateTimeFormats;
+        this.hideOtherMonths = false;
+        this._firstDayOfWeek = 0;
+        this._selectMode = 'single';
         this._selecteds = [];
         this.localeSub = Subscription.EMPTY;
         this.initiated = false;
@@ -19,6 +23,38 @@ var OwlMonthViewComponent = (function () {
         this.userSelection = new EventEmitter();
         this.pickerMomentChange = new EventEmitter();
     }
+    Object.defineProperty(OwlMonthViewComponent.prototype, "firstDayOfWeek", {
+        get: function () {
+            return this._firstDayOfWeek;
+        },
+        set: function (val) {
+            val = coerceNumberProperty(val);
+            if (val >= 0 && val <= 6 && val !== this._firstDayOfWeek) {
+                this._firstDayOfWeek = val;
+                if (this.initiated) {
+                    this.generateWeekDays();
+                    this.generateCalendar();
+                    this.cdRef.markForCheck();
+                }
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OwlMonthViewComponent.prototype, "selectMode", {
+        get: function () {
+            return this._selectMode;
+        },
+        set: function (val) {
+            this._selectMode = val;
+            if (this.initiated) {
+                this.generateCalendar();
+                this.cdRef.markForCheck();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(OwlMonthViewComponent.prototype, "selected", {
         get: function () {
             return this._selected;
@@ -73,6 +109,7 @@ var OwlMonthViewComponent = (function () {
             this._dateFilter = filter;
             if (this.initiated) {
                 this.generateCalendar();
+                this.cdRef.markForCheck();
             }
         },
         enumerable: true,
@@ -87,6 +124,7 @@ var OwlMonthViewComponent = (function () {
             this._minDate = this.getValidDate(value);
             if (this.initiated) {
                 this.generateCalendar();
+                this.cdRef.markForCheck();
             }
         },
         enumerable: true,
@@ -101,6 +139,7 @@ var OwlMonthViewComponent = (function () {
             this._maxDate = this.getValidDate(value);
             if (this.initiated) {
                 this.generateCalendar();
+                this.cdRef.markForCheck();
             }
         },
         enumerable: true,
@@ -167,7 +206,13 @@ var OwlMonthViewComponent = (function () {
     OwlMonthViewComponent.prototype.ngOnDestroy = function () {
         this.localeSub.unsubscribe();
     };
-    OwlMonthViewComponent.prototype.dateSelected = function (date) {
+    OwlMonthViewComponent.prototype.selectCalendarCell = function (cell) {
+        if (!cell.enabled || (this.hideOtherMonths && cell.out)) {
+            return;
+        }
+        this.selectDate(cell.value);
+    };
+    OwlMonthViewComponent.prototype.selectDate = function (date) {
         var daysDiff = date - 1;
         var selected = this.dateTimeAdapter.addCalendarDays(this.firstDateOfMonth, daysDiff);
         if ((this.isInSingleMode && this.selectedDates[0] !== date) ||
@@ -218,7 +263,7 @@ var OwlMonthViewComponent = (function () {
                 break;
             case ENTER:
                 if (!this.dateFilter || this.dateFilter(this.pickerMoment)) {
-                    this.dateSelected(this.dateTimeAdapter.getDate(this.pickerMoment));
+                    this.selectDate(this.dateTimeAdapter.getDate(this.pickerMoment));
                 }
                 break;
             default:
@@ -270,7 +315,8 @@ var OwlMonthViewComponent = (function () {
         var enabled = this.isDateEnabled(date);
         var dayValue = daysDiff + 1;
         var out = dayValue < 1 || dayValue > daysInMonth;
-        return new CalendarCell(dayValue, dateNum.toString(), ariaLabel, enabled, out);
+        var cellClass = 'owl-dt-day-' + this.dateTimeAdapter.getDay(date);
+        return new CalendarCell(dayValue, dateNum.toString(), ariaLabel, enabled, out, cellClass);
     };
     OwlMonthViewComponent.prototype.isDateEnabled = function (date) {
         return !!date &&
@@ -317,7 +363,7 @@ var OwlMonthViewComponent = (function () {
         { type: Component, args: [{
                     selector: 'owl-date-time-month-view',
                     exportAs: 'owlYearView',
-                    template: "<table class=\"owl-dt-calendar-table\"><thead class=\"owl-dt-calendar-header\"><tr class=\"owl-dt-weekdays\"><th *ngFor=\"let weekday of weekdays\" [attr.aria-label]=\"weekday.long\" class=\"owl-dt-weekday\" scope=\"col\"><span>{{weekday.short}}</span></th></tr><tr><th class=\"owl-dt-calendar-table-divider\" aria-hidden=\"true\" colspan=\"7\"></th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [rows]=\"days\" [todayValue]=\"todayDate\" [selectedValues]=\"selectedDates\" [selectMode]=\"selectMode\" [activeCell]=\"activeCell\" (keydown)=\"handleCalendarKeydown($event)\" (selectedValueChange)=\"dateSelected($event)\"></tbody></table>",
+                    template: "<table class=\"owl-dt-calendar-table owl-dt-calendar-month-table\" [class.owl-dt-calendar-only-current-month]=\"hideOtherMonths\"><thead class=\"owl-dt-calendar-header\"><tr class=\"owl-dt-weekdays\"><th *ngFor=\"let weekday of weekdays\" [attr.aria-label]=\"weekday.long\" class=\"owl-dt-weekday\" scope=\"col\"><span>{{weekday.short}}</span></th></tr><tr><th class=\"owl-dt-calendar-table-divider\" aria-hidden=\"true\" colspan=\"7\"></th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [rows]=\"days\" [todayValue]=\"todayDate\" [selectedValues]=\"selectedDates\" [selectMode]=\"selectMode\" [activeCell]=\"activeCell\" (keydown)=\"handleCalendarKeydown($event)\" (select)=\"selectCalendarCell($event)\"></tbody></table>",
                     styles: [""],
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -329,6 +375,7 @@ var OwlMonthViewComponent = (function () {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [OWL_DATE_TIME_FORMATS,] },] },
     ]; };
     OwlMonthViewComponent.propDecorators = {
+        "hideOtherMonths": [{ type: Input },],
         "firstDayOfWeek": [{ type: Input },],
         "selectMode": [{ type: Input },],
         "selected": [{ type: Input },],

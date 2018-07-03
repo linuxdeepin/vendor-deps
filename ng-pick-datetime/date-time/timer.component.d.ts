@@ -1,10 +1,11 @@
-import { ElementRef, EventEmitter, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnInit } from '@angular/core';
 import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 export declare class OwlTimerComponent<T> implements OnInit {
     private ngZone;
     private elmRef;
     private pickerIntl;
+    private cdRef;
     private dateTimeAdapter;
     private _pickerMoment;
     pickerMoment: T;
@@ -32,7 +33,7 @@ export declare class OwlTimerComponent<T> implements OnInit {
     selectedChange: EventEmitter<T>;
     readonly owlDTTimerClass: boolean;
     readonly owlDTTimeTabIndex: number;
-    constructor(ngZone: NgZone, elmRef: ElementRef, pickerIntl: OwlDateTimeIntl, dateTimeAdapter: DateTimeAdapter<T>);
+    constructor(ngZone: NgZone, elmRef: ElementRef, pickerIntl: OwlDateTimeIntl, cdRef: ChangeDetectorRef, dateTimeAdapter: DateTimeAdapter<T>);
     ngOnInit(): void;
     focus(): void;
     setHourValueViaInput(hours: number): void;

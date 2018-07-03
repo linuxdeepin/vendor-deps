@@ -6,26 +6,26 @@ export declare class CalendarCell {
     ariaLabel: string;
     enabled: boolean;
     out: boolean;
-    constructor(value: number, displayValue: string, ariaLabel: string, enabled: boolean, out?: boolean);
+    cellClass: string;
+    constructor(value: number, displayValue: string, ariaLabel: string, enabled: boolean, out?: boolean, cellClass?: string);
 }
 export declare class OwlCalendarBodyComponent implements OnInit {
     private elmRef;
     private ngZone;
     activeCell: number;
-    allowDisabledCellSelection: boolean;
     rows: CalendarCell[][];
     numCols: number;
     cellRatio: number;
     todayValue: number;
     selectedValues: number[];
     selectMode: SelectMode;
-    selectedValueChange: EventEmitter<number>;
+    readonly select: EventEmitter<CalendarCell>;
     readonly owlDTCalendarBodyClass: boolean;
     readonly isInSingleMode: boolean;
     readonly isInRangeMode: boolean;
     constructor(elmRef: ElementRef, ngZone: NgZone);
     ngOnInit(): void;
-    cellClicked(cell: CalendarCell): void;
+    selectCell(cell: CalendarCell): void;
     isActiveCell(rowIndex: number, colIndex: number): boolean;
     isSelected(value: number): boolean;
     isInRange(value: number): boolean;

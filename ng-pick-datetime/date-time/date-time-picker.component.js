@@ -12,17 +12,15 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { DOCUMENT } from '@angular/common';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ESCAPE } from '@angular/cdk/keycodes';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ESCAPE, UP_ARROW } from '@angular/cdk/keycodes';
+import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { OwlDateTimeContainerComponent } from './date-time-picker-container.component';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS } from './adapter/date-time-format.class';
 import { OwlDateTime } from './date-time.class';
 import { OwlDialogService } from '../dialog';
-import { Subscription } from 'rxjs/Subscription';
-import { merge } from 'rxjs/observable/merge';
-import { filter } from 'rxjs/operators/filter';
-import { take } from 'rxjs/operators/take';
+import { merge, Subscription } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
 export var OWL_DTPICKER_SCROLL_STRATEGY = new InjectionToken('owl-dtpicker-scroll-strategy');
 export function OWL_DTPICKER_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay) {
     return function () { return overlay.scrollStrategies.block(); };
@@ -45,14 +43,21 @@ var OwlDateTimeComponent = (function (_super) {
         _this.scrollStrategy = scrollStrategy;
         _this.dateTimeFormats = dateTimeFormats;
         _this.document = document;
+        _this.backdropClass = [];
+        _this.panelClass = [];
         _this._pickerType = 'both';
         _this._pickerMode = 'popup';
-        _this._disabled = false;
+        _this._opened = false;
         _this.afterPickerClosed = new EventEmitter();
         _this.afterPickerOpen = new EventEmitter();
+        _this.yearSelected = new EventEmitter();
+        _this.monthSelected = new EventEmitter();
         _this.confirmSelectedChange = new EventEmitter();
         _this.disabledChange = new EventEmitter();
+        _this.initiated = false;
         _this.dtInputSub = Subscription.EMPTY;
+        _this.hidePickerStreamSub = Subscription.EMPTY;
+        _this.confirmSelectedStreamSub = Subscription.EMPTY;
         _this.focusedElementBeforeOpen = null;
         _this._selecteds = [];
         return _this;
@@ -91,11 +96,8 @@ var OwlDateTimeComponent = (function (_super) {
         set: function (val) {
             if (val !== this._pickerType) {
                 this._pickerType = val;
-                if (this._dtInput.isInSingleMode) {
-                    this._dtInput.value = this._dtInput.value;
-                }
-                else {
-                    this._dtInput.values = this._dtInput.values;
+                if (this._dtInput && this.initiated) {
+                    this._dtInput.formatNativeInputValue();
                 }
             }
         },
@@ -128,6 +130,16 @@ var OwlDateTimeComponent = (function (_super) {
                 this._disabled = value;
                 this.disabledChange.next(value);
             }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OwlDateTimeComponent.prototype, "opened", {
+        get: function () {
+            return this._opened;
+        },
+        set: function (val) {
+            val ? this.open() : this.close();
         },
         enumerable: true,
         configurable: true
@@ -205,8 +217,11 @@ var OwlDateTimeComponent = (function (_super) {
     });
     OwlDateTimeComponent.prototype.ngOnInit = function () {
     };
+    OwlDateTimeComponent.prototype.ngAfterContentInit = function () {
+        this.initiated = true;
+    };
     OwlDateTimeComponent.prototype.ngOnDestroy = function () {
-        this.clean();
+        this.close();
         this.dtInputSub.unsubscribe();
         this.disabledChange.complete();
         if (this.popupRef) {
@@ -230,7 +245,7 @@ var OwlDateTimeComponent = (function (_super) {
     };
     OwlDateTimeComponent.prototype.open = function () {
         var _this = this;
-        if (this.opened || this.disabled) {
+        if (this._opened || this.disabled) {
             return;
         }
         if (!this._dtInput) {
@@ -257,7 +272,8 @@ var OwlDateTimeComponent = (function (_super) {
             .subscribe(function (event) {
             _this.confirmSelect(event);
         });
-        this.opened = true;
+        this._opened = true;
+        this.afterPickerOpen.emit();
     };
     OwlDateTimeComponent.prototype.select = function (date) {
         if (Array.isArray(date)) {
@@ -272,88 +288,15 @@ var OwlDateTimeComponent = (function (_super) {
             this.confirmSelect();
         }
     };
-    OwlDateTimeComponent.prototype.close = function (event) {
-        if (!this.opened) {
-            return;
-        }
-        if (this.dialogRef) {
-            this.dialogRef.close();
-        }
-        if (this.popupRef) {
-            this.pickerContainer.hidePickerViaAnimation();
-        }
+    OwlDateTimeComponent.prototype.selectYear = function (normalizedYear) {
+        this.yearSelected.emit(normalizedYear);
     };
-    OwlDateTimeComponent.prototype.confirmSelect = function (event) {
-        if (this.isInSingleMode) {
-            var selected = this.selected || this.startAt || this.dateTimeAdapter.now();
-            this.confirmSelectedChange.emit(selected);
-        }
-        else if (this.isInRangeMode) {
-            this.confirmSelectedChange.emit(this.selecteds);
-        }
-        this.close(event);
-        return;
+    OwlDateTimeComponent.prototype.selectMonth = function (normalizedMonth) {
+        this.monthSelected.emit(normalizedMonth);
     };
-    OwlDateTimeComponent.prototype.openAsDialog = function () {
+    OwlDateTimeComponent.prototype.close = function () {
         var _this = this;
-        this.dialogRef = this.dialogService.open(OwlDateTimeContainerComponent, {
-            autoFocus: false,
-            paneClass: 'owl-dt-dialog',
-            viewContainerRef: this.viewContainerRef,
-        });
-        this.pickerContainer = this.dialogRef.componentInstance;
-        this.dialogRef.afterOpen().subscribe(function () { return _this.afterPickerOpen.emit(null); });
-        this.dialogRef.afterClosed().subscribe(function () { return _this.clean(); });
-    };
-    OwlDateTimeComponent.prototype.openAsPopup = function () {
-        var _this = this;
-        if (!this.pickerContainerPortal) {
-            this.pickerContainerPortal = new ComponentPortal(OwlDateTimeContainerComponent, this.viewContainerRef);
-        }
-        if (!this.popupRef) {
-            this.createPopup();
-        }
-        if (!this.popupRef.hasAttached()) {
-            var componentRef = this.popupRef.attach(this.pickerContainerPortal);
-            this.pickerContainer = componentRef.instance;
-            this.pickerContainer.showPickerViaAnimation();
-            this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(function () {
-                _this.popupRef.updatePosition();
-            });
-        }
-        merge(this.popupRef.backdropClick(), this.popupRef.detachments(), this.popupRef.keydownEvents().pipe(filter(function (event) { return event.keyCode === ESCAPE; }))).subscribe(function () { return _this.close(); });
-        this.pickerContainer.animationStateChanged.subscribe(function (event) {
-            if (event.phaseName === 'done' && event.toState === 'visible') {
-                _this.afterPickerOpen.emit(null);
-            }
-            if (event.phaseName === 'done' && event.toState === 'hidden') {
-                _this.clean();
-            }
-        });
-    };
-    OwlDateTimeComponent.prototype.createPopup = function () {
-        var overlayConfig = new OverlayConfig({
-            positionStrategy: this.createPopupPositionStrategy(),
-            hasBackdrop: true,
-            backdropClass: 'cdk-overlay-transparent-backdrop',
-            scrollStrategy: this.scrollStrategy(),
-            panelClass: 'owl-dt-popup',
-        });
-        this.popupRef = this.overlay.create(overlayConfig);
-    };
-    OwlDateTimeComponent.prototype.createPopupPositionStrategy = function () {
-        var fallbackOffset = 0;
-        return this.overlay.position()
-            .connectedTo(this._dtInput.elementRef, { originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' })
-            .withFallbackPosition({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }, undefined, fallbackOffset)
-            .withFallbackPosition({ originX: 'end', originY: 'bottom' }, { overlayX: 'end', overlayY: 'top' })
-            .withFallbackPosition({ originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' }, undefined, fallbackOffset)
-            .withFallbackPosition({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }, undefined, 181)
-            .withFallbackPosition({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }, undefined, 362);
-    };
-    OwlDateTimeComponent.prototype.clean = function () {
-        var _this = this;
-        if (!this.opened) {
+        if (!this._opened) {
             return;
         }
         if (this.popupRef && this.popupRef.hasAttached()) {
@@ -375,8 +318,8 @@ var OwlDateTimeComponent = (function (_super) {
             this.dialogRef = null;
         }
         var completeClose = function () {
-            if (_this.opened) {
-                _this.opened = false;
+            if (_this._opened) {
+                _this._opened = false;
                 _this.afterPickerClosed.emit(null);
                 _this.focusedElementBeforeOpen = null;
             }
@@ -389,6 +332,73 @@ var OwlDateTimeComponent = (function (_super) {
         else {
             completeClose();
         }
+    };
+    OwlDateTimeComponent.prototype.confirmSelect = function (event) {
+        if (this.isInSingleMode) {
+            var selected = this.selected || this.startAt || this.dateTimeAdapter.now();
+            this.confirmSelectedChange.emit(selected);
+        }
+        else if (this.isInRangeMode) {
+            this.confirmSelectedChange.emit(this.selecteds);
+        }
+        this.close();
+        return;
+    };
+    OwlDateTimeComponent.prototype.openAsDialog = function () {
+        var _this = this;
+        this.dialogRef = this.dialogService.open(OwlDateTimeContainerComponent, {
+            autoFocus: false,
+            backdropClass: ['cdk-overlay-dark-backdrop'].concat(coerceArray(this.backdropClass)),
+            paneClass: ['owl-dt-dialog'].concat(coerceArray(this.panelClass)),
+            viewContainerRef: this.viewContainerRef,
+        });
+        this.pickerContainer = this.dialogRef.componentInstance;
+        this.dialogRef.afterClosed().subscribe(function () { return _this.close(); });
+    };
+    OwlDateTimeComponent.prototype.openAsPopup = function () {
+        var _this = this;
+        if (!this.pickerContainerPortal) {
+            this.pickerContainerPortal = new ComponentPortal(OwlDateTimeContainerComponent, this.viewContainerRef);
+        }
+        if (!this.popupRef) {
+            this.createPopup();
+        }
+        if (!this.popupRef.hasAttached()) {
+            var componentRef = this.popupRef.attach(this.pickerContainerPortal);
+            this.pickerContainer = componentRef.instance;
+            this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(function () {
+                _this.popupRef.updatePosition();
+            });
+        }
+    };
+    OwlDateTimeComponent.prototype.createPopup = function () {
+        var _this = this;
+        var overlayConfig = new OverlayConfig({
+            positionStrategy: this.createPopupPositionStrategy(),
+            hasBackdrop: true,
+            backdropClass: ['cdk-overlay-transparent-backdrop'].concat(coerceArray(this.backdropClass)),
+            scrollStrategy: this.scrollStrategy(),
+            panelClass: ['owl-dt-popup'].concat(coerceArray(this.panelClass)),
+        });
+        this.popupRef = this.overlay.create(overlayConfig);
+        merge(this.popupRef.backdropClick(), this.popupRef.detachments(), this.popupRef.keydownEvents().pipe(filter(function (event) {
+            return event.keyCode === ESCAPE ||
+                (_this._dtInput && event.altKey && event.keyCode === UP_ARROW);
+        }))).subscribe(function () { return _this.close(); });
+    };
+    OwlDateTimeComponent.prototype.createPopupPositionStrategy = function () {
+        return this.overlay.position()
+            .flexibleConnectedTo(this._dtInput.elementRef)
+            .withTransformOriginOn('.owl-dt-container')
+            .withFlexibleDimensions(false)
+            .withPush(false)
+            .withPositions([
+            { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+            { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
+            { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
+            { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
+            { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'center' },
+        ]);
     };
     OwlDateTimeComponent.decorators = [
         { type: Component, args: [{
@@ -412,12 +422,17 @@ var OwlDateTimeComponent = (function (_super) {
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] },] },
     ]; };
     OwlDateTimeComponent.propDecorators = {
+        "backdropClass": [{ type: Input },],
+        "panelClass": [{ type: Input },],
         "startAt": [{ type: Input },],
         "pickerType": [{ type: Input },],
         "pickerMode": [{ type: Input },],
         "disabled": [{ type: Input },],
+        "opened": [{ type: Input },],
         "afterPickerClosed": [{ type: Output },],
         "afterPickerOpen": [{ type: Output },],
+        "yearSelected": [{ type: Output },],
+        "monthSelected": [{ type: Output },],
     };
     return OwlDateTimeComponent;
 }(OwlDateTime));

@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, Directive, HostBinding, HostListener, Input } from '@angular/core';
 import { OwlDateTimeComponent } from './date-time-picker.component';
-import { Subscription } from 'rxjs/Subscription';
-import { merge } from 'rxjs/observable/merge';
-import { of as observableOf } from 'rxjs/observable/of';
+import { merge, of as observableOf, Subscription } from 'rxjs';
 var OwlDateTimeTriggerDirective = (function () {
     function OwlDateTimeTriggerDirective(changeDetector) {
         this.changeDetector = changeDetector;

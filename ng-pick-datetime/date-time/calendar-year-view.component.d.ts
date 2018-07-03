@@ -7,6 +7,7 @@ export declare class OwlYearViewComponent<T> implements OnInit, AfterContentInit
     private cdRef;
     private dateTimeAdapter;
     private dateTimeFormats;
+    private _selectMode;
     selectMode: SelectMode;
     private _selected;
     selected: T | null;
@@ -20,7 +21,7 @@ export declare class OwlYearViewComponent<T> implements OnInit, AfterContentInit
     minDate: T | null;
     private _maxDate;
     maxDate: T | null;
-    private monthNames;
+    private readonly monthNames;
     private _months;
     readonly months: CalendarCell[][];
     readonly activeCell: number;
@@ -30,7 +31,8 @@ export declare class OwlYearViewComponent<T> implements OnInit, AfterContentInit
     private initiated;
     todayMonth: number | null;
     selectedMonths: number[];
-    readonly selectedChange: EventEmitter<T>;
+    readonly change: EventEmitter<T>;
+    readonly monthSelected: EventEmitter<T>;
     readonly pickerMomentChange: EventEmitter<T>;
     readonly keyboardEnter: EventEmitter<any>;
     calendarBodyElm: OwlCalendarBodyComponent;
@@ -39,7 +41,8 @@ export declare class OwlYearViewComponent<T> implements OnInit, AfterContentInit
     ngOnInit(): void;
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
-    monthSelected(month: number): void;
+    selectCalendarCell(cell: CalendarCell): void;
+    private selectMonth(month);
     handleCalendarKeydown(event: KeyboardEvent): void;
     private generateMonthList();
     private createMonthCell(month);

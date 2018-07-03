@@ -7,7 +7,10 @@ export declare class OwlMonthViewComponent<T> implements OnInit, AfterContentIni
     private cdRef;
     private dateTimeAdapter;
     private dateTimeFormats;
+    hideOtherMonths: boolean;
+    private _firstDayOfWeek;
     firstDayOfWeek: number;
+    private _selectMode;
     selectMode: SelectMode;
     private _selected;
     selected: T | null;
@@ -47,7 +50,8 @@ export declare class OwlMonthViewComponent<T> implements OnInit, AfterContentIni
     ngOnInit(): void;
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
-    dateSelected(date: number): void;
+    selectCalendarCell(cell: CalendarCell): void;
+    private selectDate(date);
     handleCalendarKeydown(event: KeyboardEvent): void;
     private generateWeekDays();
     private generateCalendar();

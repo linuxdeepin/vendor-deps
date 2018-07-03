@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { OverlayRef } from '@angular/cdk/overlay';
 import { OwlDialogContainerComponent } from './dialog-container.component';
 import { DialogPosition } from './dialog-config.class';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 export declare class OwlDialogRef<T> {
     private overlayRef;
     private container;

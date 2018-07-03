@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ComponentRef, EmbeddedViewRef, EventEmitter, OnInit, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, ComponentRef, ElementRef, EmbeddedViewRef, EventEmitter, OnInit } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 import { FocusTrapFactory } from '@angular/cdk/a11y';
 import { BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';

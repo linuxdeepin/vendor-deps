@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { InjectionToken, LOCALE_ID } from '@angular/core';
 export var OWL_DATE_TIME_LOCALE = new InjectionToken('OWL_DATE_TIME_LOCALE');
 export var OWL_DATE_TIME_LOCALE_PROVIDER = { provide: OWL_DATE_TIME_LOCALE, useExisting: LOCALE_ID };

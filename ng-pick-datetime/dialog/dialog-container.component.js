@@ -8,8 +8,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { ChangeDetectorRef, Component, EventEmitter, Optional, ViewChild, Inject, ElementRef, HostBinding, HostListener } from '@angular/core';
-import { animate, style, transition, trigger, keyframes, animateChild } from '@angular/animations';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Optional, ViewChild } from '@angular/core';
+import { animate, animateChild, keyframes, style, transition, trigger } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { FocusTrapFactory } from '@angular/cdk/a11y';
 import { BasePortalOutlet, CdkPortalOutlet } from '@angular/cdk/portal';

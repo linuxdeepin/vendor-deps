@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Ho
 import { CalendarCell, OwlCalendarBodyComponent } from './calendar-body.component';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DOWN_ARROW, END, ENTER, HOME, LEFT_ARROW, PAGE_DOWN, PAGE_UP, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 var MONTHS_PER_YEAR = 12;
 var MONTHS_PER_ROW = 3;
@@ -11,15 +11,31 @@ var OwlYearViewComponent = (function () {
         this.cdRef = cdRef;
         this.dateTimeAdapter = dateTimeAdapter;
         this.dateTimeFormats = dateTimeFormats;
+        this._selectMode = 'single';
         this._selecteds = [];
         this.localeSub = Subscription.EMPTY;
         this.initiated = false;
         this.selectedMonths = [];
-        this.selectedChange = new EventEmitter();
+        this.change = new EventEmitter();
+        this.monthSelected = new EventEmitter();
         this.pickerMomentChange = new EventEmitter();
         this.keyboardEnter = new EventEmitter();
         this.monthNames = this.dateTimeAdapter.getMonthNames('short');
     }
+    Object.defineProperty(OwlYearViewComponent.prototype, "selectMode", {
+        get: function () {
+            return this._selectMode;
+        },
+        set: function (val) {
+            this._selectMode = val;
+            if (this.initiated) {
+                this.generateMonthList();
+                this.cdRef.markForCheck();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(OwlYearViewComponent.prototype, "selected", {
         get: function () {
             return this._selected;
@@ -155,11 +171,15 @@ var OwlYearViewComponent = (function () {
     OwlYearViewComponent.prototype.ngOnDestroy = function () {
         this.localeSub.unsubscribe();
     };
-    OwlYearViewComponent.prototype.monthSelected = function (month) {
+    OwlYearViewComponent.prototype.selectCalendarCell = function (cell) {
+        this.selectMonth(cell.value);
+    };
+    OwlYearViewComponent.prototype.selectMonth = function (month) {
         var firstDateOfMonth = this.dateTimeAdapter.createDate(this.dateTimeAdapter.getYear(this.pickerMoment), month, 1);
+        this.monthSelected.emit(firstDateOfMonth);
         var daysInMonth = this.dateTimeAdapter.getNumDaysInMonth(firstDateOfMonth);
-        var selected = this.dateTimeAdapter.createDate(this.dateTimeAdapter.getYear(this.pickerMoment), month, Math.min(daysInMonth, this.dateTimeAdapter.getDate(this.pickerMoment)), this.dateTimeAdapter.getHours(this.pickerMoment), this.dateTimeAdapter.getMinutes(this.pickerMoment), this.dateTimeAdapter.getSeconds(this.pickerMoment));
-        this.selectedChange.emit(selected);
+        var result = this.dateTimeAdapter.createDate(this.dateTimeAdapter.getYear(this.pickerMoment), month, Math.min(daysInMonth, this.dateTimeAdapter.getDate(this.pickerMoment)), this.dateTimeAdapter.getHours(this.pickerMoment), this.dateTimeAdapter.getMinutes(this.pickerMoment), this.dateTimeAdapter.getSeconds(this.pickerMoment));
+        this.change.emit(result);
     };
     OwlYearViewComponent.prototype.handleCalendarKeydown = function (event) {
         var moment;
@@ -197,7 +217,7 @@ var OwlYearViewComponent = (function () {
                 this.pickerMomentChange.emit(moment);
                 break;
             case ENTER:
-                this.monthSelected(this.dateTimeAdapter.getMonth(this.pickerMoment));
+                this.selectMonth(this.dateTimeAdapter.getMonth(this.pickerMoment));
                 this.keyboardEnter.emit();
                 break;
             default:
@@ -227,7 +247,8 @@ var OwlYearViewComponent = (function () {
     OwlYearViewComponent.prototype.createMonthCell = function (month) {
         var startDateOfMonth = this.dateTimeAdapter.createDate(this.dateTimeAdapter.getYear(this.pickerMoment), month, 1);
         var ariaLabel = this.dateTimeAdapter.format(startDateOfMonth, this.dateTimeFormats.monthYearA11yLabel);
-        return new CalendarCell(month, this.monthNames[month], ariaLabel, this.isMonthEnabled(month));
+        var cellClass = 'owl-dt-month-' + month;
+        return new CalendarCell(month, this.monthNames[month], ariaLabel, this.isMonthEnabled(month), false, cellClass);
     };
     OwlYearViewComponent.prototype.isMonthEnabled = function (month) {
         var firstDateOfMonth = this.dateTimeAdapter.createDate(this.dateTimeAdapter.getYear(this.pickerMoment), month, 1);
@@ -282,7 +303,7 @@ var OwlYearViewComponent = (function () {
         { type: Component, args: [{
                     selector: 'owl-date-time-year-view',
                     exportAs: 'owlMonthView',
-                    template: "<table class=\"owl-dt-calendar-table\"><thead class=\"owl-dt-calendar-header\"><tr><th class=\"owl-dt-calendar-table-divider\" aria-hidden=\"true\" colspan=\"3\"></th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [allowDisabledCellSelection]=\"true\" [rows]=\"months\" [numCols]=\"3\" [cellRatio]=\"3 / 7\" [activeCell]=\"activeCell\" [todayValue]=\"todayMonth\" [selectedValues]=\"selectedMonths\" [selectMode]=\"selectMode\" (keydown)=\"handleCalendarKeydown($event)\" (selectedValueChange)=\"monthSelected($event)\"></tbody></table>",
+                    template: "<table class=\"owl-dt-calendar-table owl-dt-calendar-year-table\"><thead class=\"owl-dt-calendar-header\"><tr><th class=\"owl-dt-calendar-table-divider\" aria-hidden=\"true\" colspan=\"3\"></th></tr></thead><tbody owl-date-time-calendar-body role=\"grid\" [rows]=\"months\" [numCols]=\"3\" [cellRatio]=\"3 / 7\" [activeCell]=\"activeCell\" [todayValue]=\"todayMonth\" [selectedValues]=\"selectedMonths\" [selectMode]=\"selectMode\" (keydown)=\"handleCalendarKeydown($event)\" (select)=\"selectCalendarCell($event)\"></tbody></table>",
                     styles: [""],
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -301,7 +322,8 @@ var OwlYearViewComponent = (function () {
         "dateFilter": [{ type: Input },],
         "minDate": [{ type: Input },],
         "maxDate": [{ type: Input },],
-        "selectedChange": [{ type: Output },],
+        "change": [{ type: Output },],
+        "monthSelected": [{ type: Output },],
         "pickerMomentChange": [{ type: Output },],
         "keyboardEnter": [{ type: Output },],
         "calendarBodyElm": [{ type: ViewChild, args: [OwlCalendarBodyComponent,] },],

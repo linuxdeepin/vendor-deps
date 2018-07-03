@@ -24,7 +24,6 @@ var OwlDialogModule = (function () {
                     ]
                 },] },
     ];
-    OwlDialogModule.ctorParameters = function () { return []; };
     return OwlDialogModule;
 }());
 export { OwlDialogModule };

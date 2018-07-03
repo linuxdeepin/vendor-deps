@@ -15,6 +15,7 @@ var OwlDateTime = (function () {
         this._stepMinute = 1;
         this._stepSecond = 1;
         this._firstDayOfWeek = 0;
+        this._hideOtherMonths = false;
         this.dateTimeChecker = function (dateTime) {
             return !!dateTime &&
                 (!_this.dateTimeFilter || _this.dateTimeFilter(dateTime)) &&
@@ -99,6 +100,16 @@ var OwlDateTime = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(OwlDateTime.prototype, "hideOtherMonths", {
+        get: function () {
+            return this._hideOtherMonths;
+        },
+        set: function (val) {
+            this._hideOtherMonths = coerceBooleanProperty(val);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(OwlDateTime.prototype, "id", {
         get: function () {
             return this._id;
@@ -137,6 +148,7 @@ var OwlDateTime = (function () {
         "stepMinute": [{ type: Input },],
         "stepSecond": [{ type: Input },],
         "firstDayOfWeek": [{ type: Input },],
+        "hideOtherMonths": [{ type: Input },],
     };
     return OwlDateTime;
 }());

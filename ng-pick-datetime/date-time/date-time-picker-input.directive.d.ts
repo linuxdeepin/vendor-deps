@@ -69,10 +69,12 @@ export declare class OwlDateTimeInputDirective<T> implements OnInit, AfterConten
     handleBlurOnHost(event: Event): void;
     handleInputOnHost(event: any): void;
     handleChangeOnHost(event: any): void;
+    formatNativeInputValue(): void;
     private registerDateTimePicker(picker);
     private getValidDate(obj);
     private convertTimeStringToDateTimeString(timeString, dateTime);
     private changeInputInSingleMode(inputValue);
     private changeInputInRangeFromToMode(inputValue);
     private changeInputInRangeMode(inputValue);
+    private isSameValue(first, second);
 }

@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, Input, NgZone, Optional, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, NgZone, Optional, Output } from '@angular/core';
 import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { take } from 'rxjs/operators';
 var OwlTimerComponent = (function () {
-    function OwlTimerComponent(ngZone, elmRef, pickerIntl, dateTimeAdapter) {
+    function OwlTimerComponent(ngZone, elmRef, pickerIntl, cdRef, dateTimeAdapter) {
         this.ngZone = ngZone;
         this.elmRef = elmRef;
         this.pickerIntl = pickerIntl;
+        this.cdRef = cdRef;
         this.dateTimeAdapter = dateTimeAdapter;
         this.isPM = false;
         this.stepHour = 1;
@@ -180,14 +181,17 @@ var OwlTimerComponent = (function () {
     OwlTimerComponent.prototype.setHourValue = function (hours) {
         var m = this.dateTimeAdapter.setHours(this.pickerMoment, hours);
         this.selectedChange.emit(m);
+        this.cdRef.markForCheck();
     };
     OwlTimerComponent.prototype.setMinuteValue = function (minutes) {
         var m = this.dateTimeAdapter.setMinutes(this.pickerMoment, minutes);
         this.selectedChange.emit(m);
+        this.cdRef.markForCheck();
     };
     OwlTimerComponent.prototype.setSecondValue = function (seconds) {
         var m = this.dateTimeAdapter.setSeconds(this.pickerMoment, seconds);
         this.selectedChange.emit(m);
+        this.cdRef.markForCheck();
     };
     OwlTimerComponent.prototype.setMeridiem = function (event) {
         this.isPM = !this.isPM;
@@ -201,6 +205,7 @@ var OwlTimerComponent = (function () {
         if (hours >= 0 && hours <= 23) {
             this.setHourValue(hours);
         }
+        this.cdRef.markForCheck();
         event.preventDefault();
     };
     OwlTimerComponent.prototype.upHourEnabled = function () {
@@ -223,19 +228,16 @@ var OwlTimerComponent = (function () {
     };
     OwlTimerComponent.prototype.compareHours = function (amount, comparedDate) {
         var hours = this.dateTimeAdapter.getHours(this.pickerMoment) + amount;
-        hours = Math.max(0, Math.min(hours, 23));
         var result = this.dateTimeAdapter.setHours(this.pickerMoment, hours);
         return this.dateTimeAdapter.compare(result, comparedDate);
     };
     OwlTimerComponent.prototype.compareMinutes = function (amount, comparedDate) {
         var minutes = this.dateTimeAdapter.getMinutes(this.pickerMoment) + amount;
-        minutes = Math.max(0, Math.min(minutes, 59));
         var result = this.dateTimeAdapter.setMinutes(this.pickerMoment, minutes);
         return this.dateTimeAdapter.compare(result, comparedDate);
     };
     OwlTimerComponent.prototype.compareSeconds = function (amount, comparedDate) {
         var seconds = this.dateTimeAdapter.getSeconds(this.pickerMoment) + amount;
-        seconds = Math.max(0, Math.min(seconds, 59));
         var result = this.dateTimeAdapter.setSeconds(this.pickerMoment, seconds);
         return this.dateTimeAdapter.compare(result, comparedDate);
     };
@@ -256,6 +258,7 @@ var OwlTimerComponent = (function () {
         { type: NgZone, },
         { type: ElementRef, },
         { type: OwlDateTimeIntl, },
+        { type: ChangeDetectorRef, },
         { type: DateTimeAdapter, decorators: [{ type: Optional },] },
     ]; };
     OwlTimerComponent.propDecorators = {

@@ -2,8 +2,7 @@ import { InjectionToken, Injector, TemplateRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { OwlDialogConfig } from './dialog-config.class';
 import { OwlDialogRef } from './dialog-ref.class';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject } from 'rxjs';
 import { Overlay, OverlayContainer, ScrollStrategy } from '@angular/cdk/overlay';
 import { ComponentType } from '@angular/cdk/portal';
 export declare const OWL_DIALOG_DATA: InjectionToken<any>;
@@ -11,8 +10,8 @@ export declare const OWL_DIALOG_SCROLL_STRATEGY: InjectionToken<() => ScrollStra
 export declare function OWL_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay: Overlay): () => ScrollStrategy;
 export declare const OWL_DIALOG_SCROLL_STRATEGY_PROVIDER: {
     provide: InjectionToken<() => ScrollStrategy>;
-    deps: typeof Overlay[];
-    useFactory: (overlay: Overlay) => () => ScrollStrategy;
+    deps: (typeof Overlay)[];
+    useFactory: typeof OWL_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY;
 };
 export declare const OWL_DIALOG_DEFAULT_OPTIONS: InjectionToken<OwlDialogConfig>;
 export declare class OwlDialogService {

@@ -14,7 +14,6 @@ var NativeDateTimeModule = (function () {
                     ],
                 },] },
     ];
-    NativeDateTimeModule.ctorParameters = function () { return []; };
     return NativeDateTimeModule;
 }());
 export { NativeDateTimeModule };
@@ -28,7 +27,6 @@ var OwlNativeDateTimeModule = (function () {
                     providers: [{ provide: OWL_DATE_TIME_FORMATS, useValue: ɵ0 }],
                 },] },
     ];
-    OwlNativeDateTimeModule.ctorParameters = function () { return []; };
     return OwlNativeDateTimeModule;
 }());
 export { OwlNativeDateTimeModule };

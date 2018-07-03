@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OwlDateTimeFormats } from './adapter/date-time-format.class';
 export declare type PickerType = 'both' | 'calendar' | 'timer';
@@ -19,6 +20,8 @@ export declare abstract class OwlDateTime<T> {
     stepSecond: number;
     private _firstDayOfWeek;
     firstDayOfWeek: number;
+    private _hideOtherMonths;
+    hideOtherMonths: boolean;
     private _id;
     readonly id: string;
     readonly abstract selected: T | null;
@@ -28,11 +31,16 @@ export declare abstract class OwlDateTime<T> {
     readonly abstract minDateTime: T | null;
     readonly abstract selectMode: SelectMode;
     readonly abstract startAt: T | null;
+    readonly abstract opened: boolean;
     readonly abstract pickerMode: PickerMode;
     readonly abstract pickerType: PickerType;
     readonly abstract isInSingleMode: boolean;
     readonly abstract isInRangeMode: boolean;
     abstract select(date: T | T[]): void;
+    abstract yearSelected: EventEmitter<T>;
+    abstract monthSelected: EventEmitter<T>;
+    abstract selectYear(normalizedYear: T): void;
+    abstract selectMonth(normalizedMonth: T): void;
     readonly formatString: string;
     dateTimeChecker: (dateTime: T) => boolean;
     readonly disabled: boolean;

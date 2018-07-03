@@ -19,7 +19,6 @@ var NumberFixedLenPipe = (function () {
                     name: 'numberFixedLen'
                 },] },
     ];
-    NumberFixedLenPipe.ctorParameters = function () { return []; };
     return NumberFixedLenPipe;
 }());
 export { NumberFixedLenPipe };

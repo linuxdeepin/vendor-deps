@@ -15,9 +15,9 @@ export declare class OwlDialogConfig {
     disableClose?: boolean;
     id?: string;
     role?: 'dialog' | 'alertdialog';
-    paneClass?: string;
+    paneClass?: string | string[];
     event?: MouseEvent;
-    backdropClass?: string;
+    backdropClass?: string | string[];
     closeOnNavigation?: boolean;
     width?: string;
     height?: string;

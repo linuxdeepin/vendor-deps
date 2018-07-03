@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { OwlDateTime, PickerMode, PickerType, SelectMode } from './date-time.class';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
@@ -28,13 +28,17 @@ export declare class OwlDateTimeInlineComponent<T> extends OwlDateTime<T> implem
     value: T | null;
     private _values;
     values: T[];
+    yearSelected: EventEmitter<T>;
+    monthSelected: EventEmitter<T>;
     private _selected;
     selected: T | null;
     private _selecteds;
     selecteds: T[];
+    readonly opened: boolean;
     readonly pickerMode: PickerMode;
     readonly isInSingleMode: boolean;
     readonly isInRangeMode: boolean;
+    readonly owlDTInlineClass: boolean;
     private onModelChange;
     private onModelTouched;
     constructor(changeDetector: ChangeDetectorRef, dateTimeAdapter: DateTimeAdapter<T>, dateTimeFormats: OwlDateTimeFormats);
@@ -44,4 +48,6 @@ export declare class OwlDateTimeInlineComponent<T> extends OwlDateTime<T> implem
     registerOnTouched(fn: any): void;
     setDisabledState(isDisabled: boolean): void;
     select(date: T[] | T): void;
+    selectYear(normalizedYear: T): void;
+    selectMonth(normalizedMonth: T): void;
 }

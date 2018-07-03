@@ -1,11 +1,10 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
-import { AnimationEvent } from '@angular/animations';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { OwlCalendarComponent } from './calendar.component';
 import { OwlTimerComponent } from './timer.component';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OwlDateTime, PickerType } from './date-time.class';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 export declare class OwlDateTimeContainerComponent<T> implements OnInit, AfterContentInit, AfterViewInit {
     private cdRef;
     private elmRef;
@@ -13,11 +12,8 @@ export declare class OwlDateTimeContainerComponent<T> implements OnInit, AfterCo
     private dateTimeAdapter;
     calendar: OwlCalendarComponent<T>;
     timer: OwlTimerComponent<T>;
-    animationStateChanged: EventEmitter<AnimationEvent>;
     picker: OwlDateTime<T>;
     activeSelectedIndex: number;
-    private isAnimating;
-    private _containerState;
     private hidePicker$;
     readonly hidePickerStream: Observable<any>;
     private confirmSelected$;
@@ -44,15 +40,13 @@ export declare class OwlDateTimeContainerComponent<T> implements OnInit, AfterCo
     ngOnInit(): void;
     ngAfterContentInit(): void;
     ngAfterViewInit(): void;
-    showPickerViaAnimation(): void;
-    hidePickerViaAnimation(): void;
     dateSelected(date: T): void;
     timeSelected(time: T): void;
-    onAnimationStart(event: AnimationEvent): void;
-    onAnimationDone(event: AnimationEvent): void;
     onCancelClicked(event: any): void;
     onSetClicked(event: any): void;
-    toggleRangeActiveIndex(): void;
+    handleClickOnInfoGroup(event: any, index: number): void;
+    handleKeydownOnInfoGroup(event: any, next: any, index: number): void;
+    private setActiveSelectedIndex(index);
     private initPicker();
     private dateSelectedInSingleMode(date);
     private dateSelectedInRangeMode(date);

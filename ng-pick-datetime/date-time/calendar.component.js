@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, Inject, Input, NgZone, Optional, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Inject, Input, NgZone, Optional, Output } from '@angular/core';
 import { OwlDateTimeIntl } from './date-time-picker-intl.service';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS } from './adapter/date-time-format.class';
 import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 var OwlCalendarComponent = (function () {
-    function OwlCalendarComponent(elmRef, pickerIntl, ngZone, dateTimeAdapter, dateTimeFormats) {
+    function OwlCalendarComponent(elmRef, pickerIntl, ngZone, cdRef, dateTimeAdapter, dateTimeFormats) {
         var _this = this;
         this.elmRef = elmRef;
         this.pickerIntl = pickerIntl;
         this.ngZone = ngZone;
+        this.cdRef = cdRef;
         this.dateTimeAdapter = dateTimeAdapter;
         this.dateTimeFormats = dateTimeFormats;
         this.firstDayOfWeek = 0;
@@ -17,12 +19,19 @@ var OwlCalendarComponent = (function () {
         this.pickerMomentChange = new EventEmitter();
         this.selectedChange = new EventEmitter();
         this.userSelection = new EventEmitter();
+        this.yearSelected = new EventEmitter();
+        this.monthSelected = new EventEmitter();
         this.dateFilterForViews = function (date) {
             return !!date &&
                 (!_this.dateFilter || _this.dateFilter(date)) &&
                 (!_this.minDate || _this.dateTimeAdapter.compare(date, _this.minDate) >= 0) &&
                 (!_this.maxDate || _this.dateTimeAdapter.compare(date, _this.maxDate) <= 0);
         };
+        this.intlChangesSub = Subscription.EMPTY;
+        this.moveFocusOnNextTick = false;
+        this.intlChangesSub = this.pickerIntl.changes.subscribe(function () {
+            _this.cdRef.markForCheck();
+        });
     }
     Object.defineProperty(OwlCalendarComponent.prototype, "minDate", {
         get: function () {
@@ -136,6 +145,10 @@ var OwlCalendarComponent = (function () {
         get: function () {
             return this._currentView;
         },
+        set: function (view) {
+            this._currentView = view;
+            this.moveFocusOnNextTick = true;
+        },
         enumerable: true,
         configurable: true
     });
@@ -180,8 +193,17 @@ var OwlCalendarComponent = (function () {
     OwlCalendarComponent.prototype.ngAfterContentInit = function () {
         this._currentView = this.startView;
     };
+    OwlCalendarComponent.prototype.ngAfterViewChecked = function () {
+        if (this.moveFocusOnNextTick) {
+            this.moveFocusOnNextTick = false;
+            this.focusActiveCell();
+        }
+    };
+    OwlCalendarComponent.prototype.ngOnDestroy = function () {
+        this.intlChangesSub.unsubscribe();
+    };
     OwlCalendarComponent.prototype.toggleViews = function () {
-        this._currentView = this._currentView == 'month' ? 'multi-years' : 'month';
+        this.currentView = this._currentView == 'month' ? 'multi-years' : 'month';
     };
     OwlCalendarComponent.prototype.previousClicked = function () {
         this.pickerMoment = this.isMonthView ?
@@ -206,7 +228,7 @@ var OwlCalendarComponent = (function () {
     };
     OwlCalendarComponent.prototype.goToDateInView = function (date, view) {
         this.handlePickerMomentChange(date);
-        this._currentView = view;
+        this.currentView = view;
         return;
     };
     OwlCalendarComponent.prototype.handlePickerMomentChange = function (date) {
@@ -231,6 +253,12 @@ var OwlCalendarComponent = (function () {
             });
         });
     };
+    OwlCalendarComponent.prototype.selectYearInMultiYearView = function (normalizedYear) {
+        this.yearSelected.emit(normalizedYear);
+    };
+    OwlCalendarComponent.prototype.selectMonthInYearView = function (normalizedMonth) {
+        this.monthSelected.emit(normalizedMonth);
+    };
     OwlCalendarComponent.prototype.isSameView = function (date1, date2) {
         if (this._currentView === 'month') {
             return !!(date1 && date2 &&
@@ -252,7 +280,7 @@ var OwlCalendarComponent = (function () {
         { type: Component, args: [{
                     selector: 'owl-date-time-calendar',
                     exportAs: 'owlDateTimeCalendar',
-                    template: "<div class=\"owl-dt-calendar-control\"><!-- focus when keyboard tab (http://kizu.ru/en/blog/keyboard-only-focus/#x) --> <button class=\"owl-dt-control-button owl-dt-control-arrow-button\" type=\"button\" tabindex=\"0\" [style.visibility]=\"showControlArrows? 'visible': 'hidden'\" [disabled]=\"!prevButtonEnabled()\" [attr.aria-label]=\"prevButtonLabel\" (click)=\"previousClicked()\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Left\"> --> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\" width=\"100%\" height=\"100%\"><path style=\"fill-rule: evenodd; clip-rule: evenodd;\" d=\"M96.633,125.369l95.053-94.533c7.101-7.055,7.101-18.492,0-25.546   c-7.1-7.054-18.613-7.054-25.714,0L58.989,111.689c-3.784,3.759-5.487,8.759-5.238,13.68c-0.249,4.922,1.454,9.921,5.238,13.681   l106.983,106.398c7.101,7.055,18.613,7.055,25.714,0c7.101-7.054,7.101-18.491,0-25.544L96.633,125.369z\"/></svg><!-- </editor-fold> --></span></button><div class=\"owl-dt-calendar-control-content\"><button class=\"owl-dt-control-button owl-dt-control-period-button\" type=\"button\" tabindex=\"0\" [attr.aria-label]=\"periodButtonLabel\" (click)=\"toggleViews()\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\">{{periodButtonText}} <span class=\"owl-dt-control-button-arrow\" [style.transform]=\"'rotate(' + (isMonthView? 0 : 180) +'deg)'\"><!-- <editor-fold desc=\"SVG Arrow\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"50%\" height=\"50%\" viewBox=\"0 0 292.362 292.362\" style=\"enable-background:new 0 0 292.362 292.362;\" xml:space=\"preserve\"><g><path d=\"M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424\n                                C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428\n                                s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z\"/></g></svg><!-- </editor-fold> --></span></span></button></div><button class=\"owl-dt-control-button owl-dt-control-arrow-button\" type=\"button\" tabindex=\"0\" [style.visibility]=\"showControlArrows? 'visible': 'hidden'\" [disabled]=\"!nextButtonEnabled()\" [attr.aria-label]=\"nextButtonLabel\" (click)=\"nextClicked()\"><span class=\"owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Right\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\"><path style=\"fill-rule:evenodd;clip-rule:evenodd;\" d=\"M191.75,111.689L84.766,5.291c-7.1-7.055-18.613-7.055-25.713,0\n                    c-7.101,7.054-7.101,18.49,0,25.544l95.053,94.534l-95.053,94.533c-7.101,7.054-7.101,18.491,0,25.545\n                    c7.1,7.054,18.613,7.054,25.713,0L191.75,139.05c3.784-3.759,5.487-8.759,5.238-13.681\n                    C197.237,120.447,195.534,115.448,191.75,111.689z\"/></svg><!-- </editor-fold> --></span></button></div><div class=\"owl-dt-calendar-main\" cdkMonitorSubtreeFocus [ngSwitch]=\"currentView\"><owl-date-time-month-view *ngSwitchCase=\"'month'\" [pickerMoment]=\"pickerMoment\" [firstDayOfWeek]=\"firstDayOfWeek\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (selectedChange)=\"dateSelected($event)\" (userSelection)=\"userSelected()\"></owl-date-time-month-view><owl-date-time-year-view *ngSwitchCase=\"'year'\" [pickerMoment]=\"pickerMoment\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" (keyboardEnter)=\"focusActiveCell()\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (selectedChange)=\"goToDateInView($event, 'month')\"></owl-date-time-year-view><owl-date-time-multi-year-view *ngSwitchCase=\"'multi-years'\" [pickerMoment]=\"pickerMoment\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" (keyboardEnter)=\"focusActiveCell()\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (selectedChange)=\"goToDateInView($event, 'year')\"></owl-date-time-multi-year-view></div>",
+                    template: "<div class=\"owl-dt-calendar-control\"><!-- focus when keyboard tab (http://kizu.ru/en/blog/keyboard-only-focus/#x) --> <button class=\"owl-dt-control owl-dt-control-button owl-dt-control-arrow-button\" type=\"button\" tabindex=\"0\" [style.visibility]=\"showControlArrows? 'visible': 'hidden'\" [disabled]=\"!prevButtonEnabled()\" [attr.aria-label]=\"prevButtonLabel\" (click)=\"previousClicked()\"><span class=\"owl-dt-control-content owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Left\"> --> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\" width=\"100%\" height=\"100%\"><path style=\"fill-rule: evenodd; clip-rule: evenodd;\" d=\"M96.633,125.369l95.053-94.533c7.101-7.055,7.101-18.492,0-25.546   c-7.1-7.054-18.613-7.054-25.714,0L58.989,111.689c-3.784,3.759-5.487,8.759-5.238,13.68c-0.249,4.922,1.454,9.921,5.238,13.681   l106.983,106.398c7.101,7.055,18.613,7.055,25.714,0c7.101-7.054,7.101-18.491,0-25.544L96.633,125.369z\"/></svg><!-- </editor-fold> --></span></button><div class=\"owl-dt-calendar-control-content\"><button class=\"owl-dt-control owl-dt-control-button owl-dt-control-period-button\" type=\"button\" tabindex=\"0\" [attr.aria-label]=\"periodButtonLabel\" (click)=\"toggleViews()\"><span class=\"owl-dt-control-content owl-dt-control-button-content\" tabindex=\"-1\">{{periodButtonText}} <span class=\"owl-dt-control-button-arrow\" [style.transform]=\"'rotate(' + (isMonthView? 0 : 180) +'deg)'\"><!-- <editor-fold desc=\"SVG Arrow\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"50%\" height=\"50%\" viewBox=\"0 0 292.362 292.362\" style=\"enable-background:new 0 0 292.362 292.362;\" xml:space=\"preserve\"><g><path d=\"M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424\n                                C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428\n                                s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z\"/></g></svg><!-- </editor-fold> --></span></span></button></div><button class=\"owl-dt-control owl-dt-control-button owl-dt-control-arrow-button\" type=\"button\" tabindex=\"0\" [style.visibility]=\"showControlArrows? 'visible': 'hidden'\" [disabled]=\"!nextButtonEnabled()\" [attr.aria-label]=\"nextButtonLabel\" (click)=\"nextClicked()\"><span class=\"owl-dt-control-content owl-dt-control-button-content\" tabindex=\"-1\"><!-- <editor-fold desc=\"SVG Arrow Right\"> --> <svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 250.738 250.738\" style=\"enable-background:new 0 0 250.738 250.738;\" xml:space=\"preserve\"><path style=\"fill-rule:evenodd;clip-rule:evenodd;\" d=\"M191.75,111.689L84.766,5.291c-7.1-7.055-18.613-7.055-25.713,0\n                    c-7.101,7.054-7.101,18.49,0,25.544l95.053,94.534l-95.053,94.533c-7.101,7.054-7.101,18.491,0,25.545\n                    c7.1,7.054,18.613,7.054,25.713,0L191.75,139.05c3.784-3.759,5.487-8.759,5.238-13.681\n                    C197.237,120.447,195.534,115.448,191.75,111.689z\"/></svg><!-- </editor-fold> --></span></button></div><div class=\"owl-dt-calendar-main\" cdkMonitorSubtreeFocus [ngSwitch]=\"currentView\" tabindex=\"-1\"><owl-date-time-month-view *ngSwitchCase=\"'month'\" [pickerMoment]=\"pickerMoment\" [firstDayOfWeek]=\"firstDayOfWeek\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" [hideOtherMonths]=\"hideOtherMonths\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (selectedChange)=\"dateSelected($event)\" (userSelection)=\"userSelected()\"></owl-date-time-month-view><owl-date-time-year-view *ngSwitchCase=\"'year'\" [pickerMoment]=\"pickerMoment\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" (keyboardEnter)=\"focusActiveCell()\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (monthSelected)=\"selectMonthInYearView($event)\" (change)=\"goToDateInView($event, 'month')\"></owl-date-time-year-view><owl-date-time-multi-year-view *ngSwitchCase=\"'multi-years'\" [pickerMoment]=\"pickerMoment\" [selected]=\"selected\" [selecteds]=\"selecteds\" [selectMode]=\"selectMode\" [minDate]=\"minDate\" [maxDate]=\"maxDate\" [dateFilter]=\"dateFilter\" (keyboardEnter)=\"focusActiveCell()\" (pickerMomentChange)=\"handlePickerMomentChange($event)\" (yearSelected)=\"selectYearInMultiYearView($event)\" (change)=\"goToDateInView($event, 'year')\"></owl-date-time-multi-year-view></div>",
                     styles: [""],
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -262,6 +290,7 @@ var OwlCalendarComponent = (function () {
         { type: ElementRef, },
         { type: OwlDateTimeIntl, },
         { type: NgZone, },
+        { type: ChangeDetectorRef, },
         { type: DateTimeAdapter, decorators: [{ type: Optional },] },
         { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [OWL_DATE_TIME_FORMATS,] },] },
     ]; };
@@ -275,9 +304,12 @@ var OwlCalendarComponent = (function () {
         "selected": [{ type: Input },],
         "selecteds": [{ type: Input },],
         "startView": [{ type: Input },],
+        "hideOtherMonths": [{ type: Input },],
         "pickerMomentChange": [{ type: Output },],
         "selectedChange": [{ type: Output },],
         "userSelection": [{ type: Output },],
+        "yearSelected": [{ type: Output },],
+        "monthSelected": [{ type: Output },],
         "owlDTCalendarClass": [{ type: HostBinding, args: ['class.owl-dt-calendar',] },],
     };
     return OwlCalendarComponent;

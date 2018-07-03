@@ -4,7 +4,8 @@ import { DOWN_ARROW } from '@angular/cdk/keycodes';
 import { OwlDateTimeComponent } from './date-time-picker.component';
 import { DateTimeAdapter } from './adapter/date-time-adapter.class';
 import { OWL_DATE_TIME_FORMATS } from './adapter/date-time-format.class';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 export var OWL_DATETIME_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(function () { return OwlDateTimeInputDirective; }),
@@ -125,12 +126,17 @@ var OwlDateTimeInputDirective = (function () {
     });
     Object.defineProperty(OwlDateTimeInputDirective.prototype, "disabled", {
         get: function () {
-            return this._disabled;
+            return !!this._disabled;
         },
         set: function (value) {
-            if (this._disabled !== value) {
-                this._disabled = value;
-                this.disabledChange.emit(value);
+            var newValue = coerceBooleanProperty(value);
+            var element = this.elmRef.nativeElement;
+            if (this._disabled !== newValue) {
+                this._disabled = newValue;
+                this.disabledChange.emit(newValue);
+            }
+            if (newValue && element.blur) {
+                element.blur();
             }
         },
         enumerable: true,
@@ -180,9 +186,9 @@ var OwlDateTimeInputDirective = (function () {
             value = this.dateTimeAdapter.deserialize(value);
             this.lastValueValid = !value || this.dateTimeAdapter.isValid(value);
             value = this.getValidDate(value);
-            var oldDate = this.value;
+            var oldDate = this._value;
             this._value = value;
-            this.renderer.setProperty(this.elmRef.nativeElement, 'value', value ? this.dateTimeAdapter.format(value, this.dtPicker.formatString) : '');
+            this.formatNativeInputValue();
             if (!this.dateTimeAdapter.isEqual(oldDate, value)) {
                 this.valueChange.emit(value);
             }
@@ -201,30 +207,13 @@ var OwlDateTimeInputDirective = (function () {
                     v = _this.dateTimeAdapter.deserialize(v);
                     return _this.getValidDate(v);
                 });
-                var from = this._values[0];
-                var to = this._values[1];
-                this.lastValueValid = (!from || this.dateTimeAdapter.isValid(from)) && (!to || this.dateTimeAdapter.isValid(to));
-                var fromFormatted = from ? this.dateTimeAdapter.format(from, this.dtPicker.formatString) : '';
-                var toFormatted = to ? this.dateTimeAdapter.format(to, this.dtPicker.formatString) : '';
-                if (!fromFormatted && !toFormatted) {
-                    this.renderer.setProperty(this.elmRef.nativeElement, 'value', null);
-                }
-                else {
-                    if (this._selectMode === 'range') {
-                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', fromFormatted + ' ' + this.rangeSeparator + ' ' + toFormatted);
-                    }
-                    else if (this._selectMode === 'rangeFrom') {
-                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', fromFormatted);
-                    }
-                    else if (this._selectMode === 'rangeTo') {
-                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', toFormatted);
-                    }
-                }
+                this.lastValueValid = (!this._values[0] || this.dateTimeAdapter.isValid(this._values[0])) && (!this._values[1] || this.dateTimeAdapter.isValid(this._values[1]));
             }
             else {
                 this._values = [];
-                this.renderer.setProperty(this.elmRef.nativeElement, 'value', '');
+                this.lastValueValid = true;
             }
+            this.formatNativeInputValue();
             this.valueChange.emit(this._values);
         },
         enumerable: true,
@@ -304,6 +293,7 @@ var OwlDateTimeInputDirective = (function () {
             _this.onModelChange(selecteds);
             _this.onModelTouched();
             _this.dateTimeChange.emit({ source: _this, value: selecteds, input: _this.elmRef.nativeElement });
+            _this.dateTimeInput.emit({ source: _this, value: selecteds, input: _this.elmRef.nativeElement });
         });
     };
     OwlDateTimeInputDirective.prototype.ngOnDestroy = function () {
@@ -370,6 +360,37 @@ var OwlDateTimeInputDirective = (function () {
             input: this.elmRef.nativeElement
         });
     };
+    OwlDateTimeInputDirective.prototype.formatNativeInputValue = function () {
+        if (this.isInSingleMode) {
+            this.renderer.setProperty(this.elmRef.nativeElement, 'value', this._value ? this.dateTimeAdapter.format(this._value, this.dtPicker.formatString) : '');
+        }
+        else if (this.isInRangeMode) {
+            if (this._values && this.values.length > 0) {
+                var from = this._values[0];
+                var to = this._values[1];
+                var fromFormatted = from ? this.dateTimeAdapter.format(from, this.dtPicker.formatString) : '';
+                var toFormatted = to ? this.dateTimeAdapter.format(to, this.dtPicker.formatString) : '';
+                if (!fromFormatted && !toFormatted) {
+                    this.renderer.setProperty(this.elmRef.nativeElement, 'value', null);
+                }
+                else {
+                    if (this._selectMode === 'range') {
+                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', fromFormatted + ' ' + this.rangeSeparator + ' ' + toFormatted);
+                    }
+                    else if (this._selectMode === 'rangeFrom') {
+                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', fromFormatted);
+                    }
+                    else if (this._selectMode === 'rangeTo') {
+                        this.renderer.setProperty(this.elmRef.nativeElement, 'value', toFormatted);
+                    }
+                }
+            }
+            else {
+                this.renderer.setProperty(this.elmRef.nativeElement, 'value', '');
+            }
+        }
+        return;
+    };
     OwlDateTimeInputDirective.prototype.registerDateTimePicker = function (picker) {
         if (picker) {
             this.dtPicker = picker;
@@ -397,10 +418,12 @@ var OwlDateTimeInputDirective = (function () {
         var result = this.dateTimeAdapter.parse(value, this.dateTimeFormats.parseInput);
         this.lastValueValid = !result || this.dateTimeAdapter.isValid(result);
         result = this.getValidDate(result);
-        this._value = result;
-        this.valueChange.emit(result);
-        this.onModelChange(result);
-        this.dateTimeInput.emit({ source: this, value: result, input: this.elmRef.nativeElement });
+        if (!this.isSameValue(result, this._value)) {
+            this._value = result;
+            this.valueChange.emit(result);
+            this.onModelChange(result);
+            this.dateTimeInput.emit({ source: this, value: result, input: this.elmRef.nativeElement });
+        }
     };
     OwlDateTimeInputDirective.prototype.changeInputInRangeFromToMode = function (inputValue) {
         var originalValue = this._selectMode === 'rangeFrom' ? this._values[0] : this._values[1];
@@ -410,6 +433,10 @@ var OwlDateTimeInputDirective = (function () {
         var result = this.dateTimeAdapter.parse(inputValue, this.dateTimeFormats.parseInput);
         this.lastValueValid = !result || this.dateTimeAdapter.isValid(result);
         result = this.getValidDate(result);
+        if ((this._selectMode === 'rangeFrom' && this.isSameValue(result, this._values[0])) ||
+            (this._selectMode === 'rangeTo' && this.isSameValue(result, this._values[1]))) {
+            return;
+        }
         this._values = this._selectMode === 'rangeFrom' ? [result, this._values[1]] : [this._values[0], result];
         this.valueChange.emit(this._values);
         this.onModelChange(this._values);
@@ -428,10 +455,18 @@ var OwlDateTimeInputDirective = (function () {
         this.lastValueValid = (!from || this.dateTimeAdapter.isValid(from)) && (!to || this.dateTimeAdapter.isValid(to));
         from = this.getValidDate(from);
         to = this.getValidDate(to);
-        this._values = [from, to];
-        this.valueChange.emit(this._values);
-        this.onModelChange(this._values);
-        this.dateTimeInput.emit({ source: this, value: this._values, input: this.elmRef.nativeElement });
+        if (!this.isSameValue(from, this._values[0]) || !this.isSameValue(to, this._values[1])) {
+            this._values = [from, to];
+            this.valueChange.emit(this._values);
+            this.onModelChange(this._values);
+            this.dateTimeInput.emit({ source: this, value: this._values, input: this.elmRef.nativeElement });
+        }
+    };
+    OwlDateTimeInputDirective.prototype.isSameValue = function (first, second) {
+        if (first && second) {
+            return this.dateTimeAdapter.compare(first, second) === 0;
+        }
+        return first == second;
     };
     OwlDateTimeInputDirective.decorators = [
         { type: Directive, args: [{

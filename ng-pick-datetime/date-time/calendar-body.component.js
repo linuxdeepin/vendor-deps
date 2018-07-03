@@ -1,13 +1,15 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostBinding, Input, NgZone, Output } from '@angular/core';
 import { take } from 'rxjs/operators';
 var CalendarCell = (function () {
-    function CalendarCell(value, displayValue, ariaLabel, enabled, out) {
+    function CalendarCell(value, displayValue, ariaLabel, enabled, out, cellClass) {
         if (out === void 0) { out = false; }
+        if (cellClass === void 0) { cellClass = ''; }
         this.value = value;
         this.displayValue = displayValue;
         this.ariaLabel = ariaLabel;
         this.enabled = enabled;
         this.out = out;
+        this.cellClass = cellClass;
     }
     return CalendarCell;
 }());
@@ -17,10 +19,9 @@ var OwlCalendarBodyComponent = (function () {
         this.elmRef = elmRef;
         this.ngZone = ngZone;
         this.activeCell = 0;
-        this.allowDisabledCellSelection = false;
         this.numCols = 7;
         this.cellRatio = 1;
-        this.selectedValueChange = new EventEmitter();
+        this.select = new EventEmitter();
     }
     Object.defineProperty(OwlCalendarBodyComponent.prototype, "owlDTCalendarBodyClass", {
         get: function () {
@@ -46,11 +47,8 @@ var OwlCalendarBodyComponent = (function () {
     });
     OwlCalendarBodyComponent.prototype.ngOnInit = function () {
     };
-    OwlCalendarBodyComponent.prototype.cellClicked = function (cell) {
-        if (!this.allowDisabledCellSelection && !cell.enabled) {
-            return;
-        }
-        this.selectedValueChange.emit(cell.value);
+    OwlCalendarBodyComponent.prototype.selectCell = function (cell) {
+        this.select.emit(cell);
     };
     OwlCalendarBodyComponent.prototype.isActiveCell = function (rowIndex, colIndex) {
         var cellNumber = rowIndex * this.numCols + colIndex;
@@ -105,7 +103,7 @@ var OwlCalendarBodyComponent = (function () {
         { type: Component, args: [{
                     selector: '[owl-date-time-calendar-body]',
                     exportAs: 'owlDateTimeCalendarBody',
-                    template: "<tr *ngFor=\"let row of rows; let rowIndex = index\" role=\"row\"><td *ngFor=\"let item of row; let colIndex = index\" class=\"owl-dt-calendar-cell\" [tabindex]=\"isActiveCell(rowIndex, colIndex) ? 0 : -1\" [class.owl-dt-calendar-cell-active]=\"isActiveCell(rowIndex, colIndex)\" [class.owl-dt-calendar-cell-disabled]=\"!item.enabled\" [class.owl-dt-calendar-cell-in-range]=\"isInRange(item.value)\" [class.owl-dt-calendar-cell-range-from]=\"isRangeFrom(item.value)\" [class.owl-dt-calendar-cell-range-to]=\"isRangeTo(item.value)\" [attr.aria-label]=\"item.ariaLabel\" [attr.aria-disabled]=\"!item.enabled || null\" [style.width.%]=\"100 / numCols\" [style.paddingTop.%]=\"50 * cellRatio / numCols\" [style.paddingBottom.%]=\"50 * cellRatio / numCols\" (click)=\"cellClicked(item)\"><span class=\"owl-dt-calendar-cell-content\" [ngClass]=\"{\n                'owl-dt-calendar-cell-out': item.out,\n                'owl-dt-calendar-cell-today': item.value === todayValue,\n                'owl-dt-calendar-cell-selected': isSelected(item.value)\n              }\">{{item.displayValue}}</span></td></tr>",
+                    template: "<tr *ngFor=\"let row of rows; let rowIndex = index\" role=\"row\"><td *ngFor=\"let item of row; let colIndex = index\" class=\"owl-dt-calendar-cell {{item.cellClass}}\" [tabindex]=\"isActiveCell(rowIndex, colIndex) ? 0 : -1\" [class.owl-dt-calendar-cell-active]=\"isActiveCell(rowIndex, colIndex)\" [class.owl-dt-calendar-cell-disabled]=\"!item.enabled\" [class.owl-dt-calendar-cell-in-range]=\"isInRange(item.value)\" [class.owl-dt-calendar-cell-range-from]=\"isRangeFrom(item.value)\" [class.owl-dt-calendar-cell-range-to]=\"isRangeTo(item.value)\" [attr.aria-label]=\"item.ariaLabel\" [attr.aria-disabled]=\"!item.enabled || null\" [style.width.%]=\"100 / numCols\" [style.paddingTop.%]=\"50 * cellRatio / numCols\" [style.paddingBottom.%]=\"50 * cellRatio / numCols\" (click)=\"selectCell(item)\"><span class=\"owl-dt-calendar-cell-content\" [ngClass]=\"{\n                'owl-dt-calendar-cell-out': item.out,\n                'owl-dt-calendar-cell-today': item.value === todayValue,\n                'owl-dt-calendar-cell-selected': isSelected(item.value)\n              }\">{{item.displayValue}}</span></td></tr>",
                     styles: [""],
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -117,14 +115,13 @@ var OwlCalendarBodyComponent = (function () {
     ]; };
     OwlCalendarBodyComponent.propDecorators = {
         "activeCell": [{ type: Input },],
-        "allowDisabledCellSelection": [{ type: Input },],
         "rows": [{ type: Input },],
         "numCols": [{ type: Input },],
         "cellRatio": [{ type: Input },],
         "todayValue": [{ type: Input },],
         "selectedValues": [{ type: Input },],
         "selectMode": [{ type: Input },],
-        "selectedValueChange": [{ type: Output },],
+        "select": [{ type: Output },],
         "owlDTCalendarBodyClass": [{ type: HostBinding, args: ['class.owl-dt-calendar-body',] },],
     };
     return OwlCalendarBodyComponent;

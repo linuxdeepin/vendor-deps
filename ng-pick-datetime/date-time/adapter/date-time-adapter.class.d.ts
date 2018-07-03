@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject } from 'rxjs';
 import { InjectionToken } from '@angular/core';
 export declare const OWL_DATE_TIME_LOCALE: InjectionToken<string>;
 export declare const OWL_DATE_TIME_LOCALE_PROVIDER: {

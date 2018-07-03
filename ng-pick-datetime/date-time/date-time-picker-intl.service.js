@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 var OwlDateTimeIntl = (function () {
     function OwlDateTimeIntl() {
+        this.changes = new Subject();
         this.upSecondLabel = 'Add a second';
         this.downSecondLabel = 'Minus a second';
         this.upMinuteLabel = 'Add a minute';
@@ -25,7 +27,6 @@ var OwlDateTimeIntl = (function () {
     OwlDateTimeIntl.decorators = [
         { type: Injectable },
     ];
-    OwlDateTimeIntl.ctorParameters = function () { return []; };
     return OwlDateTimeIntl;
 }());
 export { OwlDateTimeIntl };
