@@ -211,9 +211,6 @@
 
 
 @charset "UTF-8";
-*, :after, :before {
-    box-sizing: border-box;
-}
 
 .v-page--large .v-page-total,
 .v-page--large .v-page-li,
