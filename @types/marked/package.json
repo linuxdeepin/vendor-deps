@@ -1,0 +1,60 @@
+{
+  "_from": "@types/marked",
+  "_id": "@types/marked@0.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-xkURX55US18wHme+O2UlqJf3Fo7FqT5VAL+OJ/zK+jP2NX57naryDHoiqt/pMIwZjDc62sRvXUWuQQxQiBdheQ==",
+  "_location": "/@types/marked",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@types/marked",
+    "name": "@types/marked",
+    "escapedName": "@types%2fmarked",
+    "scope": "@types",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/marked/-/marked-0.4.0.tgz",
+  "_shasum": "057a6165703e7419217f8ffc6887747f980b6315",
+  "_spec": "@types/marked",
+  "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "William Orr",
+      "url": "https://github.com/worr"
+    },
+    {
+      "name": "BendingBender",
+      "url": "https://github.com/BendingBender"
+    },
+    {
+      "name": "CrossR",
+      "url": "https://github.com/CrossR"
+    }
+  ],
+  "dependencies": {},
+  "deprecated": false,
+  "description": "TypeScript definitions for Marked",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/marked",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.0",
+  "typesPublisherContentHash": "ace56ecb6bf44801fdd12aaa965023cdb6c950cf6f33cb0580980ad4fcd8fb5f",
+  "version": "0.4.0"
+}
