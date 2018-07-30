@@ -1,27 +1,27 @@
 {
-  "_from": "node@9.11.2",
-  "_id": "node@9.11.2",
+  "_from": "node@8",
+  "_id": "node@8.11.3",
   "_inBundle": false,
-  "_integrity": "sha512-K140s07Yd6pnfb4GppcqbPlVdFzCt5mxfie6RJfKGae77HnRnYJLRbF/vEnNZDKe1CHSOSOhQlePVrf2q04/5A==",
+  "_integrity": "sha1-ue/iw/TIyE7nhDmxGddorTsw7tY=",
   "_location": "/node",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "node@9.11.2",
+    "raw": "node@8",
     "name": "node",
     "escapedName": "node",
-    "rawSpec": "9.11.2",
+    "rawSpec": "8",
     "saveSpec": null,
-    "fetchSpec": "9.11.2"
+    "fetchSpec": "8"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/node/-/node-9.11.2.tgz",
-  "_shasum": "8d07d22f1fb75dce11572f864f45f901f06d5d92",
-  "_spec": "node@9.11.2",
+  "_resolved": "http://registry.npm.taobao.org/node/download/node-8.11.3.tgz",
+  "_shasum": "b9efe2c3f4c8c84ee78439b119d768ad3b30eed6",
+  "_spec": "node@8",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "author": "",
   "bin": {
@@ -53,5 +53,8 @@
   "scripts": {
     "preinstall": "node installArchSpecificPackage"
   },
-  "version": "9.11.2"
+  "version": "8.11.3",
+  "devDependencies": {
+    "node-linux-x64": "^8.11.3"
+  }
 }

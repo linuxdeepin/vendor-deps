@@ -1,1 +1,1 @@
-require('node-bin-setup')("9.11.2", require)
+require('node-bin-setup')("8.11.3", require)

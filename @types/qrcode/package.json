@@ -1,28 +1,28 @@
 {
-  "_from": "@types/qrcode",
+  "_from": "@types/qrcode@^0.8.1",
   "_id": "@types/qrcode@0.8.1",
   "_inBundle": false,
   "_integrity": "sha1-V3bLXaKZz6fO4mEPWZl6ytkK040=",
   "_location": "/@types/qrcode",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "@types/qrcode",
+    "raw": "@types/qrcode@^0.8.1",
     "name": "@types/qrcode",
     "escapedName": "@types%2fqrcode",
     "scope": "@types",
-    "rawSpec": "",
+    "rawSpec": "^0.8.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.8.1"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
   "_resolved": "http://registry.npm.taobao.org/@types/qrcode/download/@types/qrcode-0.8.1.tgz",
   "_shasum": "5776cb5da299cfa7cee2610f59997acad90ad38d",
-  "_spec": "@types/qrcode",
+  "_spec": "@types/qrcode@^0.8.1",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "bundleDependencies": false,
   "contributors": [

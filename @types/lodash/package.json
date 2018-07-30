@@ -1,28 +1,28 @@
 {
-  "_from": "@types/lodash@4.14.110",
-  "_id": "@types/lodash@4.14.110",
+  "_from": "@types/lodash@^4.14.110",
+  "_id": "@types/lodash@4.14.115",
   "_inBundle": false,
-  "_integrity": "sha512-iXYLa6olt4tnsCA+ZXeP6eEW3tk1SulWeYyP/yooWfAtXjozqXgtX4+XUtMuOCfYjKGz3F34++qUc3Q+TJuIIw==",
+  "_integrity": "sha1-VNFxss4SwFh0JEO19nVHYPcBuPk=",
   "_location": "/@types/lodash",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@types/lodash@4.14.110",
+    "raw": "@types/lodash@^4.14.110",
     "name": "@types/lodash",
     "escapedName": "@types%2flodash",
     "scope": "@types",
-    "rawSpec": "4.14.110",
+    "rawSpec": "^4.14.110",
     "saveSpec": null,
-    "fetchSpec": "4.14.110"
+    "fetchSpec": "^4.14.110"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.110.tgz",
-  "_shasum": "fb07498f84152947f30ea09d89207ca07123461e",
-  "_spec": "@types/lodash@4.14.110",
+  "_resolved": "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.115.tgz",
+  "_shasum": "54d171b2ce12c058742443b5f6754760f701b8f9",
+  "_spec": "@types/lodash@^4.14.110",
   "_where": "/home/myml/Src/deepin/deepin-appstore/src/web",
   "bugs": {
     "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
@@ -78,7 +78,7 @@
     "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
   },
   "scripts": {},
-  "typeScriptVersion": "2.2",
-  "typesPublisherContentHash": "ddbd26faa38670a880f723bf4ae03db414e3aeaea656dff9a89414e0ed6fc685",
-  "version": "4.14.110"
+  "typeScriptVersion": "2.6",
+  "typesPublisherContentHash": "38281b155d85a93cdcec93a1c9314de9772f86a2b159852774ae52b07678cf44",
+  "version": "4.14.115"
 }
