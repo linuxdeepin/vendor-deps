@@ -1,52 +1,27 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "babel-loader@^7.1.1",
-        "scope": null,
-        "escapedName": "babel-loader",
-        "name": "babel-loader",
-        "rawSpec": "^7.1.1",
-        "spec": ">=7.1.1 <8.0.0",
-        "type": "range"
-      },
-      "/home/hualet/project/deepin/sites/deepin-genuine/frontend/deepin-legalization-server"
-    ]
-  ],
-  "_cnpm_publish_time": 1520329892782,
-  "_from": "babel-loader@>=7.1.1 <8.0.0",
-  "_hasShrinkwrap": false,
-  "_id": "babel-loader@7.1.4",
-  "_inCache": true,
+  "_from": "babel-loader@^7.1.1",
+  "_id": "babel-loader@7.1.5",
+  "_inBundle": false,
+  "_integrity": "sha1-4+4M1zlKpVfgE7AtPkkr/QeqbWg=",
   "_location": "/babel-loader",
-  "_nodeVersion": "8.9.4",
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/babel-loader_7.1.4_1520329892673_0.7997138975753932"
-  },
-  "_npmUser": {
-    "name": "danez",
-    "email": "daniel@tschinder.de"
-  },
-  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
+    "type": "range",
+    "registry": true,
     "raw": "babel-loader@^7.1.1",
-    "scope": null,
-    "escapedName": "babel-loader",
     "name": "babel-loader",
+    "escapedName": "babel-loader",
     "rawSpec": "^7.1.1",
-    "spec": ">=7.1.1 <8.0.0",
-    "type": "range"
+    "saveSpec": null,
+    "fetchSpec": "^7.1.1"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npm.taobao.org/babel-loader/download/babel-loader-7.1.4.tgz",
-  "_shasum": "e3463938bd4e6d55d1c174c5485d406a188ed015",
-  "_shrinkwrap": null,
+  "_resolved": "http://registry.npm.taobao.org/babel-loader/download/babel-loader-7.1.5.tgz",
+  "_shasum": "e3ee0cd7394aa557e013b02d3e492bfd07aa6d68",
   "_spec": "babel-loader@^7.1.1",
-  "_where": "/home/hualet/project/deepin/sites/deepin-genuine/frontend/deepin-legalization-server",
+  "_where": "/home/iceyer/Develop/deepin/sites/deepin-legalization-server",
   "author": {
     "name": "Luis Couto",
     "email": "hello@luiscouto.pt"
@@ -65,11 +40,13 @@
   "bugs": {
     "url": "https://github.com/babel/babel-loader/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "find-cache-dir": "^1.0.0",
     "loader-utils": "^1.0.2",
     "mkdirp": "^0.5.1"
   },
+  "deprecated": false,
   "description": "babel module loader for webpack",
   "devDependencies": {
     "ava": "^0.23.0",
@@ -95,20 +72,12 @@
     "rimraf": "^2.4.3",
     "webpack": "^4.0.0"
   },
-  "directories": {},
-  "dist": {
-    "shasum": "e3463938bd4e6d55d1c174c5485d406a188ed015",
-    "size": 9776,
-    "noattachment": false,
-    "tarball": "http://registry.npm.taobao.org/babel-loader/download/babel-loader-7.1.4.tgz"
-  },
   "engines": {
     "node": ">=4"
   },
   "files": [
     "lib"
   ],
-  "gitHead": "8fe5da3fb923096c98af31cb66fc1a3a22b44992",
   "homepage": "https://github.com/babel/babel-loader",
   "keywords": [
     "webpack",
@@ -142,20 +111,6 @@
     ]
   },
   "main": "lib/index.js",
-  "maintainers": [
-    {
-      "name": "danez",
-      "email": "daniel@tschinder.de"
-    },
-    {
-      "name": "hzoo",
-      "email": "hi@henryzoo.com"
-    },
-    {
-      "name": "loganfsmyth",
-      "email": "loganfsmyth@gmail.com"
-    }
-  ],
   "name": "babel-loader",
   "nyc": {
     "all": true,
@@ -172,13 +127,10 @@
     "sourceMap": false,
     "instrument": false
   },
-  "optionalDependencies": {},
   "peerDependencies": {
     "babel-core": "6",
     "webpack": "2 || 3 || 4"
   },
-  "publish_time": 1520329892782,
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/babel/babel-loader.git"
@@ -194,5 +146,5 @@
     "test": "yarn run lint && cross-env BABEL_ENV=test yarn run build && yarn run test-only",
     "test-only": "nyc ava"
   },
-  "version": "7.1.4"
+  "version": "7.1.5"
 }
