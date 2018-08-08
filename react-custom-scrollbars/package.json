@@ -1,27 +1,32 @@
 {
-  "_from": "react-custom-scrollbars",
+  "_args": [
+    [
+      "react-custom-scrollbars@4.2.1",
+      "/home/myml/Src/deepin/deepin-manual/src/web"
+    ]
+  ],
+  "_development": true,
+  "_from": "react-custom-scrollbars@4.2.1",
   "_id": "react-custom-scrollbars@4.2.1",
   "_inBundle": false,
   "_integrity": "sha1-gw/ZUCkn6X6KeMIIaBOJmyqLZts=",
   "_location": "/react-custom-scrollbars",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "react-custom-scrollbars",
+    "raw": "react-custom-scrollbars@4.2.1",
     "name": "react-custom-scrollbars",
     "escapedName": "react-custom-scrollbars",
-    "rawSpec": "",
+    "rawSpec": "4.2.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.2.1"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/"
   ],
   "_resolved": "http://r.cnpmjs.org/react-custom-scrollbars/download/react-custom-scrollbars-4.2.1.tgz",
-  "_shasum": "830fd9502927e97e8a78c2086813899b2a8b66db",
-  "_spec": "react-custom-scrollbars",
+  "_spec": "4.2.1",
   "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": {
     "name": "Malte Wessel"
@@ -29,13 +34,11 @@
   "bugs": {
     "url": "https://github.com/malte-wessel/react-custom-scrollbars/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "dom-css": "^2.0.0",
     "prop-types": "^15.5.10",
     "raf": "^3.1.0"
   },
-  "deprecated": false,
   "description": "React scrollbars component",
   "devDependencies": {
     "babel-cli": "^6.2.0",

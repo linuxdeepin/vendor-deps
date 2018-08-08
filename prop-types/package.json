@@ -24,6 +24,7 @@
   },
   "_requiredBy": [
     "/react",
+    "/react-custom-scrollbars",
     "/react-dom",
     "/react-router",
     "/react-router-dom"

@@ -1,27 +1,27 @@
 {
-  "_from": "node@^9.4.0",
-  "_id": "node@9.4.0",
+  "_from": "node@8",
+  "_id": "node@8.11.3",
   "_inBundle": false,
-  "_integrity": "sha1-YHRZ7Nea8PkedDGBJL7AU3ZEze4=",
+  "_integrity": "sha512-WcjMru2asV/2Luul5wFpgw+SXc2GrD9X4nGswd1r4DoKpNU56+U3TB3+gZgswX4zYiCN8fIwwMwcAJBscS0jdg==",
   "_location": "/node",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "node@^9.4.0",
+    "raw": "node@8",
     "name": "node",
     "escapedName": "node",
-    "rawSpec": "^9.4.0",
+    "rawSpec": "8",
     "saveSpec": null,
-    "fetchSpec": "^9.4.0"
+    "fetchSpec": "8"
   },
   "_requiredBy": [
     "#DEV:/",
     "#USER"
   ],
-  "_resolved": "http://r.cnpmjs.org/node/download/node-9.4.0.tgz",
-  "_shasum": "607459ecd79af0f91e74318124bec0537644cdee",
-  "_spec": "node@^9.4.0",
+  "_resolved": "https://registry.npmjs.org/node/-/node-8.11.3.tgz",
+  "_shasum": "b9efe2c3f4c8c84ee78439b119d768ad3b30eed6",
+  "_spec": "node@8",
   "_where": "/home/myml/Src/deepin/deepin-manual/src/web",
   "author": "",
   "bin": {
@@ -53,5 +53,8 @@
   "scripts": {
     "preinstall": "node installArchSpecificPackage"
   },
-  "version": "9.4.0"
+  "version": "8.11.3",
+  "devDependencies": {
+    "node-linux-x64": "^8.11.3"
+  }
 }
