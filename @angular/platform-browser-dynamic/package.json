@@ -1,28 +1,28 @@
 {
-  "_from": "@angular/platform-browser-dynamic@6.0.0",
-  "_id": "@angular/platform-browser-dynamic@6.0.0",
+  "_from": "@angular/platform-browser-dynamic@6.1.4",
+  "_id": "@angular/platform-browser-dynamic@6.1.4",
   "_inBundle": false,
-  "_integrity": "sha1-ZqNLZRNkRss+w5Ni/W0tu1SCunA=",
+  "_integrity": "sha512-a/WVCsAa0qdtLNuK6h8q+nwtXmJqOlc+dJrBK3vz1umhc80nFZeaUPMTnkRwphk6WVE8xHvjb41PZsI8jF9CBQ==",
   "_location": "/@angular/platform-browser-dynamic",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/platform-browser-dynamic@6.0.0",
+    "raw": "@angular/platform-browser-dynamic@6.1.4",
     "name": "@angular/platform-browser-dynamic",
     "escapedName": "@angular%2fplatform-browser-dynamic",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.1.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.1.4"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/platform-browser-dynamic/download/@angular/platform-browser-dynamic-6.0.0.tgz",
-  "_shasum": "66a34b65136446cb3ec39362fd6d2dbb5482ba70",
-  "_spec": "@angular/platform-browser-dynamic@6.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.1.4.tgz",
+  "_shasum": "1af3549decadfb8e73513d917eaa5479184c39ea",
+  "_spec": "@angular/platform-browser-dynamic@6.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
   },
@@ -68,10 +68,10 @@
     ]
   },
   "peerDependencies": {
-    "@angular/core": "6.0.0",
-    "@angular/common": "6.0.0",
-    "@angular/compiler": "6.0.0",
-    "@angular/platform-browser": "6.0.0"
+    "@angular/core": "6.1.4",
+    "@angular/common": "6.1.4",
+    "@angular/compiler": "6.1.4",
+    "@angular/platform-browser": "6.1.4"
   },
   "repository": {
     "type": "git",
@@ -79,5 +79,5 @@
   },
   "sideEffects": false,
   "typings": "./platform-browser-dynamic.d.ts",
-  "version": "6.0.0"
+  "version": "6.1.4"
 }

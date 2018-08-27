@@ -1,28 +1,28 @@
 {
-  "_from": "@angular/language-service@6.0.0",
-  "_id": "@angular/language-service@6.0.0",
+  "_from": "@angular/language-service@6.1.4",
+  "_id": "@angular/language-service@6.1.4",
   "_inBundle": false,
-  "_integrity": "sha1-hb9Xf9f0Xv8TEo1PXwElB41hCuw=",
+  "_integrity": "sha512-kvnAphJ7VrKJpm1gN3sFjGp/5gQxu/FAw03yD1f1z+C+aHrNKoxaS9pp9NdOIT/DWlxR/BcEDF4gzMNMTJ9/wA==",
   "_location": "/@angular/language-service",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/language-service@6.0.0",
+    "raw": "@angular/language-service@6.1.4",
     "name": "@angular/language-service",
     "escapedName": "@angular%2flanguage-service",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.1.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.1.4"
   },
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/language-service/download/@angular/language-service-6.0.0.tgz",
-  "_shasum": "85bf577fd7f45eff13128d4f5f0125078d610aec",
-  "_spec": "@angular/language-service@6.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web",
+  "_resolved": "https://registry.npmjs.org/@angular/language-service/-/language-service-6.1.4.tgz",
+  "_shasum": "946a70e1afbf83dbae4c31b64784a5a77ae07e53",
+  "_spec": "@angular/language-service@6.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
   },
@@ -64,5 +64,5 @@
     "url": "git+https://github.com/angular/angular.git"
   },
   "typings": "./language-service.d.ts",
-  "version": "6.0.0"
+  "version": "6.1.4"
 }

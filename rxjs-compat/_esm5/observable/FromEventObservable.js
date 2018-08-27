@@ -9,12 +9,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, fromEvent } from 'rxjs';
-var FromEventObservable = /** @class */ (function (_super) {
+var FromEventObservable = (function (_super) {
     __extends(FromEventObservable, _super);
     function FromEventObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /* tslint:enable:max-line-length */
     FromEventObservable.create = function (target, eventName, options, selector) {
         return fromEvent(target, eventName, options, selector);
     };

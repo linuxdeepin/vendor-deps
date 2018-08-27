@@ -70,6 +70,7 @@ export declare class MatFormField extends _MatFormFieldMixinBase implements Afte
     hintLabel: string;
     private _hintLabel;
     _hintLabelId: string;
+    _labelId: string;
     /**
      * Whether the label should always float, never float or float as the user types.
      *
@@ -82,15 +83,12 @@ export declare class MatFormField extends _MatFormFieldMixinBase implements Afte
     private _floatLabel;
     /** Whether the Angular animations are enabled. */
     _animationsEnabled: boolean;
-    _outlineGapWidth: number;
-    _outlineGapStart: number;
-    _initialGapCalculated: boolean;
     /**
      * @deprecated
-     * @deletion-target 7.0.0
+     * @breaking-change 7.0.0
      */
     underlineRef: ElementRef;
-    _connectionContainerRef: ElementRef;
+    _connectionContainerRef: ElementRef<HTMLElement>;
     _inputContainerRef: ElementRef;
     private _label;
     _control: MatFormFieldControl<any>;

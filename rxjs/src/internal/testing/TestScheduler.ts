@@ -141,17 +141,14 @@ export class TestScheduler extends VirtualTimeScheduler {
     }
 
     super.flush();
-    const { flushTests } = this;
-    const flushTestsCopy = flushTests.slice();
 
-    for (let i = 0, l = flushTests.length; i < l; i++) {
-      const test = flushTestsCopy[i];
+    this.flushTests = this.flushTests.filter(test => {
       if (test.ready) {
-        // remove it from the original array, not our copy
-        flushTests.splice(i, 1);
         this.assertDeepEqual(test.actual, test.expected);
+        return false;
       }
-    }
+      return true;
+    });
   }
 
   /** @nocollapse */
@@ -378,14 +375,15 @@ export class TestScheduler extends VirtualTimeScheduler {
       expectObservable: this.expectObservable.bind(this),
       expectSubscriptions: this.expectSubscriptions.bind(this),
     };
-    const ret = callback(helpers);
-    this.flush();
-
-    TestScheduler.frameTimeFactor = prevFrameTimeFactor;
-    this.maxFrames = prevMaxFrames;
-    this.runMode = false;
-    AsyncScheduler.delegate = undefined;
-
-    return ret;
+    try {
+      const ret = callback(helpers);
+      this.flush();
+      return ret;
+    } finally {
+      TestScheduler.frameTimeFactor = prevFrameTimeFactor;
+      this.maxFrames = prevMaxFrames;
+      this.runMode = false;
+      AsyncScheduler.delegate = undefined;
+    }
   }
 }

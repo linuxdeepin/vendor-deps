@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, from } from 'rxjs';
-var ArrayLikeObservable = /** @class */ (function (_super) {
+var ArrayLikeObservable = (function (_super) {
     __extends(ArrayLikeObservable, _super);
     function ArrayLikeObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

@@ -1,3 +1,58 @@
+# domino 2.1.0 (13 Aug 2018)
+* Fix `ContainerNode#removeChildren()` when there is more than one child (#129)
+* Implement `Document#scrollingElement` (#107)
+* Implement setter for `Element#outerHTML` (#102)
+* Handle null/undefined in setter for `Node#textContent`
+* Handle null/undefined/negative values in `CharacterData` interface methods
+* Spec-correctness fixes for `DOMTokenList`, including handling of duplicate
+  keys.
+* Fix `[src=...]` selectors in `Document#querySelector()` and similar
+* Spec-correctness fixes for `Document#createElement()` and
+  `Document#createElementNS()`, including proper exception type and type
+  coercion.
+* Implement `Attr#cloneNode()`, `Element#getAttributeNode()`,
+  `Element#getAttributeNodeNS()`, `Element#setAttributeNode()`,
+  `Element#setAttributeNodeNS()`, and `Element#removeAttributeNode()`
+  (DOM3 compatibility)
+* Implement `Document#createAttribute()` and `Document#createAttributeNS()`
+* Implement `Element#hasAttributes()`, `Element#toggleAttribute()`, and
+  `Element#getAttributeNames()`
+* Implement `Text#wholeText`
+* Implement `Document#cloneNode()` and `DocumentType#cloneNode()`
+* Spec-correctness fixes for `Node#lookupPrefix()`,
+  `Node#lookupNamespaceURI()`, and `Node#isDefaultNamespace`, including
+  proper type coercion and reconciling DOM 3 and DOM 4 specifications.
+* Ensure `Document#title` continues to use correct whitespace stripping
+  for node > 4, and properly set `<title>` when `undefined` is passed to
+  `DOMImplementation#createHTMLDocument()`
+* Ensure `Element#attributes` implements `NamedNodeMap` and that indexed
+  properties of `Element#attributes` work (previously you needed to use
+  the `item()` accessor method)
+* Improve stubs for `HTMLElement#style`, `Document#documentURI`, and
+  `Document#contentType`
+* Implement proper accessors for `HTMLSelectElement#autocomplete`,
+  `HTMLTextAreaElement#type/value/defaultValue/textLength`, and
+  `HTMLInputElement#width/height/minLength`
+* Implement `Element#insertAdjacentElement()`, `Element#insertAdjacentText()`,
+  and `Element#insertAdjacentHTML()` (#102)
+* Spec-correctness fixes for `TreeWalker` and `NodeIterator`: read-only
+  properties, proper exception types, type coercion of `NodeFilter` results.
+* Implement `NodeIterator` pre-removal steps.  Note that in the absence
+  of weak references, be cautious about the number of `NodeIterator`s you
+  create on any single document, since domino does not artificially limit
+  these.
+  See https://github.com/tc39/proposal-weakrefs/issues/17 for details.
+* Preserve prefix of SVG elements during parsing. (#102)
+
+# domino 2.0.3 (12 Jul 2018)
+* Define `blur()`, `focus()` and `forceSpellCheck()` on `HTMLElement` (#125)
+* Stringify argument tokens for DOMTokenList methods (#126)
+* Fix `HTMLAnchorElement#hash` when `href` attribute contains bare
+  fragment (#127)
+* Implement case-insensitive CSS attribute matching (#128)
+* Implement `DOMTokenList#replace()`, `DOMTokenList#toggle(token, force)`,
+  and `DOMTokenList#value`. Fix handling of non-space whitespace. (#111)
+
 # domino 2.0.2 (28 Mar 2018)
 * Add TypeScript definitions (#103)
 * Add `flex` CSS styles (#119, #120)

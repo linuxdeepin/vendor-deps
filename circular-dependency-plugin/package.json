@@ -2,7 +2,7 @@
   "_from": "circular-dependency-plugin@^5.0.2",
   "_id": "circular-dependency-plugin@5.0.2",
   "_inBundle": false,
-  "_integrity": "sha1-2haMCzfntDVj+5+RLBwAfCEzie8=",
+  "_integrity": "sha512-oC7/DVAyfcY3UWKm0sN/oVoDedQDQiw/vIiAnuTWTpE5s0zWf7l3WY417Xw/Fbi/QbAjctAkxgMiS9P0s3zkmA==",
   "_location": "/circular-dependency-plugin",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/@angular-devkit/build-angular"
   ],
-  "_resolved": "http://registry.npm.taobao.org/circular-dependency-plugin/download/circular-dependency-plugin-5.0.2.tgz",
+  "_resolved": "https://registry.npmjs.org/circular-dependency-plugin/-/circular-dependency-plugin-5.0.2.tgz",
   "_shasum": "da168c0b37e7b43563fb9f912c1c007c213389ef",
   "_spec": "circular-dependency-plugin@^5.0.2",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
   "author": "",
   "bugs": {
     "url": "https://github.com/aackerman/circular-dependency-plugin/issues"

@@ -6,21 +6,24 @@ As the name might suggest, domino's goal is to provide a <b>DOM in No</b>de.
 
 In contrast to the original [dom.js](https://github.com/andreasgal/dom.js) project, domino was not designed to run untrusted code. Hence it doesn't have to hide its internals behind a proxy facade which makes the code not only simpler, but also [more performant](https://github.com/fgnass/dombench).
 
-Domino currently doesn't use any harmony features like proxies or WeakMaps and therefore also runs in older Node versions.
+Domino currently doesn't use any harmony/ES6 features like proxies or WeakMaps and therefore also runs in older Node versions.
 
 ## Speed over Compliance
 
 Domino is intended for _building_ pages rather than scraping them. Hence Domino doesn't execute scripts nor does it download external resources.
 
-Also Domino doesn't implement any properties which have been deprecated in HTML5.
+Also Domino doesn't generally implement properties which have been deprecated in HTML5.
 
-Domino sticks to the [DOM level 4](http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-attr) working draft, which means that Attributes do not inherit the Node interface. Also [Element.attributes](http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#dom-element-attributes) returns a read-only array instead of a NamedNodeMap.
+Domino sticks to [DOM level 4](http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-attr), which means that Attributes do not inherit the Node interface.
 
 <b>Note that</b> because domino does not use proxies,
 `Element.attributes` is not a true JavaScript array; it is an object
 with a `length` property and an `item(n)` accessor method.  See
 [github issue #27](https://github.com/fgnass/domino/issues/27) for
-further discussion.
+further discussion.  It does however implement direct indexed accessors
+(`element.attributes[i]`) and is live.
+
+
 
 ## CSS Selector Support
 
@@ -81,7 +84,7 @@ var domino = require('domino');
 Domino includes test from the [W3C DOM Conformance Suites](http://www.w3.org/DOM/Test/)
 as well as tests from [HTML Working Group](http://www.w3.org/html/wg/wiki/Testing).
 
-The tests can be run via `npm test` or directly though the [Mocha](http://visionmedia.github.com/mocha/) command line:
+The tests can be run via `npm test` or directly though the [Mocha](http://mochajs.org/) command line:
 
 ![Screenshot](http://fgnass.github.com/images/domino.png)
 
@@ -97,9 +100,9 @@ The code has been maintained since 2013 by [C. Scott Ananian](https://github.com
 of improvements have been made, mostly focusing on correctness,
 performance, and (to a lesser extent) completeness of the implementation.
 
-[1]: https://travis-ci.org/fgnass/domino.png
+[1]: https://travis-ci.org/fgnass/domino.svg
 [2]: https://travis-ci.org/fgnass/domino
-[3]: https://david-dm.org/fgnass/domino.png
+[3]: https://david-dm.org/fgnass/domino.svg
 [4]: https://david-dm.org/fgnass/domino
-[5]: https://david-dm.org/fgnass/domino/dev-status.png
+[5]: https://david-dm.org/fgnass/domino/dev-status.svg
 [6]: https://david-dm.org/fgnass/domino#info=devDependencies

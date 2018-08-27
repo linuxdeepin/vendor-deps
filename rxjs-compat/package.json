@@ -1,33 +1,33 @@
 {
-  "_from": "rxjs-compat",
-  "_id": "rxjs-compat@6.1.0",
+  "_from": "rxjs-compat@6.2.2",
+  "_id": "rxjs-compat@6.2.2",
   "_inBundle": false,
-  "_integrity": "sha1-k1BZYj7kwWdyjJ3QPubkRozFtYM=",
+  "_integrity": "sha512-h113JzEXnqBd6JQ8TYg33oDuM3baZ9WKS49rtbMX0gBW2Kz0z4wDZ0/pCA0T9sRJM1HkZT6mt45gpYOJ2MqWYQ==",
   "_location": "/rxjs-compat",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "rxjs-compat",
+    "raw": "rxjs-compat@6.2.2",
     "name": "rxjs-compat",
     "escapedName": "rxjs-compat",
-    "rawSpec": "",
+    "rawSpec": "6.2.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "6.2.2"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/rxjs-compat/download/rxjs-compat-6.1.0.tgz",
-  "_shasum": "935059623ee4c167728c9dd03ee6e4468cc5b583",
-  "_spec": "rxjs-compat",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/src",
+  "_resolved": "https://registry.npmjs.org/rxjs-compat/-/rxjs-compat-6.2.2.tgz",
+  "_shasum": "3c0fcdb46130cc70aa55412c2b1147905ab4680a",
+  "_spec": "rxjs-compat@6.2.2",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/src/app",
   "bundleDependencies": false,
   "deprecated": false,
   "description": "<img src=\"doc/asset/Rx_Logo_S.png\" alt=\"RxJS Logo\" width=\"86\" height=\"86\"> RxJS: Reactive Extensions For JavaScript ======================================",
   "main": "./Rx.js",
   "name": "rxjs-compat",
   "typings": "./Rx.d.ts",
-  "version": "6.1.0"
+  "version": "6.2.2"
 }

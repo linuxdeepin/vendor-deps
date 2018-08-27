@@ -23,7 +23,7 @@ export declare const _MatButtonToggleGroupMixinBase: (new (...args: any[]) => Ca
 export declare const MAT_BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR: any;
 /**
  * @deprecated Use `MatButtonToggleGroup` instead.
- * @deletion-target 7.0.0
+ * @breaking-change 7.0.0
  */
 export declare class MatButtonToggleGroupMultiple {
 }
@@ -133,17 +133,19 @@ export declare class MatButtonToggle extends _MatButtonToggleMixinBase implement
     ariaLabelledby: string | null;
     /** Type of the button toggle. Either 'radio' or 'checkbox'. */
     _type: ToggleType;
-    _inputElement: ElementRef<HTMLInputElement>;
+    _buttonElement: ElementRef<HTMLButtonElement>;
     /** The parent button toggle group (exclusive selection). Optional. */
     buttonToggleGroup: MatButtonToggleGroup;
-    /** Unique ID for the underlying `input` element. */
-    readonly inputId: string;
+    /** Unique ID for the underlying `button` element. */
+    readonly buttonId: string;
     /** The unique ID for this button toggle. */
     id: string;
     /** HTML's 'name' attribute used to group radios for unique selection. */
     name: string;
     /** MatButtonToggleGroup reads this to assign its own value. */
     value: any;
+    /** Tabindex for the toggle. */
+    tabIndex: number | null;
     /** Whether the button is checked. */
     checked: boolean;
     /** Whether the button is disabled. */
@@ -151,14 +153,13 @@ export declare class MatButtonToggle extends _MatButtonToggleMixinBase implement
     private _disabled;
     /** Event emitted when the group value changes. */
     readonly change: EventEmitter<MatButtonToggleChange>;
-    constructor(toggleGroup: MatButtonToggleGroup, _changeDetectorRef: ChangeDetectorRef, _elementRef: ElementRef<HTMLElement>, _focusMonitor: FocusMonitor);
+    constructor(toggleGroup: MatButtonToggleGroup, _changeDetectorRef: ChangeDetectorRef, _elementRef: ElementRef<HTMLElement>, _focusMonitor: FocusMonitor, defaultTabIndex: string);
     ngOnInit(): void;
     ngOnDestroy(): void;
     /** Focuses the button. */
     focus(): void;
-    /** Checks the button toggle due to an interaction with the underlying native input. */
-    _onInputChange(event: Event): void;
-    _onInputClick(event: Event): void;
+    /** Checks the button toggle due to an interaction with the underlying native button. */
+    _onButtonClick(): void;
     /**
      * Marks the button toggle as needing checking for change detection.
      * This method is exposed because the parent button toggle group will directly

@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, asyncScheduler, interval } from 'rxjs';
-var IntervalObservable = /** @class */ (function (_super) {
+var IntervalObservable = (function (_super) {
     __extends(IntervalObservable, _super);
     function IntervalObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

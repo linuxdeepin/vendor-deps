@@ -1,28 +1,28 @@
 {
-  "_from": "@angular/core@6.0.0",
-  "_id": "@angular/core@6.0.0",
+  "_from": "@angular/core@6.1.4",
+  "_id": "@angular/core@6.1.4",
   "_inBundle": false,
-  "_integrity": "sha1-eFzIo3t/t4Smt9y9CYSrtPEOXf4=",
+  "_integrity": "sha512-8r2LpD4MR0hAYjWkElD/I6iXcugMK/HrpdtopDlRcxW2f6XuMN4mu8eS3g2fu72PwdGhtMcqDDFlbeJ8k599lw==",
   "_location": "/@angular/core",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/core@6.0.0",
+    "raw": "@angular/core@6.1.4",
     "name": "@angular/core",
     "escapedName": "@angular%2fcore",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.1.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.1.4"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/core/download/@angular/core-6.0.0.tgz",
-  "_shasum": "785cc8a37b7fb784a6b7dcbd0984abb4f10e5dfe",
-  "_spec": "@angular/core@6.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web",
+  "_resolved": "https://registry.npmjs.org/@angular/core/-/core-6.1.4.tgz",
+  "_shasum": "2602ecc031bbb4ad968a7db78786017e92d19b98",
+  "_spec": "@angular/core@6.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
   },
@@ -77,5 +77,5 @@
   },
   "sideEffects": false,
   "typings": "./core.d.ts",
-  "version": "6.0.0"
+  "version": "6.1.4"
 }

@@ -2,7 +2,7 @@
   "_from": "serialize-javascript@^1.4.0",
   "_id": "serialize-javascript@1.5.0",
   "_inBundle": false,
-  "_integrity": "sha1-GqM2FiyIqJDdrVOEuuvJOmVRYf4=",
+  "_integrity": "sha512-Ga8c8NjAAp46Br4+0oZ2WxJCwIzwP60Gq1YPgU+39PiTVxyed/iKE/zyZI6+UlVYH5Q4PaQdHhcegIFPZTUfoQ==",
   "_location": "/serialize-javascript",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "/copy-webpack-plugin",
     "/uglifyjs-webpack-plugin"
   ],
-  "_resolved": "http://registry.npm.taobao.org/serialize-javascript/download/serialize-javascript-1.5.0.tgz",
+  "_resolved": "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-1.5.0.tgz",
   "_shasum": "1aa336162c88a890ddad5384baebc93a655161fe",
   "_spec": "serialize-javascript@^1.4.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/copy-webpack-plugin",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/copy-webpack-plugin",
   "author": {
     "name": "Eric Ferraiuolo",
     "email": "edf@ericf.me"

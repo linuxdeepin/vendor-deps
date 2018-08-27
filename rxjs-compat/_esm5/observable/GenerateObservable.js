@@ -9,12 +9,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, generate } from 'rxjs';
-var GenerateObservable = /** @class */ (function (_super) {
+var GenerateObservable = (function (_super) {
     __extends(GenerateObservable, _super);
     function GenerateObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    /* tslint:enable:max-line-length */
     GenerateObservable.create = function (initialStateOrOptions, condition, iterate, resultSelectorOrObservable, scheduler) {
         return generate(initialStateOrOptions, condition, iterate, resultSelectorOrObservable, scheduler);
     };

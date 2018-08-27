@@ -11,8 +11,8 @@ import { ScrollDispatcher, ViewportRuler, ScrollDispatchModule, VIEWPORT_RULER_P
 export { ViewportRuler, VIEWPORT_RULER_PROVIDER, CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 import { __assign, __extends } from 'tslib';
-import { Subject, Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable, Subject, merge, Subscription } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { Directionality, BidiModule } from '@angular/cdk/bidi';
 import { DomPortalOutlet, TemplatePortal, PortalModule } from '@angular/cdk/portal';
@@ -630,14 +630,18 @@ var OverlayKeyboardDispatcher = /** @class */ (function () {
          * Keyboard event listener that will be attached to the body.
          */
         this._keydownListener = function (event) {
-            if (_this._attachedOverlays.length) {
-                // Dispatch the keydown event to the top overlay. We want to target the most recent overlay,
-                // rather than trying to match where the event came from, because some components might open
-                // an overlay, but keep focus on a trigger element (e.g. for select and autocomplete).
-                // Dispatch the keydown event to the top overlay. We want to target the most recent overlay,
-                // rather than trying to match where the event came from, because some components might open
-                // an overlay, but keep focus on a trigger element (e.g. for select and autocomplete).
-                _this._attachedOverlays[_this._attachedOverlays.length - 1]._keydownEvents.next(event);
+            var /** @type {?} */ overlays = _this._attachedOverlays;
+            for (var /** @type {?} */ i = overlays.length - 1; i > -1; i--) {
+                // Dispatch the keydown event to the top overlay which has subscribers to its keydown events.
+                // We want to target the most recent overlay, rather than trying to match where the event came
+                // from, because some components might open an overlay, but keep focus on a trigger element
+                // (e.g. for select and autocomplete). We skip overlays without keydown event subscriptions,
+                // because we don't want overlays that don't handle keyboard events to block the ones below
+                // them that do.
+                if (overlays[i]._keydownEventSubscriptions > 0) {
+                    overlays[i]._keydownEvents.next(event);
+                    break;
+                }
             }
         };
         this._document = document;
@@ -663,6 +667,8 @@ var OverlayKeyboardDispatcher = /** @class */ (function () {
      * @return {?}
      */
     function (overlayRef) {
+        // Ensure that we don't get the same overlay multiple times.
+        this.remove(overlayRef);
         // Lazily start dispatcher once first overlay is added
         if (!this._isAttached) {
             this._document.body.addEventListener('keydown', this._keydownListener, true);
@@ -716,7 +722,7 @@ var OverlayKeyboardDispatcher = /** @class */ (function () {
     return OverlayKeyboardDispatcher;
 }());
 /**
- * \@docs-private \@deprecated \@deletion-target 7.0.0
+ * \@docs-private \@deprecated \@breaking-change 7.0.0
  * @param {?} dispatcher
  * @param {?} _document
  * @return {?}
@@ -725,7 +731,7 @@ function OVERLAY_KEYBOARD_DISPATCHER_PROVIDER_FACTORY(dispatcher, _document) {
     return dispatcher || new OverlayKeyboardDispatcher(_document);
 }
 /**
- * \@docs-private \@deprecated \@deletion-target 7.0.0
+ * \@docs-private \@deprecated \@breaking-change 7.0.0
  */
 var /** @type {?} */ OVERLAY_KEYBOARD_DISPATCHER_PROVIDER = {
     // If there is already an OverlayKeyboardDispatcher available, use that.
@@ -818,7 +824,7 @@ var OverlayContainer = /** @class */ (function () {
     return OverlayContainer;
 }());
 /**
- * \@docs-private \@deprecated \@deletion-target 7.0.0
+ * \@docs-private \@deprecated \@breaking-change 7.0.0
  * @param {?} parentContainer
  * @param {?} _document
  * @return {?}
@@ -827,7 +833,7 @@ function OVERLAY_CONTAINER_PROVIDER_FACTORY(parentContainer, _document) {
     return parentContainer || new OverlayContainer(_document);
 }
 /**
- * \@docs-private \@deprecated \@deletion-target 7.0.0
+ * \@docs-private \@deprecated \@breaking-change 7.0.0
  */
 var /** @type {?} */ OVERLAY_CONTAINER_PROVIDER = {
     // If there is already an OverlayContainer available, use that. Otherwise, provide a new one.
@@ -854,6 +860,7 @@ var  /**
  */
 OverlayRef = /** @class */ (function () {
     function OverlayRef(_portalOutlet, _host, _pane, _config, _ngZone, _keyboardDispatcher, _document) {
+        var _this = this;
         this._portalOutlet = _portalOutlet;
         this._host = _host;
         this._pane = _pane;
@@ -865,10 +872,22 @@ OverlayRef = /** @class */ (function () {
         this._backdropClick = new Subject();
         this._attachments = new Subject();
         this._detachments = new Subject();
+        this._keydownEventsObservable = Observable.create(function (observer) {
+            var /** @type {?} */ subscription = _this._keydownEvents.subscribe(observer);
+            _this._keydownEventSubscriptions++;
+            return function () {
+                subscription.unsubscribe();
+                _this._keydownEventSubscriptions--;
+            };
+        });
         /**
          * Stream of keydown events dispatched to this overlay.
          */
         this._keydownEvents = new Subject();
+        /**
+         * Amount of subscriptions to the keydown events.
+         */
+        this._keydownEventSubscriptions = 0;
         if (_config.scrollStrategy) {
             _config.scrollStrategy.attach(this);
         }
@@ -943,6 +962,9 @@ OverlayRef = /** @class */ (function () {
             this._config.positionStrategy.attach(this);
         }
         // Update the pane element with the given configuration.
+        if (!this._host.parentElement && this._previousHostParent) {
+            this._previousHostParent.appendChild(this._host);
+        }
         this._updateStackingOrder();
         this._updateElementSize();
         this._updateElementDirection();
@@ -988,6 +1010,7 @@ OverlayRef = /** @class */ (function () {
      * @return {?} The portal detachment result.
      */
     function () {
+        var _this = this;
         if (!this.hasAttached()) {
             return;
         }
@@ -1002,11 +1025,32 @@ OverlayRef = /** @class */ (function () {
         if (this._config.scrollStrategy) {
             this._config.scrollStrategy.disable();
         }
+        if (this._config.panelClass) {
+            this._toggleClasses(this._pane, this._config.panelClass, false);
+        }
         var /** @type {?} */ detachmentResult = this._portalOutlet.detach();
         // Only emit after everything is detached.
         this._detachments.next();
-        // Remove this overlay from keyboard dispatcher tracking
+        // Remove this overlay from keyboard dispatcher tracking.
         this._keyboardDispatcher.remove(this);
+        // Keeping the host element in DOM the can cause scroll jank, because it still gets rendered,
+        // even though it's transparent and unclickable. We can't remove the host here immediately,
+        // because the overlay pane's content might still be animating. This stream helps us avoid
+        // interrupting the animation by waiting for the pane to become empty.
+        var /** @type {?} */ subscription = this._ngZone.onStable
+            .asObservable()
+            .pipe(takeUntil(merge(this._attachments, this._detachments)))
+            .subscribe(function () {
+            // Needs a couple of checks for the pane and host, because
+            // they may have been removed by the time the zone stabilizes.
+            if (!_this._pane || !_this._host || _this._pane.children.length === 0) {
+                if (_this._host && _this._host.parentElement) {
+                    _this._previousHostParent = _this._host.parentElement;
+                    _this._previousHostParent.removeChild(_this._host);
+                }
+                subscription.unsubscribe();
+            }
+        });
         return detachmentResult;
     };
     /** Cleans up the overlay from the DOM. */
@@ -1036,7 +1080,7 @@ OverlayRef = /** @class */ (function () {
             this._host.parentNode.removeChild(this._host);
             this._host = /** @type {?} */ ((null));
         }
-        this._pane = /** @type {?} */ ((null));
+        this._previousHostParent = this._pane = /** @type {?} */ ((null));
         if (isAttached) {
             this._detachments.next();
         }
@@ -1100,7 +1144,7 @@ OverlayRef = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this._keydownEvents.asObservable();
+        return this._keydownEventsObservable;
     };
     /** Gets the the current overlay configuration, which is immutable. */
     /**
@@ -1196,24 +1240,13 @@ OverlayRef = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this._config.width || this._config.width === 0) {
-            this._pane.style.width = coerceCssPixelValue(this._config.width);
-        }
-        if (this._config.height || this._config.height === 0) {
-            this._pane.style.height = coerceCssPixelValue(this._config.height);
-        }
-        if (this._config.minWidth || this._config.minWidth === 0) {
-            this._pane.style.minWidth = coerceCssPixelValue(this._config.minWidth);
-        }
-        if (this._config.minHeight || this._config.minHeight === 0) {
-            this._pane.style.minHeight = coerceCssPixelValue(this._config.minHeight);
-        }
-        if (this._config.maxWidth || this._config.maxWidth === 0) {
-            this._pane.style.maxWidth = coerceCssPixelValue(this._config.maxWidth);
-        }
-        if (this._config.maxHeight || this._config.maxHeight === 0) {
-            this._pane.style.maxHeight = coerceCssPixelValue(this._config.maxHeight);
-        }
+        var /** @type {?} */ style = this._pane.style;
+        style.width = coerceCssPixelValue(this._config.width);
+        style.height = coerceCssPixelValue(this._config.height);
+        style.minWidth = coerceCssPixelValue(this._config.minWidth);
+        style.minHeight = coerceCssPixelValue(this._config.minHeight);
+        style.maxWidth = coerceCssPixelValue(this._config.maxWidth);
+        style.maxHeight = coerceCssPixelValue(this._config.maxHeight);
     };
     /**
      * Toggles the pointer events for the overlay pane element.
@@ -1299,6 +1332,7 @@ OverlayRef = /** @class */ (function () {
         var _this = this;
         var /** @type {?} */ backdropToDetach = this._backdropElement;
         if (backdropToDetach) {
+            var /** @type {?} */ timeoutId_1;
             var /** @type {?} */ finishDetach_1 = function () {
                 // It may not be attached to anything in certain cases (e.g. unit tests).
                 if (backdropToDetach && backdropToDetach.parentNode) {
@@ -1310,19 +1344,25 @@ OverlayRef = /** @class */ (function () {
                 if (_this._backdropElement == backdropToDetach) {
                     _this._backdropElement = null;
                 }
+                clearTimeout(timeoutId_1);
             };
             backdropToDetach.classList.remove('cdk-overlay-backdrop-showing');
             if (this._config.backdropClass) {
                 this._toggleClasses(backdropToDetach, this._config.backdropClass, false);
             }
-            backdropToDetach.addEventListener('transitionend', finishDetach_1);
+            this._ngZone.runOutsideAngular(function () {
+                /** @type {?} */ ((backdropToDetach)).addEventListener('transitionend', finishDetach_1);
+            });
             // If the backdrop doesn't have a transition, the `transitionend` event won't fire.
             // In this case we make it unclickable and we try to remove it after a delay.
             backdropToDetach.style.pointerEvents = 'none';
             // Run this outside the Angular zone because there's nothing that Angular cares about.
             // If it were to run inside the Angular zone, every test that used Overlay would have to be
             // either async or fakeAsync.
-            this._ngZone.runOutsideAngular(function () { return setTimeout(finishDetach_1, 500); });
+            // Run this outside the Angular zone because there's nothing that Angular cares about.
+            // If it were to run inside the Angular zone, every test that used Overlay would have to be
+            // either async or fakeAsync.
+            timeoutId_1 = this._ngZone.runOutsideAngular(function () { return setTimeout(finishDetach_1, 500); });
         }
     };
     /**
@@ -1368,11 +1408,12 @@ var  /**
  * of the overlay.
  */
 FlexibleConnectedPositionStrategy = /** @class */ (function () {
-    function FlexibleConnectedPositionStrategy(connectedTo, _viewportRuler, _document, _platform) {
+    function FlexibleConnectedPositionStrategy(connectedTo, _viewportRuler, _document, _platform, _overlayContainer) {
         var _this = this;
         this._viewportRuler = _viewportRuler;
         this._document = _document;
         this._platform = _platform;
+        this._overlayContainer = _overlayContainer;
         /**
          * Whether we're performing the very first positioning of the overlay.
          */
@@ -1528,6 +1569,7 @@ FlexibleConnectedPositionStrategy = /** @class */ (function () {
      */
     function () {
         // We shouldn't do anything if the strategy was disposed or we're on the server.
+        // @breaking-change 7.0.0 Remove `_platform` null check once it's guaranteed to be defined.
         if (this._isDisposed || (this._platform && !this._platform.isBrowser)) {
             return;
         }
@@ -2386,6 +2428,16 @@ FlexibleConnectedPositionStrategy = /** @class */ (function () {
         if (this._isPushed) {
             overlayPoint = this._pushOverlayOnScreen(overlayPoint, this._overlayRect);
         }
+        // @breaking-change 7.0.0 Currently the `_overlayContainer` is optional in order to avoid a
+        // breaking change. The null check here can be removed once the `_overlayContainer` becomes
+        // a required parameter.
+        var /** @type {?} */ virtualKeyboardOffset = this._overlayContainer ?
+            this._overlayContainer.getContainerElement().getBoundingClientRect().top : 0;
+        // Normally this would be zero, however when the overlay is attached to an input (e.g. in an
+        // autocomplete), mobile browsers will shift everything in order to put the input in the middle
+        // of the screen and to make space for the virtual keyboard. We need to account for this offset,
+        // otherwise our positioning will be thrown off.
+        overlayPoint.y -= virtualKeyboardOffset;
         // We want to set either `top` or `bottom` based on whether the overlay wants to appear
         // above or below the origin and the direction in which the element will expand.
         if (position.overlayY === 'bottom') {
@@ -2606,7 +2658,7 @@ function extendStyles(dest, source) {
  * a basic dropdown is connecting the bottom-left corner of the origin to the top-left corner
  * of the overlay.
  * @deprecated Use `FlexibleConnectedPositionStrategy` instead.
- * \@deletion-target 7.0.0
+ * \@breaking-change 7.0.0
  */
 var  /**
  * A strategy for positioning overlays. Using this strategy, an overlay is given an
@@ -2615,12 +2667,12 @@ var  /**
  * a basic dropdown is connecting the bottom-left corner of the origin to the top-left corner
  * of the overlay.
  * @deprecated Use `FlexibleConnectedPositionStrategy` instead.
- * \@deletion-target 7.0.0
+ * \@breaking-change 7.0.0
  */
 ConnectedPositionStrategy = /** @class */ (function () {
     function ConnectedPositionStrategy(originPos, overlayPos, connectedTo, viewportRuler, document, 
-    // @deletion-target 7.0.0 `platform` parameter to be made required.
-    // @deletion-target 7.0.0 `platform` parameter to be made required.
+    // @breaking-change 7.0.0 `platform` parameter to be made required.
+    // @breaking-change 7.0.0 `platform` parameter to be made required.
     platform) {
         /**
          * Ordered list of preferred positions, from most to least desirable.
@@ -3067,19 +3119,19 @@ GlobalPositionStrategy = /** @class */ (function () {
      * Sets the overlay width and clears any previously set width.
      * @param value New width for the overlay
      * @deprecated Pass the `width` through the `OverlayConfig`.
-     * @deletion-target 7.0.0
+     * @breaking-change 7.0.0
      */
     /**
      * Sets the overlay width and clears any previously set width.
      * @deprecated Pass the `width` through the `OverlayConfig`.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?=} value New width for the overlay
      * @return {?}
      */
     GlobalPositionStrategy.prototype.width = /**
      * Sets the overlay width and clears any previously set width.
      * @deprecated Pass the `width` through the `OverlayConfig`.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?=} value New width for the overlay
      * @return {?}
      */
@@ -3097,19 +3149,19 @@ GlobalPositionStrategy = /** @class */ (function () {
      * Sets the overlay height and clears any previously set height.
      * @param value New height for the overlay
      * @deprecated Pass the `height` through the `OverlayConfig`.
-     * @deletion-target 7.0.0
+     * @breaking-change 7.0.0
      */
     /**
      * Sets the overlay height and clears any previously set height.
      * @deprecated Pass the `height` through the `OverlayConfig`.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?=} value New height for the overlay
      * @return {?}
      */
     GlobalPositionStrategy.prototype.height = /**
      * Sets the overlay height and clears any previously set height.
      * @deprecated Pass the `height` through the `OverlayConfig`.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?=} value New height for the overlay
      * @return {?}
      */
@@ -3204,7 +3256,27 @@ GlobalPositionStrategy = /** @class */ (function () {
         styles.marginTop = config.height === '100%' ? '0' : this._topOffset;
         styles.marginBottom = this._bottomOffset;
         styles.marginRight = this._rightOffset;
-        parentStyles.justifyContent = config.width === '100%' ? 'flex-start' : this._justifyContent;
+        if (config.width === '100%') {
+            parentStyles.justifyContent = 'flex-start';
+        }
+        else if (this._justifyContent === 'center') {
+            parentStyles.justifyContent = 'center';
+        }
+        else if (this._overlayRef.getConfig().direction === 'rtl') {
+            // In RTL the browser will invert `flex-start` and `flex-end` automatically, but we
+            // don't want that because our positioning is explicitly `left` and `right`, hence
+            // why we do another inversion to ensure that the overlay stays in the same position.
+            // TODO: reconsider this if we add `start` and `end` methods.
+            if (this._justifyContent === 'flex-start') {
+                parentStyles.justifyContent = 'flex-end';
+            }
+            else if (this._justifyContent === 'flex-end') {
+                parentStyles.justifyContent = 'flex-start';
+            }
+        }
+        else {
+            parentStyles.justifyContent = this._justifyContent;
+        }
         parentStyles.alignItems = config.height === '100%' ? 'flex-start' : this._alignItems;
     };
     /**
@@ -3234,11 +3306,12 @@ GlobalPositionStrategy = /** @class */ (function () {
  */
 var OverlayPositionBuilder = /** @class */ (function () {
     function OverlayPositionBuilder(_viewportRuler, _document, 
-    // @deletion-target 7.0.0 `_platform` parameter to be made required.
-    _platform) {
+    // @breaking-change 7.0.0 `_platform` and `_overlayContainer` parameters to be made required.
+    _platform, _overlayContainer) {
         this._viewportRuler = _viewportRuler;
         this._document = _document;
         this._platform = _platform;
+        this._overlayContainer = _overlayContainer;
     }
     /**
      * Creates a global position strategy.
@@ -3260,12 +3333,12 @@ var OverlayPositionBuilder = /** @class */ (function () {
      * @param originPos
      * @param overlayPos
      * @deprecated Use `flexibleConnectedTo` instead.
-     * @deletion-target 7.0.0
+     * @breaking-change 7.0.0
      */
     /**
      * Creates a relative position strategy.
      * @deprecated Use `flexibleConnectedTo` instead.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?} elementRef
      * @param {?} originPos
      * @param {?} overlayPos
@@ -3274,7 +3347,7 @@ var OverlayPositionBuilder = /** @class */ (function () {
     OverlayPositionBuilder.prototype.connectedTo = /**
      * Creates a relative position strategy.
      * @deprecated Use `flexibleConnectedTo` instead.
-     * \@deletion-target 7.0.0
+     * \@breaking-change 7.0.0
      * @param {?} elementRef
      * @param {?} originPos
      * @param {?} overlayPos
@@ -3298,7 +3371,7 @@ var OverlayPositionBuilder = /** @class */ (function () {
      * @return {?}
      */
     function (elementRef) {
-        return new FlexibleConnectedPositionStrategy(elementRef, this._viewportRuler, this._document, this._platform);
+        return new FlexibleConnectedPositionStrategy(elementRef, this._viewportRuler, this._document, this._platform, this._overlayContainer);
     };
     OverlayPositionBuilder.decorators = [
         { type: Injectable, args: [{ providedIn: 'root' },] },
@@ -3308,8 +3381,9 @@ var OverlayPositionBuilder = /** @class */ (function () {
         { type: ViewportRuler, },
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
         { type: Platform, decorators: [{ type: Optional },] },
+        { type: OverlayContainer, decorators: [{ type: Optional },] },
     ]; };
-    /** @nocollapse */ OverlayPositionBuilder.ngInjectableDef = defineInjectable({ factory: function OverlayPositionBuilder_Factory() { return new OverlayPositionBuilder(inject(ViewportRuler), inject(DOCUMENT), inject(Platform, 8)); }, token: OverlayPositionBuilder, providedIn: "root" });
+    /** @nocollapse */ OverlayPositionBuilder.ngInjectableDef = defineInjectable({ factory: function OverlayPositionBuilder_Factory() { return new OverlayPositionBuilder(inject(ViewportRuler), inject(DOCUMENT), inject(Platform, 8), inject(OverlayContainer, 8)); }, token: OverlayPositionBuilder, providedIn: "root" });
     return OverlayPositionBuilder;
 }());
 
@@ -3551,6 +3625,10 @@ var CdkConnectedOverlay = /** @class */ (function () {
          * Event emitted when the overlay has been detached.
          */
         this.detach = new EventEmitter();
+        /**
+         * Emits when there are keyboard events that are targeted at the overlay.
+         */
+        this.overlayKeydown = new EventEmitter();
         this._templatePortal = new TemplatePortal(templateRef, viewContainerRef);
     }
     Object.defineProperty(CdkConnectedOverlay.prototype, "offsetX", {
@@ -3704,20 +3782,20 @@ var CdkConnectedOverlay = /** @class */ (function () {
      */
     function (changes) {
         if (this._position) {
-            if (changes['positions'] || changes['_deprecatedPositions']) {
+            if (changes['positions']) {
                 this._position.withPositions(this.positions);
             }
             if (changes['lockPosition']) {
                 this._position.withLockedPosition(this.lockPosition);
             }
-            if (changes['origin'] || changes['_deprecatedOrigin']) {
+            if (changes['origin']) {
                 this._position.setOrigin(this.origin.elementRef);
                 if (this.open) {
                     this._position.apply();
                 }
             }
         }
-        if (changes['open'] || changes['_deprecatedOpen']) {
+        if (changes['open']) {
             this.open ? this._attachOverlay() : this._detachOverlay();
         }
     };
@@ -3828,6 +3906,7 @@ var CdkConnectedOverlay = /** @class */ (function () {
         if (!this._overlayRef) {
             this._createOverlay(); /** @type {?} */
             ((this._overlayRef)).keydownEvents().subscribe(function (event) {
+                _this.overlayKeydown.next(event);
                 if (event.keyCode === ESCAPE) {
                     _this._detachOverlay();
                 }
@@ -3917,6 +3996,7 @@ var CdkConnectedOverlay = /** @class */ (function () {
         "positionChange": [{ type: Output },],
         "attach": [{ type: Output },],
         "detach": [{ type: Output },],
+        "overlayKeydown": [{ type: Output },],
     };
     return CdkConnectedOverlay;
 }());
@@ -3959,7 +4039,7 @@ var OverlayModule = /** @class */ (function () {
 }());
 /**
  * @deprecated Use `OverlayModule` instead.
- * \@deletion-target 7.0.0
+ * \@breaking-change 7.0.0
  */
 var /** @type {?} */ OVERLAY_PROVIDERS = [
     Overlay,

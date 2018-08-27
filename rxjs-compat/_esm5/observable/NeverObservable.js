@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, NEVER } from 'rxjs';
-var NeverObservable = /** @class */ (function (_super) {
+var NeverObservable = (function (_super) {
     __extends(NeverObservable, _super);
     function NeverObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

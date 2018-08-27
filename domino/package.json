@@ -1,8 +1,8 @@
 {
   "_from": "domino@^2.0.1",
-  "_id": "domino@2.0.2",
+  "_id": "domino@2.1.0",
   "_inBundle": false,
-  "_integrity": "sha1-+i2mrOg4HPZAiQeUcO4zxTkBAQ8=",
+  "_integrity": "sha512-xINSODvrnuQcm3eXJN4IkBR+JxqLrJN8Ge4fd00y1b7HsY0A4huKN5BflSS/oo8quBWmocTfWdFvrw2H8TjGqQ==",
   "_location": "/domino",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/@angular/platform-server"
   ],
-  "_resolved": "http://registry.npm.taobao.org/domino/download/domino-2.0.2.tgz",
-  "_shasum": "fa2da6ace8381cf64089079470ee33c53901010f",
+  "_resolved": "https://registry.npmjs.org/domino/-/domino-2.1.0.tgz",
+  "_shasum": "653ba7d331441113b42e40ba05f24253ec86e02e",
   "_spec": "domino@^2.0.1",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular/platform-server",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular/platform-server",
   "author": {
     "name": "Felix Gnass",
     "email": "fgnass@gmail.com"
@@ -33,9 +33,10 @@
   "deprecated": false,
   "description": "Server-side DOM implementation based on Mozilla's dom.js",
   "devDependencies": {
-    "jshint": "^2.9.1",
-    "mocha": "^4.0.1",
-    "should": "^13.1.2"
+    "jquery": "^3.3.1",
+    "jshint": "^2.9.6",
+    "mocha": "^4.1.0",
+    "should": "^13.2.1"
   },
   "homepage": "https://github.com/fgnass/domino",
   "license": "BSD-2-Clause",
@@ -56,5 +57,5 @@
     "version": "tools/update-changelog.js && git add CHANGELOG.md"
   },
   "types": "lib/index.d.ts",
-  "version": "2.0.2"
+  "version": "2.1.0"
 }

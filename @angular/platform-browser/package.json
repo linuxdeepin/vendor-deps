@@ -1,28 +1,28 @@
 {
-  "_from": "@angular/platform-browser@6.0.0",
-  "_id": "@angular/platform-browser@6.0.0",
+  "_from": "@angular/platform-browser@6.1.4",
+  "_id": "@angular/platform-browser@6.1.4",
   "_inBundle": false,
-  "_integrity": "sha1-hItofqRnhkg/3c27vReynHrcx2g=",
+  "_integrity": "sha512-46UPtC360+3E4eeOQk45qp+r+d0Qnsujyot+XtVKQmTSHTInDlwfIGA9TBTw8GyAs3O65i80LRkDHFz9BM2pmw==",
   "_location": "/@angular/platform-browser",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/platform-browser@6.0.0",
+    "raw": "@angular/platform-browser@6.1.4",
     "name": "@angular/platform-browser",
     "escapedName": "@angular%2fplatform-browser",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.1.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.1.4"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/platform-browser/download/@angular/platform-browser-6.0.0.tgz",
-  "_shasum": "848b687ea46786483fddcdbbbd17b29c7adcc768",
-  "_spec": "@angular/platform-browser@6.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-6.1.4.tgz",
+  "_shasum": "a5763f549f2073ba30b9d8baf8512c8076e8d58b",
+  "_spec": "@angular/platform-browser@6.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
   },
@@ -68,8 +68,8 @@
     ]
   },
   "peerDependencies": {
-    "@angular/core": "6.0.0",
-    "@angular/common": "6.0.0"
+    "@angular/core": "6.1.4",
+    "@angular/common": "6.1.4"
   },
   "repository": {
     "type": "git",
@@ -77,5 +77,5 @@
   },
   "sideEffects": false,
   "typings": "./platform-browser.d.ts",
-  "version": "6.0.0"
+  "version": "6.1.4"
 }

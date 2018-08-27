@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, from } from 'rxjs';
-var ArrayObservable = /** @class */ (function (_super) {
+var ArrayObservable = (function (_super) {
     __extends(ArrayObservable, _super);
     function ArrayObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

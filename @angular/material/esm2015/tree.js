@@ -5,9 +5,10 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Directive, ViewContainerRef, Attribute, ContentChildren, ElementRef, Input, IterableDiffers, ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation, NgModule } from '@angular/core';
+import { Directive, ViewContainerRef, Attribute, ContentChildren, ElementRef, Input, IterableDiffers, TemplateRef, Optional, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild, ViewEncapsulation, NgModule } from '@angular/core';
 import { CdkNestedTreeNode, CdkTree, CdkTreeNode, CdkTreeNodeDef, CdkTreeNodePadding, CdkTreeNodeToggle, CdkTreeModule } from '@angular/cdk/tree';
 import { mixinDisabled, mixinTabIndex, MatCommonModule } from '@angular/material/core';
+import { Directionality } from '@angular/cdk/bidi';
 import { CommonModule } from '@angular/common';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, merge } from 'rxjs';
@@ -91,6 +92,12 @@ MatTreeNode.propDecorators = {
  * @template T
  */
 class MatTreeNodeDef extends CdkTreeNodeDef {
+    /**
+     * @param {?} template
+     */
+    constructor(template) {
+        super(template);
+    }
 }
 MatTreeNodeDef.decorators = [
     { type: Directive, args: [{
@@ -102,6 +109,9 @@ MatTreeNodeDef.decorators = [
             },] },
 ];
 /** @nocollapse */
+MatTreeNodeDef.ctorParameters = () => [
+    { type: TemplateRef, },
+];
 MatTreeNodeDef.propDecorators = {
     "data": [{ type: Input, args: ['matTreeNode',] },],
 };
@@ -173,6 +183,16 @@ MatNestedTreeNode.propDecorators = {
  * @template T
  */
 class MatTreeNodePadding extends CdkTreeNodePadding {
+    /**
+     * @param {?} _treeNode
+     * @param {?} _tree
+     * @param {?} _renderer
+     * @param {?} _element
+     * @param {?} _dir
+     */
+    constructor(_treeNode, _tree, _renderer, _element, _dir) {
+        super(_treeNode, _tree, _renderer, _element, _dir);
+    }
 }
 MatTreeNodePadding.decorators = [
     { type: Directive, args: [{
@@ -181,6 +201,13 @@ MatTreeNodePadding.decorators = [
             },] },
 ];
 /** @nocollapse */
+MatTreeNodePadding.ctorParameters = () => [
+    { type: CdkTreeNode, },
+    { type: CdkTree, },
+    { type: Renderer2, },
+    { type: ElementRef, },
+    { type: Directionality, decorators: [{ type: Optional },] },
+];
 MatTreeNodePadding.propDecorators = {
     "level": [{ type: Input, args: ['matTreeNodePadding',] },],
     "indent": [{ type: Input, args: ['matTreeNodePaddingIndent',] },],
@@ -195,6 +222,13 @@ MatTreeNodePadding.propDecorators = {
  * @template T
  */
 class MatTree extends CdkTree {
+    /**
+     * @param {?} _differs
+     * @param {?} _changeDetectorRef
+     */
+    constructor(_differs, _changeDetectorRef) {
+        super(_differs, _changeDetectorRef);
+    }
 }
 MatTree.decorators = [
     { type: Component, args: [{selector: 'mat-tree',
@@ -211,6 +245,10 @@ MatTree.decorators = [
             },] },
 ];
 /** @nocollapse */
+MatTree.ctorParameters = () => [
+    { type: IterableDiffers, },
+    { type: ChangeDetectorRef, },
+];
 MatTree.propDecorators = {
     "_nodeOutlet": [{ type: ViewChild, args: [MatTreeNodeOutlet,] },],
 };
@@ -224,8 +262,12 @@ MatTree.propDecorators = {
  * @template T
  */
 class MatTreeNodeToggle extends CdkTreeNodeToggle {
-    constructor() {
-        super(...arguments);
+    /**
+     * @param {?} _tree
+     * @param {?} _treeNode
+     */
+    constructor(_tree, _treeNode) {
+        super(_tree, _treeNode);
         this.recursive = false;
     }
 }
@@ -239,6 +281,10 @@ MatTreeNodeToggle.decorators = [
             },] },
 ];
 /** @nocollapse */
+MatTreeNodeToggle.ctorParameters = () => [
+    { type: CdkTree, },
+    { type: CdkTreeNode, },
+];
 MatTreeNodeToggle.propDecorators = {
     "recursive": [{ type: Input, args: ['matTreeNodeToggleRecursive',] },],
 };
@@ -329,15 +375,31 @@ class MatTreeFlattener {
         const /** @type {?} */ flatNode = this.transformFunction(node, level);
         resultNodes.push(flatNode);
         if (this.isExpandable(flatNode)) {
-            this.getChildren(node).pipe(take(1)).subscribe(children => {
-                children.forEach((child, index) => {
-                    let /** @type {?} */ childParentMap = parentMap.slice();
-                    childParentMap.push(index != children.length - 1);
-                    this._flattenNode(child, level + 1, resultNodes, childParentMap);
+            const /** @type {?} */ childrenNodes = this.getChildren(node);
+            if (Array.isArray(childrenNodes)) {
+                this._flattenChildren(childrenNodes, level, resultNodes, parentMap);
+            }
+            else {
+                childrenNodes.pipe(take(1)).subscribe(children => {
+                    this._flattenChildren(children, level, resultNodes, parentMap);
                 });
-            });
+            }
         }
         return resultNodes;
+    }
+    /**
+     * @param {?} children
+     * @param {?} level
+     * @param {?} resultNodes
+     * @param {?} parentMap
+     * @return {?}
+     */
+    _flattenChildren(children, level, resultNodes, parentMap) {
+        children.forEach((child, index) => {
+            let /** @type {?} */ childParentMap = parentMap.slice();
+            childParentMap.push(index != children.length - 1);
+            this._flattenNode(child, level + 1, resultNodes, childParentMap);
+        });
     }
     /**
      * Flatten a list of node type T to flattened version of node F.
@@ -362,7 +424,7 @@ class MatTreeFlattener {
         let /** @type {?} */ results = [];
         let /** @type {?} */ currentExpand = [];
         currentExpand[0] = true;
-        nodes.forEach((node) => {
+        nodes.forEach(node => {
             let /** @type {?} */ expand = true;
             for (let /** @type {?} */ i = 0; i <= this.getLevel(node); i++) {
                 expand = expand && currentExpand[i];
@@ -452,7 +514,7 @@ class MatTreeNestedDataSource extends DataSource {
         this._data = new BehaviorSubject([]);
     }
     /**
-     * Data for the nested treee
+     * Data for the nested tree
      * @return {?}
      */
     get data() { return this._data.value; }

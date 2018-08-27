@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, defer } from 'rxjs';
-var DeferObservable = /** @class */ (function (_super) {
+var DeferObservable = (function (_super) {
     __extends(DeferObservable, _super);
     function DeferObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

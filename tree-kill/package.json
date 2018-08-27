@@ -2,7 +2,7 @@
   "_from": "tree-kill@^1.2.0",
   "_id": "tree-kill@1.2.0",
   "_inBundle": false,
-  "_integrity": "sha1-WEZ4Yje0I5AU8F2xVrZDIS1MbzY=",
+  "_integrity": "sha512-DlX6dR0lOIRDFxI0mjL9IYg6OTncLm/Zt+JiBhE5OlFcAR8yc9S7FFXU9so0oda47frdM/JFsk7UjNt9vscKcg==",
   "_location": "/tree-kill",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "/@angular-devkit/build-angular",
     "/@ngtools/webpack"
   ],
-  "_resolved": "http://registry.npm.taobao.org/tree-kill/download/tree-kill-1.2.0.tgz",
+  "_resolved": "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.0.tgz",
   "_shasum": "5846786237b4239014f05db156b643212d4c6f36",
   "_spec": "tree-kill@^1.2.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/@angular-devkit/build-angular",
   "author": {
     "name": "Peteris Krumins",
     "email": "peteris.krumins@gmail.com",

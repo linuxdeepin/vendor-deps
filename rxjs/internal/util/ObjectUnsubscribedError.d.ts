@@ -8,5 +8,6 @@
  * @class ObjectUnsubscribedError
  */
 export declare class ObjectUnsubscribedError extends Error {
+    readonly name: string;
     constructor();
 }

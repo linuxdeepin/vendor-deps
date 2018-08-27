@@ -5,10 +5,11 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { Directive, ViewContainerRef, Attribute, ContentChildren, ElementRef, Input, IterableDiffers, ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation, NgModule } from '@angular/core';
+import { Directive, ViewContainerRef, Attribute, ContentChildren, ElementRef, Input, IterableDiffers, TemplateRef, Optional, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild, ViewEncapsulation, NgModule } from '@angular/core';
 import { __extends } from 'tslib';
 import { CdkNestedTreeNode, CdkTree, CdkTreeNode, CdkTreeNodeDef, CdkTreeNodePadding, CdkTreeNodeToggle, CdkTreeModule } from '@angular/cdk/tree';
 import { mixinDisabled, mixinTabIndex, MatCommonModule } from '@angular/material/core';
+import { Directionality } from '@angular/cdk/bidi';
 import { CommonModule } from '@angular/common';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, merge } from 'rxjs';
@@ -89,8 +90,13 @@ var MatTreeNode = /** @class */ (function (_super) {
  */
 var MatTreeNodeDef = /** @class */ (function (_super) {
     __extends(MatTreeNodeDef, _super);
-    function MatTreeNodeDef() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    // TODO(andrewseguin): Remove this explicitly set constructor when the compiler knows how to
+    // properly build the es6 version of the class. Currently sets ctorParameters to empty due to a
+    // fixed bug.
+    // https://github.com/angular/tsickle/pull/760 - tsickle PR that fixed this
+    // https://github.com/angular/angular/pull/23531 - updates compiler-cli to fixed version
+    function MatTreeNodeDef(template) {
+        return _super.call(this, template) || this;
     }
     MatTreeNodeDef.decorators = [
         { type: Directive, args: [{
@@ -102,6 +108,9 @@ var MatTreeNodeDef = /** @class */ (function (_super) {
                 },] },
     ];
     /** @nocollapse */
+    MatTreeNodeDef.ctorParameters = function () { return [
+        { type: TemplateRef, },
+    ]; };
     MatTreeNodeDef.propDecorators = {
         "data": [{ type: Input, args: ['matTreeNode',] },],
     };
@@ -182,8 +191,13 @@ var MatNestedTreeNode = /** @class */ (function (_super) {
  */
 var MatTreeNodePadding = /** @class */ (function (_super) {
     __extends(MatTreeNodePadding, _super);
-    function MatTreeNodePadding() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    // TODO(andrewseguin): Remove this explicitly set constructor when the compiler knows how to
+    // properly build the es6 version of the class. Currently sets ctorParameters to empty due to a
+    // fixed bug.
+    // https://github.com/angular/tsickle/pull/760 - tsickle PR that fixed this
+    // https://github.com/angular/angular/pull/23531 - updates compiler-cli to fixed version
+    function MatTreeNodePadding(_treeNode, _tree, _renderer, _element, _dir) {
+        return _super.call(this, _treeNode, _tree, _renderer, _element, _dir) || this;
     }
     MatTreeNodePadding.decorators = [
         { type: Directive, args: [{
@@ -192,6 +206,13 @@ var MatTreeNodePadding = /** @class */ (function (_super) {
                 },] },
     ];
     /** @nocollapse */
+    MatTreeNodePadding.ctorParameters = function () { return [
+        { type: CdkTreeNode, },
+        { type: CdkTree, },
+        { type: Renderer2, },
+        { type: ElementRef, },
+        { type: Directionality, decorators: [{ type: Optional },] },
+    ]; };
     MatTreeNodePadding.propDecorators = {
         "level": [{ type: Input, args: ['matTreeNodePadding',] },],
         "indent": [{ type: Input, args: ['matTreeNodePaddingIndent',] },],
@@ -209,8 +230,13 @@ var MatTreeNodePadding = /** @class */ (function (_super) {
  */
 var MatTree = /** @class */ (function (_super) {
     __extends(MatTree, _super);
-    function MatTree() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    // TODO(andrewseguin): Remove this explicitly set constructor when the compiler knows how to
+    // properly build the es6 version of the class. Currently sets ctorParameters to empty due to a
+    // fixed bug.
+    // https://github.com/angular/tsickle/pull/760 - tsickle PR that fixed this
+    // https://github.com/angular/angular/pull/23531 - updates compiler-cli to fixed version
+    function MatTree(_differs, _changeDetectorRef) {
+        return _super.call(this, _differs, _changeDetectorRef) || this;
     }
     MatTree.decorators = [
         { type: Component, args: [{selector: 'mat-tree',
@@ -227,6 +253,10 @@ var MatTree = /** @class */ (function (_super) {
                 },] },
     ];
     /** @nocollapse */
+    MatTree.ctorParameters = function () { return [
+        { type: IterableDiffers, },
+        { type: ChangeDetectorRef, },
+    ]; };
     MatTree.propDecorators = {
         "_nodeOutlet": [{ type: ViewChild, args: [MatTreeNodeOutlet,] },],
     };
@@ -243,8 +273,13 @@ var MatTree = /** @class */ (function (_super) {
  */
 var MatTreeNodeToggle = /** @class */ (function (_super) {
     __extends(MatTreeNodeToggle, _super);
-    function MatTreeNodeToggle() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    // TODO(andrewseguin): Remove this explicitly set constructor when the compiler knows how to
+    // properly build the es6 version of the class. Currently sets ctorParameters to empty due to a
+    // fixed bug.
+    // https://github.com/angular/tsickle/pull/760 - tsickle PR that fixed this
+    // https://github.com/angular/angular/pull/23531 - updates compiler-cli to fixed version
+    function MatTreeNodeToggle(_tree, _treeNode) {
+        var _this = _super.call(this, _tree, _treeNode) || this;
         _this.recursive = false;
         return _this;
     }
@@ -258,6 +293,10 @@ var MatTreeNodeToggle = /** @class */ (function (_super) {
                 },] },
     ];
     /** @nocollapse */
+    MatTreeNodeToggle.ctorParameters = function () { return [
+        { type: CdkTree, },
+        { type: CdkTreeNode, },
+    ]; };
     MatTreeNodeToggle.propDecorators = {
         "recursive": [{ type: Input, args: ['matTreeNodeToggleRecursive',] },],
     };
@@ -390,15 +429,39 @@ MatTreeFlattener = /** @class */ (function () {
         var /** @type {?} */ flatNode = this.transformFunction(node, level);
         resultNodes.push(flatNode);
         if (this.isExpandable(flatNode)) {
-            this.getChildren(node).pipe(take(1)).subscribe(function (children) {
-                children.forEach(function (child, index) {
-                    var /** @type {?} */ childParentMap = parentMap.slice();
-                    childParentMap.push(index != children.length - 1);
-                    _this._flattenNode(child, level + 1, resultNodes, childParentMap);
+            var /** @type {?} */ childrenNodes = this.getChildren(node);
+            if (Array.isArray(childrenNodes)) {
+                this._flattenChildren(childrenNodes, level, resultNodes, parentMap);
+            }
+            else {
+                childrenNodes.pipe(take(1)).subscribe(function (children) {
+                    _this._flattenChildren(children, level, resultNodes, parentMap);
                 });
-            });
+            }
         }
         return resultNodes;
+    };
+    /**
+     * @param {?} children
+     * @param {?} level
+     * @param {?} resultNodes
+     * @param {?} parentMap
+     * @return {?}
+     */
+    MatTreeFlattener.prototype._flattenChildren = /**
+     * @param {?} children
+     * @param {?} level
+     * @param {?} resultNodes
+     * @param {?} parentMap
+     * @return {?}
+     */
+    function (children, level, resultNodes, parentMap) {
+        var _this = this;
+        children.forEach(function (child, index) {
+            var /** @type {?} */ childParentMap = parentMap.slice();
+            childParentMap.push(index != children.length - 1);
+            _this._flattenNode(child, level + 1, resultNodes, childParentMap);
+        });
     };
     /**
      * Flatten a list of node type T to flattened version of node F.
@@ -568,10 +631,10 @@ MatTreeNestedDataSource = /** @class */ (function (_super) {
     }
     Object.defineProperty(MatTreeNestedDataSource.prototype, "data", {
         /**
-         * Data for the nested treee
+         * Data for the nested tree
          */
         get: /**
-         * Data for the nested treee
+         * Data for the nested tree
          * @return {?}
          */
         function () { return this._data.value; },

@@ -224,7 +224,8 @@ var selectors = {
           }
           break;
         case 'href':
-          attr = el.getAttribute('href', 2);
+        case 'src':
+          attr = el.getAttribute(key, 2);
           break;
         case 'title':
           // getAttribute('title') can be '' when non-existent sometimes?
@@ -737,8 +738,8 @@ var tok = function(cap, qname) {
   if (cap[1]) {
     return cap[1][0] === '.'
 	  // XXX unescape here?  or in attr?
-      ? selectors.attr('class', '~=', decodeid(cap[1].substring(1)))
-      : selectors.attr('id', '=', decodeid(cap[1].substring(1)));
+      ? selectors.attr('class', '~=', decodeid(cap[1].substring(1)), false)
+      : selectors.attr('id', '=', decodeid(cap[1].substring(1)), false);
   }
 
   // pseudo-name
@@ -753,7 +754,12 @@ var tok = function(cap, qname) {
   // attr op
   // attr value
   if (cap[4]) {
-    return selectors.attr(decodeid(cap[4]), cap[5] || '-', unquote(cap[6]), false);
+    var value = cap[6];
+    var i = /["'\s]\s*I$/i.test(value);
+    if (i) {
+      value = value.replace(/\s*I$/i, '');
+    }
+    return selectors.attr(decodeid(cap[4]), cap[5] || '-', unquote(value), i);
   }
 
   throw new SyntaxError('Unknown Selector.');

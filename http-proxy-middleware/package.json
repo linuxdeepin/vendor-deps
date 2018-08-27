@@ -2,7 +2,7 @@
   "_from": "http-proxy-middleware@~0.18.0",
   "_id": "http-proxy-middleware@0.18.0",
   "_inBundle": false,
-  "_integrity": "sha1-CYfmu1pWBuWmkWjY+WeofxXdiqs=",
+  "_integrity": "sha512-Fs25KVMPAIIcgjMZkVHJoKg9VcXcC1C8yb9JUgeDvVXY0S/zgVIhMb+qVswDIgtJe2DfckMSY2d6TuTEutlk6Q==",
   "_location": "/http-proxy-middleware",
   "_phantomChildren": {
     "arr-flatten": "1.1.0",
@@ -38,10 +38,10 @@
   "_requiredBy": [
     "/webpack-dev-server"
   ],
-  "_resolved": "http://registry.npm.taobao.org/http-proxy-middleware/download/http-proxy-middleware-0.18.0.tgz",
+  "_resolved": "https://registry.npmjs.org/http-proxy-middleware/-/http-proxy-middleware-0.18.0.tgz",
   "_shasum": "0987e6bb5a5606e5a69168d8f967a87f15dd8aab",
   "_spec": "http-proxy-middleware@~0.18.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/webpack-dev-server",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/webpack-dev-server",
   "author": {
     "name": "Steven Chim"
   },

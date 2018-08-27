@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Observable, fromEventPattern } from 'rxjs';
-var FromEventPatternObservable = /** @class */ (function (_super) {
+var FromEventPatternObservable = (function (_super) {
     __extends(FromEventPatternObservable, _super);
     function FromEventPatternObservable() {
         return _super !== null && _super.apply(this, arguments) || this;

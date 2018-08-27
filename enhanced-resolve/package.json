@@ -1,8 +1,8 @@
 {
   "_from": "enhanced-resolve@^4.0.0",
-  "_id": "enhanced-resolve@4.0.0",
+  "_id": "enhanced-resolve@4.1.0",
   "_inBundle": false,
-  "_integrity": "sha1-40puqnkPYvzNcdk5WfVrK0MtsQo=",
+  "_integrity": "sha512-F/7vkyTtyc/llOIn8oWclcB25KdRaiPBpZYDgJHgh/UHtpgT2p2eldQgtQnLtUvfMKPKxbRaQM/hHkvLHt1Vng==",
   "_location": "/enhanced-resolve",
   "_phantomChildren": {},
   "_requested": {
@@ -18,10 +18,10 @@
   "_requiredBy": [
     "/webpack"
   ],
-  "_resolved": "http://registry.npm.taobao.org/enhanced-resolve/download/enhanced-resolve-4.0.0.tgz",
-  "_shasum": "e34a6eaa790f62fccd71d93959f56b2b432db10a",
+  "_resolved": "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-4.1.0.tgz",
+  "_shasum": "41c7e0bfdfe74ac1ffe1e57ad6a5c6c9f3742a7f",
   "_spec": "enhanced-resolve@^4.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web/node_modules/webpack",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web/node_modules/webpack",
   "author": {
     "name": "Tobias Koppers @sokra"
   },
@@ -49,7 +49,7 @@
     "should": "^8.0.2"
   },
   "engines": {
-    "node": ">=6.11.5"
+    "node": ">=6.9.0"
   },
   "files": [
     "lib",
@@ -78,5 +78,5 @@
     "test": "mocha --full-trace --check-leaks",
     "travis": "npm run cover -- --report lcovonly"
   },
-  "version": "4.0.0"
+  "version": "4.1.0"
 }

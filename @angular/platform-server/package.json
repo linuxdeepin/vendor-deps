@@ -1,28 +1,28 @@
 {
-  "_from": "@angular/platform-server@6.0.0",
-  "_id": "@angular/platform-server@6.0.0",
+  "_from": "@angular/platform-server@6.1.4",
+  "_id": "@angular/platform-server@6.1.4",
   "_inBundle": false,
-  "_integrity": "sha1-SCh4zFOKgMqjli6TduQiWyDCpL0=",
+  "_integrity": "sha512-noB9yQT+7maEeEKIc1TSS1CSYD2BXUdBN75O+ihiCJ20eav853hWPPOA+1PWosWDo2zKlrv8hdvAiOy8KrdcIw==",
   "_location": "/@angular/platform-server",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@angular/platform-server@6.0.0",
+    "raw": "@angular/platform-server@6.1.4",
     "name": "@angular/platform-server",
     "escapedName": "@angular%2fplatform-server",
     "scope": "@angular",
-    "rawSpec": "6.0.0",
+    "rawSpec": "6.1.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.0"
+    "fetchSpec": "6.1.4"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "http://registry.npm.taobao.org/@angular/platform-server/download/@angular/platform-server-6.0.0.tgz",
-  "_shasum": "482878cc538a80caa3962e9376e4225b20c2a4bd",
-  "_spec": "@angular/platform-server@6.0.0",
-  "_where": "/home/myml/Src/deepin/update/dstore-metadata-server/web",
+  "_resolved": "https://registry.npmjs.org/@angular/platform-server/-/platform-server-6.1.4.tgz",
+  "_shasum": "df9fb37ad58605159f2aa1f777c6260491858c3f",
+  "_spec": "@angular/platform-server@6.1.4",
+  "_where": "/home/myml/Src/deepin/dstore-metadata-server/web",
   "author": {
     "name": "angular"
   },
@@ -73,12 +73,12 @@
     ]
   },
   "peerDependencies": {
-    "@angular/animations": "6.0.0",
-    "@angular/common": "6.0.0",
-    "@angular/compiler": "6.0.0",
-    "@angular/core": "6.0.0",
-    "@angular/platform-browser": "6.0.0",
-    "@angular/platform-browser-dynamic": "6.0.0"
+    "@angular/animations": "6.1.4",
+    "@angular/common": "6.1.4",
+    "@angular/compiler": "6.1.4",
+    "@angular/core": "6.1.4",
+    "@angular/platform-browser": "6.1.4",
+    "@angular/platform-browser-dynamic": "6.1.4"
   },
   "repository": {
     "type": "git",
@@ -86,5 +86,5 @@
   },
   "sideEffects": false,
   "typings": "./platform-server.d.ts",
-  "version": "6.0.0"
+  "version": "6.1.4"
 }
