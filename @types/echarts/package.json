@@ -1,0 +1,37 @@
+{
+    "name": "@types/echarts",
+    "version": "4.1.1",
+    "description": "TypeScript definitions for echarts",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Xie Jingyang",
+            "url": "https://github.com/xieisabug",
+            "githubUsername": "xieisabug"
+        },
+        {
+            "name": "AntiMoron",
+            "url": "https://github.com/AntiMoron",
+            "githubUsername": "AntiMoron"
+        },
+        {
+            "name": "Liveangela",
+            "url": "https://github.com/liveangela",
+            "githubUsername": "liveangela"
+        },
+        {
+            "name": "Ovilia",
+            "url": "https://github.com/Ovilia",
+            "githubUsername": "Ovilia"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "01ae18914fa5e1dc9a3a90e13b46542ccaf367923deaa2c638d811c8e192ace8",
+    "typeScriptVersion": "2.3"
+}
