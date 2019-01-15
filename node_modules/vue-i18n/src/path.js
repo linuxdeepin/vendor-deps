@@ -3,7 +3,7 @@
 import { isObject } from './util'
 
 /**
- *  Path paerser
+ *  Path parser
  *  - Inspired:
  *    Vue.js Path parser
  */
@@ -83,7 +83,7 @@ pathStateMachine[IN_DOUBLE_QUOTE] = {
  * Check if an expression is a literal value.
  */
 
-const literalValueRE: RegExp = /^\s?(true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/
+const literalValueRE: RegExp = /^\s?(?:true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/
 function isLiteral (exp: string): boolean {
   return literalValueRE.test(exp)
 }
@@ -115,7 +115,6 @@ function getPathCharType (ch: ?string): string {
     case 0x2E: // .
     case 0x22: // "
     case 0x27: // '
-    case 0x30: // 0
       return ch
 
     case 0x5F: // _
@@ -134,15 +133,7 @@ function getPathCharType (ch: ?string): string {
       return 'ws'
   }
 
-  // a-z, A-Z
-  if ((code >= 0x61 && code <= 0x7A) || (code >= 0x41 && code <= 0x5A)) {
-    return 'ident'
-  }
-
-  // 1-9
-  if (code >= 0x31 && code <= 0x39) { return 'number' }
-
-  return 'else'
+  return 'ident'
 }
 
 /**
@@ -262,15 +253,6 @@ export type PathValue = PathValueObject | PathValueArray | string | number | boo
 export type PathValueObject = { [key: string]: PathValue }
 export type PathValueArray = Array<PathValue>
 
-function empty (target: any): boolean {
-  /* istanbul ignore else */
-  if (Array.isArray(target)) {
-    return target.length === 0
-  } else {
-    return false
-  }
-}
-
 export default class I18nPath {
   _cache: Object
 
@@ -299,25 +281,22 @@ export default class I18nPath {
     if (!isObject(obj)) { return null }
 
     const paths: Array<string> = this.parsePath(path)
-    if (empty(paths)) {
+    if (paths.length === 0) {
       return null
     } else {
       const length: number = paths.length
-      let ret: any = null
       let last: any = obj
       let i: number = 0
       while (i < length) {
         const value: any = last[paths[i]]
         if (value === undefined) {
-          last = null
-          break
+          return null
         }
         last = value
         i++
       }
 
-      ret = last
-      return ret
+      return last
     }
   }
 }

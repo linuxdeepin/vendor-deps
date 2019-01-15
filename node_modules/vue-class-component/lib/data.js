@@ -19,7 +19,7 @@ export function collectDataFromConstructor(vm, Component) {
             if (key.charAt(0) !== '_') {
                 Object.defineProperty(_this, key, {
                     get: function () { return vm[key]; },
-                    set: function (value) { return vm[key] = value; },
+                    set: function (value) { vm[key] = value; },
                     configurable: true
                 });
             }

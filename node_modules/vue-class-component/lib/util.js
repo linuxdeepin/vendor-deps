@@ -1,6 +1,7 @@
 import Vue from 'vue';
 export var noop = function () { };
-export var hasProto = { __proto__: [] } instanceof Array;
+var fakeArray = { __proto__: [] };
+export var hasProto = fakeArray instanceof Array;
 export function createDecorator(factory) {
     return function (target, key, index) {
         var Ctor = typeof target === 'function'
@@ -24,7 +25,7 @@ export function mixins() {
 }
 export function isPrimitive(value) {
     var type = typeof value;
-    return value == null || (type !== "object" && type !== "function");
+    return value == null || (type !== 'object' && type !== 'function');
 }
 export function warn(message) {
     if (typeof console !== 'undefined') {
